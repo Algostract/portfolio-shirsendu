@@ -1,0 +1,95 @@
+---
+# - name: FlowMate
+#   repo:
+#   description: An AI-powered web app for easy and accurate menstrual cycle tracking
+#     and personalized insights.
+#   version: 0.0.0
+#   stars: 1
+#   forks: 0
+#   createdAt: '2020-05-04T18:30:00.000Z'
+#   updatedAt: '2021-04-20T18:30:00.000Z'
+#   videoURL: ''
+# - name: LinguaScan
+#   repo: shba007/digit-recognizer
+#   description: An AI-powered web app for easy OCR of any language from images, using
+#     Object Detection.
+#   version: 0.0.0
+#   stars: 1
+#   forks: 0
+#   createdAt: '2021-04-20T18:30:00.000Z'
+#   updatedAt: '2021-04-20T18:30:00.000Z'
+#   videoURL: ''
+- name: BloodLink
+  repo: shba007/blood-link
+  createdAt: '2022-02-10T18:30:00.000Z'
+  videoURL: ''
+# - name: BioSense
+#   repo:
+#   description: An IoT-based web app detecting soil humidity, automating motor control
+#     for effortless gardening.
+#   version: 0.0.0
+#   stars: 1
+#   forks: 0
+#   createdAt: '2022-08-02T18:30:00.000Z'
+#   updatedAt: '2021-04-20T18:30:00.000Z'
+#   videoURL: ''
+# - name: Ntertainer
+#   repo: shba007/ntertainer-frontend
+#   description: An web app assist you to discover what to watch next in solo or group
+#     based on everyone's ratings.
+#   version: 0.0.0
+#   stars: 1
+#   forks: 0
+#   createdAt: '2021-04-20T18:30:00.000Z'
+#   updatedAt: '2021-04-20T18:30:00.000Z'
+#   videoURL: ''
+# - name: Orykit
+#   repo: Algostract/orykit-store
+#   description: An E-commerce web app specializing in oxidized earrings, offering a
+#     unique and stylish selection.
+#   version: 0.0.0
+#   stars: 1
+#   forks: 0
+#   createdAt: '2021-04-20T18:30:00.000Z'
+#   updatedAt: '2021-04-20T18:30:00.000Z'
+#   videoURL: ''
+# - name: Psy
+#   repo: Algostract/psy-app
+#   description: An psychoanalytical calculator for various assessments and an scanner
+#     for automatic analysis.
+#   version: 0.0.0
+#   stars: 1
+#   forks: 0
+#   createdAt: '2021-04-20T18:30:00.000Z'
+#   updatedAt: '2021-04-20T18:30:00.000Z'
+#   videoURL: ''
+# - name: Compeer
+#   repo: shba007/com-peer
+#   description: A 1v1 web game of short MCQ question-answer for challenging friends
+#     and testing knowledge.
+#   version: 0.0.0
+#   stars: 1
+#   forks: 0
+#   createdAt: '2021-04-20T18:30:00.000Z'
+#   updatedAt: '2021-04-20T18:30:00.000Z'
+#   videoURL: ''
+# - name: SnapFinder
+#   repo:
+#   description: An AI-powered web app to instantly find product links online from images
+#     with ease
+#   version: 0.0.0
+#   stars: 1
+#   forks: 0
+#   createdAt: '2021-04-20T18:30:00.000Z'
+#   updatedAt: '2021-04-20T18:30:00.000Z'
+#   videoURL: ''
+# - name: CheckPoint
+#   repo:
+#   description: An web app which takes attendance using technologies like QR code,
+#     geolocation, and AI.
+#   version: 0.0.0
+#   stars: 1
+#   forks: 0
+#   createdAt: '2021-04-20T18:30:00.000Z'
+#   updatedAt: '2021-04-20T18:30:00.000Z'
+#   videoURL: ''
