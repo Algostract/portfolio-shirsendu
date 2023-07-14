@@ -1,6 +1,10 @@
 {
-  "name": "nuxt-app",
+  "name": "portfolio",
+  "version": "0.2.0",
   "private": true,
+  "engines": {
+    "node": "^18.16.0"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
