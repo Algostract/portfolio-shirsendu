@@ -1,4 +1,9 @@
 ---
+- name: Psy
+  repo: shba007/psy-app
+  createdAt: '2021-07-20T18:30:00.000Z'
+  appURL: 'https://psy.orykit.com'
+  videoURL: ''
 # - name: FlowMate
 #   repo:
 #   description: An AI-powered web app for easy and accurate menstrual cycle tracking
@@ -22,6 +27,7 @@
 - name: BloodLink
   repo: shba007/blood-link
   createdAt: '2022-02-10T18:30:00.000Z'
+  appURL: ''
   videoURL: ''
 # - name: BioSense
 #   repo:
@@ -47,16 +53,6 @@
 #   repo: Algostract/orykit-store
 #   description: An E-commerce web app specializing in oxidized earrings, offering a
 #     unique and stylish selection.
-#   version: 0.0.0
-#   stars: 1
-#   forks: 0
-#   createdAt: '2021-04-20T18:30:00.000Z'
-#   updatedAt: '2021-04-20T18:30:00.000Z'
-#   videoURL: ''
-# - name: Psy
-#   repo: Algostract/psy-app
-#   description: An psychoanalytical calculator for various assessments and an scanner
-#     for automatic analysis.
 #   version: 0.0.0
 #   stars: 1
 #   forks: 0

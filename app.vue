@@ -3,8 +3,31 @@ import photoDark from '~~/assets/images/photo-dark.png';
 import photoLight from '~~/assets/images/photo-light.png';
 
 useHead({
-  titleTemplate: "Portfolio"
+  titleTemplate: "Shirsendu's Portfolio"
 })
+
+useSchemaOrg([
+  definePerson({
+    name: "Shirsendu Bairagi",
+    description: "I am a Web Developer and an AI Enthusiast",
+    image: "/previews/landing.png",
+    sameAs: [
+      "https://github.com/shba007",
+      "https://twitter.com/shirsendu_2001",
+      "https://www.linkedin.com/in/shirsendu-bairagi-28b4b1213",
+    ],
+  }),
+  defineWebSite({
+    name: "Shirsendu's Portfolio",
+    description: `My developer's portfolio showcasing my skills, projects,
+    and expertise in a visually appealing manner`
+  }),
+  defineWebPage({
+    datePublished: new Date(14, 6, 2023).toISOString(),
+    dateModified: new Date(14, 6, 2023).toISOString(),
+    author: 'Shirsendu Bairagi',
+  }),
+])
 
 const colorMode = useColorMode()
 const photo = computed(() => {
@@ -39,7 +62,7 @@ const experience = computed(() => {
   return `${yearString} ${monthString}`;
 })
 
-const { data: projects, pending, error, refresh } = await useFetch('/api/project')
+const { data: projects, pending, error } = await useFetch('/api/project')
 </script>
 
 <template>
@@ -91,13 +114,14 @@ const { data: projects, pending, error, refresh } = await useFetch('/api/project
     <section id="project" class="relative left-1/2 -translate-x-1/2 w-screen">
       <h2 class="mx-auto w-fit text-lg lg:text-xl">All Projects</h2>
       <div class="flex flex-wrap gap-8 my-8 px-4 py-4 max-h-[1120px] overflow-x-hidden overflow-y-scroll">
-        <ProjectCard v-for="{ name, description, version, stars, forks, createdAt, updatedAt, videoURL } in projects"
+        <ProjectCard
+          v-for="{ name, description, version, stars, forks, createdAt, updatedAt, appURL, videoURL } in projects"
           :name="name" :description="description" :version="version" :stars="stars" :forks="forks" :createdAt="createdAt"
-          :updatedAt="updatedAt" :videoURL="videoURL" />
+          :updatedAt="updatedAt" :appURL="appURL" :videoURL="videoURL" />
       </div>
     </section>
     <section id="hackathon">
-      <h2 class="mx-auto w-fit text-lg lg:text-xl">All Hackathon</h2>
+      <h2 class="mx-auto w-fit text-lg lg:text-xl">All Hackathons</h2>
       <div class="flex flex-col gap-4 my-8">
       </div>
     </section>
@@ -118,15 +142,15 @@ const { data: projects, pending, error, refresh } = await useFetch('/api/project
 }
 
 *::-webkit-scrollbar {
-  @apply block w-[6px] bg-light-500 dark:bg-dark-400;
+  @apply block w-[6px] bg-light-400 dark:bg-dark-400;
 }
 
 *::-webkit-scrollbar-thumb {
-  @apply rounded-md bg-light-400 dark:bg-dark-600;
+  @apply rounded-md bg-light-600 dark:bg-dark-600;
 }
 
 body {
-  @apply text-black font-body dark:text-white bg-light-400 dark:bg-dark-400 overflow-x-hidden;
+  @apply font-body text-black dark:text-white bg-light-400 dark:bg-dark-400 overflow-x-hidden;
 }
 
 .nuxt-icon>svg {

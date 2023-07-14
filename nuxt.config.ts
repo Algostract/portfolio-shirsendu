@@ -2,11 +2,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
+    // '@nuxt/image',
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     'nuxt-gtag',
-    'nuxt-icons'
+    'nuxt-icons',
+    'nuxt-schema-org'
   ],
   typescript: {
     shim: false,
@@ -29,7 +31,7 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: '',
-    preference: 'dark',
+    preference: 'system',
   },
   gtag: {
     id: 'G-ZMR7H4LPSK'
