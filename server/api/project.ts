@@ -1,20 +1,21 @@
-import fs from 'fs';
-import yaml from 'yaml';
+import fs from "fs";
+import yaml from "yaml";
 
 import { ofetch } from "ofetch";
 import { Project } from "~~/utils/models"
 
 export default defineEventHandler<Project[]>(async (event) => {
   try {
-    const fileContents = fs.readFileSync('projects.yml', 'utf8');
+    const fileContents = fs.readFileSync("projects.yml", "utf8");
     const projects: {
       name: string;
       repo: string;
       createdAt: string;
+      appURL: string;
       videoURL: string;
     }[] = yaml.parse(fileContents);
 
-    const repos = (await Promise.all(projects.map(async ({ name, repo, createdAt, videoURL }): Promise<Project | null> => {
+    const repos = (await Promise.all(projects.map(async ({ name, repo, createdAt, appURL, videoURL }): Promise<Project | null> => {
       if (repo == null)
         return null
 
@@ -29,7 +30,8 @@ export default defineEventHandler<Project[]>(async (event) => {
           stars: details.stars,
           forks: details.forks,
           createdAt,
-          updatedAt: details.updatedAt,
+          updatedAt: details.pushedAt,
+          appURL,
           videoURL,
         }
       } catch (error) {
@@ -37,11 +39,10 @@ export default defineEventHandler<Project[]>(async (event) => {
       }
     }))).filter((value): value is Project => value !== null);
 
-    // console.log({ repos });
     return repos
   } catch (error: any) {
     console.error("API project GET", error)
 
-    throw createError({ statusCode: 500, statusMessage: 'Some Unknown Error Found' })
+    throw createError({ statusCode: 500, statusMessage: "Some Unknown Error Found" })
   }
 })

@@ -1,6 +1,8 @@
 # Portfolio
 My developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner
 
+![Landing](public/previews/landing.jpg)
+
 # Next Planned Updates
 - Youtube like countdown in experience number
 - Nuxt Devtool like bottom floating page progress
