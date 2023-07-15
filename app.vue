@@ -31,7 +31,12 @@ useSchemaOrg([
 
 const colorMode = useColorMode()
 const photo = computed(() => {
-  return (colorMode.preference == 'dark') ? photoDark : photoLight
+  console.log(colorMode.preference, colorMode.value);
+
+  if (colorMode.preference === 'system')
+    return (colorMode.value === 'light') ? photoLight : photoDark
+  else
+    return (colorMode.preference === 'light') ? photoLight : photoDark
 })
 
 const dob = ref(new Date(2001, 0, 29))
@@ -46,7 +51,7 @@ const age = useTimeAgo(() => dob.value ?? "", {
 })
 
 const journeyStartDate = ref(new Date(2021, 3, 21))
-const now = useNow({ interval: 3600 })
+const now = useNow({ interval: 60 })
 const experience = computed(() => {
   const startYear = journeyStartDate.value.getFullYear();
   const startMonth = journeyStartDate.value.getMonth();
@@ -63,12 +68,13 @@ const experience = computed(() => {
 })
 
 const { data: projects, pending, error } = await useFetch('/api/project')
+const selectedModel = ref<'contact' | null>(null)
 </script>
 
 <template>
   <main class="mx-auto p-4 md:p-8 pb-0 max-w-[85rem] h-screen">
     <header>
-      <Navbar />
+      <Navbar @contact="selectedModel = 'contact'" />
     </header>
     <section id="intro" class="flex flex-col md:flex-row md:justify-between gap-10 md:gap-4 my-10 lg:my-16">
       <div class="flex flex-col gap-4 md:my-8">
@@ -103,7 +109,9 @@ const { data: projects, pending, error } = await useFetch('/api/project')
               <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
                 <use xlink:href="#clip-image" transform="matrix(0.00123181 0 0 0.000925926 -0.00134755 0)" />
               </pattern>
-              <image id="clip-image" :href="photo" alt="photo" />
+              <ClientOnly>
+                <image id="clip-image" :href="photo" alt="photo" />
+              </ClientOnly>
             </defs>
           </svg>
         </div>
@@ -130,6 +138,7 @@ const { data: projects, pending, error } = await useFetch('/api/project')
       <p class="text-center md:text-lg">Want to get latest updates of My Projects<br />Join the weekly Newsletter</p>
       <NewsletterBox />
     </footer>
+    <ModelContact :is-open="selectedModel === 'contact'" @close="selectedModel = null" />
   </main>
 </template>
 

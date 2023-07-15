@@ -3,11 +3,14 @@ My developer's portfolio showcasing my skills, projects, and expertise in a visu
 
 ![Landing](public/previews/landing.jpg)
 
-# Next Planned Updates
+# Active Projects
+- Psy
+- BloodLink
+
+# Todos
+- Email Subscription
+- Add ColorMode Button
 - Youtube like countdown in experience number
 - Nuxt Devtool like bottom floating page progress
 - SkillHex Iterative Highlighting
 - Neon Accent Glow Line
-
-# Schedule 
-- BloodLink

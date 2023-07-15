@@ -2,8 +2,8 @@
 - name: Psy
   repo: shba007/psy-app
   createdAt: '2021-07-20T18:30:00.000Z'
-  appURL: 'https://psy.orykit.com'
-  videoURL: ''
+  appURL: 'https://psy.shirsendu-bairagi.dev'
+  videoURL: 'https://youtu.be/Tu60B-gheNM'
 # - name: FlowMate
 #   repo:
 #   description: An AI-powered web app for easy and accurate menstrual cycle tracking
@@ -24,11 +24,11 @@
 #   createdAt: '2021-04-20T18:30:00.000Z'
 #   updatedAt: '2021-04-20T18:30:00.000Z'
 #   videoURL: ''
-- name: BloodLink
-  repo: shba007/blood-link
-  createdAt: '2022-02-10T18:30:00.000Z'
-  appURL: ''
-  videoURL: ''
+# - name: BloodLink
+#   repo: shba007/blood-link
+#   createdAt: '2022-02-10T18:30:00.000Z'
+#   appURL: ''
+#   videoURL: ''
 # - name: BioSense
 #   repo:
 #   description: An IoT-based web app detecting soil humidity, automating motor control
@@ -69,16 +69,11 @@
 #   createdAt: '2021-04-20T18:30:00.000Z'
 #   updatedAt: '2021-04-20T18:30:00.000Z'
 #   videoURL: ''
-# - name: SnapFinder
-#   repo:
-#   description: An AI-powered web app to instantly find product links online from images
-#     with ease
-#   version: 0.0.0
-#   stars: 1
-#   forks: 0
-#   createdAt: '2021-04-20T18:30:00.000Z'
-#   updatedAt: '2021-04-20T18:30:00.000Z'
-#   videoURL: ''
+- name: FashionLens
+  repo: shba007/fashion-lens
+  createdAt: '2023-07-15T10:44:56.791Z'
+  appURL: 'https://fashion-lens.shirsendu-bairagi.dev'
+  videoURL: ''
 # - name: CheckPoint
 #   repo:
 #   description: An web app which takes attendance using technologies like QR code,
