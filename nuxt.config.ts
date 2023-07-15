@@ -30,8 +30,9 @@ export default defineNuxtConfig({
     },
   },
   colorMode: {
-    classSuffix: '',
     preference: 'system',
+    fallback: 'light', 
+    classSuffix: '',
   },
   gtag: {
     id: 'G-ZMR7H4LPSK'
