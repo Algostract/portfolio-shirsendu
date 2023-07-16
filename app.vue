@@ -1,9 +1,23 @@
 <script setup lang="ts">
-import photoDark from '~~/assets/images/photo-dark.png';
-import photoLight from '~~/assets/images/photo-light.png';
+import photoDark from "~~/assets/images/photo-dark.png";
+import photoLight from "~~/assets/images/photo-light.png";
 
 useHead({
-  titleTemplate: "Shirsendu's Portfolio"
+  title: "Shirsendu's Portfolio"
+})
+
+useSeoMeta({
+  ogType: "profile",
+  title: "Shirsendu's Portfolio",
+  ogTitle: "Shirsendu's Portfolio",
+  description: "My developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
+  ogDescription: "My developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
+  ogImage: "/logo.png",
+  ogImageWidth: 540,
+  ogImageHeight: 720,
+  ogUrl: "/",
+  fbAppId: 966242223397117,
+  twitterCard: "summary_large_image",
 })
 
 useSchemaOrg([
@@ -20,32 +34,30 @@ useSchemaOrg([
   defineWebSite({
     name: "Shirsendu's Portfolio",
     description: `My developer's portfolio showcasing my skills, projects,
-    and expertise in a visually appealing manner`
+    and expertise in a visually appealing manner`,
   }),
   defineWebPage({
     datePublished: new Date(14, 6, 2023).toISOString(),
     dateModified: new Date(14, 6, 2023).toISOString(),
-    author: 'Shirsendu Bairagi',
+    author: "Shirsendu Bairagi",
   }),
 ])
 
 const colorMode = useColorMode()
 const photo = computed(() => {
-  console.log(colorMode.preference, colorMode.value);
-
-  if (colorMode.preference === 'system')
-    return (colorMode.value === 'light') ? photoLight : photoDark
+  if (colorMode.preference === "system")
+    return (colorMode.value === "light") ? photoLight : photoDark
   else
-    return (colorMode.preference === 'light') ? photoLight : photoDark
+    return (colorMode.preference === "light") ? photoLight : photoDark
 })
 
 const dob = ref(new Date(2001, 0, 29))
 const age = useTimeAgo(() => dob.value ?? "", {
   messages: {
-    invalid: 'Invalid Date',
+    invalid: "Invalid Date",
     past: (n: any) => n.match(/\d/) ? `${n}` : n,
-    justNow: 'Born Today',
-    future: 'To be Born',
+    justNow: "Born Today",
+    future: "To be Born",
     year: (n: number) => n.toString(),
   }
 })
@@ -67,8 +79,8 @@ const experience = computed(() => {
   return `${yearString} ${monthString}`;
 })
 
-const { data: projects, pending, error } = await useFetch('/api/project')
-const selectedModel = ref<'contact' | null>(null)
+const { data: projects, pending, error } = await useFetch("/api/project")
+const selectedModel = ref<"contact" | null>(null)
 </script>
 
 <template>

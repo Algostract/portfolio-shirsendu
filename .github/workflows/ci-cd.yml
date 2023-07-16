@@ -55,5 +55,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           overwrite: true
-          source: '.output'
+          source: '.output, projects.yml'
           target: '~/portfolio'
