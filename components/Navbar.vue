@@ -3,7 +3,7 @@ const emit = defineEmits<{ (event: 'contact'): void }>()
 </script>
 
 <template>
-  <ul class="flex items-center gap-7 mb-4 w-full">
+  <ul class="flex items-center gap-7 w-full">
     <li><a href="#project">Projects</a></li>
     <li><a href="#hackathon">Hackathons</a></li>
     <li class="ml-auto">

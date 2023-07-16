@@ -8,7 +8,6 @@ My developer's portfolio showcasing my skills, projects, and expertise in a visu
 - FashionLens
 
 # Todos
-- Display Image slides on Project Cards
 - Email Subscription
 - Add ColorMode Button
 - Youtube like countdown in experience number
