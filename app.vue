@@ -2,16 +2,30 @@
 import photoDark from "~~/assets/images/photo-dark.png";
 import photoLight from "~~/assets/images/photo-light.png";
 
-const route = useRoute()
-
 useHead({
   title: "Shirsendu's Portfolio",
   link: [
     {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+      crossorigin: 'anonymous',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.googleapis.com'
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;1,400&display=swap',
+    },
+    {
       rel: 'canonical',
-      href: `https://shirsendu-bairagi.dev${route.path}`,
+      href: 'https://shirsendu-bairagi.dev',
     },
   ],
+  htmlAttrs: {
+    lang: 'en'
+  }
 })
 
 useSeoMeta({
@@ -35,8 +49,11 @@ useSchemaOrg([
     image: "/previews/landing.png",
     sameAs: [
       "https://github.com/shba007",
-      "https://twitter.com/shirsendu_2001",
       "https://www.linkedin.com/in/shirsendu-bairagi-28b4b1213",
+      "https://www.youtube.com/@shirsendu_bairagi",
+      "https://twitter.com/shirsendu_2001",
+      "https://www.instagram.com/shirsendu_bairagi",
+      "https://www.facebook.com/shirsendu.bairagi.1"
     ],
   }),
   defineWebSite({
@@ -102,10 +119,10 @@ const selectedModel = ref<"contact" | null>(null)
           Hi, I am a <br />Web Developer and <br />an AI Enthusiast
         </h1>
         <h2 class="mx-auto md:mx-0 w-fit opacity-60 md:text-lg">My name is Shirsendu Bairagi, Age {{ age }}</h2>
-        <div
+        <h3
           class="mx-auto md:mx-0 my-2 rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg px-5 py-3 w-fit bg-primary-400 text-lg text-white">
           {{ experience }} +XP
-        </div>
+        </h3>
       </div>
       <div class="grid grid-rows-[1fr_2fr_1fr] lg:grid-rows-2 lg:gap-x-20 lg:gap-y-36 grid-cols-3 justify-items-stretch">
         <SkillHex :quadrant="1" />
@@ -140,7 +157,7 @@ const selectedModel = ref<"contact" | null>(null)
       </div>
     </section>
     <section id="project" class="relative left-1/2 -translate-x-1/2 w-screen">
-      <h2 class="mx-auto w-fit text-lg lg:text-xl">All Projects</h2>
+      <h4 class="mx-auto w-fit text-lg lg:text-xl">All Projects</h4>
       <div class="flex flex-wrap gap-8 my-8 px-4 py-4 max-h-[1120px] overflow-x-hidden overflow-y-scroll">
         <ProjectCard
           v-for="{ name, description, version, stars, forks, createdAt, updatedAt, appURL, videoURL } in projects"
@@ -149,13 +166,13 @@ const selectedModel = ref<"contact" | null>(null)
       </div>
     </section>
     <section id="hackathon">
-      <h2 class="mx-auto w-fit text-lg lg:text-xl">All Hackathons</h2>
+      <h4 class="mx-auto w-fit text-lg lg:text-xl">All Hackathons</h4>
       <div class="flex flex-col gap-4 my-8">
       </div>
     </section>
     <footer
       class="relative left-1/2 -translate-x-1/2 flex flex-col gap-4 md:gap-8 p-4 pt-6 rounded-t-[2.25rem] w-screen bg-primary-400 text-white">
-      <p class="text-center md:text-lg">Want to get latest updates of My Projects<br />Join the weekly Newsletter</p>
+      <h6 class="text-center md:text-lg">Want to get latest updates of My Projects<br />Join the weekly Newsletter</h6>
       <NewsletterBox />
     </footer>
     <ModelContact :is-open="selectedModel === 'contact'" @close="selectedModel = null" />
