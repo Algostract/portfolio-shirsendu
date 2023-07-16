@@ -9,13 +9,14 @@ export default defineEventHandler<Project[]>(async (event) => {
   const config = useRuntimeConfig()
 
   try {
-    const fileContents = fs.readFileSync(path.join(process.cwd(), config.private.rootDir, 'projects.yml'), "utf8");
+    const filePath = path.join(process.cwd(), config.private.rootDir, 'projects.yml')
+    const fileContents = fs.readFileSync(filePath, "utf8");
     const projects: {
       name: string;
       repo: string;
       createdAt: string;
-      appURL: string;
-      videoURL: string;
+      appURL: string | null;
+      videoURL: string | null;
     }[] = yaml.parse(fileContents);
 
     const repos = (await Promise.all(projects.map(async ({ name, repo, createdAt, appURL, videoURL }): Promise<Project | null> => {

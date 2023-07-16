@@ -7,6 +7,6 @@ export interface Project {
   forks: number;
   createdAt: Date | string;
   updatedAt: Date | string;
-  appURL: string;
-  videoURL: string;
+  appURL: string | null;
+  videoURL: string | null;
 }

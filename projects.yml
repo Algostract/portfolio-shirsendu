@@ -1,9 +1,16 @@
 ---
 - name: Psy
   repo: shba007/psy-app
-  createdAt: '2021-07-20T18:30:00.000Z'
-  appURL: 'https://psy.shirsendu-bairagi.dev'
-  videoURL: 'https://youtu.be/Tu60B-gheNM'
+  createdAt: "2021-07-20T18:30:00.000Z"
+  technologies:
+    languages:
+      - Typescript
+      - Python
+    frameworks:
+      - Nuxt
+      - FastAPI
+  appURL: "https://psy.shirsendu-bairagi.dev"
+  videoURL: "https://youtu.be/Tu60B-gheNM"
 # - name: FlowMate
 #   repo:
 #   description: An AI-powered web app for easy and accurate menstrual cycle tracking
@@ -69,11 +76,16 @@
 #   createdAt: '2021-04-20T18:30:00.000Z'
 #   updatedAt: '2021-04-20T18:30:00.000Z'
 #   videoURL: ''
-- name: FashionLens
-  repo: shba007/fashion-lens
-  createdAt: '2023-07-15T10:44:56.791Z'
-  appURL: 'https://fashion-lens.shirsendu-bairagi.dev'
-  videoURL: ''
+# - name: FashionLens
+#   repo: shba007/fashion-lens
+#   createdAt: "2023-07-15T10:44:56.791Z"
+#   technologies:
+#     languages:
+#       - Typescript
+#     frameworks:
+#       - Nuxt
+#   appURL: null # "https://fashion-lens.shirsendu-bairagi.dev"
+#   videoURL: null
 # - name: CheckPoint
 #   repo:
 #   description: An web app which takes attendance using technologies like QR code,
