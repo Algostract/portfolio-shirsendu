@@ -2,8 +2,16 @@
 import photoDark from "~~/assets/images/photo-dark.png";
 import photoLight from "~~/assets/images/photo-light.png";
 
+const route = useRoute()
+
 useHead({
-  title: "Shirsendu's Portfolio"
+  title: "Shirsendu's Portfolio",
+  link: [
+    {
+      rel: 'canonical',
+      href: `https://shirsendu-bairagi.dev${route.path}`,
+    },
+  ],
 })
 
 useSeoMeta({
@@ -12,10 +20,10 @@ useSeoMeta({
   ogTitle: "Shirsendu's Portfolio",
   description: "My developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
   ogDescription: "My developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
-  ogImage: "/logo.png",
+  ogImage: "https://shirsendu-bairagi.dev/logo.png",
   ogImageWidth: 540,
   ogImageHeight: 720,
-  ogUrl: "/",
+  ogUrl: 'https://shirsendu-bairagi.dev',
   fbAppId: 966242223397117,
   twitterCard: "summary_large_image",
 })
