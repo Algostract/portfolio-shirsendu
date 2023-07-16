@@ -1,6 +1,5 @@
 <script setup lang="ts">
 useHead({
-  title: "Shirsendu's Portfolio",
   titleTemplate: (titleChunk) => (titleChunk ? `Shirsendu's Portfolio - ${titleChunk}` : "Shirsendu's Portfolio"),
   link: [
     {
