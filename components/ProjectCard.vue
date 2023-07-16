@@ -49,7 +49,7 @@ const createdAtFormatted = useDateFormat(props.createdAt, 'DD-MM-YYYY')
       </div>
       <div class="flex-grow grid grid-rows-[min-content_auto] grid-cols-[repeat(2,auto)] gap-y-1 px-1 md:px-2">
         <span class="flex gap-1 lg:gap-2 items-end">
-          <h4 class="text-lg whitespace-nowrap font-semi-bold">{{ name }}</h4>
+          <h5 class="text-lg whitespace-nowrap font-semi-bold">{{ name }}</h5>
           <span
             class="rounded-full px-[8px] pt-[3px] pb-1 w-fit h-fit text-xs text-center text-black/75 dark:text-white/75 bg-light-600 dark:bg-dark-400">
             {{ version }}

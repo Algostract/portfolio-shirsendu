@@ -1,12 +1,15 @@
 import fs from "fs";
+import path from "path";
 import yaml from "yaml";
 
 import { ofetch } from "ofetch";
 import { Project } from "~~/utils/models"
 
 export default defineEventHandler<Project[]>(async (event) => {
+  const config = useRuntimeConfig()
+
   try {
-    const fileContents = fs.readFileSync("projects.yml", "utf8");
+    const fileContents = fs.readFileSync(path.join(process.cwd(), config.private.rootDir, 'projects.yml'), "utf8");
     const projects: {
       name: string;
       repo: string;
