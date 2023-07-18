@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  titleTemplate: (titleChunk) => (titleChunk ? `Shirsendu's Portfolio - ${titleChunk}` : "Shirsendu's Portfolio"),
+  title: "Shirsendu's Portfolio",
   link: [
     {
       rel: 'preconnect',
