@@ -35,12 +35,11 @@ const modifiedIn = useTimeAgo(() => props.updatedAt, {
 const createdAtFormatted = useDateFormat(props.createdAt, 'DD-MM-YYYY')
 
 const splideOption: Options = {
-  arrows: true,
-  // pagination: true,
-  // gap: '1rem',
-  perPage: 1,
-  autoplay: true,
   type: 'loop',
+  arrows: true,
+  autoplay: true,
+  cover: true,
+  heightRatio: 0.56,
 };
 const splide = ref();
 const currentPage = ref(0)
@@ -77,12 +76,12 @@ function onTry() {
           </li>
         </ul>
         <Splide ref="splide" :options="splideOption" tag="div" :has-track="false"
-          @splide:pagination:updated="onPaginationUpdate" class="relative w-full h-full">
+          @splide:pagination:updated="onPaginationUpdate" class="w-full h-full">
           <SplideTrack>
             <SplideSlide v-for="image in [1, 2, 3]" :key="image">
-              <div class="relative flex justify-center items-center w-full h-full">
-                <img :src="`/projects/${name}-${image}.webp`" :alt="`${name}-${image}`" class="min-w-full min-h-full">
-              </div>
+              <!-- <div class="relative flex justify-center items-center w-full h-full"> -->
+              <img :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" class="w-full h-full">
+              <!-- </div> -->
             </SplideSlide>
           </SplideTrack>
           <div
@@ -96,7 +95,7 @@ function onTry() {
           </div>
         </Splide>
         <NuxtLink v-if="videoURL !== null" :href="videoURL" target="_blank"
-          class="absolute bottom-1 right-2 flex gap-1 items-center text-white" @click="onWatch">
+          class="absolute bottom-1 right-2 flex gap-1 items-center text-white z-20" @click="onWatch">
           <span class="text-sm">Watch</span>
           <NuxtIcon name="youtube" class="text-[30px]" />
         </NuxtLink>

@@ -96,3 +96,23 @@
 #   createdAt: '2021-04-20T18:30:00.000Z'
 #   updatedAt: '2021-04-20T18:30:00.000Z'
 #   videoURL: ''
+- name: Podcast
+  repo: shba007/ui-react-podcast
+  createdAt: "2023-06-27T18:30:00.000Z"
+  technologies:
+    languages:
+      - Typescript
+    frameworks:
+      - React
+  appURL: "https://shba007.github.io/ui-react-podcast/"
+  videoURL: null
+- name: Magma
+  repo: shba007/ui-react-magma
+  createdAt: "2023-07-16T18:30:00.000Z"
+  technologies:
+    languages:
+      - Typescript
+    frameworks:
+      - React
+  appURL: "https://shba007.github.io/ui-react-magma/"
+  videoURL: null
