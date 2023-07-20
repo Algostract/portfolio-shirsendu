@@ -96,7 +96,7 @@ function onTry() {
         </Splide>
         <NuxtLink v-if="videoURL !== null" :href="videoURL" target="_blank"
           class="absolute bottom-1 right-2 flex gap-1 items-center text-white z-20" @click="onWatch">
-          <span class="text-sm">Watch</span>
+          <span class="text-xs">Watch</span>
           <NuxtIcon name="youtube" class="text-[30px]" />
         </NuxtLink>
       </div>
@@ -104,16 +104,16 @@ function onTry() {
         <span class="flex gap-1 lg:gap-2 items-end">
           <h5 class="text-lg whitespace-nowrap font-semi-bold">{{ name }}</h5>
           <span
-            class="rounded-full px-[8px] pt-[3px] pb-1 w-fit h-fit text-xs text-center text-black/75 dark:text-white/75 bg-light-600 dark:bg-dark-400">
+            class="rounded-full px-[8px] pt-[3px] pb-1 w-fit h-fit text-2xs text-center text-black/75 dark:text-white/75 bg-light-600 dark:bg-dark-400">
             {{ version }}
           </span>
         </span>
-        <span class="self-end justify-self-end row-start-1 col-start-2 py-1 text-sm whitespace-nowrap">
+        <span class="self-end justify-self-end row-start-1 col-start-2 py-1 text-xs whitespace-nowrap">
           {{ createdAtFormatted }}
         </span>
-        <p class="row-start-2 col-start-1 col-span-2 text-sm md:text-base opacity-60">{{ description }}</p>
+        <p class="row-start-2 col-start-1 col-span-2 text-xs md:text-base opacity-60">{{ description }}</p>
         <NuxtLink v-if="appURL !== null" :href="appURL" target="_blank"
-          class="absolute bottom-0 right-0 rounded-tl-[1.25rem] px-6 py-2 bg-primary-400 hover:bg-primary-300 transition-colors text-sm text-white cursor-pointer"
+          class="absolute bottom-0 right-0 rounded-tl-[1.25rem] px-6 py-2 bg-primary-400 hover:bg-primary-300 transition-colors text-xs text-white cursor-pointer"
           @click="onTry">
           Try Now
         </NuxtLink>

@@ -15,7 +15,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     private: {
-      rootDir: ''
+      rootDir: '',
+      gmail: '',
+      emailUsername: '',
+      emailPassword: '',
     },
   },
   colorMode: {
