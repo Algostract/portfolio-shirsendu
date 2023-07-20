@@ -30,7 +30,7 @@ export default defineEventHandler<Project[]>(async (event) => {
           name,
           repo,
           description: details.description,
-          version: "0.0.0",
+          version: "1.0.0",
           stars: details.stars,
           forks: details.forks,
           createdAt,

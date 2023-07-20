@@ -12,11 +12,11 @@ useSeoMeta({
   ogType: "profile",
   title: "Shirsendu's Portfolio",
   ogTitle: "Shirsendu's Portfolio",
-  description: "My developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
-  ogDescription: "My developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
+  description: "I am a Web Developer and an AI Enthusiast, this is my developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
+  ogDescription: "I am a Web Developer and an AI Enthusiast, this is my developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
   ogImage: "https://shirsendu-bairagi.dev/logo.png",
-  ogImageWidth: 540,
-  ogImageHeight: 720,
+  ogImageWidth: 512,
+  ogImageHeight: 512,
   ogUrl: 'https://shirsendu-bairagi.dev',
   fbAppId: 966242223397117,
   twitterCard: "summary_large_image",
@@ -38,23 +38,33 @@ useSchemaOrg([
   }),
   defineWebSite({
     name: "Shirsendu's Portfolio",
-    description: `My developer's portfolio showcasing my skills, projects,
+    description: `I am a Web Developer and an AI Enthusiast, this is my 
+    developer's portfolio showcasing my skills, projects,
     and expertise in a visually appealing manner`,
   }),
   defineWebPage({
     datePublished: new Date(14, 6, 2023).toISOString(),
-    dateModified: new Date(14, 6, 2023).toISOString(),
+    dateModified: new Date(20, 6, 2023).toISOString(),
     author: "Shirsendu Bairagi",
   }),
 ])
 
 const selectedModel = ref<"contact" | null>(null)
+function onContact(action: boolean) {
+  if (action) {
+    selectedModel.value = 'contact'
+    useTrackEvent('contact_open')
+  } else {
+    selectedModel.value = null
+    useTrackEvent('contact_close')
+  }
+}
 </script>
 
 <template>
   <main class="relative flex flex-col gap-8 mx-auto p-4 md:p-8 !pb-0 max-w-[85rem]">
     <header>
-      <Navbar @contact="selectedModel = 'contact'" />
+      <Navbar @contact="onContact(true)" />
     </header>
     <SectionIntro />
     <SectionProject />
@@ -65,6 +75,6 @@ const selectedModel = ref<"contact" | null>(null)
       <h6 class="text-center md:text-lg">Want to get latest updates of My Projects<br />Join the weekly Newsletter</h6>
       <NewsletterBox />
     </footer>
-    <ModelContact :is-open="selectedModel === 'contact'" @close="selectedModel = null" />
+    <ModelContact :is-open="selectedModel === 'contact'" @close="onContact(false)" />
   </main>
 </template>
