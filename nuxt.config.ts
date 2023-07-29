@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     // '@nuxt/image',
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
+    '@vite-pwa/nuxt',
     '@vueuse/nuxt',
     'nuxt-gtag',
     'nuxt-icons',
@@ -25,6 +26,9 @@ export default defineNuxtConfig({
     preference: 'system',
     fallback: 'light',
     classSuffix: '',
+  },
+  pwa: {
+    /* your pwa options */
   },
   gtag: {
     id: 'G-ZMR7H4LPSK'

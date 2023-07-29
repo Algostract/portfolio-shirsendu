@@ -5,7 +5,7 @@ My developer's portfolio showcasing my skills, projects, and expertise in a visu
 
 # Active Projects
 - Psy
-- UI React - Podcast
+- Biosense
 - UI React - Magma
 <!-- - FashionLens -->
 

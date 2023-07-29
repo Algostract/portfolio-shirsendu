@@ -14,9 +14,9 @@ useSeoMeta({
   ogTitle: "Shirsendu's Portfolio",
   description: "I am a Web Developer and an AI Enthusiast, this is my developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
   ogDescription: "I am a Web Developer and an AI Enthusiast, this is my developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
-  ogImage: "https://shirsendu-bairagi.dev/logo.png",
-  ogImageWidth: 512,
-  ogImageHeight: 512,
+  ogImage: "/previews/landing.jpg",
+  ogImageWidth: 1280,
+  ogImageHeight: 640,
   ogUrl: 'https://shirsendu-bairagi.dev',
   fbAppId: 966242223397117,
   twitterCard: "summary_large_image",
@@ -26,7 +26,7 @@ useSchemaOrg([
   definePerson({
     name: "Shirsendu Bairagi",
     description: "I am a Web Developer and an AI Enthusiast",
-    image: "/previews/landing.png",
+    image: "/previews/landing.jpg",
     sameAs: [
       "https://github.com/shba007",
       "https://www.linkedin.com/in/shirsendu-bairagi-28b4b1213",

@@ -21,8 +21,11 @@
     "@nuxt/image": "^0.7.1",
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
-    "@types/node": "^20.4.2",
-    "@types/nodemailer": "^6.4.8",
+    "@tresjs/nuxt": "^1.0.1",
+    "@types/node": "^20.4.5",
+    "@types/nodemailer": "^6.4.9",
+    "@types/three": "^0.154.0",
+    "@vite-pwa/nuxt": "^0.1.0",
     "@vueuse/core": "^10.2.1",
     "@vueuse/nuxt": "^10.2.1",
     "nuxt": "^3.6.5",
@@ -33,7 +36,8 @@
   "dependencies": {
     "@splidejs/vue-splide": "^0.6.12",
     "nodemailer": "^6.9.4",
-    "vee-validate": "^4.10.7",
+    "three": "^0.155.0",
+    "vee-validate": "^4.10.8",
     "yaml": "^2.3.1"
   }
 }
