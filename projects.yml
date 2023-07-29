@@ -38,16 +38,21 @@
 #   createdAt: '2022-02-10T18:30:00.000Z'
 #   appURL: ''
 #   videoURL: ''
-# - name: BioSense
-#   repo:
-#   description: An IoT-based web app detecting soil humidity, automating motor control
-#     for effortless gardening.
-#   version: 0.0.0
-#   stars: 1
-#   forks: 0
-#   createdAt: '2022-08-02T18:30:00.000Z'
-#   updatedAt: '2021-04-20T18:30:00.000Z'
-#   videoURL: ''
+- name: BioSense
+  repo: shba007/biosense-web
+  category: "iot"
+  technologies:
+    languages:
+      - Typescript
+      - Python
+    frameworks:
+      - Next
+      - FastAPI
+      - Tensorflow
+      - Tailwind CSS
+  createdAt: '2022-08-02T18:30:00.000Z'
+  appURL: null
+  videoURL: null
 # - name: Ntertainer
 #   repo: shba007/ntertainer-frontend
 #   description: An web app assist you to discover what to watch next in solo or group
