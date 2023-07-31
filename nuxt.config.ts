@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   modules: [
     // '@nuxt/image',
     '@nuxtjs/color-mode',
+    '@nuxtjs/supabase',
     '@nuxtjs/tailwindcss',
     '@vite-pwa/nuxt',
     '@vueuse/nuxt',
@@ -20,6 +21,8 @@ export default defineNuxtConfig({
       gmail: '',
       emailUsername: '',
       emailPassword: '',
+      supabaseUrl: '',
+      supabaseKey: ''
     },
   },
   colorMode: {
@@ -27,10 +30,18 @@ export default defineNuxtConfig({
     fallback: 'light',
     classSuffix: '',
   },
+  supabase: {
+    client: {
+      auth: {
+        persistSession: false //or true
+      }
+    }
+  },
   pwa: {
     /* your pwa options */
   },
   gtag: {
     id: 'G-ZMR7H4LPSK'
   },
+
 })

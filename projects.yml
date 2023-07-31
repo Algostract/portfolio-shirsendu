@@ -47,7 +47,6 @@
       - Python
     frameworks:
       - Next
-      - FastAPI
       - Tensorflow
       - Tailwind CSS
   createdAt: '2022-08-02T18:30:00.000Z'

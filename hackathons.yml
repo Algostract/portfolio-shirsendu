@@ -3,9 +3,9 @@
   link: "https://bay-area-hacks-1.devpost.com"
   project: "Compeer"
   rank: 5
-  date: "2023-06-18T00:00:00.000Z"
+  started_at: "2023-06-18T00:00:00.000Z"
 - name: "GNEC Hackathon 2023"
   link: "https://gnec-hackathon-2023.devpost.com"
   project: "Biosense"
-  rank: 5
-  date: "2023-06-18T18:30:00.000Z"
+  rank: null
+  started_at: null
