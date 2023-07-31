@@ -43,8 +43,8 @@ useSchemaOrg([
     and expertise in a visually appealing manner`,
   }),
   defineWebPage({
-    datePublished: new Date(14, 6, 2023).toISOString(),
-    dateModified: new Date(20, 6, 2023).toISOString(),
+    datePublished: new Date(2023, 5, 14).toISOString(),
+    dateModified: new Date(2023, 5, 20).toISOString(),
     author: "Shirsendu Bairagi",
   }),
 ])
@@ -58,6 +58,16 @@ function onContact(action: boolean) {
     selectedModel.value = null
     useTrackEvent('contact_close')
   }
+}
+
+async function onSubscribe(email: string) {
+  useTrackEvent('subscribe')
+
+  await useFetch('/api/newsletter', {
+    method: 'POST',
+    body: { email, subscribed: true }
+  })
+
 }
 </script>
 
@@ -73,7 +83,7 @@ function onContact(action: boolean) {
     <footer
       class="relative left-1/2 -translate-x-1/2 flex flex-col gap-4 md:gap-8 p-4 pt-6 rounded-t-[2.25rem] w-screen bg-primary-400 text-white">
       <h6 class="text-center md:text-lg">Want to get latest updates of My Projects<br />Join the weekly Newsletter</h6>
-      <NewsletterBox />
+      <NewsletterBox @subscribe="onSubscribe" />
     </footer>
     <ModelContact :is-open="selectedModel === 'contact'" @close="onContact(false)" />
   </main>
