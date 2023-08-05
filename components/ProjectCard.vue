@@ -71,7 +71,7 @@ function onTry() {
       <div class="relative rounded-[20px] w-full bg-light-600 dark:bg-dark-400 aspect-video overflow-hidden">
         <ul class="absolute top-0 right-[0.875rem] flex gap-1 z-10">
           <li v-for="track in [1, 2, 3]" :key="track" class="cursor-pointer" @click="splide.go(track - 1)">
-            <NuxtIcon name="pagination-track" class="text-dark-600 text-[28px]"
+            <NuxtIcon name="pagination-track" class="text-light-500 dark:text-dark-600 text-[28px]"
               :class="{ 'text-primary-400': currentPage === track - 1 }" />
           </li>
         </ul>
