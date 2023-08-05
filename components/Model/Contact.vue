@@ -39,7 +39,7 @@ const onSend = handleSubmit(async (values: TransactionalEmail) => {
       <InputText type="email" name="email" placeholder="Your Email" />
       <InputMessage />
       <button type="submit"
-        class="absolute top-[338px] right-2 outline-primary-400 outline-2 focus-within:outline border-[6px] border-dark-400 rounded-full p-[0.625rem] w-fit bg-primary-400 hover:bg-primary-300">
+        class="absolute top-[338px] right-2 outline-primary-400 outline-2 focus-within:outline border-[6px] border-white dark:border-dark-400 rounded-full p-[0.625rem] w-fit bg-primary-400 hover:bg-primary-300">
         <NuxtIcon name="feather" class="text-white text-[28px]" />
       </button>
     </form>
