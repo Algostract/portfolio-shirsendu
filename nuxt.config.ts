@@ -21,8 +21,6 @@ export default defineNuxtConfig({
       gmail: '',
       emailUsername: '',
       emailPassword: '',
-      supabaseUrl: '',
-      supabaseKey: ''
     },
   },
   colorMode: {
