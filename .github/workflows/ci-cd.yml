@@ -9,6 +9,8 @@ on:
 # Setting an environment variable with the value of a configuration variable
 env:
   NITRO_PRESET: ${{ vars.NITRO_PRESET }}
+  SUPABASE_URL: ${{ secrets.NITRO_PRESET }}
+  SUPABASE_KEY: ${{ secrets.NITRO_PRESET }}
 
 jobs:
   build-and-deploy:
