@@ -50,8 +50,8 @@
       - Tensorflow
       - Tailwind CSS
   createdAt: '2022-08-02T18:30:00.000Z'
-  appURL: null
-  videoURL: null
+  appURL: 'https://biosense.onrender.com'
+  videoURL: 'https://youtu.be/Y8hROrtp948'
 # - name: Ntertainer
 #   repo: shba007/ntertainer-frontend
 #   description: An web app assist you to discover what to watch next in solo or group

@@ -50,6 +50,17 @@ module.exports = {
         500: '#2563EB',
       }
     },
+    extend: {
+      animation: {
+        'gradient-rotate': 'gradient-rotate 5s linear 0s infinite reverse',
+      },
+      keyframes: {
+        'gradient-rotate': {
+          '0%': { '--gradient-angle': '360deg' },
+          '100%': { '--gradient-angle': '0deg' },
+        }
+      }
+    }
   }
 }
 
