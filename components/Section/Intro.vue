@@ -2,14 +2,15 @@
 import photoDark from "~~/assets/images/photo-dark.png";
 import photoLight from "~~/assets/images/photo-light.png";
 
-const dob = new Date(2001, 0, 29)
+const dob = new Date(2001, 0, 29, 0, 0, 0).toISOString()
+
 const age = useTimeAgo(dob ?? "", {
   messages: {
     invalid: "Invalid Date",
     past: (n: any) => n.match(/\d/) ? `${n}` : n,
     justNow: "Born Today",
     future: "To be Born",
-    year: (n: number) => n.toString(),
+    year: (n: number) => (n - 1).toString(),
   }
 })
 
@@ -41,14 +42,25 @@ const photo = computed(() => {
 
 <template>
   <section id="intro"
-    class="flex flex-col md:flex-row md:justify-between gap-10 md:gap-4 md:mt-6 mb-28 lg:mt-112 lg:mb-24">
-    <div class="flex flex-col gap-4 md:my-8">
+    class="flex flex-col md:flex-row md:justify-between gap-10 md:gap-4 mt-10 md:mt-6 lg:mt-12 mb-28 lg:mb-24 ">
+    <picture class="absolute top-0 left-0 right-0 w-full lg:left-auto blur-md lg:blur-lg -z-50">
+      <source srcset="/hero-gradient.svg" media="(min-width: 1024px)" />
+      <source srcset="/hero-gradient-tablet.svg" media="(min-width: 768px)" />
+      <source srcset="/hero-gradient-mobile.svg" media="(min-width: 100px)" />
+      <img src="/hero-gradient.svg" alt="" />
+    </picture>
+
+    <div class="flex flex-col gap-8 md:my-auto md:w-1/2 h-fit">
       <h1 class="text-2xl text-center md:text-left md:text-4xl lg:text-5xl">
-        Hi, I am a <br />Web Developer and <br />an AI Enthusiast
+        Crafting the Web,<br /> Igniting AI Technology
       </h1>
-      <h2 class="mx-auto md:mx-0 w-fit opacity-60 md:text-lg">My name is Shirsendu Bairagi, Age {{ age }}</h2>
+      <h2
+        class="mx-auto md:mx-0 w-fit max-w-[90%] sm:max-w-[80%] md:max-w-[90%] opacity-80 font-light text-lg text-center md:text-left !leading-relaxed">
+        Hi, I'm Shirsendu Bairagi, {{ age }} years old, weaving the
+        realms of Web & AI. Join me in exploring the art of digital innovation.
+      </h2>
       <h3
-        class="mx-auto md:mx-0 my-2 rounded-lg rounded-tl-3xl rounded-br-3xl  px-5 py-3 w-fit bg-primary-400 text-lg text-white">
+        class="mx-auto md:mx-0 my-2 rounded-lg rounded-tl-3xl rounded-br-3xl px-5 py-3 w-fit bg-primary-400 text-lg text-white">
         {{ experience }} +XP
       </h3>
     </div>

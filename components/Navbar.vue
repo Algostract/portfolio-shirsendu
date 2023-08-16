@@ -9,7 +9,7 @@ const emit = defineEmits<{ (event: 'contact'): void }>()
       <a href="#hackathon">Hackathons</a>
     </li>
     <li class="relative hidden sm:inline">
-      <NuxtIcon name="logo" class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 text-[64px] md:text-[80px]"
+      <NuxtIcon name="logo" class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 text-[56px] md:text-[64px]"
         filled />
     </li>
     <li>

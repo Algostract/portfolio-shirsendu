@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/supabase',
     '@nuxtjs/tailwindcss',
-    '@vite-pwa/nuxt',
     '@vueuse/nuxt',
     'nuxt-gtag',
     'nuxt-icons',
