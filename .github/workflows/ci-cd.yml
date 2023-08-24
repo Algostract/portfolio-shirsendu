@@ -47,7 +47,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
       - name: Build Nuxt project
-        run: ${{ steps.detect-package-manager.outputs.manager }} run generate
+        run: ${{ steps.detect-package-manager.outputs.manager }} run build
 
       - name: Upload artifact to VPS
         uses: appleboy/scp-action@master
@@ -57,5 +57,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           overwrite: true
-          source: '.output'
+          source: '.output, projects.yml, hackathons.yml'
           target: '~/portfolio'
