@@ -1,4 +1,37 @@
 ---
+# - name: FlowMate
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       -
+#     frameworks:
+#       -
+#   repo: null
+#   createdAt: '2020-05-04T18:30:00Z'
+#   appURL: null
+#   videoURL: null
+# - name: Alphanum Vision
+#   repo: shba007/digit-recognizer
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       -
+#     frameworks:
+#       -
+#   createdAt: '2021-03-31T18:30:00Z'
+#   appURL: null
+#   videoURL: null
+# - name: Ntertainer
+#   repo: shba007/ntertainer
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       -
+#     frameworks:
+#       -
+#   createdAt: '2021-04-20T18:30:00Z'
+#   appURL: null
+#   videoURL: null
 - name: Psy
   repo: shba007/psy-app
   category: "web-app"
@@ -13,31 +46,29 @@
   createdAt: "2021-07-20T18:30:00.000Z"
   appURL: "https://psy.shirsendu-bairagi.dev"
   videoURL: "https://youtu.be/Tu60B-gheNM"
-# - name: FlowMate
-#   repo:
-#   description: An AI-powered web app for easy and accurate menstrual cycle tracking
-#     and personalized insights.
-#   version: 0.0.0
-#   stars: 1
-#   forks: 0
-#   createdAt: '2020-05-04T18:30:00.000Z'
-#   updatedAt: '2021-04-20T18:30:00.000Z'
-#   videoURL: ''
-# - name: LinguaScan
-#   repo: shba007/digit-recognizer
-#   description: An AI-powered web app for easy OCR of any language from images, using
-#     Object Detection.
-#   version: 0.0.0
-#   stars: 1
-#   forks: 0
-#   createdAt: '2021-04-20T18:30:00.000Z'
-#   updatedAt: '2021-04-20T18:30:00.000Z'
-#   videoURL: ''
 # - name: BloodLink
 #   repo: shba007/blood-link
-#   createdAt: '2022-02-10T18:30:00.000Z'
-#   appURL: ''
-#   videoURL: ''
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       - Typescript
+#     frameworks:
+#       - Nuxt
+#       - Tailwind CSS
+#   createdAt: "2022-02-10T18:30:00Z"
+#   appURL: "https://blood-bank-manager.netlify.app"
+#   videoURL: null
+# - name: Orykit
+#   repo: Algostract/orykit-store
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       -
+#     frameworks:
+#       -
+#   createdAt: '2022-03-24T18:30:00Z'
+#   appURL: null
+#   videoURL: null
 - name: BioSense
   repo: shba007/biosense-web
   category: "iot"
@@ -49,39 +80,32 @@
       - Next
       - Tensorflow
       - Tailwind CSS
-  createdAt: '2022-08-02T18:30:00.000Z'
+  createdAt: '2022-08-02T18:30:00Z'
   appURL: 'https://biosense.onrender.com'
   videoURL: 'https://youtu.be/Y8hROrtp948'
-# - name: Ntertainer
-#   repo: shba007/ntertainer-frontend
-#   description: An web app assist you to discover what to watch next in solo or group
-#     based on everyone's ratings.
-#   version: 0.0.0
-#   stars: 1
-#   forks: 0
-#   createdAt: '2021-04-20T18:30:00.000Z'
-#   updatedAt: '2021-04-20T18:30:00.000Z'
-#   videoURL: ''
-# - name: Orykit
-#   repo: Algostract/orykit-store
-#   description: An E-commerce web app specializing in oxidized earrings, offering a
-#     unique and stylish selection.
-#   version: 0.0.0
-#   stars: 1
-#   forks: 0
-#   createdAt: '2021-04-20T18:30:00.000Z'
-#   updatedAt: '2021-04-20T18:30:00.000Z'
-#   videoURL: ''
+- name: Podcast
+  repo: shba007/ui-react-podcast
+  category: "ui"
+  technologies:
+    languages:
+      - Typescript
+    frameworks:
+      - React
+      - Tailwind CSS
+  createdAt: "2023-06-27T18:30:00Z"
+  appURL: "https://shba007.github.io/ui-react-podcast/"
+  videoURL: null
 # - name: Compeer
 #   repo: shba007/com-peer
-#   description: A 1v1 web game of short MCQ question-answer for challenging friends
-#     and testing knowledge.
-#   version: 0.0.0
-#   stars: 1
-#   forks: 0
-#   createdAt: '2021-04-20T18:30:00.000Z'
-#   updatedAt: '2021-04-20T18:30:00.000Z'
-#   videoURL: ''
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       -
+#     frameworks:
+#       -
+#   createdAt: '2023-07-13T13:33:34Z'
+#   appURL: https://compeer.onrender.com/
+#   videoURL: null
 # - name: FashionLens
 #   repo: shba007/fashion-lens
 #   createdAt: "2023-07-15T10:44:56.791Z"
@@ -92,28 +116,6 @@
 #       - Nuxt
 #   appURL: null # "https://fashion-lens.shirsendu-bairagi.dev"
 #   videoURL: null
-# - name: CheckPoint
-#   repo:
-#   description: An web app which takes attendance using technologies like QR code,
-#     geolocation, and AI.
-#   version: 0.0.0
-#   stars: 1
-#   forks: 0
-#   createdAt: '2021-04-20T18:30:00.000Z'
-#   updatedAt: '2021-04-20T18:30:00.000Z'
-#   videoURL: ''
-- name: Podcast
-  repo: shba007/ui-react-podcast
-  category: "ui"
-  technologies:
-    languages:
-      - Typescript
-    frameworks:
-      - React
-      - Tailwind CSS
-  createdAt: "2023-06-27T18:30:00.000Z"
-  appURL: "https://shba007.github.io/ui-react-podcast/"
-  videoURL: null
 - name: Magma
   repo: shba007/ui-react-magma
   category: "ui"
@@ -123,6 +125,18 @@
     frameworks:
       - React
       - Tailwind CSS
-  createdAt: "2023-07-16T18:30:00.000Z"
+  createdAt: "2023-07-16T18:30:00Z"
   appURL: "https://shba007.github.io/ui-react-magma/"
+  videoURL: null
+- name: AI Guide
+  repo: shba007/ai-guide
+  category: "blog"
+  technologies:
+    languages:
+      - Typescript
+    frameworks:
+      - Astro
+      - Tailwind CSS
+  createdAt: "2023-07-26T06:57:32Z"
+  appURL: "https://ai-guide.onrender.com/"
   videoURL: null
