@@ -1,21 +1,17 @@
-name: CI/CD Pipeline
+name: Web App
 
 on:
-  push:
-    branches: ['main']
+  release:
+    types: [created]
 
-  workflow_dispatch:
-
-# Setting an environment variable with the value of a configuration variable
 env:
   NITRO_PRESET: ${{ vars.NITRO_PRESET }}
   SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
   SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -49,6 +45,10 @@ jobs:
       - name: Build Nuxt project
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Upload artifact to VPS
         uses: appleboy/scp-action@master
         with:
