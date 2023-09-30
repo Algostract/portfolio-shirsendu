@@ -1,13 +1,15 @@
-import { serverSupabaseClient } from '#supabase/server'
+import { createClient } from '@supabase/supabase-js'
 
 interface Newsletter {
   email: string;
   subscribed: boolean;
 }
 
+const config = useRuntimeConfig()
+const supabase = createClient(config.private.supabaseUrl, config.private.supabaseKey)
+
 export default defineEventHandler(async (event) => {
   try {
-    const supabase = serverSupabaseClient<Newsletter>(event)
     const body = await readBody<Newsletter>(event)
 
     const { data, error } = await supabase
