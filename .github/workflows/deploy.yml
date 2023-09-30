@@ -1,0 +1,41 @@
+name: Nuxt CD
+
+on:
+  release:
+    types: [published]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  NITRO_PRESET: ${{ vars.NITRO_PRESET }}
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Bulid Artifacts
+        run: npm run build
+
+      - name: Upload artifact to VPS
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          overwrite: true
+          source: '.output, projects.yml, hackathons.yml'
+          target: '~/portfolio'
