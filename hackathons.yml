@@ -1,11 +1,11 @@
 ---
 - name: "Bay Area Hacks 1"
-  link: "https://bay-area-hacks-1.devpost.com"
+  url: "https://bay-area-hacks-1.devpost.com"
   project: "Compeer"
-  rank: 5
-  started_at: "2023-06-18T00:00:00Z"
+  title: "Top 10"
+  startedAt: "2023-06-18T00:00:00Z"
 - name: "GNEC Hackathon 2023"
-  link: "https://gnec-hackathon-2023.devpost.com"
+  url: "https://gnec-hackathon-2023.devpost.com"
   project: "Biosense"
-  rank: 9
-  started_at: "2023-07-23T16:00:00Z"
+  title: "Winner"
+  startedAt: "2023-07-23T16:00:00Z"
