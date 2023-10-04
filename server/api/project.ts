@@ -23,23 +23,40 @@ export default defineEventHandler<Project[]>(async (event) => {
       if (repo == null)
         return null
 
-      try {
-        const { repo: details } = await ofetch(`/repos/${repo}`, { baseURL: "https://ungh.cc" })
+      let info: any;
 
-        return {
-          name,
-          repo,
-          description: details.description,
-          version: "1.0.0",
-          stars: details.stars,
-          forks: details.forks,
-          createdAt,
-          updatedAt: details.pushedAt,
-          appURL,
-          videoURL,
-        }
+      // TODO: Merge when possible
+      try {
+        const [{ repo: details }] = await Promise.all([
+          ofetch(`/repos/${repo}`, { baseURL: "https://ungh.cc" }),
+        ]);
+
+        info = { ...info, details }
       } catch (error) {
-        return null
+
+      }
+      try {
+        const [{ release }] = await Promise.all([
+          ofetch(`/repos/${repo}/releases/latest`, { baseURL: "https://ungh.cc" }),
+        ]);
+
+        info = { ...info, release }
+      } catch (error) {
+
+      }
+      const { details, release } = info
+
+      return {
+        name,
+        repo,
+        description: details.description,
+        version: release?.tag ?? 'v0.0.0',
+        stars: details.stars,
+        forks: details.forks,
+        createdAt,
+        updatedAt: release?.updatedAt ?? details.pushedAt,
+        appURL,
+        videoURL,
       }
     }))).filter((value): value is Project => value !== null);
 
