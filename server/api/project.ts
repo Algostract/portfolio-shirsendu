@@ -5,7 +5,7 @@ import yaml from "yaml";
 import { ofetch } from "ofetch";
 import { Project } from "~~/utils/models"
 
-export default defineEventHandler<Project[]>(async (event) => {
+export default defineEventHandler<Promise<Project[]>>(async (_event) => {
   const config = useRuntimeConfig()
 
   try {
@@ -25,7 +25,6 @@ export default defineEventHandler<Project[]>(async (event) => {
 
       let info: any;
 
-      // TODO: Merge when possible
       try {
         const [{ repo: details }] = await Promise.all([
           ofetch(`/repos/${repo}`, { baseURL: "https://ungh.cc" }),

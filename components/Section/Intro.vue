@@ -47,7 +47,7 @@ const photo = computed(() => {
       <source srcset="/hero-gradient.svg" media="(min-width: 1024px)" />
       <source srcset="/hero-gradient-tablet.svg" media="(min-width: 768px)" />
       <source srcset="/hero-gradient-mobile.svg" media="(min-width: 100px)" />
-      <img src="/hero-gradient.svg" alt="" />
+      <NuxtImg src="/hero-gradient.svg" alt="Hero Gradient" />
     </picture>
 
     <div class="flex flex-col gap-8 md:my-auto md:w-1/2 h-fit">

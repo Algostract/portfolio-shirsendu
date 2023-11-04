@@ -4,11 +4,12 @@
   "author": "Shirsendu Bairagi <shirsendu2001@gmail.com>",
   "version": "0.3.1",
   "private": true,
+  "type": "module",
   "engines": {
-    "node": "^18.16.0"
+    "node": "^20.9.0"
   },
   "scripts": {
-    "dev": "nuxt dev --host",
+    "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -19,24 +20,28 @@
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
     "@nuxt/devtools": "latest",
-    "@nuxt/image": "^1.0.0-rc.2",
+    "@nuxt/image": "^1.0.0",
+    "@nuxt/test-utils": "^3.8.0",
     "@nuxtjs/color-mode": "^3.3.0",
-    "@nuxtjs/tailwindcss": "^6.8.0",
-    "@tresjs/nuxt": "^1.1.7",
-    "@types/node": "^20.8.2",
-    "@types/nodemailer": "^6.4.11",
-    "@vueuse/core": "^10.4.1",
-    "@vueuse/nuxt": "^10.4.1",
-    "nuxt": "^3.7.4",
+    "@nuxtjs/tailwindcss": "^6.9.4",
+    "@nuxtseo/module": "^2.0.0-beta.40",
+    "@tresjs/nuxt": "^1.2.2",
+    "@types/node": "^20.8.10",
+    "@types/nodemailer": "^6.4.13",
+    "@vueuse/core": "^10.5.0",
+    "@vueuse/nuxt": "^10.5.0",
+    "nuxt": "^3.8.0",
     "nuxt-gtag": "^1.1.1",
     "nuxt-icons": "^3.2.1",
-    "nuxt-schema-org": "^3.0.1"
+    "nuxt-vitest": "^0.11.2",
+    "vitest": "^0.33.0"
   },
   "dependencies": {
     "@splidejs/vue-splide": "^0.6.12",
-    "@supabase/supabase-js": "^2.38.0",
-    "nodemailer": "^6.9.5",
-    "vee-validate": "^4.11.7",
-    "yaml": "^2.3.2"
+    "@supabase/supabase-js": "^2.38.4",
+    "@vite-pwa/nuxt": "^0.1.1",
+    "nodemailer": "^6.9.7",
+    "vee-validate": "^4.11.8",
+    "yaml": "^2.3.4"
   }
 }

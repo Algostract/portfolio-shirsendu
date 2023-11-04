@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Options, Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
+import { type Options, Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
 // import { Project } from 'utils/models';
 
 interface Project {
@@ -84,7 +84,7 @@ function onTry() {
             <SplideTrack>
               <SplideSlide v-for="image in [1, 2, 3]" :key="image">
                 <!-- <div class="relative flex justify-center items-center w-full h-full"> -->
-                <img :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" class="w-full h-full">
+                <NuxtImg :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" class="w-full h-full" />
                 <!-- </div> -->
               </SplideSlide>
             </SplideTrack>
