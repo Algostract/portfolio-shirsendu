@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.3.2
+
+### Patch Changes
+
+- 1848979: refactor: NuxtImg Added, packages updated
+
 ## 0.3.1
 
 ### Patch Changes
