@@ -78,6 +78,7 @@ async function onSubscribe(email: string) {
     </header>
     <SectionIntro />
     <SectionProject />
+    <SectionExperience />
     <SectionHackathon />
     <!-- <SectionTool /> -->
     <footer
