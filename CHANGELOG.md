@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.4.0
+
+### Minor Changes
+
+- 7843903: timeline complete
+
 ## 0.3.2
 
 ### Patch Changes
