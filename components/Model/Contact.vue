@@ -14,9 +14,9 @@ const emit = defineEmits<{
   (event: 'close'): void,
 }>()
 
-const { handleSubmit } = useForm()
+const { handleSubmit } = useForm<TransactionalEmail>()
 
-const onSend = handleSubmit(async (values: TransactionalEmail) => {
+const onSend = handleSubmit(async (values) => {
   console.log(values);
   useTrackEvent('send_email', {
     email: values.email
@@ -33,7 +33,7 @@ const onSend = handleSubmit(async (values: TransactionalEmail) => {
 
 <template>
   <ModelBase :is-open="isOpen" @close="emit('close')"
-    class="relative rounded-xl rounded-tl-[2rem] rounded-br-[2rem] p-8 pt-10 w-full !max-w-[24.5rem] h-[30rem] ">
+    innerClass="rounded-tl-[2rem] rounded-br-[2rem] p-8 pt-10 !max-w-[24.5rem] h-[30rem] ">
     <form class="flex flex-col gap-6" @submit.prevent="onSend">
       <InputText type="name" name="name" placeholder="Your Name" />
       <InputText type="email" name="email" placeholder="Your Email" />
