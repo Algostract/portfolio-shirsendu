@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.5.0
+
+### Minor Changes
+
+- dcafb44: feat: redesigned contact section & added new project and hackathon
+
 ## 0.4.0
 
 ### Minor Changes
