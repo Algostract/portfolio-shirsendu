@@ -7,7 +7,7 @@
 #     frameworks:
 #       -
 #   repo: null
-#   createdAt: '2020-05-04T18:30:00Z'
+#   createdAt: "2020-05-04T18:30:00Z"
 #   appURL: null
 #   videoURL: null
 # - name: Alphanum Vision
@@ -18,7 +18,7 @@
 #       -
 #     frameworks:
 #       -
-#   createdAt: '2021-03-31T18:30:00Z'
+#   createdAt: "2021-03-31T18:30:00Z"
 #   appURL: null
 #   videoURL: null
 # - name: Ntertainer
@@ -29,7 +29,7 @@
 #       -
 #     frameworks:
 #       -
-#   createdAt: '2021-04-20T18:30:00Z'
+#   createdAt: "2021-04-20T18:30:00Z"
 #   appURL: null
 #   videoURL: null
 - name: Psy
@@ -66,7 +66,7 @@
 #       -
 #     frameworks:
 #       -
-#   createdAt: '2022-03-24T18:30:00Z'
+#   createdAt: "2022-03-24T18:30:00Z"
 #   appURL: null
 #   videoURL: null
 - name: Biosense
@@ -80,9 +80,9 @@
       - Next
       - Tensorflow
       - Tailwind CSS
-  createdAt: '2022-08-02T18:30:00Z'
-  appURL: 'https://biosense.onrender.com'
-  videoURL: 'https://youtu.be/Y8hROrtp948'
+  createdAt: "2022-08-02T18:30:00Z"
+  appURL: "https://biosense.onrender.com"
+  videoURL: "https://youtu.be/Y8hROrtp948"
 - name: Podcast
   repo: shba007/ui-react-podcast
   category: "ui"
@@ -103,7 +103,7 @@
 #       -
 #     frameworks:
 #       -
-#   createdAt: '2023-07-13T13:33:34Z'
+#   createdAt: "2023-07-13T13:33:34Z"
 #   appURL: https://compeer.onrender.com/
 #   videoURL: null
 # - name: FashionLens
@@ -150,3 +150,16 @@
   createdAt: "2023-09-11T18:30:00Z"
   appURL: "https://www.npmjs.com/package/framework-logo/"
   videoURL: null
+- name: Plant Lens
+  repo: shba007/plant-lens
+  category: "web-app"
+  technologies:
+    languages:
+      - Vue
+      - Typescript
+    frameworks:
+      - Tailwind
+      - Tensorflow.js
+  createdAt: "2023-12-19T18:30:00Z"
+  appURL: "https://plant-lens.onrender.com/"
+  videoURL: "https://youtu.be/EAEfdlfqXQA"
