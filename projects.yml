@@ -138,7 +138,7 @@
       - Astro
       - Tailwind CSS
   createdAt: "2023-07-26T06:57:32Z"
-  appURL: "https://ai-guide.onrender.com/"
+  appURL: "https://ai-guide.shirsendu-bairagi.dev"
   videoURL: null
 - name: Framework Logo
   repo: shba007/framework-logo
@@ -160,6 +160,6 @@
     frameworks:
       - Tailwind
       - Tensorflow.js
-  createdAt: "2023-12-19T18:30:00Z"
+  createdAt: "2023-11-19T18:30:00Z"
   appURL: "https://plant-lens.onrender.com/"
   videoURL: "https://youtu.be/EAEfdlfqXQA"
