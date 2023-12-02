@@ -2,22 +2,22 @@ import fs from "node:fs";
 import path from "node:path";
 import yaml from "yaml";
 
-export interface Experience {
-  company: string
+export interface Certificate {
+  name: string
   date: string
 }
 
-export default defineEventHandler<Experience[]>(() => {
+export default defineEventHandler<Certificate[]>(() => {
   const config = useRuntimeConfig()
 
   try {
-    const filePath = path.join(process.cwd(), config.private.rootDir, 'experiences.yml')
+    const filePath = path.join(process.cwd(), config.private.rootDir, 'certificates.yml')
     const fileContents = fs.readFileSync(filePath, "utf8");
-    const experiences: Experience[] = yaml.parse(fileContents);
+    const experiences: Certificate[] = yaml.parse(fileContents);
 
     return experiences
   } catch (error: any) {
-    console.error("API experience GET", error)
+    console.error("API certificate GET", error)
 
     throw createError({ statusCode: 500, statusMessage: "Some Unknown Error Found" })
   }
