@@ -32,7 +32,7 @@ async function onSubscribe(email: string) {
     <SectionProject />
     <SectionHackathon />
     <SectionExperience />
-    <!-- <SectionTool /> -->
+    <SectionCertificate />
     <footer
       class="relative left-1/2 -translate-x-1/2 grid grid-rows-[min-content_1fr_min-content_min-content] md:grid-rows-[min-content_1fr_min-content] grid-cols-2 md:grid-cols-[min-content_1fr_min-content] justify-items-center items-center gap-4 md:gap-8 mt-10 p-4 md:p-8 rounded-t-[2.25rem] w-screen">
       <div class="row-start-1 col-start-1 col-span-2 md:col-span-3 relative w-full">
