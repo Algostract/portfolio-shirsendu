@@ -14,15 +14,16 @@ function capitalize(str: string) {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative" :class="side === 'left' ? 'left-2' : 'right-2'">
     <div v-html="branch" :class="{ 'rotate-180': side !== 'left' }" />
     <NuxtLink :href="`https://www.linkedin.com/company/${company}`" target="_blank">
       <NuxtImg :src="`/companies/${company}.jpg`" :alt="company"
         class="absolute top-1/2 -translate-y-1/2 rounded-full w-20 aspect-square object-contain"
-        :class="side === 'left' ? 'left-3' : 'right-3'" />
+        :class="side === 'left' ? 'left-1' : 'right-1'" />
     </NuxtLink>
     <time :datetime="date" class="absolute top-4 left-1/2 -translate-x-1/2 text-lg">{{ date }}</time>
-    <span class="absolute" :class="side === 'left' ? 'left-0' : 'right-0'">{{
-      capitalize(company.split("-").join(" ")) }}</span>
+    <span class="absolute" :class="side === 'left' ? 'left-0' : 'right-0'">
+      {{ capitalize(company.split("-").join(" ")) }}
+    </span>
   </div>
 </template>

@@ -42,9 +42,9 @@ const photo = computed(() => {
 
 <template>
   <section id="intro"
-    class="flex flex-col md:flex-row md:justify-between gap-10 md:gap-4 mt-10 md:mt-6 lg:mt-12 mb-28 lg:mb-24 ">
+    class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:gap-4 mt-10 md:mt-6 lg:mt-12 mb-16 lg:mb-12 ">
     <!-- TODO: Change to NuxtPicture -->
-    <picture class="absolute top-0 left-0 right-0 w-full lg:left-auto blur-md lg:blur-lg -z-50">
+    <picture class="absolute -top-8 left-0 -right-8 w-full lg:left-auto blur-md lg:blur-lg -z-50">
       <source srcset="/hero-gradient.svg" media="(min-width: 1024px)" />
       <source srcset="/hero-gradient-tablet.svg" media="(min-width: 768px)" />
       <source srcset="/hero-gradient-mobile.svg" media="(min-width: 100px)" />

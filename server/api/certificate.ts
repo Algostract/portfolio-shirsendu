@@ -4,6 +4,7 @@ import yaml from "yaml";
 
 export interface Certificate {
   name: string
+  link: string
   date: string
 }
 
@@ -13,9 +14,9 @@ export default defineEventHandler<Certificate[]>(() => {
   try {
     const filePath = path.join(process.cwd(), config.private.rootDir, 'certificates.yml')
     const fileContents = fs.readFileSync(filePath, "utf8");
-    const experiences: Certificate[] = yaml.parse(fileContents);
+    const certificates: Certificate[] = yaml.parse(fileContents);
 
-    return experiences
+    return certificates
   } catch (error: any) {
     console.error("API certificate GET", error)
 
