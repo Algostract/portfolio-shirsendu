@@ -1,5 +1,15 @@
 # portfolio
 
+## 0.6.0
+
+### Minor Changes
+
+- 10aaf65: feat: certificate section added
+
+### Patch Changes
+
+- d5acfa1: refactor: added file parsing on /experience
+
 ## 0.5.0
 
 ### Minor Changes
