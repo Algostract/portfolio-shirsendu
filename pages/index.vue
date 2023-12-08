@@ -47,7 +47,7 @@ async function onSubscribe(email: string) {
       <NewsletterBox class="row-start-3 col-start-1 col-span-2 md:col-start-2 md:col-span-1" @subscribe="onSubscribe" />
       <ul class="row-start-4 md:row-start-3 col-start-1 justify-self-start flex gap-5 md:gap-8">
         <li>
-          <NuxtLink href="https://leetcode.com" target="_blank">
+          <NuxtLink href="https://leetcode.com/shba007" target="_blank">
             <NuxtIcon name="leetcode"
               class="text-[32px] md:text-[42px] opacity-60 hover:opacity-100 transition-opacity" />
           </NuxtLink>
@@ -70,7 +70,7 @@ async function onSubscribe(email: string) {
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink href="https://www.linkedin.com/in/shirsendu-bairagi/" target="_blank">
+          <NuxtLink href="https://www.linkedin.com/in/shirsendu-bairagi" target="_blank">
             <NuxtIcon name="linkedin"
               class="text-[32px] md:text-[42px] opacity-60 hover:opacity-100 transition-opacity" />
           </NuxtLink>
