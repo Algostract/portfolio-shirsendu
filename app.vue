@@ -50,12 +50,12 @@ useSchemaOrg([
     description: "I am a Web Developer and an AI Enthusiast",
     image: "https://shirsendu-bairagi.dev/logo.png",
     sameAs: [
+      "https://leetcode.com/shba007",
+      "https://devpost.com/shba007",
       "https://github.com/shba007",
-      "https://www.linkedin.com/in/shirsendu-bairagi-28b4b1213",
-      "https://www.youtube.com/@shirsendu_bairagi",
-      "https://twitter.com/shirsendu_2001",
-      "https://www.instagram.com/shirsendu_bairagi",
-      "https://www.facebook.com/shirsendu.bairagi.1"
+      "https://x.com/shirsendu_baira",
+      "https://linkedin.com/in/shirsendu-bairagi",
+      "https://youtube.com/@shirsendu_bairagi",
     ],
   }),
   defineWebSite({

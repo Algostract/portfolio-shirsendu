@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import photoDark from "~~/assets/images/photo-dark.png";
 import photoLight from "~~/assets/images/photo-light.png";
+import heroGradient from "~~/assets/images/hero-gradient.svg";
+import heroGradientTablet from "~~/assets/images/hero-gradient-tablet.svg";
+import heroGradientMobile from "~~/assets/images/hero-gradient-Mobile.svg";
+
 
 const dob = new Date(2001, 0, 29, 0, 0, 0).toISOString()
 
@@ -42,13 +46,13 @@ const photo = computed(() => {
 
 <template>
   <section id="intro"
-    class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:gap-4 mt-10 md:mt-6 lg:mt-12 mb-16 lg:mb-12 ">
+    class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:gap-4 mt-10 md:mt-6 lg:mt-12 mb-16 lg:mb-12">
     <!-- TODO: Change to NuxtPicture -->
     <picture class="absolute -top-8 left-0 -right-8 w-full lg:left-auto blur-md lg:blur-lg -z-50">
-      <source srcset="/hero-gradient.svg" media="(min-width: 1024px)" />
-      <source srcset="/hero-gradient-tablet.svg" media="(min-width: 768px)" />
-      <source srcset="/hero-gradient-mobile.svg" media="(min-width: 100px)" />
-      <NuxtImg src="/hero-gradient.svg" alt="Hero Gradient" />
+      <source :srcset="heroGradient" media="(min-width: 1024px)" />
+      <source :srcset="heroGradientTablet" media="(min-width: 768px)" />
+      <source :srcset="heroGradientMobile" media="(min-width: 100px)" />
+      <NuxtImg :src="heroGradient" alt="Hero Gradient" />
     </picture>
 
     <div class="flex flex-col gap-8 md:my-auto md:w-1/2 h-fit">
