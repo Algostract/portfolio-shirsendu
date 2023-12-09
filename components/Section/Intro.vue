@@ -42,7 +42,7 @@ const isDark = useDark()
     <picture class="absolute -top-8 left-0 -right-8 w-full lg:left-auto blur-md lg:blur-lg -z-50">
       <source srcset="@/assets/images/hero-gradient.svg" media="(min-width: 1024px)" />
       <source srcset="@/assets/images/hero-gradient-tablet.svg" media="(min-width: 768px)" />
-      <source srcset="@/assets/images/hero-gradient-Mobile.svg" media="(min-width: 100px)" />
+      <source srcset="@/assets/images/hero-gradient-mobile.svg" media="(min-width: 100px)" />
       <NuxtImg src="@/assets/images/hero-gradient.svg" alt="Hero Gradient" />
     </picture>
 
