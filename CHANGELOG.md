@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.6.1
+
+### Patch Changes
+
+- 1fdcb3b: feat: colorMode toggle button added
+
 ## 0.6.0
 
 ### Minor Changes
