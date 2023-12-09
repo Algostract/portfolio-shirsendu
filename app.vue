@@ -96,6 +96,10 @@ useSchemaOrg([
 
 body {
   @apply min-h-screen font-body text-black dark:text-white bg-light-400 dark:bg-dark-400 overflow-x-hidden;
+  @apply bg-[url('@/assets/images/dot-light.svg')] dark:bg-[url('@/assets/images/dot-dark.svg')];
+  background-position: 0 0;
+  background-repeat: repeat;
+  background-size: auto;
 }
 
 .nuxt-icon>svg {

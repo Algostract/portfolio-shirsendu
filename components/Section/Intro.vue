@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import photoDark from "~~/assets/images/photo-dark.png";
-import photoLight from "~~/assets/images/photo-light.png";
-import heroGradient from "~~/assets/images/hero-gradient.svg";
-import heroGradientTablet from "~~/assets/images/hero-gradient-tablet.svg";
-import heroGradientMobile from "~~/assets/images/hero-gradient-Mobile.svg";
-
+// import photoDark from "@/assets/images/photo-dark.png";
+// import photoLight from "@/assets/images/photo-light.png";
 
 const dob = new Date(2001, 0, 29, 0, 0, 0).toISOString()
 
@@ -35,13 +31,8 @@ const experience = computed(() => {
   return `${yearString} ${monthString}`;
 })
 
-const colorMode = useColorMode()
-const photo = computed(() => {
-  if (colorMode.preference === "system")
-    return (colorMode.value === "light") ? photoLight : photoDark
-  else
-    return (colorMode.preference === "light") ? photoLight : photoDark
-})
+const isDark = useDark()
+// const photo = computed(() => isDark.value ? photoDark : photoLight)
 </script>
 
 <template>
@@ -49,10 +40,10 @@ const photo = computed(() => {
     class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:gap-4 mt-10 md:mt-6 lg:mt-12 mb-16 lg:mb-12">
     <!-- TODO: Change to NuxtPicture -->
     <picture class="absolute -top-8 left-0 -right-8 w-full lg:left-auto blur-md lg:blur-lg -z-50">
-      <source :srcset="heroGradient" media="(min-width: 1024px)" />
-      <source :srcset="heroGradientTablet" media="(min-width: 768px)" />
-      <source :srcset="heroGradientMobile" media="(min-width: 100px)" />
-      <NuxtImg :src="heroGradient" alt="Hero Gradient" />
+      <source srcset="@/assets/images/hero-gradient.svg" media="(min-width: 1024px)" />
+      <source srcset="@/assets/images/hero-gradient-tablet.svg" media="(min-width: 768px)" />
+      <source srcset="@/assets/images/hero-gradient-Mobile.svg" media="(min-width: 100px)" />
+      <NuxtImg src="@/assets/images/hero-gradient.svg" alt="Hero Gradient" />
     </picture>
 
     <div class="flex flex-col gap-8 md:my-auto md:w-1/2 h-fit">
@@ -89,11 +80,12 @@ const photo = computed(() => {
           </g>
           <defs>
             <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-              <use xlink:href="#clip-image" transform="matrix(0.00123181 0 0 0.000925926 -0.00134755 0)" />
+              <use xlink:href="#clip-image-light" transform="matrix(0.00123181 0 0 0.000925926 -0.00134755 0)" />
+              <use xlink:href="#clip-image-dark" transform="matrix(0.00123181 0 0 0.000925926 -0.00134755 0)" />
             </pattern>
-            <!-- <ClientOnly> -->
-            <image id="clip-image" :href="photo" alt="photo" />
-            <!-- </ClientOnly> -->
+            <image id="clip-image-light" href="@/assets/images/photo-light.png" alt="photo-light" class="dark:hidden" />
+            <image id="clip-image-dark" href="@/assets/images/photo-dark.png" alt="photo-dark"
+              class="hidden dark:block" />
           </defs>
         </svg>
       </div>
