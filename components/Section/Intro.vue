@@ -1,7 +1,4 @@
 <script setup lang="ts">
-// import photoDark from "@/assets/images/photo-dark.png";
-// import photoLight from "@/assets/images/photo-light.png";
-
 const dob = new Date(2001, 0, 29, 0, 0, 0).toISOString()
 
 const age = useTimeAgo(dob ?? "", {
@@ -83,8 +80,8 @@ const isDark = useDark()
               <use xlink:href="#clip-image-light" transform="matrix(0.00123181 0 0 0.000925926 -0.00134755 0)" />
               <use xlink:href="#clip-image-dark" transform="matrix(0.00123181 0 0 0.000925926 -0.00134755 0)" />
             </pattern>
-            <image id="clip-image-light" href="@/assets/images/photo-light.png" alt="photo-light" class="dark:hidden" />
-            <image id="clip-image-dark" href="@/assets/images/photo-dark.png" alt="photo-dark"
+            <image id="clip-image-light" href="@/assets/images/photo-light.webp" alt="photo-light" class="dark:hidden" />
+            <image id="clip-image-dark" href="@/assets/images/photo-dark.webp" alt="photo-dark"
               class="hidden dark:block" />
           </defs>
         </svg>

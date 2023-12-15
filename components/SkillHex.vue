@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import drone from '~~/assets/images/drone.png';
-import robot from '~~/assets/images/robot.png';
-import globe from '~~/assets/images/globe.png';
+import drone from '~~/assets/images/drone.webp';
+import robot from '~~/assets/images/robot.webp';
+import globe from '~~/assets/images/globe.webp';
 
 const props = defineProps<{
   quadrant: 1 | 2 | 3 | 4
