@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.6.2
+
+### Patch Changes
+
+- a4891a5: chores: optimized images
+
 ## 0.6.1
 
 ### Patch Changes
