@@ -28,11 +28,11 @@ const emit = defineEmits<{
         </button>
       </div>
       <div class="absolute bottom-2 right-2 flex gap-2">
-        <NuxtLink :href="`/certificates/${name}.pdf`" target="_blank"
+        <NuxtLink :to="`/certificates/${name}.pdf`" target="_blank"
           class="rounded-2xl px-3 py-1 w-fit h-fit bg-light-600 dark:bg-dark-600 hover:!bg-primary-400 hover:text-white transition-colors">
           <NuxtIcon name="certificate" class="text-[16px]" />
         </NuxtLink>
-        <NuxtLink :href="link" target="_blank"
+        <NuxtLink :to="link" target="_blank"
           class="rounded-2xl px-3 py-1 w-fit h-fit bg-light-600 dark:bg-dark-600 hover:!bg-primary-400 hover:text-white transition-colors ">
           <NuxtIcon name="web" class="text-[16px]" />
         </NuxtLink>

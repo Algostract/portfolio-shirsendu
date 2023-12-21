@@ -27,16 +27,13 @@ const experience = computed(() => {
 
   return `${yearString} ${monthString}`;
 })
-
-const isDark = useDark()
-// const photo = computed(() => isDark.value ? photoDark : photoLight)
 </script>
 
 <template>
-  <section id="intro"
+  <section id="hero"
     class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:gap-4 mt-10 md:mt-6 lg:mt-12 mb-16 lg:mb-12">
     <!-- TODO: Change to NuxtPicture -->
-    <picture class="absolute -top-8 left-0 -right-8 w-full lg:left-auto blur-md lg:blur-lg -z-50">
+    <picture class="absolute -top-8 left-0 -right-8 lg:left-auto blur-md lg:blur-lg -z-50">
       <source srcset="@/assets/images/hero-gradient.svg" media="(min-width: 1024px)" />
       <source srcset="@/assets/images/hero-gradient-tablet.svg" media="(min-width: 768px)" />
       <source srcset="@/assets/images/hero-gradient-mobile.svg" media="(min-width: 100px)" />

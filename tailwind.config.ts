@@ -15,8 +15,6 @@ module.exports = {
   darkMode: 'class',
   theme: {
     fontSize: {
-      '3xs': ['0.5rem', '0.5625rem'],
-      '2xs': ['0.625rem', '0.75rem'],
       xs: ['0.75rem', '0.875rem'],
       sm: ['0.875rem', '1.0625rem'],
       base: ['1rem', '1.5rem'],
