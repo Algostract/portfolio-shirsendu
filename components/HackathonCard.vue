@@ -9,7 +9,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <NuxtLink :href="url" target="_blank"
+  <NuxtLink :to="url" target="_blank"
     class="grid grid-rows-2 grid-cols-[repeat(auto, 2)] justify-start items-center gap-2 rounded-[0.875rem] p-4 w-[256px] bg-light-500 dark:bg-dark-500 aspect-[202/82] ">
     <NuxtImg class="row-span-2 col-start-1 rounded-full h-full bg-white dark:bg-black aspect-square"
       :src="`/hackathons/${name}.webp`" :alt="name" />

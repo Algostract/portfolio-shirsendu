@@ -93,12 +93,12 @@ function onTry() {
               <button class="splide__arrow splide__arrow--prev w-1/3">
                 <NuxtIcon name="chevron-bold" />
               </button>
-              <button class="splide__arrow splide__arrow--next transform rotate-180 w-1/3">
+              <button class="splide__arrow splide__arrow--next rotate-180 w-1/3">
                 <NuxtIcon name="chevron-bold" />
               </button>
             </div>
           </Splide>
-          <NuxtLink v-if="videoURL !== null" :href="videoURL" target="_blank"
+          <NuxtLink v-if="videoURL !== null" :to="videoURL" target="_blank"
             class="absolute bottom-1 right-2 flex gap-1 items-center text-white z-20" @click="onWatch">
             <span class="text-xs">Watch</span>
             <NuxtIcon name="youtube" class="text-[30px]" />
@@ -118,7 +118,7 @@ function onTry() {
             </time>
           </ClientOnly>
           <p class="row-start-2 col-start-1 col-span-2 text-xs md:text-base opacity-60 line-clamp-2">{{ description }}</p>
-          <NuxtLink v-if="appURL !== null" :href="appURL" target="_blank"
+          <NuxtLink v-if="appURL !== null" :to="appURL" target="_blank"
             class="absolute bottom-0 right-0 rounded-tl-[1.25rem] px-6 py-2 bg-primary-400 hover:bg-primary-300 transition-colors text-xs text-white cursor-pointer"
             @click="onTry">
             Try Now

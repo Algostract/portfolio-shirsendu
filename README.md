@@ -1,8 +1,8 @@
 # Portfolio Shirsendu
 My developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner
 
-![Landing](public/previews/landing-Dark.jpg)
-![Landing](public/previews/landing-Light.jpg)
+![Landing](public/previews/landing-dark.jpg)
+![Landing](public/previews/landing-light.jpg)
 
 
 # Todos
