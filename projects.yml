@@ -33,7 +33,7 @@
 #   appURL: null
 #   videoURL: null
 - name: Psy
-  repo: shba007/psy-app
+  repo: shba007/psy-app # shba007/psy-omr
   category: "web-app"
   technologies:
     languages:
@@ -95,6 +95,18 @@
 #   createdAt: "2023-06-27T18:30:00Z"
 #   appURL: "https://shba007.github.io/ui-react-podcast/"
 #   videoURL: null
+- name: Shirsendu's Portfolio
+  repo: shba007/portfolio-shirsendu
+  category: "web-app"
+  technologies:
+    languages:
+      - Typescript
+    frameworks:
+      - Nuxt
+      - Tailwind
+  createdAt: "2023-07-09T18:30:00Z"
+  appURL: "https://shirsendu-bairagi.dev/"
+  videoURL: null
 # - name: Compeer
 #   repo: shba007/com-peer
 #   category: "web-app"
@@ -155,11 +167,25 @@
   category: "web-app"
   technologies:
     languages:
-      - Vue
       - Typescript
     frameworks:
+      - Vue
       - Tailwind
       - Tensorflow.js
   createdAt: "2023-11-19T18:30:00Z"
   appURL: "https://plant-lens.onrender.com/"
   videoURL: "https://youtu.be/EAEfdlfqXQA"
+# - name: Monalisa's Portfolio
+#   repo: shba007/portfolio-monalisa
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       - Typescript
+#     frameworks:
+#       - Nuxt
+#       - Tailwind
+#   createdAt: "2023-11-24T18:30:00Z"
+#   appURL: "https://portfolio-monalisa.onrender.com/"
+#   videoURL: null
+
+

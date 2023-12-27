@@ -6,10 +6,11 @@ interface Project {
   name: string;
   description: string;
   version: string;
-  stars: number;
   forks: number;
+  stars: number;
   createdAt: Date | string;
   updatedAt: Date | string;
+  repoURL: string | null;
   appURL: string | null;
   videoURL: string | null;
 }
@@ -65,6 +66,7 @@ function onTry() {
 <template>
   <div class="card grow relative mx-auto w-full sm:w-2/5 md:w-[30%] min-w-[328px] max-w-[400px] transition-transform">
     <Ribbon :title="modifiedIn" class="absolute top-4 -left-[5px] z-10" />
+
     <div class="relative">
       <div class="absolute top-0 left-0 w-full h-full">
         <div
@@ -83,9 +85,8 @@ function onTry() {
             @splide:pagination:updated="onPaginationUpdate" class="w-full h-full">
             <SplideTrack>
               <SplideSlide v-for="image in [1, 2, 3]" :key="image">
-                <!-- <div class="relative flex justify-center items-center w-full h-full"> -->
-                <NuxtImg :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" class="w-full h-full" />
-                <!-- </div> -->
+                <NuxtImg :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" loading="lazy"
+                  class="w-full h-full" />
               </SplideSlide>
             </SplideTrack>
             <div
@@ -98,8 +99,14 @@ function onTry() {
               </button>
             </div>
           </Splide>
+          <NuxtLink :to="repoURL" target="_blank"
+            class="absolute bottom-2 left-2 flex items-center gap-1 rounded-full hover:outline outline-primary-300 pl-1.5 pr-2 py-1 bg-light-500 dark:bg-dark-600 z-20 transition-[outline] duration-150 ease-in">
+            <NuxtIcon name="github" class="text-[16px]" />
+            <span class="text-xs">{{ stars }} Stars</span>
+          </NuxtLink>
           <NuxtLink v-if="videoURL !== null" :to="videoURL" target="_blank"
-            class="absolute bottom-1 right-2 flex gap-1 items-center text-white z-20" @click="onWatch">
+            class="absolute bottom-1 right-2 flex items-center gap-1 text-white z-20 drop-shadow hover:drop-shadow-md"
+            @click="onWatch">
             <span class="text-xs">Watch</span>
             <NuxtIcon name="youtube" class="text-[30px]" />
           </NuxtLink>
@@ -108,7 +115,7 @@ function onTry() {
           <span class="flex gap-1 lg:gap-2 items-end">
             <h5 class="text-lg whitespace-nowrap font-semi-bold">{{ name }}</h5>
             <span
-              class="rounded-full px-[8px] pt-[3px] pb-1 w-fit h-fit text-2xs text-center text-black/75 dark:text-white/75 bg-light-600 dark:bg-dark-400">
+              class="rounded-full px-[8px] pt-[3px] pb-1 w-fit h-fit text-xs text-center text-black/75 dark:text-white/75 bg-light-600 dark:bg-dark-400">
               {{ version }}
             </span>
           </span>

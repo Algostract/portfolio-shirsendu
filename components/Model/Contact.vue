@@ -33,7 +33,7 @@ const onSend = handleSubmit(async (values) => {
 
 <template>
   <ModelBase :is-open="isOpen" @close="emit('close')"
-    innerClass="rounded-tl-[2rem] rounded-br-[2rem] p-8 pt-10 !max-w-[24.5rem] h-[30rem] ">
+    innerClass="rounded-tl-[2rem] rounded-br-[2rem] p-8 pt-10 !max-w-[24.5rem]">
     <form class="flex flex-col gap-6" @submit.prevent="onSend">
       <InputText type="name" name="name" placeholder="Your Name" />
       <InputText type="email" name="email" placeholder="Your Email" />

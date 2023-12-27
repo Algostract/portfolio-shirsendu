@@ -54,6 +54,7 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
         forks: details.forks,
         createdAt,
         updatedAt: release?.updatedAt ?? details.pushedAt,
+        repoURL: `https://github.com/${repo}`,
         appURL,
         videoURL,
       }

@@ -11,9 +11,9 @@ const projects = computed(() => data.value.sort((a, b) => new Date(b.updatedAt).
     <div
       class="relative -left-4 md:-left-8 lg:-left-10 xl:-left-12 flex flex-wrap gap-8 py-4 px-4 md:px-8 lg:px-10 xl:px-12 w-screen max-w-[85rem] overflow-hidden">
       <ProjectCard
-        v-for="{ name, description, version, stars, forks, createdAt, updatedAt, appURL, videoURL } in projects"
+        v-for="{ name, description, version, stars, forks, createdAt, updatedAt, repoURL, appURL, videoURL } in projects"
         :key="name" :name="name" :description="description" :version="version" :stars="stars" :forks="forks"
-        :createdAt="createdAt" :updatedAt="updatedAt" :appURL="appURL" :videoURL="videoURL" />
+        :createdAt="createdAt" :updatedAt="updatedAt" :repoURL="repoURL" :appURL="appURL" :videoURL="videoURL" />
     </div>
   </section>
 </template>
