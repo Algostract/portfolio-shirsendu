@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.6.4
+
+### Patch Changes
+
+- a194882: feat: github repo btn added, images optimized, portfolio project added
+
 ## 0.6.3
 
 ### Patch Changes
