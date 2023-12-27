@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.6.3
+
+### Patch Changes
+
+- 9ac42bf: feat: certificate card responsiveness added
+
 ## 0.6.2
 
 ### Patch Changes
