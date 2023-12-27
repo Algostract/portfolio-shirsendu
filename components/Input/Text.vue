@@ -92,6 +92,6 @@ function validatePincode(value: string) {
       <input type="text" :name="name" :placeholder="placeholder" v-model="value" :disabled="isDisabled"
         class="px-2 w-full bg-transparent outline-none" v-bind="$attrs">
     </div>
-    <span v-show="errors.length" class="text-alert-500 text-2xs font-semi-bold">{{ errors[0] }}</span>
+    <span v-show="errors.length" class="text-alert-500 text-xs font-semi-bold">{{ errors[0] }}</span>
   </div>
 </template>

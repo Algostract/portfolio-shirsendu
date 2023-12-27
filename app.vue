@@ -34,8 +34,8 @@ useSeoMeta({
   ogType: "profile",
   title: "Shirsendu's Portfolio",
   ogTitle: "Shirsendu's Portfolio",
-  description: "I am a Web Developer and an AI Enthusiast, this is my developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
-  ogDescription: "I am a Web Developer and an AI Enthusiast, this is my developer's portfolio showcasing my skills, projects, and expertise in a visually appealing manner",
+  description: "I am a Developer, this is my devfolio showcasing my skills, projects, and expertise in a visually appealing manner",
+  ogDescription: "I am a Developer, this is my devfolio showcasing my skills, projects, and expertise in a visually appealing manner",
   ogImage: "https://shirsendu-bairagi.dev/previews/landing.jpg",
   ogImageWidth: 1280,
   ogImageHeight: 640,
@@ -47,7 +47,7 @@ useSeoMeta({
 useSchemaOrg([
   definePerson({
     name: "Shirsendu Bairagi",
-    description: "I am a Web Developer and an AI Enthusiast",
+    description: "I am a Developer",
     image: "https://shirsendu-bairagi.dev/logo.png",
     sameAs: [
       "https://leetcode.com/shba007",
@@ -60,13 +60,11 @@ useSchemaOrg([
   }),
   defineWebSite({
     name: "Shirsendu's Portfolio",
-    description: `I am a Web Developer and an AI Enthusiast, this is my 
-    developer's portfolio showcasing my skills, projects,
-    and expertise in a visually appealing manner`,
+    description: "I am a Developer, this is my devfolio showcasing my skills, projects, and expertise in a visually appealing manner",
   }),
   defineWebPage({
     datePublished: new Date(2023, 5, 14).toISOString(),
-    dateModified: new Date(2023, 5, 20).toISOString(),
+    dateModified: new Date(2023, 12, 26).toISOString(),
     author: "Shirsendu Bairagi",
   }),
 ])
@@ -92,6 +90,10 @@ useSchemaOrg([
 
 *::-webkit-scrollbar-thumb {
   @apply rounded-md bg-light-600 dark:bg-dark-600;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
