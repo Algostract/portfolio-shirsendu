@@ -2,7 +2,7 @@
   "name": "portfolio-shirsendu",
   "description": "Shirsendu's devfolio showcasing his projects, experience and contacts in a visually appealing manner",
   "author": "Shirsendu Bairagi <shirsendu2001@gmail.com>",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "private": true,
   "type": "module",
   "engines": {
