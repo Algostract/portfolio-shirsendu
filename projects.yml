@@ -70,7 +70,7 @@
 #   appURL: null
 #   videoURL: null
 - name: Biosense
-  repo: shba007/biosense-web
+  repo: shba007/biosense-web # shba007/biosense-ai shba007/biosense-iot
   category: "iot"
   technologies:
     languages:
@@ -163,7 +163,7 @@
   appURL: "https://www.npmjs.com/package/framework-logo/"
   videoURL: null
 - name: Plant Lens
-  repo: shba007/plant-lens
+  repo: shba007/plant-lens-web # shba007/plant-lens-ai
   category: "web-app"
   technologies:
     languages:
@@ -184,8 +184,18 @@
 #     frameworks:
 #       - Nuxt
 #       - Tailwind
-#   createdAt: "2023-11-24T18:30:00Z"
+#   createdAt: "2023-11-22T18:30:00Z"
 #   appURL: "https://portfolio-monalisa.onrender.com/"
 #   videoURL: null
-
-
+# - name: Aratrik's Portfolio
+#   repo: shba007/portfolio-aratrik
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       - Typescript
+#     frameworks:
+#       - Nuxt
+#       - Tailwind
+#   createdAt: "2023-11-24T18:30:00Z"
+#   appURL: "https://portfolio-aratrik.onrender.com/"
+#   videoURL: null

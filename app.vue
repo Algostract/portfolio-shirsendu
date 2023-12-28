@@ -48,7 +48,7 @@ useSchemaOrg([
   definePerson({
     name: "Shirsendu Bairagi",
     description: "I am a Developer",
-    image: "https://shirsendu-bairagi.dev/logo.png",
+    image: "https://shirsendu-bairagi.dev/logo-512.png",
     sameAs: [
       "https://leetcode.com/shba007",
       "https://devpost.com/shba007",
@@ -71,6 +71,8 @@ useSchemaOrg([
 </script>
 
 <template>
+  <NuxtPwaManifest />
+  <NuxtLoadingIndicator />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

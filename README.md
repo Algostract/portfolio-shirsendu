@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="./public/logo.png" lt="Logo" width="80" />
+  <img src="./public/logo-512.png" lt="Logo" width="80" />
 <p>
 
 # Portfolio Shirsendu
-> My devfolio showcasing my skills, projects, and expertise in a visually appealing manner
+> Shirsendu's devfolio showcasing his projects, experience and contacts in a visually appealing manner
 
 ![Landing](public/previews/landing-dark.jpg)
 ![Landing](public/previews/landing-light.jpg)

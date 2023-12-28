@@ -29,7 +29,6 @@ export default defineNuxtConfig({
     },
   },
   image: {
-    // dir: 'assets/images',
     format: ['avif', 'webp'],
     width: 1024,
     quality: 80,
@@ -41,6 +40,45 @@ export default defineNuxtConfig({
   },
   site: {
     url: 'https://shirsendu-bairagi.dev'
+  },
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'Shirsendu\'s Portfolio',
+      short_name: 'Portfolio',
+      theme_color: '#3B82F6',
+      icons: [
+        {
+          src: 'logo-192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: 'logo-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+        {
+          src: 'logo-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
+      ],
+    },
+    workbox: {
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+    client: {
+      installPrompt: true,
+      periodicSyncForUpdates: 3600,
+    },
+    devOptions: {
+      enabled: false,
+      suppressWarnings: true,
+      navigateFallbackAllowlist: [/^\/$/],
+      type: 'module',
+    },
   },
   gtag: {
     id: 'G-ZMR7H4LPSK'
