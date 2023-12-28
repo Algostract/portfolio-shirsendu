@@ -119,11 +119,12 @@ function onTry() {
               {{ version }}
             </span>
           </span>
-          <ClientOnly>
-            <time class="self-end justify-self-end row-start-1 col-start-2 py-1 text-xs whitespace-nowrap">
+          <time :dateTime="createdAt"
+            class="self-end justify-self-end row-start-1 col-start-2 py-1 text-xs whitespace-nowrap">
+            <ClientOnly>
               {{ createdAtFormatted }}
-            </time>
-          </ClientOnly>
+            </ClientOnly>
+          </time>
           <p class="row-start-2 col-start-1 col-span-2 text-xs md:text-base opacity-60 line-clamp-2">{{ description }}</p>
           <NuxtLink v-if="appURL !== null" :to="appURL" target="_blank"
             class="absolute bottom-0 right-0 rounded-tl-[1.25rem] px-6 py-2 bg-primary-400 hover:bg-primary-300 transition-colors text-xs text-white cursor-pointer"
