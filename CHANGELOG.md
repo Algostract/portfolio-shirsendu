@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.6.5
+
+### Patch Changes
+
+- 494d5a2: feat: pwa added
+
 ## 0.6.4
 
 ### Patch Changes
