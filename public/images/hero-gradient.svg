@@ -68,14 +68,14 @@
 <stop offset="1" stop-color="#60A5fA" stop-opacity="0"/>
 </linearGradient>
 <linearGradient id="paint1_linear_6072_60623" x1="167.722" y1="0" x2="167.722" y2="1384.87" gradientUnits="userSpaceOnUse">
-<stop stop-color="#3B82F6"/>
-<stop offset="0.225209" stop-color="#3B82F6"/>
-<stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+<stop stop-color="#0593FA"/>
+<stop offset="0.225209" stop-color="#0593FA"/>
+<stop offset="1" stop-color="#0593FA" stop-opacity="0"/>
 </linearGradient>
 <linearGradient id="paint2_linear_6072_60623" x1="167.722" y1="0" x2="167.722" y2="1384.87" gradientUnits="userSpaceOnUse">
-<stop stop-color="#3B82F6"/>
-<stop offset="0.225209" stop-color="#3B82F6"/>
-<stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+<stop stop-color="#0593FA"/>
+<stop offset="0.225209" stop-color="#0593FA"/>
+<stop offset="1" stop-color="#0593FA" stop-opacity="0"/>
 </linearGradient>
 <clipPath id="clip0_6072_60623">
 <rect width="1269" height="724" fill="white" transform="matrix(1 0 0 -1 0 724)"/>

@@ -31,5 +31,3 @@ function onHandleSlide(dir: 'left' | 'right') {
     </div>
   </section>
 </template>
-
-<style scoped></style>

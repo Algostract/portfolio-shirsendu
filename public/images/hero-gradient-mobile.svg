@@ -53,9 +53,9 @@
 <stop offset="1" stop-color="#60A5fA" stop-opacity="0"/>
 </linearGradient>
 <linearGradient id="paint1_linear_1425_54731" x1="113.818" y1="0" x2="113.818" y2="738.93" gradientUnits="userSpaceOnUse">
-<stop stop-color="#3B82F6"/>
-<stop offset="0.225209" stop-color="#3B82F6"/>
-<stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+<stop stop-color="#0593FA"/>
+<stop offset="0.225209" stop-color="#0593FA"/>
+<stop offset="1" stop-color="#0593FA" stop-opacity="0"/>
 </linearGradient>
 <clipPath id="clip0_1425_54731">
 <rect width="390" height="334" fill="white" transform="matrix(1 0 0 -1 0 334)"/>

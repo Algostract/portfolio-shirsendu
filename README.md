@@ -5,8 +5,7 @@
 # Portfolio Shirsendu
 > Shirsendu's devfolio showcasing his projects, experience and contacts in a visually appealing manner
 
-![Landing](public/previews/landing-dark.jpg)
-![Landing](public/previews/landing-light.jpg)
+![Landing](public/previews/landing.webp)
 
 # Todos
 - Add Toast

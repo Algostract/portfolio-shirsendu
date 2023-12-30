@@ -78,7 +78,7 @@ function onTry() {
           <ul class="absolute top-0 right-[0.875rem] flex gap-1 z-20">
             <li v-for="track in [1, 2, 3]" :key="track" class="cursor-pointer" @click="splide.go(track - 1)">
               <NuxtIcon name="pagination-track" class="text-light-500 dark:text-dark-600 text-[28px] transition-colors"
-                :class="{ '!text-primary-400': currentPage === track - 1 }" />
+                :class="{ '!text-primary-500': currentPage === track - 1 }" />
             </li>
           </ul>
           <Splide ref="splide" :options="splideOption" tag="div" :has-track="false"
@@ -100,7 +100,7 @@ function onTry() {
             </div>
           </Splide>
           <NuxtLink :to="repoURL" target="_blank"
-            class="absolute bottom-2 left-2 flex items-center gap-1 rounded-full hover:outline outline-primary-300 pl-1.5 pr-2 py-1 bg-light-500 dark:bg-dark-600 z-20 transition-[outline] duration-150 ease-in">
+            class="absolute bottom-2 left-2 flex items-center gap-1 rounded-full hover:outline outline-primary-400 pl-1.5 pr-2 py-1 bg-light-500 dark:bg-dark-600 z-20 transition-[outline] duration-150 ease-in">
             <NuxtIcon name="github" class="text-[16px]" />
             <span class="text-xs">{{ stars }} Stars</span>
           </NuxtLink>
@@ -127,7 +127,7 @@ function onTry() {
           </time>
           <p class="row-start-2 col-start-1 col-span-2 text-xs md:text-base opacity-60 line-clamp-2">{{ description }}</p>
           <NuxtLink v-if="appURL !== null" :to="appURL" target="_blank"
-            class="absolute bottom-0 right-0 rounded-tl-[1.25rem] px-6 py-2 bg-primary-400 hover:bg-primary-300 transition-colors text-xs text-white cursor-pointer"
+            class="absolute bottom-0 right-0 rounded-tl-[1.25rem] px-6 py-2 bg-primary-500 hover:bg-primary-400 transition-colors text-xs text-white cursor-pointer"
             @click="onTry">
             Try Now
           </NuxtLink>
