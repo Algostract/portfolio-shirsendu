@@ -1,3 +1,4 @@
+import { useCompiler } from '#vue-email'
 import nodemailer from 'nodemailer';
 
 interface TransactionalEmail {
@@ -21,29 +22,37 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler<{ user: boolean, admin: boolean }>(async (event) => {
   try {
     const body = await readBody<TransactionalEmail>(event)
 
-    // Mail to the user
+    // Mail Send to User
+    const userTemplate = await useCompiler('UserTemplate.vue', {
+      props: {
+        url: 'https://shirsendu-bairagi.dev'
+      }
+    })
+
     await transporter.sendMail({
       from: `"Shirsendu Bairagi" <${config.private.emailUsername}>`,
       to: body.email,
       subject: "Shirsendu Got your Email",
-      html: `Hi, I am Eluna, Shirsendu's AI Assistant,<br/><br/> 
-      I am informing you that your mail has reached to him,<br/>
-      I will notify him as soon as soon as he become online.<br/><br/>
-      Thank you for being patient,<br/>Have a good day`,
+      html: userTemplate.html,
     });
 
-    // Mail send to me
+    // Mail Send to Admin
+    const adminTemplate = await useCompiler('AdminTemplate.vue', {
+      props: { ...body }
+    })
+
     await transporter.sendMail({
       from: `"${body.name}" <${body.email}>`,
       to: config.private.gmail,
-      subject: `Dev Portfolio Mail from ${body.name}`,
-      html: `${body.message}, <br/><br/> Contact Me at ${body.email}`,
+      subject: `Devfolio Mail from ${body.name}`,
+      html: adminTemplate.html,
     });
 
+    return { user: true, admin: true }
   } catch (error: any) {
     console.error("API contact POST", error)
 

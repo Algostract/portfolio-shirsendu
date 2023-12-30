@@ -48,7 +48,7 @@ const experience = computed(() => {
         realms of Web & AI. Join me in exploring the art of digital innovation.
       </h2>
       <h3
-        class="mx-auto md:mx-0 my-2 rounded-lg rounded-tl-3xl rounded-br-3xl px-5 py-3 w-fit bg-primary-400 text-lg text-white">
+        class="mx-auto md:mx-0 my-2 rounded-lg rounded-tl-3xl rounded-br-3xl px-5 py-3 w-fit bg-primary-500 text-lg text-white">
         {{ experience }} +XP
       </h3>
     </div>

@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtseo/module',
     '@vite-pwa/nuxt',
+    '@vue-email/nuxt',
     '@vueuse/nuxt',
     'nuxt-gtag',
     'nuxt-icons',
@@ -44,10 +45,30 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
-      name: 'Shirsendu\'s Portfolio',
-      short_name: 'Portfolio',
-      theme_color: '#3B82F6',
+      name: 'Shirsendu Bairagi\'s Devfolio',
+      short_name: 'Shirsendu Bairagi',
+      theme_color: '#0593FA',
       icons: [
+        {
+          src: 'logo-48.png',
+          sizes: '48x48',
+          type: 'image/png',
+        },
+        {
+          src: 'logo-72.png',
+          sizes: '72x72',
+          type: 'image/png',
+        },
+        {
+          src: 'logo-96.png',
+          sizes: '96x96',
+          type: 'image/png',
+        },
+        {
+          src: 'logo-144.png',
+          sizes: '144x144',
+          type: 'image/png',
+        },
         {
           src: 'logo-192.png',
           sizes: '192x192',
@@ -79,6 +100,9 @@ export default defineNuxtConfig({
       navigateFallbackAllowlist: [/^\/$/],
       type: 'module',
     },
+  },
+  vueEmail: {
+    baseUrl: 'https://shirsendu-bairagi.dev/images/',
   },
   gtag: {
     id: 'G-ZMR7H4LPSK'

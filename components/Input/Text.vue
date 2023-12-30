@@ -87,7 +87,7 @@ function validatePincode(value: string) {
 <template>
   <div class="flex flex-col gap-2 w-full">
     <div
-      class="flex gap-2 outline-2 outline-primary-400 focus-within:outline rounded-xl p-2 w-full h-11 bg-light-400 dark:bg-dark-600 text-sm">
+      class="flex gap-2 outline-2 outline-primary-500 focus-within:outline rounded-xl p-2 w-full h-11 bg-light-400 dark:bg-dark-600 text-sm">
       <!-- <NuxtIcon v-if="!!icon" :name="icon" class="text-[28px] text-light-500" /> -->
       <input type="text" :name="name" :placeholder="placeholder" v-model="value" :disabled="isDisabled"
         class="px-2 w-full bg-transparent outline-none" v-bind="$attrs">
