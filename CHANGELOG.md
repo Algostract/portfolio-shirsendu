@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.7.0
+
+### Minor Changes
+
+- dad5c7f: feat: vue-email added
+
 ## 0.6.5
 
 ### Patch Changes
