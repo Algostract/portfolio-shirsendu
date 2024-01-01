@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.0.0
+
+### Major Changes
+
+- 353fff6: first major release
+
 ## 0.7.1
 
 ### Patch Changes
