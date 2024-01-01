@@ -10,6 +10,7 @@
 #   createdAt: "2020-05-04T18:30:00Z"
 #   appURL: null
 #   videoURL: null
+
 # - name: Alphanum Vision
 #   repo: shba007/digit-recognizer
 #   category: "web-app"
@@ -21,6 +22,7 @@
 #   createdAt: "2021-03-31T18:30:00Z"
 #   appURL: null
 #   videoURL: null
+
 # - name: Ntertainer
 #   repo: shba007/ntertainer
 #   category: "web-app"
@@ -32,6 +34,7 @@
 #   createdAt: "2021-04-20T18:30:00Z"
 #   appURL: null
 #   videoURL: null
+
 - name: Psy
   repo: shba007/psy-app # shba007/psy-omr
   category: "web-app"
@@ -44,8 +47,9 @@
       - FastAPI
       - Tailwind CSS
   createdAt: "2021-07-20T18:30:00.000Z"
-  appURL: "https://psy.shirsendu-bairagi.dev"
+  appURL: "https://psy.monalisa-bairagi.com"
   videoURL: "https://youtu.be/Tu60B-gheNM"
+
 # - name: BloodLink
 #   repo: shba007/blood-link
 #   category: "web-app"
@@ -58,6 +62,7 @@
 #   createdAt: "2022-02-10T18:30:00Z"
 #   appURL: "https://blood-bank-manager.netlify.app"
 #   videoURL: null
+
 # - name: Orykit
 #   repo: Algostract/orykit-store
 #   category: "web-app"
@@ -69,6 +74,7 @@
 #   createdAt: "2022-03-24T18:30:00Z"
 #   appURL: null
 #   videoURL: null
+
 - name: Biosense
   repo: shba007/biosense-web # shba007/biosense-ai shba007/biosense-iot
   category: "iot"
@@ -83,6 +89,7 @@
   createdAt: "2022-08-02T18:30:00Z"
   appURL: "https://biosense.onrender.com"
   videoURL: "https://youtu.be/Y8hROrtp948"
+
 # - name: Podcast
 #   repo: shba007/ui-react-podcast
 #   category: "ui"
@@ -95,6 +102,7 @@
 #   createdAt: "2023-06-27T18:30:00Z"
 #   appURL: "https://shba007.github.io/ui-react-podcast/"
 #   videoURL: null
+
 - name: Shirsendu's Portfolio
   repo: shba007/portfolio-shirsendu
   category: "web-app"
@@ -107,6 +115,7 @@
   createdAt: "2023-07-09T18:30:00Z"
   appURL: "https://shirsendu-bairagi.dev/"
   videoURL: null
+
 # - name: Compeer
 #   repo: shba007/com-peer
 #   category: "web-app"
@@ -118,6 +127,7 @@
 #   createdAt: "2023-07-13T13:33:34Z"
 #   appURL: https://compeer.onrender.com/
 #   videoURL: null
+
 # - name: FashionLens
 #   repo: shba007/fashion-lens
 #   createdAt: "2023-07-15T10:44:56.791Z"
@@ -128,6 +138,7 @@
 #       - Nuxt
 #   appURL: null # "https://fashion-lens.shirsendu-bairagi.dev"
 #   videoURL: null
+
 - name: Magma
   repo: shba007/ui-react-magma
   category: "ui"
@@ -140,6 +151,7 @@
   createdAt: "2023-07-16T18:30:00Z"
   appURL: "https://shba007.github.io/ui-react-magma/"
   videoURL: null
+
 - name: AI Guide
   repo: shba007/ai-guide
   category: "blog"
@@ -152,6 +164,7 @@
   createdAt: "2023-07-26T06:57:32Z"
   appURL: "https://ai-guide.shirsendu-bairagi.dev"
   videoURL: null
+
 - name: Framework Logo
   repo: shba007/framework-logo
   category: "npm-package"
@@ -162,6 +175,7 @@
   createdAt: "2023-09-11T18:30:00Z"
   appURL: "https://www.npmjs.com/package/framework-logo/"
   videoURL: null
+
 - name: Plant Lens
   repo: shba007/plant-lens-web # shba007/plant-lens-ai
   category: "web-app"
@@ -175,6 +189,7 @@
   createdAt: "2023-11-19T18:30:00Z"
   appURL: "https://plant-lens.onrender.com/"
   videoURL: "https://youtu.be/EAEfdlfqXQA"
+
 - name: Monalisa's Portfolio
   repo: shba007/portfolio-monalisa
   category: "web-app"
@@ -187,6 +202,7 @@
   createdAt: "2023-11-22T18:30:00Z"
   appURL: "https://monalisa-bairagi.com/"
   videoURL: null
+  
 # - name: Aratrik's Portfolio
 #   repo: shba007/portfolio-aratrik
 #   category: "web-app"
