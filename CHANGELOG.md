@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- ea74df9: feat: added monalisa's portfoio
+- ea74df9: feat: added monalisa's portfolio
 
 ## 0.7.0
 
