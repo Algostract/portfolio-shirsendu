@@ -175,18 +175,18 @@
   createdAt: "2023-11-19T18:30:00Z"
   appURL: "https://plant-lens.onrender.com/"
   videoURL: "https://youtu.be/EAEfdlfqXQA"
-# - name: Monalisa's Portfolio
-#   repo: shba007/portfolio-monalisa
-#   category: "web-app"
-#   technologies:
-#     languages:
-#       - Typescript
-#     frameworks:
-#       - Nuxt
-#       - Tailwind
-#   createdAt: "2023-11-22T18:30:00Z"
-#   appURL: "https://portfolio-monalisa.onrender.com/"
-#   videoURL: null
+- name: Monalisa's Portfolio
+  repo: shba007/portfolio-monalisa
+  category: "web-app"
+  technologies:
+    languages:
+      - Typescript
+    frameworks:
+      - Nuxt
+      - Tailwind
+  createdAt: "2023-11-22T18:30:00Z"
+  appURL: "https://monalisa-bairagi.com/"
+  videoURL: null
 # - name: Aratrik's Portfolio
 #   repo: shba007/portfolio-aratrik
 #   category: "web-app"

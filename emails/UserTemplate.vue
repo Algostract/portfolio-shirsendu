@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const tailwindConfig = {
   theme: {
     extend: {
@@ -20,26 +19,25 @@ const tailwindConfig = {
           I will notify him as soon as soon as he become online.<br /><br />
           Thank you for being patient,<br />Have a good day
         </EContainer>
-        <ESection class="flex gap-5 md:gap-8">
-          <EColumn>
-            <ELink href="https://leetcode.com/shba007" target="_blank">
-              <EImg src="leetcode.png" alt="LeetCode" width="32" height="32"
-                class="opacity-60 hover:opacity-100 transition-opacity" />
-            </ELink>
-          </EColumn>
-          <EColumn>
-            <ELink href="https://devpost.com/shba007" target="_blank">
-              <EImg src="devpost.png" alt="DevPost" width="32" height="32"
-                class="opacity-60 hover:opacity-100 transition-opacity" />
-            </ELink>
-          </EColumn>
-          <EColumn>
-            <ELink href="https://github.com/shba007" target="_blank">
-              <EImg src="github.png" alt="GitHub" width="32" height="32"
-                class="opacity-60 hover:opacity-100 transition-opacity" />
-            </ELink>
-          </EColumn>
-        </ESection>
+        <EContainer>
+          <ESection class="flex gap-8">
+            <EColumn>
+              <ELink href="https://leetcode.com/shba007" target="_blank">
+                <EImg src="leetcode.png" alt="LeetCode" width="24" height="24" class="opacity-60" />
+              </ELink>
+            </EColumn>
+            <EColumn>
+              <ELink href="https://devpost.com/shba007" target="_blank">
+                <EImg src="devpost.png" alt="DevPost" width="24" height="24" class="opacity-60" />
+              </ELink>
+            </EColumn>
+            <EColumn>
+              <ELink href="https://github.com/shba007" target="_blank">
+                <EImg src="github.png" alt="GitHub" width="24" height="24" class="opacity-60" />
+              </ELink>
+            </EColumn>
+          </ESection>
+        </EContainer>
       </EBody>
     </EHtml>
   </ETailwind>
