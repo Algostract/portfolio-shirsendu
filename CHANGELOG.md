@@ -1,5 +1,11 @@
 # portfolio
 
+## 0.7.1
+
+### Patch Changes
+
+- ea74df9: feat: added monalisa's portfoio
+
 ## 0.7.0
 
 ### Minor Changes
