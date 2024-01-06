@@ -111,7 +111,7 @@
       - Typescript
     frameworks:
       - Nuxt
-      - Tailwind
+      - Tailwind CSS
   createdAt: "2023-07-09T18:30:00Z"
   appURL: "https://shirsendu-bairagi.dev/"
   videoURL: null
@@ -184,7 +184,7 @@
       - Typescript
     frameworks:
       - Vue
-      - Tailwind
+      - Tailwind CSS
       - Tensorflow.js
   createdAt: "2023-11-19T18:30:00Z"
   appURL: "https://plant-lens.onrender.com/"
@@ -198,7 +198,7 @@
       - Typescript
     frameworks:
       - Nuxt
-      - Tailwind
+      - Tailwind CSS
   createdAt: "2023-11-22T18:30:00Z"
   appURL: "https://monalisa-bairagi.com/"
   videoURL: null
@@ -211,7 +211,7 @@
 #       - Typescript
 #     frameworks:
 #       - Nuxt
-#       - Tailwind
+#       - Tailwind CSS
 #   createdAt: "2023-11-24T18:30:00Z"
 #   appURL: "https://portfolio-aratrik.onrender.com/"
 #   videoURL: null

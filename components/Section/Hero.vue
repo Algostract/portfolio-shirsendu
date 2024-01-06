@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const emit = defineEmits<{ (event: 'contact'): void }>()
 const dob = new Date(2001, 0, 29, 0, 0, 0).toISOString()
 
 const age = useTimeAgo(dob ?? "", {
@@ -39,6 +40,9 @@ const experience = computed(() => {
       <source media="(min-width: 100px)" srcset="/images/hero-gradient-mobile.svg" />
     </NuxtPicture>
     <div class="flex flex-col gap-8 md:my-auto md:w-1/2 h-fit">
+      <h3 class="mx-auto md:mx-0 rounded-full border border-primary-500 px-4 py-2 w-fit text-sm">
+        {{ experience }} +XP
+      </h3>
       <h1 class="text-2xl text-center md:text-left md:text-4xl lg:text-5xl">
         Crafting the Web,<br /> Igniting AI Technology
       </h1>
@@ -47,10 +51,7 @@ const experience = computed(() => {
         Hi, I'm Shirsendu Bairagi, {{ age }} years old, weaving the
         realms of Web & AI. Join me in exploring the art of digital innovation.
       </h2>
-      <h3
-        class="mx-auto md:mx-0 my-2 rounded-lg rounded-tl-3xl rounded-br-3xl px-5 py-3 w-fit bg-primary-500 text-lg text-white">
-        {{ experience }} +XP
-      </h3>
+      <CTAButton @click="emit('contact')" />
     </div>
     <div class="grid grid-rows-[1fr_2fr_1fr] lg:grid-rows-2 lg:gap-x-20 lg:gap-y-36 grid-cols-3 justify-items-stretch">
       <SkillHex :quadrant="1" />
