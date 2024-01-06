@@ -17,10 +17,7 @@ const emit = defineEmits<{
 const { handleSubmit } = useForm<TransactionalEmail>()
 
 const onSend = handleSubmit(async (values) => {
-  console.log(values);
-  useTrackEvent('send_email', {
-    email: values.email
-  })
+  useTrackEvent('contact')
 
   await useFetch('/api/contact', {
     method: 'POST',

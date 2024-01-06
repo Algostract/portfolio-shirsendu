@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import line from "@/assets/images/line.svg?raw";
 
-const selectedModel = ref<"contact" | null>(null)
+const isModelContactOpen = ref<boolean>(false)
 function onContact(action: boolean) {
   if (action) {
-    selectedModel.value = 'contact'
+    isModelContactOpen.value = true
     useTrackEvent('contact_open')
   } else {
-    selectedModel.value = null
+    isModelContactOpen.value = false
     useTrackEvent('contact_close')
   }
 }
@@ -24,20 +24,21 @@ async function onSubscribe(email: string) {
 
 <template>
   <header class="relative mx-auto p-4 md:p-8 !pb-0">
-    <Navbar @contact="onContact(true)" />
+    <Navbar />
   </header>
   <main class="relative flex flex-col gap-8 mx-auto p-4 md:p-8 !pb-0 max-w-[85rem]">
-    <SectionHero />
+    <SectionHero @contact="onContact(true)" />
     <SectionProject />
     <SectionHackathon />
     <SectionExperience />
     <SectionCertificate />
-    <ModelContact :is-open="selectedModel === 'contact'" @close="onContact(false)" />
+    <ModelContact :is-open="isModelContactOpen" @close="onContact(false)" />
   </main>
   <footer
-    class="relative left-1/2 -translate-x-1/2 grid grid-rows-[min-content_1fr_min-content_min-content] md:grid-rows-[min-content_1fr_min-content] grid-cols-2 md:grid-cols-[min-content_1fr_min-content] justify-items-center items-center gap-4 md:gap-8 mt-10 p-4 md:p-8 rounded-t-[2.25rem] w-screen">
+    class="relative left-1/2 -translate-x-1/2 grid grid-rows-[min-content_1fr_min-content_min-content] md:grid-rows-[min-content_1fr_min-content] grid-cols-2 md:grid-cols-[min-content_1fr_min-content] justify-items-center items-center gap-4 md:gap-8 mt-28 p-4 md:p-8 rounded-t-[2.25rem] w-screen">
+    <CTAButton :primary="false" class="absolute -top-20" @click="onContact(true)" />
     <div class="row-start-1 col-start-1 col-span-2 md:col-span-3 relative w-full">
-      <div v-html="line" class="absolute left-0 right-0 top-0 -translate-y-1/2 text-light-500 dark:text-dark-500 " />
+      <div v-html="line" class="absolute -left-8 -right-8 top-0 -translate-y-1/2 text-light-500 dark:text-dark-500 " />
       <NuxtIcon name="logo" class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[48px]"
         filled />
     </div>

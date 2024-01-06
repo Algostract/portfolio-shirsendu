@@ -1,32 +1,32 @@
 <script setup lang="ts">
-const emit = defineEmits<{ (event: 'contact'): void }>()
+function onNavigate(section: string) {
+  useTrackEvent('navigate', {
+    section
+  })
+}
 </script>
 
 <template>
   <nav class="flex items-center justify-between">
     <ul class="hidden md:flex gap-7">
       <li>
-        <NuxtLink to="#project">Projects</NuxtLink>
+        <NuxtLink to="#project" @click="onNavigate('project')">Projects</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="#hackathon">Hackathons</NuxtLink>
+        <NuxtLink to="#hackathon" @click="onNavigate('hackathon')">Hackathons</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="#experience">Experiences</NuxtLink>
+        <NuxtLink to="#experience" @click="onNavigate('experience')">Experiences</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="#certificate">Certificates</NuxtLink>
+        <NuxtLink to="#certificate" @click="onNavigate('certificate')">Certificates</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="#about">About Me</NuxtLink>
+        <NuxtLink to="#about" @click="onNavigate('about')">About Me</NuxtLink>
       </li>
     </ul>
     <div class="flex gap-2 items-center ml-auto">
       <ColorModeButton />
-      <button class="rounded-full px-9 pt-[6px] pb-2 text-white bg-primary-500 active:bg-primary-400 transition-colors"
-        @click="emit('contact')">
-        Contact
-      </button>
     </div>
   </nav>
 </template>
