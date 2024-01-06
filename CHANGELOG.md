@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.1.0
+
+### Minor Changes
+
+- 55e9488: feat: CTA button added
+
 ## 1.0.0
 
 ### Major Changes
