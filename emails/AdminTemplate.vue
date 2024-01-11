@@ -20,7 +20,7 @@ const tailwindConfig = {
       <EPreview>Email Preview Text</EPreview>
       <EBody>
         <EContainer>
-          From {{ name }} &lt;{{ email }}&gt;<br /><br />
+          From {{ name }} ({{ email }})<br /><br />
           Message {{ message }}, <br /><br />
         </EContainer>
       </EBody>

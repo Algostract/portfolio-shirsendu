@@ -1,7 +1,11 @@
 <script setup lang="ts">
 useHead({
-  title: "Shirsendu's Portfolio",
+  title: "Shirsendu Bairagi",
   link: [
+    {
+      rel: 'canonical',
+      href: 'https://shirsendu-bairagi.dev',
+    },
     {
       rel: 'preconnect',
       href: 'https://fonts.gstatic.com',
@@ -21,19 +25,10 @@ useHead({
   }
 })
 
-useHead({
-  link: [
-    {
-      rel: 'canonical',
-      href: 'https://shirsendu-bairagi.dev',
-    },
-  ],
-})
-
 useSeoMeta({
   ogType: "profile",
-  title: "Shirsendu's Portfolio",
-  ogTitle: "Shirsendu's Portfolio",
+  title: "Shirsendu Bairagi",
+  ogTitle: "Shirsendu Bairagi",
   description: "I am a Developer, this is my devfolio showcasing my skills, projects, and expertise in a visually appealing manner",
   ogDescription: "I am a Developer, this is my devfolio showcasing my skills, projects, and expertise in a visually appealing manner",
   ogImage: "https://shirsendu-bairagi.dev/previews/landing.jpg",
@@ -50,16 +45,18 @@ useSchemaOrg([
     description: "I am a Developer",
     image: "https://shirsendu-bairagi.dev/logo-512.png",
     sameAs: [
+      "https://codedamn.com/user/shba007",
       "https://leetcode.com/shba007",
       "https://devpost.com/shba007",
       "https://github.com/shba007",
       "https://x.com/shirsendu_baira",
       "https://linkedin.com/in/shirsendu-bairagi",
       "https://youtube.com/@shirsendu_bairagi",
+      "https://instagram.com/shirsendu_bairagi"
     ],
   }),
   defineWebSite({
-    name: "Shirsendu's Portfolio",
+    name: "Shirsendu Bairagi",
     description: "I am a Developer, this is my devfolio showcasing my skills, projects, and expertise in a visually appealing manner",
   }),
   defineWebPage({
@@ -72,7 +69,7 @@ useSchemaOrg([
 
 <template>
   <NuxtPwaManifest />
-  <NuxtLoadingIndicator />
+  <!-- <NuxtLoadingIndicator /> -->
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
@@ -95,7 +92,7 @@ useSchemaOrg([
 }
 
 html {
-  scroll-behavior: smooth;
+  @apply scroll-smooth;
 }
 
 body {

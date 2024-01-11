@@ -10,8 +10,6 @@ interface TransactionalEmail {
 const config = useRuntimeConfig()
 
 const transporter = nodemailer.createTransport({
-  // host: "sandbox.smtp.mailtrap.io",
-  // port: 2525,
   service: 'gmail',
   auth: {
     user: config.private.emailUsername,
