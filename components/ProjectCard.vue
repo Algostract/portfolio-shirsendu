@@ -66,7 +66,6 @@ function onTry() {
 <template>
   <div class="card grow relative mx-auto w-full sm:w-2/5 md:w-[30%] min-w-[328px] max-w-[400px] transition-transform">
     <Ribbon :title="modifiedIn" class="absolute top-4 -left-[5px] z-10" />
-
     <div class="relative">
       <div class="absolute top-0 left-0 w-full h-full">
         <div
@@ -78,7 +77,7 @@ function onTry() {
           <ul class="absolute top-0 right-[0.875rem] flex gap-1 z-20">
             <li v-for="track in [1, 2, 3]" :key="track" class="cursor-pointer" @click="splide.go(track - 1)">
               <NuxtIcon name="pagination-track" class="text-light-500 dark:text-dark-600 text-[28px] transition-colors"
-                :class="{ '!text-primary-500': currentPage === track - 1 }" />
+                :class="{ '!text-primary-400': currentPage === track - 1 }" />
             </li>
           </ul>
           <Splide ref="splide" :options="splideOption" tag="div" :has-track="false"
@@ -146,10 +145,8 @@ function onTry() {
 
 .gradient-border {
   background-size: 600% 600%;
-  height: calc(100% + 4px);
-  width: calc(100% + 4px);
   transform: translate(-2px, -2px);
-  @apply absolute top-0 left-0 opacity-0 -z-10;
+  @apply absolute top-0 left-0 h-[calc(100%+4px)] w-[calc(100%+4px)] opacity-0 -z-10;
 }
 
 .card:hover .gradient-border {

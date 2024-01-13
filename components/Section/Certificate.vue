@@ -20,9 +20,9 @@ function onHandleSlide(dir: 'left' | 'right') {
 </script>
 
 <template>
-  <section id="certificate" class="relative -left-4 md:left-0 flex flex-col gap-8 w-screen md:w-auto">
+  <section id="certificate" class="relative left-1/2 -translate-x-1/2 flex flex-col gap-8 w-screen overflow-x-hidden">
     <h4 class="mx-auto mb-8 w-fit text-lg">All Certificates</h4>
-    <div class="relative flex justify-center py-4 overflow-hidden">
+    <div class="relative flex justify-center py-4">
       <template v-for="({ name, link, date }, index) in certificates" :key="name">
         <CertificateCard v-if="index >= activeIndex - 1 && index <= activeIndex + 1" :name="name" :link="link"
           :date="date" :active="index === activeIndex" @slide="onHandleSlide"
