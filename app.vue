@@ -1,6 +1,15 @@
 <script setup lang="ts">
+const title = `Shirsendu Bairagi | Fullstack Developer in Kolkata`
+const description = `Shirsendu Bairagi is Fullstack Developer with more then 3 years of experience.
+He had done more then a dozens production grade cutting edge projects standalone. 
+He curiosity leads him to explore many aspects of tech like web, app, iot and ml.
+He primarily serves his neighborhood Rajpur, Sonarpur, Baruipur, Subhasgram, Harinavi & Narendrapur Area.`
+
 useHead({
-  title: "Shirsendu Bairagi",
+  title: title,
+  meta: [
+    { name: 'description', content: description }
+  ],
   link: [
     {
       rel: 'canonical',
@@ -27,10 +36,10 @@ useHead({
 
 useSeoMeta({
   ogType: "profile",
-  title: "Shirsendu Bairagi",
-  ogTitle: "Shirsendu Bairagi",
-  description: "I am a Developer, this is my devfolio showcasing my skills, projects, and expertise in a visually appealing manner",
-  ogDescription: "I am a Developer, this is my devfolio showcasing my skills, projects, and expertise in a visually appealing manner",
+  title: title,
+  ogTitle: title,
+  description: description,
+  ogDescription: description,
   ogImage: "https://shirsendu-bairagi.dev/previews/landing.jpg",
   ogImageWidth: 1280,
   ogImageHeight: 640,
@@ -42,8 +51,8 @@ useSeoMeta({
 useSchemaOrg([
   definePerson({
     name: "Shirsendu Bairagi",
-    description: "I am a Developer",
-    image: "https://shirsendu-bairagi.dev/logo-512.png",
+    description: "He is a Fullstack Developer",
+    image: "https://shirsendu-bairagi.dev/logo.png",
     sameAs: [
       "https://codedamn.com/user/shba007",
       "https://leetcode.com/shba007",
@@ -56,8 +65,8 @@ useSchemaOrg([
     ],
   }),
   defineWebSite({
-    name: "Shirsendu Bairagi",
-    description: "I am a Developer, this is my devfolio showcasing my skills, projects, and expertise in a visually appealing manner",
+    name: title,
+    description: description,
   }),
   defineWebPage({
     datePublished: new Date(2023, 5, 14).toISOString(),
@@ -92,11 +101,11 @@ useSchemaOrg([
 }
 
 html {
-  @apply scroll-smooth;
+  @apply relative scroll-smooth overflow-x-hidden;
 }
 
 body {
-  @apply min-h-screen font-body text-black dark:text-white bg-light-400 dark:bg-dark-400 overflow-x-hidden;
+  @apply relative min-h-screen font-body text-black dark:text-white bg-light-400 dark:bg-dark-400 overflow-x-hidden;
   @apply bg-[url('@/assets/images/dot-light.svg')] dark:bg-[url('@/assets/images/dot-dark.svg')] bg-left-top bg-repeat bg-auto;
 }
 

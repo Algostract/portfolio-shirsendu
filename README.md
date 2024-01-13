@@ -3,6 +3,6 @@
 <p>
 
 # Portfolio Shirsendu
-> Shirsendu's devfolio showcasing his projects, experience and contacts in a visually appealing manner
+> Shirsendu's devfolio showcasing his projects, experience and certification in a visually appealing manner
 
 ![Landing](public/previews/landing.webp)

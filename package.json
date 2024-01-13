@@ -1,13 +1,14 @@
 {
   "name": "portfolio-shirsendu",
-  "description": "Shirsendu's devfolio showcasing his projects, experience and contacts in a visually appealing manner",
+  "description": "Shirsendu's devfolio showcasing his projects, experience and certification in a visually appealing manner",
   "author": "Shirsendu Bairagi <shirsendu2001@gmail.com>",
   "version": "1.1.0",
   "private": true,
   "type": "module",
   "engines": {
-    "node": "^20.10.0"
+    "node": "^20.11.0"
   },
+  "license": "LGPL-3.0-or-later",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -20,26 +21,26 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@nuxt/devtools": "latest",
-    "@nuxt/image": "^1.1.0",
+    "@nuxt/image": "^1.2.0",
     "@nuxtjs/color-mode": "^3.3.2",
-    "@nuxtjs/tailwindcss": "^6.10.3",
+    "@nuxtjs/tailwindcss": "^6.10.4",
     "@nuxtseo/module": "^2.0.0-beta.55",
-    "@types/node": "^20.10.6",
+    "@types/node": "^20.11.0",
     "@types/nodemailer": "^6.4.14",
     "@vite-pwa/nuxt": "^0.4.0",
-    "@vueuse/core": "^10.7.1",
-    "@vueuse/nuxt": "^10.7.1",
+    "@vueuse/core": "^10.7.2",
+    "@vueuse/nuxt": "^10.7.2",
     "nuxt": "^3.9.1",
     "nuxt-gtag": "^1.1.2",
     "nuxt-icons": "^3.2.1",
     "nuxt-vitest": "^0.11.5",
-    "vue": "^3.4.5",
+    "vue": "^3.4.13",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
     "@splidejs/vue-splide": "^0.6.12",
-    "@supabase/supabase-js": "^2.39.2",
-    "@vue-email/nuxt": "^0.8.7",
+    "@supabase/supabase-js": "^2.39.3",
+    "@vue-email/nuxt": "^0.8.8",
     "nodemailer": "^6.9.8",
     "vee-validate": "^4.12.4",
     "yaml": "^2.3.4"

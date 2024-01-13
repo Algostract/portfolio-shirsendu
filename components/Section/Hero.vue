@@ -34,7 +34,7 @@ const experience = computed(() => {
   <section id="hero"
     class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:gap-4 mt-10 md:mt-6 lg:mt-12 mb-16 lg:mb-12">
     <NuxtPicture src="/images/hero-gradient.svg"
-      class="absolute -top-8 left-0 -right-8 lg:left-auto w-full h-full blur-md lg:blur-lg -z-50">
+      class="absolute -top-8 left-0 -right-8 lg:left-auto w-full aspect-[3/4] md:aspect-auto blur-md lg:blur-lg object-cover -z-50">
       <source media="(min-width: 1024px)" srcset="/images/hero-gradient.svg" />
       <source media="(min-width: 768px)" srcset="/images/hero-gradient-tablet.svg" />
       <source media="(min-width: 100px)" srcset="/images/hero-gradient-mobile.svg" />
@@ -44,12 +44,12 @@ const experience = computed(() => {
         {{ experience }} +XP
       </h3>
       <h1 class="text-2xl text-center md:text-left md:text-4xl lg:text-5xl">
-        Crafting the Web,<br /> Igniting AI Technology
+        Crafting the Web,<br /> Making the UX better
       </h1>
       <h2
         class="mx-auto md:mx-0 w-fit max-w-[90%] sm:max-w-[80%] md:max-w-[90%] opacity-80 font-light text-lg text-center md:text-left !leading-relaxed">
-        Hi, I'm Shirsendu Bairagi, {{ age }} years old, weaving the
-        realms of Web & AI. Join me in exploring the art of digital innovation.
+        I'm Shirsendu Bairagi, a passionate {{ age }} years old web developer,
+        and AI enthusiast dedicated to crafting cutting-edge digital experiences.
       </h2>
       <CTAButton @click="emit('contact')" />
     </div>
@@ -87,3 +87,9 @@ const experience = computed(() => {
     </div>
   </section>
 </template>
+
+<style>
+picture>img {
+  @apply w-full h-full object-cover;
+}
+</style>

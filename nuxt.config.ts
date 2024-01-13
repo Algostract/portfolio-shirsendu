@@ -45,43 +45,45 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
-      name: 'Shirsendu Bairagi\'s Devfolio',
+      name: 'Shirsendu Bairagi',
       short_name: 'Shirsendu Bairagi',
+      description: 'Shirsendu Bairagi is Fullstack Developer',
       theme_color: '#0593FA',
+      background_color: "#0593FA",
       icons: [
         {
           src: 'logo-48.png',
-          sizes: '48x48',
+          sizes: '48x',
           type: 'image/png',
         },
         {
           src: 'logo-72.png',
-          sizes: '72x72',
+          sizes: '72x',
           type: 'image/png',
         },
         {
           src: 'logo-96.png',
-          sizes: '96x96',
+          sizes: '96x',
           type: 'image/png',
         },
         {
           src: 'logo-144.png',
-          sizes: '144x144',
+          sizes: '144x',
           type: 'image/png',
         },
         {
           src: 'logo-192.png',
-          sizes: '192x192',
+          sizes: '192x',
           type: 'image/png',
         },
         {
           src: 'logo-512.png',
-          sizes: '512x512',
+          sizes: '512x',
           type: 'image/png',
         },
         {
           src: 'logo-512.png',
-          sizes: '512x512',
+          sizes: '512x',
           type: 'image/png',
           purpose: 'any maskable',
         },
