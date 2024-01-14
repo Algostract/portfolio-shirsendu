@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.2.0
+
+### Minor Changes
+
+- fe7f2d2: refactor: added detailed website title and description
+
 ## 1.1.0
 
 ### Minor Changes
