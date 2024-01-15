@@ -34,7 +34,8 @@ const experience = computed(() => {
   <section id="hero"
     class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:gap-4 mt-10 md:mt-6 lg:mt-12 mb-16 lg:mb-12">
     <NuxtPicture src="/images/hero-gradient.svg"
-      class="absolute -top-8 left-0 -right-8 lg:left-auto w-full aspect-[3/4] md:aspect-auto blur-md lg:blur-lg object-cover -z-50">
+      class="absolute -top-8 left-0 -right-8 lg:left-auto w-full aspect-[3/4] md:aspect-auto blur-md lg:blur-lg object-cover -z-50"
+      alt="Hero Background">
       <source media="(min-width: 1024px)" srcset="/images/hero-gradient.svg" />
       <source media="(min-width: 768px)" srcset="/images/hero-gradient-tablet.svg" />
       <source media="(min-width: 100px)" srcset="/images/hero-gradient-mobile.svg" />
