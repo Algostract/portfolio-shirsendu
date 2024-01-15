@@ -1,9 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  routeRules: {
-    '/**': { isr: 21600 },
-  },
   modules: [
     '@nuxt/image',
     '@nuxtjs/color-mode',
@@ -16,6 +13,9 @@ export default defineNuxtConfig({
     'nuxt-icons',
     'nuxt-vitest',
   ],
+  routeRules: {
+    '/**': { isr: 21600 },
+  },
   typescript: {
     shim: false,
   },
@@ -40,14 +40,15 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
   site: {
-    url: 'https://shirsendu-bairagi.dev'
+    name: 'Shirsendu Bairagi',
+    url: 'https://shirsendu-bairagi.dev',
   },
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
       name: 'Shirsendu Bairagi',
       short_name: 'Shirsendu Bairagi',
-      description: 'Shirsendu Bairagi is Fullstack Developer',
+      description: 'Shirsendu Bairagi is a Fullstack Developer',
       theme_color: '#0593FA',
       background_color: '#0593FA',
       orientation: 'portrait',
@@ -89,9 +90,53 @@ export default defineNuxtConfig({
           purpose: 'any maskable',
         },
       ],
+      screenshots: [
+        {
+          src: 'screenshot-desktop-1.webp',
+          sizes: '1024x576',
+          type: 'image/webp',
+          form_factor: 'wide',
+          label: 'Screenshot 1'
+        },
+        {
+          src: 'screenshot-desktop-2.webp',
+          sizes: '1024x576',
+          type: 'image/webp',
+          form_factor: 'wide',
+          label: 'Screenshot 2'
+        },
+        {
+          src: 'screenshot-desktop-3.webp',
+          sizes: '1024x576',
+          type: 'image/webp',
+          form_factor: 'wide',
+          label: 'Screenshot 3'
+        },
+        {
+          src: 'screenshot-mobile-1.webp',
+          sizes: '576x1024',
+          type: 'image/webp',
+          form_factor: 'narrow',
+          label: 'Screenshot 1'
+        },
+        {
+          src: 'screenshot-mobile-2.webp',
+          sizes: '576x1024',
+          type: 'image/webp',
+          form_factor: 'narrow',
+          label: 'Screenshot 2'
+        },
+        {
+          src: 'screenshot-mobile-3.webp',
+          sizes: '576x1024',
+          type: 'image/webp',
+          form_factor: 'narrow',
+          label: 'Screenshot 3'
+        },
+      ]
     },
     workbox: {
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      globPatterns: ['**/*.{js,css,html,jpg,png,webp,svg,ico}'],
     },
     client: {
       installPrompt: true,

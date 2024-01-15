@@ -1,37 +1,26 @@
 <script setup lang="ts">
-const title = `Shirsendu Bairagi | Fullstack Developer in Kolkata`
+const title = `Fullstack Developer in Kolkata`
 const description = `Shirsendu Bairagi is Fullstack Developer with more then 3 years of experience.
-He had done more then a dozens production grade cutting edge projects standalone. 
-He curiosity leads him to explore many aspects of tech like web, app, iot and ml.
+He had done more then a dozens production grade cutting edge projects in web, app, iot and ml.
 He primarily serves his neighborhood Rajpur, Sonarpur, Baruipur, Subhasgram, Harinavi & Narendrapur Area.`
+const url = "https://shirsendu-bairagi.dev"
 
 useHead({
-  title: title,
-  meta: [
-    { name: 'description', content: description }
-  ],
   link: [
     {
-      rel: 'canonical',
-      href: 'https://shirsendu-bairagi.dev',
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossorigin: "anonymous",
     },
     {
-      rel: 'preconnect',
-      href: 'https://fonts.gstatic.com',
-      crossorigin: 'anonymous',
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com"
     },
     {
-      rel: 'preconnect',
-      href: 'https://fonts.googleapis.com'
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;1,400&display=swap",
     },
-    {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;1,400&display=swap',
-    },
-  ],
-  htmlAttrs: {
-    lang: 'en'
-  }
+  ]
 })
 
 useSeoMeta({
@@ -40,19 +29,20 @@ useSeoMeta({
   ogTitle: title,
   description: description,
   ogDescription: description,
-  ogImage: "https://shirsendu-bairagi.dev/previews/landing.jpg",
+  ogImage: url + "/previews/landing.webp",
   ogImageWidth: 1280,
   ogImageHeight: 640,
-  ogUrl: 'https://shirsendu-bairagi.dev',
+  ogUrl: url,
   fbAppId: 966242223397117,
   twitterCard: "summary_large_image",
+  colorScheme: "dark light",
 })
 
 useSchemaOrg([
   definePerson({
     name: "Shirsendu Bairagi",
     description: "He is a Fullstack Developer",
-    image: "https://shirsendu-bairagi.dev/logo.png",
+    image: url + "/logo.png",
     sameAs: [
       "https://codedamn.com/user/shba007",
       "https://leetcode.com/shba007",
@@ -64,14 +54,26 @@ useSchemaOrg([
       "https://instagram.com/shirsendu_bairagi"
     ],
   }),
-  defineWebSite({
-    name: title,
-    description: description,
+  defineLocalBusiness({
+    name: "Shirsendu Bairagi",
+    address: {
+      streetAddress: "RN Bhattacharya Road, Kumorpara 2nd Lane",
+      addressLocality: "Kolkata",
+      addressRegion: "WB",
+      postalCode: "700146",
+      addressCountry: "IN",
+    },
+    image: url + "/logo.png",
   }),
   defineWebPage({
     datePublished: new Date(2023, 5, 14).toISOString(),
     dateModified: new Date(2023, 12, 26).toISOString(),
     author: "Shirsendu Bairagi",
+  }),
+  defineWebSite({
+    url: url,
+    name: title,
+    description: description,
   }),
 ])
 </script>
@@ -106,7 +108,7 @@ html {
 
 body {
   @apply relative min-h-screen font-body text-black dark:text-white bg-light-400 dark:bg-dark-400 overflow-x-hidden;
-  @apply bg-[url('@/assets/images/dot-light.svg')] dark:bg-[url('@/assets/images/dot-dark.svg')] bg-left-top bg-repeat bg-auto;
+  @apply bg-[url("@/assets/images/dot-light.svg")] dark:bg-[url("@/assets/images/dot-dark.svg")] bg-left-top bg-repeat bg-auto;
 }
 
 .nuxt-icon>svg {
