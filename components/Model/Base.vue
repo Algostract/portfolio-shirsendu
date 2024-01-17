@@ -13,8 +13,8 @@ const emit = defineEmits<{
         <dialog open
           class="relative mx-4 md:mx-auto max-w-[700px] w-full h-min rounded-xl text-black dark:text-white bg-white dark:bg-dark-400"
           :class="innerClass">
-          <button class="absolute top-2 right-2" @click="emit('close')">
-            <NuxtIcon name="cross" class="text-[24px]" />
+          <button aria-label="close" class="absolute top-2 right-2" @click="emit('close')">
+            <NuxtIcon name="cross" class="text-[24px] hover:text-alert-500 transition-colors" />
           </button>
           <slot />
         </dialog>

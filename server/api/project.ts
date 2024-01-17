@@ -1,49 +1,35 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import yaml from "yaml";
 
 import { ofetch } from "ofetch";
 import { Project } from "~~/utils/models"
 
+const config = useRuntimeConfig()
+
+const filePath = path.join(process.cwd(), config.private.rootDir, 'projects.yml')
+const fileContents = fs.readFileSync(filePath, "utf8");
+const projects: {
+  name: string;
+  repo: string;
+  createdAt: string;
+  appURL: string | null;
+  videoURL: string | null;
+}[] = yaml.parse(fileContents);
+
 export default defineEventHandler<Promise<Project[]>>(async (_event) => {
-  const config = useRuntimeConfig()
-
   try {
-    const filePath = path.join(process.cwd(), config.private.rootDir, 'projects.yml')
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const projects: {
-      name: string;
-      repo: string;
-      createdAt: string;
-      appURL: string | null;
-      videoURL: string | null;
-    }[] = yaml.parse(fileContents);
-
     const repos = (await Promise.all(projects.map(async ({ name, repo, createdAt, appURL, videoURL }): Promise<Project | null> => {
       if (repo == null)
         return null
 
-      let info: any;
+      const [{ repo: details }] = await Promise.all([
+        ofetch(`/repos/${repo}`, { baseURL: "https://ungh.cc" }),
+      ]);
 
-      try {
-        const [{ repo: details }] = await Promise.all([
-          ofetch(`/repos/${repo}`, { baseURL: "https://ungh.cc" }),
-        ]);
-
-        info = { ...info, details }
-      } catch (error) {
-
-      }
-      try {
-        const [{ release }] = await Promise.all([
-          ofetch(`/repos/${repo}/releases/latest`, { baseURL: "https://ungh.cc" }),
-        ]);
-
-        info = { ...info, release }
-      } catch (error) {
-
-      }
-      const { details, release } = info
+      const [{ release }] = await Promise.all([
+        ofetch(`/repos/${repo}/releases/latest`, { baseURL: "https://ungh.cc" }),
+      ]);
 
       return {
         name,

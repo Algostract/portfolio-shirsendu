@@ -90,10 +90,10 @@ function onTry() {
             </SplideTrack>
             <div
               class="splide__arrows absolute flex justify-between items-center top-0 px-2 h-full w-full z-10 opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity">
-              <button class="splide__arrow splide__arrow--prev w-1/3">
+              <button aria-label="left" class="splide__arrow splide__arrow--prev w-1/3">
                 <NuxtIcon name="chevron-bold" />
               </button>
-              <button class="splide__arrow splide__arrow--next rotate-180 w-1/3">
+              <button aria-label="right" class="splide__arrow splide__arrow--next rotate-180 w-1/3">
                 <NuxtIcon name="chevron-bold" />
               </button>
             </div>
