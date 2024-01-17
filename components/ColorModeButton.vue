@@ -4,7 +4,7 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <button @click="toggleDark()"
+  <button @click="toggleDark()" aria-label="switch-theme"
     class="relative rounded-full border border-light-600 dark:border-dark-600 p-2 w-fit h-fit bg-light-500 dark:bg-dark-500 cursor-pointer">
     <svg class="dark:hidden" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
       <path class="fill-dark-300"
@@ -17,6 +17,5 @@ const toggleDark = useToggle(isDark)
       <path class="fill-light-500"
         d="M12.5 5a.625.625 0 0 1-.625-.625 1.252 1.252 0 0 0-1.25-1.25.625.625 0 1 1 0-1.25 1.252 1.252 0 0 0 1.25-1.25.625.625 0 1 1 1.25 0c.001.69.56 1.249 1.25 1.25a.625.625 0 1 1 0 1.25c-.69.001-1.249.56-1.25 1.25A.625.625 0 0 1 12.5 5Z" />
     </svg>
-    <span class="sr-only">Switch to light / dark version</span>
   </button>
 </template>

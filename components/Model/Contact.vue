@@ -35,7 +35,7 @@ const onSend = handleSubmit(async (values) => {
       <InputText type="name" name="name" placeholder="Your Name" />
       <InputText type="email" name="email" placeholder="Your Email" />
       <InputMessage />
-      <button type="submit"
+      <button type="submit" aria-label="submit"
         class="absolute top-[338px] right-2 outline-primary-500 outline-2 focus-within:outline border-[6px] border-white dark:border-dark-400 rounded-full p-[0.625rem] w-fit bg-primary-500 hover:bg-primary-400">
         <NuxtIcon name="feather" class="text-white text-[28px]" />
       </button>

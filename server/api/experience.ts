@@ -7,14 +7,14 @@ export interface Experience {
   date: string
 }
 
+const config = useRuntimeConfig()
+
+const filePath = path.join(process.cwd(), config.private.rootDir, 'experiences.yml')
+const fileContents = fs.readFileSync(filePath, "utf8");
+const experiences: Experience[] = yaml.parse(fileContents);
+
 export default defineEventHandler<Experience[]>(() => {
-  const config = useRuntimeConfig()
-
   try {
-    const filePath = path.join(process.cwd(), config.private.rootDir, 'experiences.yml')
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const experiences: Experience[] = yaml.parse(fileContents);
-
     return experiences
   } catch (error: any) {
     console.error("API experience GET", error)
