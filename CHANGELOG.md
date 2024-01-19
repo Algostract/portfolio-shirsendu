@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.2.1
+
+### Patch Changes
+
+- 1cadaee: refactor: seo improved
+
 ## 1.2.0
 
 ### Minor Changes
