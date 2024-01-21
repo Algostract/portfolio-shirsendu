@@ -6,7 +6,7 @@ export interface Hackathon {
   name: string;
   url: string;
   project: string;
-  title: string | null;
+  title: string;
   startedAt: string;
 }
 
