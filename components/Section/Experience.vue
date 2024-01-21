@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { data, pending, error } = await useFetch("/api/experience")
 
-const experiences = computed(() => data.value.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()))
+const experiences = computed(() => data.value?.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()))
 </script>
 
 <template>

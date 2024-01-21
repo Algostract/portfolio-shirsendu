@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { data, pending, error } = await useFetch("/api/hackathon")
 
-const hackathons = computed(() => data.value.sort((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime()))
+const hackathons = computed(() => data.value?.sort((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime()))
 </script>
 
 <template>

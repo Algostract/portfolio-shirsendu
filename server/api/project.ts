@@ -23,13 +23,18 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
       if (repo == null)
         return null
 
-      const [{ repo: details }] = await Promise.all([
-        ofetch(`/repos/${repo}`, { baseURL: "https://ungh.cc" }),
-      ]);
+      let info: any;
 
-      const [{ release }] = await Promise.all([
-        ofetch(`/repos/${repo}/releases/latest`, { baseURL: "https://ungh.cc" }),
-      ]);
+      try {
+        const { repo: details } = await ofetch(`/repos/${repo}`, { baseURL: "https://ungh.cc" })
+        info = { ...info, details }
+
+        const { release } = await ofetch(`/repos/${repo}/releases/latest`, { baseURL: "https://ungh.cc" })
+        info = { ...info, release }
+      }
+      catch (error) {
+      }
+      const { details, release } = info
 
       return {
         name,
