@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.3.0
+
+### Minor Changes
+
+- 1a44972: chore: added 30 days of react certificate
+
 ## 1.2.1
 
 ### Patch Changes
