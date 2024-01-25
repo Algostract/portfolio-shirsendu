@@ -5,16 +5,20 @@
 
   - name: "Codedamn Hacktoberfest 2023"
     link: "https://codedamn.com/certificate/verify/3449aedbb94f4cba48c8e712a012ddd45aed5e41"
-    date: "2023-11-10T00:00:00Z"
+    date: "2023-11-10T01:35:15Z"
 
   - name: "Codedamn Learn HTML and CSS [2023 Ready]"
     link: "https://codedamn.com/certificate/verify/5f0b4da2405105b0f3aa41d3e03020d412b31425"
-    date: "2023-11-16T00:00:00Z"
+    date: "2023-11-16T08:44:39Z"
 
   - name: "Codedamn Learn JavaScript Basics"
     link: "https://codedamn.com/certificate/verify/6aa2426bc365eafb1644ac918f9c16b54943ffd9"
-    date: "2023-12-01T00:00:00Z"
+    date: "2023-12-01T10:57:48Z"
     
   - name: "Learn Tailwind CSS 3 - A utility-first CSS framework"
     link: "https://codedamn.com/certificate/verify/491c6c55769e3cb1a5f2054700b27241f7754342"
-    date: "2023-12-26T00:00:00Z"
+    date: "2023-12-26T14:57:03Z"
+  
+  - name: "30 Days of React"
+    link: "https://codedamn.com/certificate/verify/64a9eb08274e4d7908c2d9e9690e0b7b9db9dc9b"
+    date: "2024-01-25T12:35:08Z"
