@@ -25,7 +25,7 @@
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/tailwindcss": "^6.11.2",
     "@nuxtseo/module": "^2.0.0-beta.55",
-    "@types/node": "^20.11.10",
+    "@types/node": "^20.11.16",
     "@types/nodemailer": "^6.4.14",
     "@vite-pwa/nuxt": "^0.4.0",
     "@vueuse/core": "^10.7.2",
@@ -40,9 +40,9 @@
   "dependencies": {
     "@splidejs/vue-splide": "^0.6.12",
     "@supabase/supabase-js": "^2.39.3",
-    "@vue-email/nuxt": "^0.8.11",
-    "nodemailer": "^6.9.8",
-    "vee-validate": "^4.12.4",
+    "@vue-email/nuxt": "^0.8.12",
+    "nodemailer": "^6.9.9",
+    "vee-validate": "^4.12.5",
     "yaml": "^2.3.4"
   }
 }
