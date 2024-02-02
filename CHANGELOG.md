@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.3.1
+
+### Patch Changes
+
+- 23f8b57: feat: app shortcut added, aratrik's portfolio added
+
 ## 1.3.0
 
 ### Minor Changes
