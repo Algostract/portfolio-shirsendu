@@ -17,7 +17,7 @@ function capitalize(str: string) {
   <div class="relative" :class="side === 'left' ? 'left-2' : 'right-2'">
     <div v-html="branch" :class="{ 'rotate-180': side !== 'left' }" />
     <NuxtLink :aria-label="company" :to="`https://www.linkedin.com/company/${company}`" target="_blank">
-      <NuxtImg :src="`/companies/${company}.jpg`" :alt="company" placeholder loading="lazy"
+      <img :src="`/companies/${company}.jpg`" :alt="company" loading="lazy"
         class="absolute top-1/2 -translate-y-1/2 rounded-full w-20 aspect-square object-contain"
         :class="side === 'left' ? 'left-1' : 'right-1'" />
     </NuxtLink>
