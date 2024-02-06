@@ -58,86 +58,134 @@ export default defineNuxtConfig({
           'name': 'Contact Me',
           'short_name': 'Contact',
           'description': 'Contact with me via mail',
-          'url': 'mailto:shirsendu2001@gmail.com',
-          'icons': [{ 'src': '/email.png', 'sizes': '192x192' }]
+          'url': 'https://shirsendu-bairagi.dev',
+          'icons': [{ 'src': '/pwa/email.png', 'sizes': '192x192' }]
         },
       ],
       icons: [
         {
-          src: 'logo-48.png',
+          src: '/pwa/icon-48.png',
           sizes: '48x48',
           type: 'image/png',
+          purpose: 'any'
         },
         {
-          src: 'logo-72.png',
+          src: '/pwa/icon-72.png',
           sizes: '72x72',
           type: 'image/png',
+          purpose: 'any'
         },
         {
-          src: 'logo-96.png',
+          src: '/pwa/icon-96.png',
           sizes: '96x96',
           type: 'image/png',
+          purpose: 'any'
         },
         {
-          src: 'logo-144.png',
-          sizes: '144x144',
+          src: '/pwa/icon-128.png',
+          sizes: '128x128',
           type: 'image/png',
+          purpose: 'any'
         },
         {
-          src: 'logo-192.png',
+          src: '/pwa/icon-192.png',
           sizes: '192x192',
           type: 'image/png',
+          purpose: 'any'
         },
         {
-          src: 'logo-512.png',
-          sizes: '512x512',
+          src: '/pwa/icon-384.png',
+          sizes: '384x384',
           type: 'image/png',
+          purpose: 'any'
         },
         {
-          src: 'logo-512.png',
+          src: '/pwa/icon-512.png',
           sizes: '512x512',
           type: 'image/png',
-          purpose: 'any maskable',
+          purpose: 'any'
+        },
+        {
+          src: '/pwa/icon-maskable-48.png',
+          sizes: '48x48',
+          type: 'image/png',
+          purpose: 'maskable'
+        },
+        {
+          src: '/pwa/icon-maskable-72.png',
+          sizes: '72x72',
+          type: 'image/png',
+          purpose: 'maskable'
+        },
+        {
+          src: '/pwa/icon-maskable-96.png',
+          sizes: '96x96',
+          type: 'image/png',
+          purpose: 'maskable'
+        },
+        {
+          src: '/pwa/icon-maskable-128.png',
+          sizes: '128x128',
+          type: 'image/png',
+          purpose: 'maskable'
+        },
+        {
+          src: '/pwa/icon-maskable-192.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'maskable'
+        },
+        {
+          src: '/pwa/icon-maskable-384.png',
+          sizes: '384x384',
+          type: 'image/png',
+          purpose: 'maskable'
+        },
+        {
+          src: '/pwa/icon-maskable-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable'
         },
       ],
       screenshots: [
         {
-          src: 'screenshot-desktop-1.webp',
+          src: '/pwa/screenshot-desktop-1.webp',
           sizes: '1024x576',
           type: 'image/webp',
           form_factor: 'wide',
           label: 'Screenshot 1'
         },
         {
-          src: 'screenshot-desktop-2.webp',
+          src: '/pwa/screenshot-desktop-2.webp',
           sizes: '1024x576',
           type: 'image/webp',
           form_factor: 'wide',
           label: 'Screenshot 2'
         },
         {
-          src: 'screenshot-desktop-3.webp',
+          src: '/pwa/screenshot-desktop-3.webp',
           sizes: '1024x576',
           type: 'image/webp',
           form_factor: 'wide',
           label: 'Screenshot 3'
         },
         {
-          src: 'screenshot-mobile-1.webp',
+          src: '/pwa/screenshot-mobile-1.webp',
           sizes: '576x1024',
           type: 'image/webp',
           form_factor: 'narrow',
           label: 'Screenshot 1'
         },
         {
-          src: 'screenshot-mobile-2.webp',
+          src: '/pwa/screenshot-mobile-2.webp',
           sizes: '576x1024',
           type: 'image/webp',
           form_factor: 'narrow',
           label: 'Screenshot 2'
         },
         {
-          src: 'screenshot-mobile-3.webp',
+          src: '/pwa/screenshot-mobile-3.webp',
           sizes: '576x1024',
           type: 'image/webp',
           form_factor: 'narrow',
