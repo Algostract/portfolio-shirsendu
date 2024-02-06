@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.4.0
+
+### Minor Changes
+
+- c31f5d8: style: maskable icons add in pwa
+
 ## 1.3.1
 
 ### Patch Changes
