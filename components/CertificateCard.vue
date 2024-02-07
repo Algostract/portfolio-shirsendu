@@ -39,7 +39,7 @@ const emit = defineEmits<{
       </div>
     </div>
     <div class="rounded-xl w-[18rem] md:w-[28rem] aspect-[3/2] bg-light-500 dark:bg-dark-500 overflow-hidden">
-      <img :src="`/certificates/${name}.webp`" :alt="name" loading="lazy"
+      <NuxtImg :src="`/certificates/${name}.webp`" :alt="name" loading="lazy"
         class="w-full h-full object-cover scale-100 hover:scale-110 transition-transform" />
     </div>
   </div>
