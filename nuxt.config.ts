@@ -52,14 +52,13 @@ export default defineNuxtConfig({
       theme_color: '#0593FA',
       background_color: '#0593FA',
       orientation: 'portrait',
-      start_url: 'https://shirsendu-bairagi.dev',
       shortcuts: [
         {
           'name': 'Contact Me',
           'short_name': 'Contact',
           'description': 'Contact with me via mail',
           'url': 'https://shirsendu-bairagi.dev',
-          'icons': [{ 'src': '/pwa/email.png', 'sizes': '192x192' }]
+          'icons': [{ 'src': '/pwa/email.png', 'sizes': '512x512' }]
         },
       ],
       icons: [
