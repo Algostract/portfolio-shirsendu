@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const emit = defineEmits<{ (event: 'contact'): void }>()
-const dob = new Date(2001, 0, 29, 0, 0, 0).toISOString()
+const dob = new Date(2001, 0, 29).toISOString()
 
 const age = useTimeAgo(dob ?? "", {
   messages: {

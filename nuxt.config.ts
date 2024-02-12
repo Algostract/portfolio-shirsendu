@@ -3,15 +3,15 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxt/image',
+    '@nuxt/test-utils',
     '@nuxtjs/color-mode',
+    '@nuxtjs/seo',
     '@nuxtjs/tailwindcss',
-    '@nuxtseo/module',
     '@vite-pwa/nuxt',
     '@vue-email/nuxt',
     '@vueuse/nuxt',
     'nuxt-gtag',
-    'nuxt-icons',
-    'nuxt-vitest',
+    'nuxt-icons'
   ],
   routeRules: {
     '/**': { isr: 21600 },
@@ -35,7 +35,7 @@ export default defineNuxtConfig({
     quality: 80,
   },
   colorMode: {
-    preference: 'dark',
+    preference: 'system',
     fallback: 'light',
     classSuffix: '',
   },
@@ -57,8 +57,21 @@ export default defineNuxtConfig({
           'name': 'Contact Me',
           'short_name': 'Contact',
           'description': 'Contact with me via mail',
-          'url': 'https://shirsendu-bairagi.dev',
-          'icons': [{ 'src': '/pwa/email.png', 'sizes': '512x512' }]
+          'url': 'https://shirsendu-bairagi.dev?contact',
+          'icons': [
+            {
+              src: '/pwa/email.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any'
+            },
+            {
+              src: '/pwa/email-maskable.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'maskable'
+            }
+          ]
         },
       ],
       icons: [
