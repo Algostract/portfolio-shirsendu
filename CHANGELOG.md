@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.4.2
+
+### Patch Changes
+
+- d36607d: revert: NuxtImg -> img tag
+
 ## 1.4.1
 
 ### Patch Changes
