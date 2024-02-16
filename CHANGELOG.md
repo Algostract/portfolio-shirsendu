@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.4.3
+
+### Patch Changes
+
+- 0fa9d5f: chore: assets updated
+
 ## 1.4.2
 
 ### Patch Changes
