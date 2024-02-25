@@ -39,8 +39,8 @@
   },
   "dependencies": {
     "@splidejs/vue-splide": "^0.6.12",
-    "@supabase/supabase-js": "^2.39.6",
-    "@vue-email/nuxt": "^0.8.13",
+    "@supabase/supabase-js": "^2.39.7",
+    "@vue-email/nuxt": "^0.8.15",
     "nodemailer": "^6.9.9",
     "vee-validate": "^4.12.5",
     "yaml": "^2.3.4"
