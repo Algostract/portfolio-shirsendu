@@ -31,7 +31,7 @@
     "@vite-pwa/nuxt": "^0.5.0",
     "@vueuse/core": "^10.7.2",
     "@vueuse/nuxt": "^10.7.2",
-    "nuxt": "^3.10.2",
+    "nuxt": "^3.10.3",
     "nuxt-gtag": "^1.2.0",
     "nuxt-icons": "^3.2.1",
     "vue": "^3.4.19",
