@@ -27,6 +27,8 @@ export default defineNuxtConfig({
       emailPassword: '',
       supabaseUrl: '',
       supabaseKey: '',
+      notionKey: '',
+      notionDBId: '',
     },
   },
   image: {

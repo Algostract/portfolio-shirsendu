@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
+import { Client } from "@notionhq/client";
 
 interface Newsletter {
   email: string;
@@ -6,20 +6,36 @@ interface Newsletter {
 }
 
 const config = useRuntimeConfig()
-const supabase = createClient(config.private.supabaseUrl, config.private.supabaseKey)
+const notion = new Client({
+  auth: config.private.notionKey,
+})
 
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody<Newsletter>(event)
 
-    const { data, error } = await supabase
-      .from('subscriptions')
-      .insert([body]);
+    const result = await notion.pages.create({
+      parent: {
+        database_id: config.private.notionDBId
+      }, properties: {
+        'Email': {
+          type: 'title',
+          title: [
+            {
+              type: 'text',
+              text: {
+                content: body.email,
+              },
+            },
+          ],
+        },
+        'Subscribed': {
+          checkbox: true
+        }
+      }
+    })
 
-    if (error)
-      throw createError({ statusMessage: error.message })
-
-    return data
+    return result
   } catch (error: any) {
     console.error("API newsletter POST", error)
 
