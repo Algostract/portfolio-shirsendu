@@ -1,5 +1,12 @@
 # portfolio
 
+## 1.4.5
+
+### Patch Changes
+
+- c1214b4: refactor: changed supabasedb to notiondb
+- f733aa6: style: fixed timeline colormode
+
 ## 1.4.4
 
 ### Patch Changes
