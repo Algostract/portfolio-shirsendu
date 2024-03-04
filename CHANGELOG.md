@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.4.4
+
+### Patch Changes
+
+- be59ae3: style: made timeline responsive
+
 ## 1.4.3
 
 ### Patch Changes
