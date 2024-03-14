@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.4.8
+
+### Patch Changes
+
+- 64fe3a0: fix: deploy job in gh actions
+
 ## 1.4.7
 
 ### Patch Changes
