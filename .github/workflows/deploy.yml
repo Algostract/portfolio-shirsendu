@@ -46,6 +46,11 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
 
+      - name: Move artifacts
+        run: |
+          mv $GITHUB_WORKSPACE/artifact/* $GITHUB_WORKSPACE/
+          rm -r $GITHUB_WORKSPACE/artifact
+
       - name: Upload artifact to VPS
         uses: appleboy/scp-action@v0.1.4
         with:
