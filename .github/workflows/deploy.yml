@@ -8,11 +8,9 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
   NITRO_PRESET: ${{ vars.NITRO_PRESET }}
-  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-  SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repo
@@ -22,12 +20,31 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
+          cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
 
       - name: Bulid Artifacts
         run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: |
+            .output
+            projects.yml
+            experiences.yml
+            hackathons.yml
+            certificates.yml
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
 
       - name: Upload artifact to VPS
         uses: appleboy/scp-action@v0.1.4

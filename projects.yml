@@ -63,17 +63,18 @@
 #   appURL: "https://blood-bank-manager.netlify.app"
 #   videoURL: null
 
-# - name: Orykit
-#   repo: Algostract/orykit-store
-#   category: "web-app"
-#   technologies:
-#     languages:
-#       -
-#     frameworks:
-#       -
-#   createdAt: "2022-03-24T18:30:00Z"
-#   appURL: null
-#   videoURL: null
+- name: Orykit
+  repo: shba007/orykit
+  category: "web-app"
+  technologies:
+    languages:
+      - Typescript
+    frameworks:
+      - Nuxt
+      - Tailwind CSS
+  createdAt: "2022-03-24T18:30:00Z"
+  appURL: "https://orykit-store-test.onrender.com"
+  videoURL: null
 
 - name: Biosense
   repo: shba007/biosense-web # shba007/biosense-ai shba007/biosense-iot
@@ -215,3 +216,16 @@
   createdAt: "2023-11-24T18:30:00Z"
   appURL: "https://redcatpictures.com/"
   videoURL: null
+
+# - name: HomelyBite
+#   repo: shba007/homelybite
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       - Typescirpt
+#     frameworks:
+#       - Nuxt
+#       - Tailwind CSS
+#   createdAt: "2024-03-13T18:30:00Z"
+#   appURL: null
+#   videoURL: null
