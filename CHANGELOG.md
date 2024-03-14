@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.4.6
+
+### Patch Changes
+
+- e52464a: feat: orykit added, deploy script updated
+
 ## 1.4.5
 
 ### Patch Changes
