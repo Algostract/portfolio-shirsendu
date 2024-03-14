@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.4.7
+
+### Patch Changes
+
+- d50bc6e: fix: deploy script fixed
+
 ## 1.4.6
 
 ### Patch Changes
