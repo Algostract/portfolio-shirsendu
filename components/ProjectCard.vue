@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type Options, Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
+import type { Technologies } from '~/utils/models';
 // import { Project } from 'utils/models';
 
 interface Project {
@@ -10,7 +11,8 @@ interface Project {
   stars: number;
   createdAt: Date | string;
   updatedAt: Date | string;
-  repoURL: string | null;
+  technologies: Technologies[];
+  repoURL: string;
   appURL: string | null;
   videoURL: string | null;
 }
@@ -62,7 +64,7 @@ function onTry() {
   })
 }
 </script>
- 
+
 <template>
   <div class="card grow relative mx-auto w-full sm:w-2/5 md:w-[30%] min-w-[328px] max-w-[400px] transition-transform">
     <Ribbon :title="modifiedIn" class="absolute top-4 -left-[5px] z-10" />
@@ -72,7 +74,7 @@ function onTry() {
           class="gradient-border gradient-border-dark rounded-tl-[2.25rem] rounded-br-[2.25rem] rounded-tr-[0.5rem] rounded-bl-[0.5rem] overflow-clip" />
       </div>
       <div
-        class="content relative flex flex-col gap-[10px] rounded-tl-[2.25rem] rounded-br-[2.25rem] rounded-tr-[0.5rem] rounded-bl-[0.5rem] p-[10px] w-full bg-light-500 hover:bg-light-400 dark:bg-dark-600 hover:dark:bg-dark-500 aspect-[1.215/1] overflow-hidden">
+        class="content relative flex flex-col gap-[10px] rounded-tl-[2.25rem] rounded-br-[2.25rem] rounded-tr-[0.5rem] rounded-bl-[0.5rem] p-[10px] w-full bg-light-500 dark:bg-dark-600 aspect-[1.215/1] overflow-hidden">
         <div class="relative rounded-[20px] w-full bg-light-600 dark:bg-dark-400 aspect-video overflow-hidden">
           <ul class="absolute top-0 right-[0.875rem] flex gap-1 z-20">
             <li v-for="track in [1, 2, 3]" :key="track" class="cursor-pointer" @click="splide.go(track - 1)">
@@ -99,7 +101,7 @@ function onTry() {
             </div>
           </Splide>
           <NuxtLink :to="repoURL" target="_blank"
-            class="absolute bottom-2 left-2 flex items-center gap-1 rounded-full hover:outline outline-primary-400 pl-1.5 pr-2 py-1 bg-light-500 dark:bg-dark-600 z-20 transition-[outline] duration-150 ease-in">
+            class="absolute bottom-2 left-2 flex items-center gap-1 rounded-full hover:outline outline-primary-400 pl-1.5 pr-2 py-1 bg-light-500 hover:bg-light-400 dark:bg-dark-600 dark:hover:bg-dark-500 z-20 transition-colors duration-150 ease-in">
             <NuxtIcon name="github" class="text-[16px]" />
             <span class="text-xs">{{ stars }} Stars</span>
           </NuxtLink>
@@ -124,7 +126,12 @@ function onTry() {
               {{ createdAtFormatted }}
             </ClientOnly>
           </time>
-          <p class="row-start-2 col-start-1 col-span-2 text-xs md:text-base opacity-60 line-clamp-2">{{ description }}</p>
+          <p class="row-start-2 col-start-1 col-span-2 text-xs md:text-base opacity-60 line-clamp-2">
+            {{ description }}
+          </p>
+          <div class="col-span-full flex gap-2 mt-1 p-0.5 w-4/5 overflow-x-scroll scrollbar-hidden">
+            <TechBadge v-for="tech in technologies" :tech="tech" />
+          </div>
           <NuxtLink v-if="appURL !== null" :to="appURL" target="_blank"
             class="absolute bottom-0 right-0 rounded-tl-[1.25rem] px-6 py-2 bg-primary-500 hover:bg-primary-400 transition-colors text-xs text-white cursor-pointer"
             @click="onTry">

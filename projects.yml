@@ -40,12 +40,12 @@
   category: "web-app"
   technologies:
     languages:
-      - Typescript
-      - Python
+      - typescript
+      - python
     frameworks:
-      - Nuxt
-      - FastAPI
-      - Tailwind CSS
+      - nuxt
+      - fastapi
+      - tailwindcss
   createdAt: "2021-07-20T18:30:00.000Z"
   appURL: "https://psy.monalisa-bairagi.com"
   videoURL: "https://youtu.be/Tu60B-gheNM"
@@ -55,10 +55,10 @@
 #   category: "web-app"
 #   technologies:
 #     languages:
-#       - Typescript
+#       - typescript
 #     frameworks:
-#       - Nuxt
-#       - Tailwind CSS
+#       - nuxt
+#       - tailwindcss
 #   createdAt: "2022-02-10T18:30:00Z"
 #   appURL: "https://blood-bank-manager.netlify.app"
 #   videoURL: null
@@ -68,10 +68,10 @@
   category: "web-app"
   technologies:
     languages:
-      - Typescript
+      - typescript
     frameworks:
-      - Nuxt
-      - Tailwind CSS
+      - nuxt
+      - tailwindcss
   createdAt: "2022-03-24T18:30:00Z"
   appURL: "https://orykit-store-test.onrender.com"
   videoURL: null
@@ -81,12 +81,12 @@
   category: "iot"
   technologies:
     languages:
-      - Typescript
-      - Python
+      - typescript
+      - python
     frameworks:
-      - Next
-      - Tensorflow
-      - Tailwind CSS
+      - nextjs
+      - tensorflow
+      - tailwindcss
   createdAt: "2022-08-02T18:30:00Z"
   appURL: "https://biosense.onrender.com"
   videoURL: "https://youtu.be/Y8hROrtp948"
@@ -96,10 +96,10 @@
 #   category: "ui"
 #   technologies:
 #     languages:
-#       - Typescript
+#       - typescript
 #     frameworks:
-#       - React
-#       - Tailwind CSS
+#       - react
+#       - tailwindcss
 #   createdAt: "2023-06-27T18:30:00Z"
 #   appURL: "https://shba007.github.io/ui-react-podcast/"
 #   videoURL: null
@@ -109,10 +109,10 @@
   category: "web-app"
   technologies:
     languages:
-      - Typescript
+      - typescript
     frameworks:
-      - Nuxt
-      - Tailwind CSS
+      - nuxt
+      - tailwindcss
   createdAt: "2023-07-09T18:30:00Z"
   appURL: "https://shirsendu-bairagi.dev/"
   videoURL: null
@@ -134,9 +134,9 @@
 #   createdAt: "2023-07-15T10:44:56.791Z"
 #   technologies:
 #     languages:
-#       - Typescript
+#       - typescript
 #     frameworks:
-#       - Nuxt
+#       - nuxt
 #   appURL: null # "https://fashion-lens.shirsendu-bairagi.dev"
 #   videoURL: null
 
@@ -145,10 +145,10 @@
   category: "ui"
   technologies:
     languages:
-      - Typescript
+      - typescript
     frameworks:
-      - React
-      - Tailwind CSS
+      - react
+      - tailwindcss
   createdAt: "2023-07-16T18:30:00Z"
   appURL: "https://shba007.github.io/ui-react-magma/"
   videoURL: null
@@ -158,10 +158,10 @@
   category: "blog"
   technologies:
     languages:
-      - Typescript
+      - typescript
     frameworks:
-      - Astro
-      - Tailwind CSS
+      - astro
+      - tailwindcss
   createdAt: "2023-07-26T06:57:32Z"
   appURL: "https://ai-guide.shirsendu-bairagi.dev"
   videoURL: null
@@ -171,8 +171,9 @@
   category: "npm-package"
   technologies:
     languages:
-      - Typescript
+      - typescript
     frameworks:
+      []
   createdAt: "2023-09-11T18:30:00Z"
   appURL: "https://www.npmjs.com/package/framework-logo/"
   videoURL: null
@@ -182,11 +183,11 @@
   category: "web-app"
   technologies:
     languages:
-      - Typescript
+      - typescript
     frameworks:
-      - Vue
-      - Tailwind CSS
-      - Tensorflow.js
+      - vue
+      - tailwindcss
+      - tensorflowjs
   createdAt: "2023-11-19T18:30:00Z"
   appURL: "https://plant-lens.onrender.com/"
   videoURL: "https://youtu.be/EAEfdlfqXQA"
@@ -196,10 +197,10 @@
   category: "web-app"
   technologies:
     languages:
-      - Typescript
+      - typescript
     frameworks:
-      - Nuxt
-      - Tailwind CSS
+      - nuxt
+      - tailwindcss
   createdAt: "2023-11-22T18:30:00Z"
   appURL: "https://monalisa-bairagi.com/"
   videoURL: null
@@ -209,10 +210,10 @@
   category: "web-app"
   technologies:
     languages:
-      - Typescript
+      - typescript
     frameworks:
-      - Nuxt
-      - Tailwind CSS
+      - nuxt
+      - tailwindcss
   createdAt: "2023-11-24T18:30:00Z"
   appURL: "https://redcatpictures.com/"
   videoURL: null
@@ -224,8 +225,8 @@
 #     languages:
 #       - Typescirpt
 #     frameworks:
-#       - Nuxt
-#       - Tailwind CSS
+#       - nuxt
+#       - tailwindcss
 #   createdAt: "2024-03-13T18:30:00Z"
 #   appURL: null
 #   videoURL: null
