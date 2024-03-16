@@ -3,7 +3,7 @@ import path from "node:path";
 import yaml from "yaml";
 
 import { ofetch } from "ofetch";
-import { Project } from "~~/utils/models"
+import { Project, Technologies } from "~~/utils/models"
 
 const config = useRuntimeConfig()
 
@@ -12,6 +12,10 @@ const fileContents = fs.readFileSync(filePath, "utf8");
 const projects: {
   name: string;
   repo: string;
+  technologies: {
+    languages: string[];
+    frameworks: string[];
+  };
   createdAt: string;
   appURL: string | null;
   videoURL: string | null;
@@ -19,7 +23,7 @@ const projects: {
 
 export default defineEventHandler<Promise<Project[]>>(async (_event) => {
   try {
-    const repos = (await Promise.all(projects.map(async ({ name, repo, createdAt, appURL, videoURL }): Promise<Project | null> => {
+    const repos = (await Promise.all(projects.map(async ({ name, repo, createdAt, technologies, appURL, videoURL }): Promise<Project | null> => {
       if (repo == null)
         return null
 
@@ -35,6 +39,7 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
       catch (error) {
       }
       const { details, release } = info
+      const { frameworks, languages } = technologies
 
       return {
         name,
@@ -45,6 +50,7 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
         forks: details.forks,
         createdAt,
         updatedAt: release?.updatedAt ?? details.pushedAt,
+        technologies: [...frameworks, ...languages] as Technologies[],
         repoURL: `https://github.com/${repo}`,
         appURL,
         videoURL,

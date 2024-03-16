@@ -31,6 +31,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
+          name: portfolio-shirsendu
           path: |
             .output
             projects.yml
@@ -55,5 +56,5 @@ jobs:
           port: 22
           overwrite: true
           rm: true
-          source: 'artifact/*'
-          target: '~/portfolio-shirsendu'
+          source: '/*'
+          target: ~/portfolio-shirsendu
