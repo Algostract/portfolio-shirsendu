@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.5.0
+
+### Minor Changes
+
+- 828c866: feat: added techstack badge
+
 ## 1.4.8
 
 ### Patch Changes
