@@ -66,12 +66,12 @@ function onTry() {
 </script>
 
 <template>
-  <div class="card grow relative mx-auto w-full sm:w-2/5 md:w-[30%] min-w-[328px] max-w-[400px] transition-transform">
+  <div class="card grow relative mx-auto w-full min-w-[328px] max-w-[400px] transition-transform">
     <Ribbon :title="modifiedIn" class="absolute top-4 -left-[5px] z-10" />
     <div class="relative">
       <div class="absolute top-0 left-0 w-full h-full">
         <div
-          class="gradient-border gradient-border-dark rounded-tl-[2.25rem] rounded-br-[2.25rem] rounded-tr-[0.5rem] rounded-bl-[0.5rem] overflow-clip" />
+          class="gradient-border gradient-border-dark rounded-tl-[2.25rem] rounded-br-[2.25rem] rounded-tr-[0.5rem] rounded-bl-[0.5rem] overflow-hidden" />
       </div>
       <div
         class="content relative flex flex-col gap-[10px] rounded-tl-[2.25rem] rounded-br-[2.25rem] rounded-tr-[0.5rem] rounded-bl-[0.5rem] p-[10px] w-full bg-light-500 dark:bg-dark-600 aspect-[1.215/1] overflow-hidden">
