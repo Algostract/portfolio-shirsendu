@@ -39,7 +39,7 @@ const createdAtFormatted = useDateFormat(props.createdAt, 'MMM D, YYYY')
 
 const splideOption: Options = {
   type: 'loop',
-  arrows: true,
+  arrows: false,
   autoplay: true,
   cover: true,
   heightRatio: 0.56,
@@ -90,7 +90,7 @@ function onTry() {
                   class="w-full h-full" />
               </SplideSlide>
             </SplideTrack>
-            <div
+            <!-- <div
               class="splide__arrows absolute flex justify-between items-center top-0 px-2 h-full w-full z-10 opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity">
               <button aria-label="left" class="splide__arrow splide__arrow--prev w-1/3">
                 <NuxtIcon name="chevron-bold" />
@@ -98,7 +98,7 @@ function onTry() {
               <button aria-label="right" class="splide__arrow splide__arrow--next rotate-180 w-1/3">
                 <NuxtIcon name="chevron-bold" />
               </button>
-            </div>
+            </div> -->
           </Splide>
           <NuxtLink :to="repoURL" target="_blank"
             class="absolute bottom-2 left-2 flex items-center gap-1 rounded-full hover:outline outline-primary-400 pl-1.5 pr-2 py-1 bg-light-500 hover:bg-light-400 dark:bg-dark-600 dark:hover:bg-dark-500 z-20 transition-colors duration-150 ease-in">
