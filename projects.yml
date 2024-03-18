@@ -63,18 +63,18 @@
 #   appURL: "https://blood-bank-manager.netlify.app"
 #   videoURL: null
 
-- name: Orykit
-  repo: shba007/orykit
-  category: "web-app"
-  technologies:
-    languages:
-      - typescript
-    frameworks:
-      - nuxt
-      - tailwindcss
-  createdAt: "2022-03-24T18:30:00Z"
-  appURL: "https://orykit-store-test.onrender.com"
-  videoURL: null
+# - name: Orykit
+#   repo: shba007/orykit
+#   category: "web-app"
+#   technologies:
+#     languages:
+#       - typescript
+#     frameworks:
+#       - nuxt
+#       - tailwindcss
+#   createdAt: "2022-03-24T18:30:00Z"
+#   appURL: "https://orykit-store-test.onrender.com"
+#   videoURL: null
 
 - name: Biosense
   repo: shba007/biosense-web # shba007/biosense-ai shba007/biosense-iot
