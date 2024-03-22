@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.6.0
+
+### Minor Changes
+
+- da03fba: feat: project gallary carousel added
+
 ## 1.5.0
 
 ### Minor Changes
