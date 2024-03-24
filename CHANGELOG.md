@@ -1,5 +1,11 @@
 # portfolio
 
+## 1.6.1
+
+### Patch Changes
+
+- 7b4348c: feat: added arrows in project section
+
 ## 1.6.0
 
 ### Minor Changes
