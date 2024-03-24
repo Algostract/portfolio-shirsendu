@@ -57,4 +57,4 @@ jobs:
           overwrite: true
           rm: true
           source: 'portfolio-shirsendu'
-          target: ~/
+          target: ~/portfolio-shirsendu
