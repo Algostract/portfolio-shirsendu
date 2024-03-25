@@ -56,5 +56,5 @@ jobs:
           port: 22
           overwrite: true
           rm: true
-          source: 'portfolio-shirsendu'
+          source: '/*'
           target: ~/portfolio-shirsendu
