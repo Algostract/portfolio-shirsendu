@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
+    "@nuxt/fonts",
     '@nuxt/image',
     '@nuxt/test-utils',
     '@nuxtjs/color-mode',
@@ -15,9 +16,6 @@ export default defineNuxtConfig({
   ],
   routeRules: {
     '/**': { isr: 21600 },
-  },
-  typescript: {
-    shim: false,
   },
   runtimeConfig: {
     private: {
