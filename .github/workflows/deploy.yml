@@ -48,7 +48,7 @@ jobs:
         uses: actions/download-artifact@v4
 
       - name: Display structure of downloaded files
-        run: ls -R
+        run: ls -R -a
 
       - name: Upload artifact to VPS
         uses: appleboy/scp-action@v0.1.4
@@ -57,7 +57,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          overwrite: true
-          rm: true
+          # overwrite: true
+          # rm: true
           source: portfolio-shirsendu/*
-          target: ~/portfolio-shirsendu
+          target: portfolio-shirsendu
