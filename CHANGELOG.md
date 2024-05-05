@@ -1,5 +1,15 @@
 # portfolio
 
+## 1.7.0
+
+### Minor Changes
+
+- 6eb617e: feat: added new certificate
+
+### Patch Changes
+
+- 3154b86: chore: pkgs updated
+
 ## 1.6.1
 
 ### Patch Changes
