@@ -86,7 +86,7 @@ function onTry() {
             @splide:pagination:updated="onPaginationUpdate" class="w-full h-full">
             <SplideTrack>
               <SplideSlide v-for="image in [1, 2, 3]" :key="image">
-                <img :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" loading="lazy"
+                <NuxtImg :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" loading="lazy"
                   class="w-full h-full" />
               </SplideSlide>
             </SplideTrack>

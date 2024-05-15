@@ -21,7 +21,7 @@ function capitalize(str: string) {
         class="relative w-7 aspect-square rounded-full bg-light-500 dark:bg-dark-500 after:content-[''] after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:w-4 after:aspect-square after:rounded-full after:bg-light-400 after:dark:bg-dark-400" />
     </div>
     <NuxtLink :aria-label="company" :to="`https://www.linkedin.com/company/${company}`" target="_blank">
-      <img :src="`/companies/${company}.jpg`" :alt="company" loading="lazy"
+      <NuxtImg :src="`/companies/${company}.jpg`" :alt="company" loading="lazy"
         class="absolute top-1/2 -translate-y-1/2 rounded-full w-20 aspect-square object-contain"
         :class="side === 'left' ? '-left-0' : '-right-0'" />
     </NuxtLink>

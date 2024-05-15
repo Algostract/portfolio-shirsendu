@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     'nuxt-icons'
   ],
   routeRules: {
-    '/**': { isr: 21600 },
+    '/': { swr: true },
   },
   runtimeConfig: {
     private: {
