@@ -57,5 +57,5 @@ jobs:
           source: artifact/*
           target: ~/portfolio-shirsendu/
           overwrite: true
-          rm: true
+          # rm: true
           strip_components: 1
