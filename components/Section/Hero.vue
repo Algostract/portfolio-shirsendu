@@ -55,8 +55,8 @@ const experience = computed(() => {
       <CTAButton @click="emit('contact')" />
     </div>
     <div class="grid grid-rows-[1fr_2fr_1fr] lg:grid-rows-2 lg:gap-x-20 lg:gap-y-36 grid-cols-3 justify-items-stretch">
-      <SkillHex :quadrant="1" />
-      <SkillHex :quadrant="2" />
+      <SkillHex :quadrant="1" class="row-start-1 col-start-1 justify-self-start self-start" />
+      <SkillHex :quadrant="2" class="row-start-1 col-start-3 justify-self-end self-start" />
       <div
         class="row-start-2 lg:row-start-1 lg:row-span-2 col-start-2 justify-self-center self-center relative scale-[1.867] lg:scale-[2.8005] max-w-[200px]">
         <div class="rotate-[30deg] -z-10">
@@ -77,14 +77,15 @@ const experience = computed(() => {
               <use xlink:href="#clip-image-light" transform="matrix(0.00123181 0 0 0.000925926 -0.00134755 0)" />
               <use xlink:href="#clip-image-dark" transform="matrix(0.00123181 0 0 0.000925926 -0.00134755 0)" />
             </pattern>
-            <image id="clip-image-light" href="@/assets/images/photo-light.webp" alt="photo-light" class="dark:hidden" />
+            <image id="clip-image-light" href="@/assets/images/photo-light.webp" alt="photo-light"
+              class="dark:hidden" />
             <image id="clip-image-dark" href="@/assets/images/photo-dark.webp" alt="photo-dark"
               class="hidden dark:block" />
           </defs>
         </svg>
       </div>
-      <SkillHex :quadrant="3" />
-      <SkillHex :quadrant="4" />
+      <SkillHex :quadrant="3" class="row-start-3 lg:row-start-2 col-start-1 justify-self-start self-end" />
+      <SkillHex :quadrant="4" class="row-start-3 lg:row-start-2 col-start-3 justify-self-end self-end" />
     </div>
   </section>
 </template>

@@ -23,27 +23,27 @@
     "@splidejs/splide-extension-grid": "^0.4.1",
     "@splidejs/vue-splide": "^0.6.12",
     "nodemailer": "^6.9.13",
-    "vee-validate": "^4.12.6",
+    "vee-validate": "^4.12.8",
     "yaml": "^2.4.2"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
+    "@changesets/cli": "^2.27.2",
     "@nuxt/fonts": "^0.7.0",
     "@nuxt/image": "^1.7.0",
-    "@nuxt/test-utils": "^3.12.1",
+    "@nuxt/test-utils": "^3.13.0",
     "@nuxtjs/color-mode": "^3.4.1",
     "@nuxtjs/seo": "^2.0.0-rc.10",
     "@nuxtjs/tailwindcss": "^6.12.0",
-    "@types/node": "^20.12.8",
+    "@types/node": "^20.12.12",
     "@types/nodemailer": "^6.4.15",
     "@vite-pwa/nuxt": "^0.7.0",
     "@vue-email/nuxt": "^0.8.19",
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.9.0",
     "nuxt": "^3.11.2",
-    "nuxt-gtag": "^2.0.5",
+    "nuxt-gtag": "^2.0.6",
     "nuxt-icons": "^3.2.1",
-    "vue": "^3.4.26",
+    "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   }
 }

@@ -1,6 +1,9 @@
 ---
-  - company: "nextdoor-kitchens"
-    date: "2022"
-    
-  - company: "xatalyst-labs"
-    date: "2023"
+- company: 'nextdoor-kitchens'
+  date: '2022'
+
+- company: 'xatalyst-labs'
+  date: '2023'
+
+- company: 'web-spiders'
+  date: '2024'
