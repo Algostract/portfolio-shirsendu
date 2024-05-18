@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.8.0
+
+### Minor Changes
+
+- d18ea09: feat: new company added
+
 ## 1.7.0
 
 ### Minor Changes
