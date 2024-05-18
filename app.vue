@@ -5,24 +5,6 @@ He had done more then a dozens production grade cutting edge projects in web, ap
 He primarily serves his neighborhood Rajpur, Sonarpur, Baruipur, Subhasgram, Harinavi & Narendrapur Area.`
 const url = "https://shirsendu-bairagi.dev"
 
-useHead({
-  link: [
-    {
-      rel: "preconnect",
-      href: "https://fonts.gstatic.com",
-      crossorigin: "anonymous",
-    },
-    {
-      rel: "preconnect",
-      href: "https://fonts.googleapis.com"
-    },
-    {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;1,400&display=swap",
-    },
-  ]
-})
-
 useSeoMeta({
   ogType: "profile",
   title: title,

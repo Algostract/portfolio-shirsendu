@@ -46,12 +46,6 @@ jobs:
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
-        with:
-          name: artifact
-          path: dist
-
-      - name: Display structure of downloaded files
-        run: ls -R -a
 
       - name: Upload artifact to VPS
         uses: appleboy/scp-action@v0.1.7
@@ -60,8 +54,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          # overwrite: true
-          # rm: true
-          source: dist/*
+          source: artifact/*
           target: ~/portfolio-shirsendu/
+          overwrite: true
+          rm: true
           strip_components: 1
