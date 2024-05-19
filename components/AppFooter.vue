@@ -17,7 +17,7 @@ async function onSubscribe(email: string) {
 
 <template>
   <footer
-    class="relative left-1/2 -translate-x-1/2 grid grid-rows-[min-content_1fr_min-content_min-content] md:grid-rows-[min-content_1fr_min-content] grid-cols-2 md:grid-cols-[min-content_1fr_min-content] justify-items-center items-center gap-4 md:gap-8 mt-8 md:mt-28 p-4 md:p-8 rounded-t-[2.25rem] w-screen">
+    class="relative left-1/2 -translate-x-1/2 grid grid-rows-[min-content_1fr_min-content_min-content] md:grid-rows-[min-content_1fr_min-content] grid-cols-2 md:grid-cols-[min-content_1fr_min-content] justify-items-center items-center gap-4 md:gap-8 mt-28 p-4 md:p-8 rounded-t-[2.25rem] w-screen">
     <CTAButton :primary="false" class="absolute -top-20" @click="emit('contact', true)" />
     <div class="row-start-1 col-start-1 col-span-2 md:col-span-3 relative w-full">
       <div v-html="line" class="absolute -left-8 -right-8 top-0 -translate-y-1/2 text-light-500 dark:text-dark-500" />

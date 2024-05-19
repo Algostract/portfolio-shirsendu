@@ -3,16 +3,16 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     "@nuxt/fonts",
-    '@nuxt/image',
-    '@nuxt/test-utils',
-    '@nuxtjs/color-mode',
-    '@nuxtjs/seo',
-    '@nuxtjs/tailwindcss',
-    '@vite-pwa/nuxt',
-    '@vue-email/nuxt',
-    '@vueuse/nuxt',
-    'nuxt-gtag',
-    'nuxt-icons'
+    "@nuxt/image",
+    "@nuxt/test-utils",
+    "@nuxtjs/color-mode",
+    "@nuxtjs/seo",
+    "@nuxtjs/tailwindcss",
+    "@vite-pwa/nuxt",
+    "@vue-email/nuxt",
+    "@vueuse/nuxt",
+    "nuxt-gtag",
+    "nuxt-icons"
   ],
   routeRules: {
     '/': { swr: true },
@@ -214,7 +214,7 @@ export default defineNuxtConfig({
     },
     devOptions: {
       enabled: false,
-      suppressWarnings: true,
+      suppressWarnings: false,
       navigateFallbackAllowlist: [/^\/$/],
       type: 'module',
     },

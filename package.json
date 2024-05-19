@@ -23,7 +23,10 @@
     "@splidejs/splide-extension-grid": "^0.4.1",
     "@splidejs/vue-splide": "^0.6.12",
     "nodemailer": "^6.9.13",
+    "nuxt": "^3.11.2",
     "vee-validate": "^4.12.8",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2",
     "yaml": "^2.4.2"
   },
   "devDependencies": {
@@ -40,10 +43,7 @@
     "@vue-email/nuxt": "^0.8.19",
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.9.0",
-    "nuxt": "^3.11.2",
     "nuxt-gtag": "^2.0.6",
-    "nuxt-icons": "^3.2.1",
-    "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "nuxt-icons": "^3.2.1"
   }
 }
