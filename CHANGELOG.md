@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.8.1
+
+### Patch Changes
+
+- 18e6edc: fix: contact me button not visible, NuxtImg use
+
 ## 1.8.0
 
 ### Minor Changes
