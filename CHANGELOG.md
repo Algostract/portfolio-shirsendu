@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.9.0
+
+### Minor Changes
+
+- 68ab4a2: feat: added PWA custom install prompt
+
 ## 1.8.1
 
 ### Patch Changes
