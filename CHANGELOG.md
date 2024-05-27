@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.9.1
+
+### Patch Changes
+
+- 0db5326: seo: h tag issue fixed, images more optimised
+
 ## 1.9.0
 
 ### Minor Changes
