@@ -86,8 +86,8 @@ function onTry() {
             @splide:pagination:updated="onPaginationUpdate" class="w-full h-full">
             <SplideTrack>
               <SplideSlide v-for="image in [1, 2, 3]" :key="image">
-                <NuxtImg :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" loading="lazy"
-                  class="w-full h-full" />
+                <NuxtImg :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" :width="480" :height="270"
+                  loading="lazy" class="w-full h-full" />
               </SplideSlide>
             </SplideTrack>
             <!-- <div
@@ -114,7 +114,7 @@ function onTry() {
         </div>
         <div class="flex-grow grid grid-rows-[min-content_auto] grid-cols-[repeat(2,auto)] gap-y-1 px-1 md:px-2">
           <span class="flex gap-1 lg:gap-2 items-end">
-            <h5 class="text-lg whitespace-nowrap font-semi-bold">{{ name }}</h5>
+            <span class="text-lg whitespace-nowrap font-semi-bold">{{ name }}</span>
             <span
               class="rounded-full px-[8px] pt-[3px] pb-1 w-fit h-fit text-xs text-center text-black/75 dark:text-white/75 bg-light-600 dark:bg-dark-400">
               {{ version }}

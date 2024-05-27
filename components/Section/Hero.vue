@@ -41,9 +41,9 @@ const experience = computed(() => {
       <source media="(min-width: 100px)" srcset="/images/hero-gradient-mobile.svg" />
     </NuxtPicture>
     <div class="flex flex-col gap-8 md:my-auto md:w-1/2 h-fit">
-      <h3 class="mx-auto md:mx-0 rounded-full border border-primary-500 px-4 py-2 w-fit text-sm">
+      <span class="mx-auto md:mx-0 rounded-full border border-primary-500 px-4 py-2 w-fit text-sm">
         {{ experience }} +XP
-      </h3>
+      </span>
       <h1 class="text-2xl text-center md:text-left md:text-4xl lg:text-5xl">
         Crafting the Web,<br /> Making the UX better
       </h1>

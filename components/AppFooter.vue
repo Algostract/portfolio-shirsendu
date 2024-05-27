@@ -24,10 +24,10 @@ async function onSubscribe(email: string) {
       <NuxtIcon name="logo" class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[48px]"
         filled />
     </div>
-    <h5 class="row-start-2 col-start-1 col-span-2 md:col-start-2 md:col-span-1 text-center md:text-lg mt-4">
+    <h4 class="row-start-2 col-start-1 col-span-2 md:col-start-2 md:col-span-1 text-center md:text-lg mt-4">
       Want to get latest updates of My Projects<br />
       Join the weekly Newsletter
-    </h5>
+    </h4>
     <NewsletterBox class="row-start-3 col-start-1 col-span-2 md:col-start-2 md:col-span-1" @subscribe="onSubscribe" />
     <ul class="row-start-4 md:row-start-3 col-start-1 justify-self-start flex gap-5 md:gap-8">
       <li>

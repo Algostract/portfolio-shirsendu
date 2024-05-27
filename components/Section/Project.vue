@@ -47,7 +47,7 @@ const projects = computed(() => data.value?.sort((a, b) => new Date(b.updatedAt)
 
 <template>
   <section id="project" class="relative flex flex-col gap-8">
-    <h4 class="mx-auto w-fit text-lg">All Projects</h4>
+    <h3 class="mx-auto w-fit text-lg">All Projects</h3>
     <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" :extensions="{ Grid }">
       <SplideTrack class="py-2">
         <SplideSlide

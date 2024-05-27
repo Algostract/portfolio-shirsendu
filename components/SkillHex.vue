@@ -43,8 +43,8 @@ onMounted(() => onQuadrant())
 <template>
   <span class="relative hover:scale-105 transition-transform drop-shadow-md">
     <NuxtIcon name="hexagon" class="text-[120px] lg:text-[180px] text-light-500 dark:text-dark-600 shadow-md" />
-    <NuxtImg dir="assets/images" v-if="image && skill" :src="image" :alt="skill" class="absolute drop-shadow-sm"
-      :class="imageClass" />
+    <NuxtImg v-if="image && skill" :src="image" :alt="skill" :width="256" :height="256" loading="lazy"
+      class="absolute drop-shadow-sm" :class="imageClass" />
     <span class="absolute left-1/2 -bottom-6 lg:-bottom-8 -translate-x-1/2 opacity-60 lg:text-xl">{{ skill }}</span>
   </span>
 </template>
