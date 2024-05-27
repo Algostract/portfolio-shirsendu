@@ -30,10 +30,10 @@
     "yaml": "^2.4.2"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.2",
+    "@changesets/cli": "^2.27.3",
     "@nuxt/fonts": "^0.7.0",
     "@nuxt/image": "^1.7.0",
-    "@nuxt/test-utils": "^3.13.0",
+    "@nuxt/test-utils": "^3.13.1",
     "@nuxtjs/color-mode": "^3.4.1",
     "@nuxtjs/seo": "^2.0.0-rc.10",
     "@nuxtjs/tailwindcss": "^6.12.0",
@@ -41,8 +41,8 @@
     "@types/nodemailer": "^6.4.15",
     "@vite-pwa/nuxt": "^0.7.0",
     "@vue-email/nuxt": "^0.8.19",
-    "@vueuse/core": "^10.9.0",
-    "@vueuse/nuxt": "^10.9.0",
+    "@vueuse/core": "^10.10.0",
+    "@vueuse/nuxt": "^10.10.0",
     "nuxt-gtag": "^2.0.6",
     "nuxt-icons": "^3.2.1"
   }
