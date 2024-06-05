@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
-  name: string,
-  email: string,
+  name: string
+  email: string
   message: string
 }>()
 
@@ -20,8 +20,8 @@ const tailwindConfig = {
       <EPreview>Email Preview Text</EPreview>
       <EBody>
         <EContainer>
-          From {{ name }} ({{ email }})<br /><br />
-          Message {{ message }}, <br /><br />
+          From {{ name }} ({{ email }})<br><br>
+          Message {{ message }}, <br><br>
         </EContainer>
       </EBody>
     </EHtml>
