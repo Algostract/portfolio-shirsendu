@@ -1,5 +1,12 @@
 # portfolio-shirsendu
 
+## 1.9.2
+
+### Patch Changes
+
+- e5e91a2: chore: pkgs updated and distro upgrade
+- ddbaa57: fix: contact email sending functionality fixed
+
 ## 1.9.1
 
 ### Patch Changes
