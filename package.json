@@ -6,17 +6,17 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "^20.12.2"
+    "node": "^20.14.0"
   },
   "license": "LGPL-3.0-or-later",
   "scripts": {
+    "postinstall": "nuxt prepare",
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "clean": "nuxt cleanup",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "clean": "nuxt cleanup"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15",

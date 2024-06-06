@@ -25,6 +25,7 @@ export default defineEventHandler<Promise<{ user: boolean, admin: boolean }>>(as
     const body = await readBody<TransactionalEmail>(event)
     const [firstName, ...restName] = body.name.split(' ')
     const lastName = restName.join('')
+    const config = useRuntimeConfig()
 
     // Mail Send to User
     const userTemplate = await useCompiler('UserTemplate.vue', {
