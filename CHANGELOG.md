@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.9.3
+
+### Patch Changes
+
+- bc2521e: fix: resolve vue-email by recreating package-lock.json
+
 ## 1.9.2
 
 ### Patch Changes
