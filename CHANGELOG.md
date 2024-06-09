@@ -1,5 +1,19 @@
 # portfolio-shirsendu
 
+## 1.10.0
+
+### Minor Changes
+
+- 908584f: refactor: nuxt-splide added instead of using vue-splide as plugin
+- 908584f: refactor: used datefns insted of vueuse for date
+- 908584f: refactor: used confbox instead of yaml
+
+### Patch Changes
+
+- 908584f: chore: formatted and linted
+- 908584f: chore: eslint added
+- 908584f: chore: pritter added
+
 ## 1.9.3
 
 ### Patch Changes
