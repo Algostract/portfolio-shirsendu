@@ -1,8 +1,8 @@
-import { Client } from "@notionhq/client";
+import { Client } from '@notionhq/client'
 
 interface Newsletter {
-  email: string;
-  subscribed: boolean;
+  email: string
+  subscribed: boolean
 }
 
 const config = useRuntimeConfig()
@@ -16,9 +16,10 @@ export default defineEventHandler(async (event) => {
 
     const result = await notion.pages.create({
       parent: {
-        database_id: config.private.notionDBId
-      }, properties: {
-        'Email': {
+        database_id: config.private.notionDBId,
+      },
+      properties: {
+        Email: {
           type: 'title',
           title: [
             {
@@ -29,19 +30,21 @@ export default defineEventHandler(async (event) => {
             },
           ],
         },
-        'Subscribed': {
-          checkbox: true
-        }
-      }
+        Subscribed: {
+          checkbox: true,
+        },
+      },
     })
 
     return result
   } catch (error: any) {
-    console.error("API newsletter POST", error)
+    console.error('API newsletter POST', error)
 
-    if (error.statusMessage)
-      throw error
+    if (error.statusMessage) throw error
 
-    throw createError({ statusCode: 500, statusMessage: "Some Unknown Error Found" })
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Some Unknown Error Found',
+    })
   }
 })

@@ -1,18 +1,18 @@
 ---
-- name: "Bay Area Hacks 1"
-  url: "https://bay-area-hacks-1.devpost.com"
-  project: "Compeer"
-  title: "Top 10"
-  startedAt: "2023-06-18T00:00:00Z"
+- name: 'Bay Area Hacks 1'
+  url: 'https://bay-area-hacks-1.devpost.com'
+  project: 'Compeer'
+  title: 'Top 10'
+  startedAt: '2023-06-18T00:00:00Z'
 
-- name: "GNEC Hackathon 2023"
-  url: "https://gnec-hackathon-2023.devpost.com"
-  project: "Biosense"
-  title: "Winner"
-  startedAt: "2023-07-23T16:00:00Z"
-  
-- name: "Solo Hacks 1.0"
-  url: "https://solo-hacks-1-0.devpost.com"
-  project: "Plant Lens"
-  title: "Top 15"
-  startedAt: "2023-12-18T14:00:00.000Z"
+- name: 'GNEC Hackathon 2023'
+  url: 'https://gnec-hackathon-2023.devpost.com'
+  project: 'Biosense'
+  title: 'Winner'
+  startedAt: '2023-07-23T16:00:00Z'
+
+- name: 'Solo Hacks 1.0'
+  url: 'https://solo-hacks-1-0.devpost.com'
+  project: 'Plant Lens'
+  title: 'Top 15'
+  startedAt: '2023-12-18T14:00:00.000Z'

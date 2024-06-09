@@ -1,19 +1,21 @@
 <script setup lang="ts">
-import { useField } from 'vee-validate';
+import { useField } from 'vee-validate'
 
-const props = withDefaults(defineProps<{
-  type: "name" | "phone" | "email" | "pincode",
-  name: string,
-  icon?: string,
-  placeholder: string,
-  value?: string | number,
-  isDisabled?: boolean,
-}>(), { isDisabled: false })
+const props = withDefaults(
+  defineProps<{
+    type: 'name' | 'phone' | 'email' | 'pincode'
+    name: string
+    icon?: string
+    placeholder: string
+    value?: string | number
+    isDisabled?: boolean
+  }>(),
+  { isDisabled: false }
+)
 
-const { value, errors } = useField(props.name, validateFn);
+const { value, errors } = useField(props.name, validateFn)
 
-if (props.value)
-  value.value = String(props.value)
+if (props.value) value.value = String(props.value)
 
 function validateFn(value: string) {
   switch (props.type) {
@@ -34,64 +36,54 @@ function validateFn(value: string) {
 function validateName(value: string) {
   value = value?.trim()
 
-  if (!value)
-    return `${props.placeholder} is required`;
+  if (!value) return `${props.placeholder} is required`
 
-  if (value.indexOf(" ") === -1)
-    return "Enter your First Name and Last Name"
+  if (value.indexOf(' ') === -1) return 'Enter your First Name and Last Name'
 
-  return true;
+  return true
 }
 
 // Phone Validate
 function validatePhone(value: string) {
   value = value?.trim()
 
-  if (!value)
-    return `${props.placeholder} is required`;
+  if (!value) return `${props.placeholder} is required`
 
-  if (!value.match(/^\d{10}$/g))
-    return "Enter a valid Phone Number"
+  if (!value.match(/^\d{10}$/g)) return 'Enter a valid Phone Number'
 
-  return true;
+  return true
 }
 
 // Email validate
 function validateEmail(value: string) {
   value = value?.trim()
 
-  if (!value)
-    return true;
+  if (!value) return true
 
-  if (!value.toLowerCase()
-    .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
-    return "Enter a valid Email Address"
+  if (!value.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
+    return 'Enter a valid Email Address'
 
-  return true;
+  return true
 }
 
 // Pincode validate
 function validatePincode(value: string) {
   value = value?.trim()
 
-  if (!value)
-    return `${props.placeholder} is required`;
+  if (!value) return `${props.placeholder} is required`
 
-  if (!value.match(/^[1-9][0-9]{5}$/g))
-    return "Enter a valid Pincode"
+  if (!value.match(/^[1-9][0-9]{5}$/g)) return 'Enter a valid Pincode'
 
-  return true;
+  return true
 }
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 w-full">
-    <div
-      class="flex gap-2 outline-2 outline-primary-500 focus-within:outline rounded-xl p-2 w-full h-11 bg-light-400 dark:bg-dark-600 text-sm">
+  <div class="flex w-full flex-col gap-2">
+    <div class="flex h-11 w-full gap-2 rounded-xl bg-light-400 p-2 text-sm outline-2 outline-primary-500 focus-within:outline dark:bg-dark-600">
       <!-- <NuxtIcon v-if="!!icon" :name="icon" class="text-[28px] text-light-500" /> -->
-      <input type="text" :name="name" :placeholder="placeholder" v-model="value" :disabled="isDisabled"
-        class="px-2 w-full bg-transparent outline-none" v-bind="$attrs">
+      <input v-model="value" type="text" :name="name" :placeholder="placeholder" :disabled="isDisabled" class="w-full bg-transparent px-2 outline-none" v-bind="$attrs" />
     </div>
-    <span v-show="errors.length" class="text-alert-500 text-xs font-semi-bold">{{ errors[0] }}</span>
+    <span v-show="errors.length" class="text-xs font-semi-bold text-alert-500">{{ errors[0] }}</span>
   </div>
 </template>

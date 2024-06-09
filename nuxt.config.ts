@@ -2,26 +2,29 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
+    '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/image',
     '@nuxt/test-utils',
     '@nuxtjs/color-mode',
     '@nuxtjs/seo',
     '@nuxtjs/tailwindcss',
+    // '@nuxtjs/turnstile',
     '@vite-pwa/nuxt',
     '@vue-email/nuxt',
     '@vueuse/nuxt',
     'nuxt-gtag',
     'nuxt-icons',
+    'nuxt-splide',
   ],
+  nitro: {
+    compressPublicAssets: true,
+  },
   routeRules: {
     '/': { swr: true },
     '/_ipx/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/images/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/fonts/**': { headers: { 'cache-control': 'max-age=31536000' } },
-  },
-  nitro: {
-    compressPublicAssets: true,
   },
   runtimeConfig: {
     private: {
@@ -37,7 +40,7 @@ export default defineNuxtConfig({
   },
   image: {
     format: ['avif', 'webp'],
-    width: 1024,
+    width: 1920,
     quality: 80,
   },
   colorMode: {
@@ -226,10 +229,13 @@ export default defineNuxtConfig({
     },
   },
   vueEmail: {
-    baseUrl: 'https://shirsendu-bairagi.dev/images/',
+    baseUrl: 'https://shirsendu-bairagi.dev/',
     autoImport: true,
   },
   gtag: {
     id: 'G-ZMR7H4LPSK',
+  },
+  splide: {
+    theme: 'core',
   },
 })
