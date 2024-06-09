@@ -1,0 +1,16 @@
+name: Nuxt Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Release
+        uses: softprops/action-gh-release@v2

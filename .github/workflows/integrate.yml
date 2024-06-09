@@ -3,7 +3,7 @@ name: Nuxt CI
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   build:
@@ -21,11 +21,17 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      # - name: Run Tests
+      # run: npm test
+
+      # - name: Lint Code
+      #   run: npm run link:fix
+
+      # - name: Format Code
+      #   run: npm run format
+
       - name: Bulid Artifacts
         run: npm run build
-
-      # - name: Run Tests
-      #   run: npm test
 
       - name: Create Release Pull Request
         uses: changesets/action@v1

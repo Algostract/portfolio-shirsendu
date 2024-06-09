@@ -1,15 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    'components/**/*.{vue,js,ts}',
-    'layouts/**/*.vue',
-    'pages/**/*.vue',
-    'App.{js,ts,vue}',
-    'app.{js,ts,vue}',
-    'Error.{js,ts,vue}',
-    'error.{js,ts,vue}',
-    'content/**/*.md'
-  ],
+  content: ['components/**/*.{vue,js,ts}', 'layouts/**/*.vue', 'pages/**/*.vue', 'App.{js,ts,vue}', 'app.{js,ts,vue}', 'Error.{js,ts,vue}', 'error.{js,ts,vue}', 'content/**/*.md'],
   darkMode: 'class',
   theme: {
     fontSize: {
@@ -66,7 +57,7 @@ module.exports = {
         400: '#F24067',
         500: '#E11D48',
         600: '#C02650',
-      }
+      },
     },
     extend: {
       animation: {
@@ -76,11 +67,9 @@ module.exports = {
         'gradient-rotate': {
           '0%': { '--gradient-angle': '360deg' },
           '100%': { '--gradient-angle': '0deg' },
-        }
-      }
-    }
+        },
+      },
+    },
   },
   plugins: [],
-
 }
-

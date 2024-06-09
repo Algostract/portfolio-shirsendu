@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { type Options, Splide, SplideTrack, SplideSlide } from '@splidejs/vue-splide';
-import { Grid } from '@splidejs/splide-extension-grid';
+// import { type NuxtConfig } from 'nuxt-splide'
+/* import {
+  type Options,
+  Splide,
+  SplideTrack,
+  SplideSlide,
+} from '@splidejs/vue-splide'; */
+import { Grid } from '@splidejs/splide-extension-grid'
 
-const splideOption: Options = {
+const splideOption = {
   pagination: false,
   arrows: true,
   gap: '1rem',
@@ -36,13 +42,13 @@ const splideOption: Options = {
           col: '2rem',
         },
       },
-    }
-  }
+    },
+  },
 }
 
-const { data, pending, error } = await useFetch("/api/project")
+const { data } = await useFetch('/api/project')
 
-const projects = computed(() => data.value?.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()))
+const projects = computed(() => data.value?.toSorted((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()))
 </script>
 
 <template>
@@ -50,22 +56,27 @@ const projects = computed(() => data.value?.sort((a, b) => new Date(b.updatedAt)
     <h3 class="mx-auto w-fit text-lg">All Projects</h3>
     <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" :extensions="{ Grid }">
       <SplideTrack class="py-2">
-        <SplideSlide
-          v-for="{ name, description, version, stars, forks, createdAt, updatedAt, technologies, repoURL, appURL, videoURL } in projects"
-          :key="name">
+        <SplideSlide v-for="{ name, description, version, stars, forks, createdAt, updatedAt, technologies, repoURL, appURL, videoURL } in projects" :key="name">
           <!-- <div class="w-96 aspect-video bg-primary-400" /> -->
-          <ProjectCard :name="name" :description="description" :version="version" :stars="stars" :forks="forks"
-            :createdAt="createdAt" :updatedAt="updatedAt" :technologies="technologies" :repoURL="(repoURL as string)"
-            :appURL="appURL" :videoURL="videoURL" />
+          <ProjectCard
+            :name="name"
+            :description="description"
+            :version="version"
+            :stars="stars"
+            :forks="forks"
+            :created-at="createdAt"
+            :updated-at="updatedAt"
+            :technologies="technologies"
+            :repo-url="repoURL as string"
+            :app-url="appURL"
+            :video-url="videoURL" />
         </SplideSlide>
       </SplideTrack>
-      <div class="splide__arrows absolute top-1/2 -left-8 -right-8 -translate-y-1/2 flex justify-between text-black">
-        <button
-          class="splide__arrow splide__arrow--prev rounded-full px-3 pl-5 sm:pl-3 py-2 bg-primary-500 hover:bg-primary-400 disabled:opacity-0 duration-300 ease-out">
+      <div class="splide__arrows absolute -left-8 -right-8 top-1/2 flex -translate-y-1/2 justify-between text-black">
+        <button class="splide__arrow splide__arrow--prev rounded-full bg-primary-500 px-3 py-2 pl-5 duration-300 ease-out hover:bg-primary-400 disabled:opacity-0 sm:pl-3">
           <NuxtIcon name="chevron-bold" class="text-[24px]" />
         </button>
-        <button
-          class="splide__arrow splide__arrow--next scale-[-1] rounded-full px-3 pl-5 sm:pl-3 py-2 bg-primary-500 hover:bg-primary-400 disabled:opacity-0 duration-300 ease-out">
+        <button class="splide__arrow splide__arrow--next scale-[-1] rounded-full bg-primary-500 px-3 py-2 pl-5 duration-300 ease-out hover:bg-primary-400 disabled:opacity-0 sm:pl-3">
           <NuxtIcon name="chevron-bold" class="text-[24px]" />
         </button>
       </div>

@@ -37,7 +37,7 @@
 
 - name: Psy
   repo: shba007/psy-app # shba007/psy-omr
-  category: "web-app"
+  category: 'web-app'
   technologies:
     languages:
       - typescript
@@ -46,9 +46,9 @@
       - nuxt
       - fastapi
       - tailwindcss
-  createdAt: "2021-07-20T18:30:00.000Z"
-  appURL: "https://psy.monalisa-bairagi.com"
-  videoURL: "https://youtu.be/Tu60B-gheNM"
+  createdAt: '2021-07-20T18:30:00.000Z'
+  appURL: 'https://psy.monalisa-bairagi.com'
+  videoURL: 'https://youtu.be/Tu60B-gheNM'
 
 # - name: BloodLink
 #   repo: shba007/blood-link
@@ -78,7 +78,7 @@
 
 - name: Biosense
   repo: shba007/biosense-web # shba007/biosense-ai shba007/biosense-iot
-  category: "iot"
+  category: 'iot'
   technologies:
     languages:
       - typescript
@@ -87,9 +87,9 @@
       - nextjs
       - tensorflow
       - tailwindcss
-  createdAt: "2022-08-02T18:30:00Z"
-  appURL: "https://biosense.onrender.com"
-  videoURL: "https://youtu.be/Y8hROrtp948"
+  createdAt: '2022-08-02T18:30:00Z'
+  appURL: 'https://biosense.onrender.com'
+  videoURL: 'https://youtu.be/Y8hROrtp948'
 
 # - name: Podcast
 #   repo: shba007/ui-react-podcast
@@ -106,15 +106,15 @@
 
 - name: Shirsendu's Portfolio
   repo: shba007/portfolio-shirsendu
-  category: "web-app"
+  category: 'web-app'
   technologies:
     languages:
       - typescript
     frameworks:
       - nuxt
       - tailwindcss
-  createdAt: "2023-07-09T18:30:00Z"
-  appURL: "https://shirsendu-bairagi.dev/"
+  createdAt: '2023-07-09T18:30:00Z'
+  appURL: 'https://shirsendu-bairagi.dev/'
   videoURL: null
 
 # - name: Compeer
@@ -142,45 +142,44 @@
 
 - name: Magma
   repo: shba007/ui-react-magma
-  category: "ui"
+  category: 'ui'
   technologies:
     languages:
       - typescript
     frameworks:
       - react
       - tailwindcss
-  createdAt: "2023-07-16T18:30:00Z"
-  appURL: "https://shba007.github.io/ui-react-magma/"
+  createdAt: '2023-07-16T18:30:00Z'
+  appURL: 'https://shba007.github.io/ui-react-magma/'
   videoURL: null
 
 - name: AI Guide
   repo: shba007/ai-guide
-  category: "blog"
+  category: 'blog'
   technologies:
     languages:
       - typescript
     frameworks:
       - astro
       - tailwindcss
-  createdAt: "2023-07-26T06:57:32Z"
-  appURL: "https://ai-guide.shirsendu-bairagi.dev"
+  createdAt: '2023-07-26T06:57:32Z'
+  appURL: 'https://ai-guide.shirsendu-bairagi.dev'
   videoURL: null
 
 - name: Framework Logo
   repo: shba007/framework-logo
-  category: "npm-package"
+  category: 'npm-package'
   technologies:
     languages:
       - typescript
-    frameworks:
-      []
-  createdAt: "2023-09-11T18:30:00Z"
-  appURL: "https://www.npmjs.com/package/framework-logo/"
+    frameworks: []
+  createdAt: '2023-09-11T18:30:00Z'
+  appURL: 'https://www.npmjs.com/package/framework-logo/'
   videoURL: null
 
 - name: Plant Lens
   repo: shba007/plant-lens-web # shba007/plant-lens-ai
-  category: "web-app"
+  category: 'web-app'
   technologies:
     languages:
       - typescript
@@ -188,36 +187,35 @@
       - vue
       - tailwindcss
       - tensorflowjs
-  createdAt: "2023-11-19T18:30:00Z"
-  appURL: "https://plant-lens.onrender.com/"
-  videoURL: "https://youtu.be/EAEfdlfqXQA"
+  createdAt: '2023-11-19T18:30:00Z'
+  appURL: 'https://plant-lens.onrender.com/'
+  videoURL: 'https://youtu.be/EAEfdlfqXQA'
 
 - name: Monalisa's Portfolio
   repo: shba007/portfolio-monalisa
-  category: "web-app"
+  category: 'web-app'
   technologies:
     languages:
       - typescript
     frameworks:
       - nuxt
       - tailwindcss
-  createdAt: "2023-11-22T18:30:00Z"
-  appURL: "https://monalisa-bairagi.com/"
-  videoURL: null
-  
-- name: Aratrik's Portfolio
-  repo: shba007/portfolio-aratrik
-  category: "web-app"
-  technologies:
-    languages:
-      - typescript
-    frameworks:
-      - nuxt
-      - tailwindcss
-  createdAt: "2023-11-24T18:30:00Z"
-  appURL: "https://redcatpictures.com/"
+  createdAt: '2023-11-22T18:30:00Z'
+  appURL: 'https://monalisa-bairagi.com/'
   videoURL: null
 
+- name: Aratrik's Portfolio
+  repo: shba007/portfolio-aratrik
+  category: 'web-app'
+  technologies:
+    languages:
+      - typescript
+    frameworks:
+      - nuxt
+      - tailwindcss
+  createdAt: '2023-11-24T18:30:00Z'
+  appURL: 'https://redcatpictures.com/'
+  videoURL: null
 # - name: HomelyBite
 #   repo: shba007/homelybite
 #   category: "web-app"

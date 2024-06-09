@@ -3,6 +3,7 @@
 <p>
 
 # Portfolio Shirsendu
+
 > Shirsendu's devfolio showcasing his projects, experience and certification in a visually appealing manner
 
 <p align="center">
@@ -13,13 +14,12 @@
 
 ![Landing](public/previews/landing.webp)
 
-
 # TODO
 
-Angular Icon is Missing
+- Angular Icon is Missing
 
-[x] Setup Eslint
-[ ] Configure Eslint
-[ ] Setup Prettier
-[ ] Setup Eslint-Prettier
-[ ] Setup Tailiwind-Prettier
+- [x] Setup Eslint
+- [ ] Configure Eslint
+- [ ] Setup Prettier
+- [ ] Setup Eslint-Prettier
+- [ ] Setup Tailiwind-Prettier

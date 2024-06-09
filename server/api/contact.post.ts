@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
   },
 })
 
-export default defineEventHandler<Promise<{ user: boolean, admin: boolean }>>(async (event) => {
+export default defineEventHandler<Promise<{ user: boolean; admin: boolean }>>(async (event) => {
   try {
     const body = await readBody<TransactionalEmail>(event)
     const [firstName, ...restName] = body.name.split(' ')
@@ -55,10 +55,12 @@ export default defineEventHandler<Promise<{ user: boolean, admin: boolean }>>(as
     })
 
     return { user: true, admin: true }
-  }
-  catch (error: any) {
+  } catch (error: any) {
     console.error('API contact POST', error)
 
-    throw createError({ statusCode: 500, statusMessage: 'Some Unknown Error Found' })
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Some Unknown Error Found',
+    })
   }
 })
