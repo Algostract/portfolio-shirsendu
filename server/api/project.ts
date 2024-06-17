@@ -24,13 +24,19 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
             const { repo: details } = await ofetch(`/repos/${repo}`, {
               baseURL: 'https://ungh.cc',
             })
-            info = { ...info, details }
-
+            info = { details }
+          } catch (error) {
+            console.error(error)
+            info = { details: { description: null, stars: 0, forks: 0, pushedAt: createdAt } }
+          }
+          try {
             const { release } = await ofetch(`/repos/${repo}/releases/latest`, { baseURL: 'https://ungh.cc' })
             info = { ...info, release }
           } catch (error) {
+            info = { ...info, release: { tag: 'v0.0.0', updatedAt: createdAt } }
             console.error(error)
           }
+
           const { details, release } = info
           const { frameworks, languages } = technologies
 
@@ -38,11 +44,11 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
             name,
             repo,
             description: details.description,
-            version: release?.tag ?? 'v0.0.0',
+            version: release.tag,
             stars: details.stars,
             forks: details.forks,
             createdAt,
-            updatedAt: release?.updatedAt ?? details.pushedAt,
+            updatedAt: release.updatedAt,
             technologies: [...frameworks, ...languages] as Technologies[],
             repoURL: `https://github.com/${repo}`,
             appURL,

@@ -1,10 +1,4 @@
 <script setup lang="ts">
-/* import {
-  type Options,
-  Splide,
-  SplideSlide,
-  SplideTrack,
-} from '@splidejs/vue-splide'; */
 import type { Technologies } from '~/utils/models'
 // import { Project } from 'utils/models';
 
@@ -45,7 +39,7 @@ const createdAtFormatted = useDateFormat(props.createdAt, 'MMM D, YYYY')
 const splideOption = {
   type: 'loop',
   arrows: false,
-  autoplay: true,
+  autoplay: false,
   cover: true,
   heightRatio: 0.56,
 }
@@ -128,15 +122,15 @@ function onTry() {
           <div class="scrollbar-hidden col-span-full mt-1 flex w-4/5 gap-2 overflow-x-scroll p-0.5">
             <TechBadge v-for="tech in technologies" :key="tech" :tech="tech" />
           </div>
-          <NuxtLink
-            v-if="appUrl !== null"
-            :to="appUrl"
-            target="_blank"
-            class="absolute bottom-0 right-0 cursor-pointer rounded-tl-[1.25rem] bg-primary-500 px-6 py-2 text-xs text-white transition-colors hover:bg-primary-400"
-            @click="onTry">
-            Try Now
-          </NuxtLink>
         </div>
+        <NuxtLink
+          v-if="appUrl !== null"
+          :to="appUrl"
+          target="_blank"
+          class="absolute bottom-0 right-0 cursor-pointer rounded-tl-[1.25rem] bg-primary-500 px-6 py-2 text-xs text-white transition-colors hover:bg-primary-400"
+          @click="onTry">
+          Try Now
+        </NuxtLink>
       </div>
     </div>
   </div>
