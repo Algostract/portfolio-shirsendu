@@ -16,10 +16,8 @@
 
 # TODO
 
-- Angular Icon is Missing
-
 - [x] Setup Eslint
 - [ ] Configure Eslint
-- [ ] Setup Prettier
+- [x] Setup Prettier
 - [ ] Setup Eslint-Prettier
-- [ ] Setup Tailiwind-Prettier
+- [x] Setup Tailiwind-Prettier
