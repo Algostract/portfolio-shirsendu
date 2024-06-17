@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.10.1
+
+### Patch Changes
+
+- 88d0d52: fix: repo not found handling added
+
 ## 1.10.0
 
 ### Minor Changes
