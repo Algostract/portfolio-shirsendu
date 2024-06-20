@@ -2,7 +2,6 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { parseYAML } from 'confbox'
 
-import { ofetch } from 'ofetch'
 import type { BaseProject, Project, Technologies } from '~~/utils/models'
 
 const config = useRuntimeConfig()
@@ -11,6 +10,33 @@ const filePath = path.join(process.cwd(), config.private.rootDir, 'projects.yml'
 const fileContents = fs.readFileSync(filePath, 'utf8')
 const projects = parseYAML<BaseProject[]>(fileContents)
 
+interface GithubDetailsResponse {
+  id: number
+  name: string
+  repo: string
+  description: string
+  createdAt: Date
+  updatedAt: Date
+  pushedAt: Date
+  stars: number
+  watchers: number
+  forks: number
+  defaultBranch: 'main'
+}
+
+interface GithubReleaseResponse {
+  id: number
+  tag: string
+  author: string
+  name: string
+  draft: boolean
+  prerelease: boolean
+  createdAt: string
+  publishedAt: string
+  markdown: string
+  html: string
+}
+
 export default defineEventHandler<Promise<Project[]>>(async (_event) => {
   try {
     const repos = (
@@ -18,37 +44,35 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
         projects.map(async ({ name, repo, createdAt, technologies, appURL, videoURL }): Promise<Project | null> => {
           if (repo == null) return null
 
-          let info: any
+          let details: GithubDetailsResponse | null = null
+          let release: GithubReleaseResponse | null = null
 
           try {
-            const { repo: details } = await ofetch(`/repos/${repo}`, {
-              baseURL: 'https://ungh.cc',
-            })
-            info = { details }
+            const [detailsResponse, releaseResponse] = await Promise.all([
+              $fetch<{ repo: GithubDetailsResponse }>(`/repos/${repo}`, {
+                baseURL: 'https://ungh.cc',
+              }),
+              $fetch<{ release: GithubReleaseResponse }>(`/repos/${repo}/releases/latest`, {
+                baseURL: 'https://ungh.cc',
+              }),
+            ])
+            details = detailsResponse.repo
+            release = releaseResponse.release
           } catch (error) {
-            console.error(error)
-            info = { details: { description: null, stars: 0, forks: 0, pushedAt: createdAt } }
-          }
-          try {
-            const { release } = await ofetch(`/repos/${repo}/releases/latest`, { baseURL: 'https://ungh.cc' })
-            info = { ...info, release }
-          } catch (error) {
-            info = { ...info, release: { tag: 'v0.0.0', updatedAt: createdAt } }
-            console.error(error)
+            console.warn(error)
           }
 
-          const { details, release } = info
           const { frameworks, languages } = technologies
 
           return {
             name,
             repo,
-            description: details.description,
-            version: release.tag,
-            stars: details.stars,
-            forks: details.forks,
+            description: details?.description ?? '',
+            version: release?.tag ?? 'v0.0.0',
+            stars: details?.stars ?? 0,
+            forks: details?.forks ?? 0,
             createdAt,
-            updatedAt: release.updatedAt,
+            updatedAt: details?.updatedAt ?? createdAt,
             technologies: [...frameworks, ...languages] as Technologies[],
             repoURL: `https://github.com/${repo}`,
             appURL,

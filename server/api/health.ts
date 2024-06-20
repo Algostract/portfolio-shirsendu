@@ -1,6 +1,6 @@
 export default defineEventHandler<{ status: string }>(() => {
-  // const config = useRuntimeConfig()
+  const config = useRuntimeConfig().app
   // console.log({ config })
 
-  return { status: 'OK' }
+  return { status: 'OK', ...config }
 })

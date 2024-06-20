@@ -20,7 +20,9 @@
     "preview": "nuxt preview",
     "start": "node .output/server/index.mjs",
     "tunnel": "npx untun tunnel --port 3000",
-    "clean": "nuxt cleanup"
+    "clean": "nuxt cleanup",
+    "docker:build": "docker build -t portfolio-shirsendu .",
+    "docker:start": "docker run --env-file .env.prod -p 3000:3000 portfolio-shirsendu"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15",

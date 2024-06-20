@@ -7,7 +7,7 @@ export interface BaseProject {
     languages: string[]
     frameworks: string[]
   }
-  createdAt: string
+  createdAt: Date
   appURL: string | null
   videoURL: string | null
 }
@@ -18,6 +18,6 @@ export interface Project extends Omit<BaseProject, 'technologies'> {
   stars: number
   forks: number
   technologies: Technologies[]
-  updatedAt: string
+  updatedAt: Date
   repoURL: string | null
 }

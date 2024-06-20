@@ -27,13 +27,14 @@ export default defineNuxtConfig({
     '/fonts/**': { headers: { 'cache-control': 'max-age=31536000' } },
   },
   runtimeConfig: {
+    app: {
+      version: '',
+    },
     private: {
       rootDir: '',
       gmail: '',
       emailUsername: '',
       emailPassword: '',
-      supabaseUrl: '',
-      supabaseKey: '',
       notionKey: '',
       notionDBId: '',
     },
