@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Body, Container, Font, Head, Html, Preview, Tailwind } from '@vue-email/components'
+
 defineProps<{
   name: string
   email: string
@@ -13,10 +15,11 @@ const tailwindConfig = {
 </script>
 
 <template>
-  <ETailwind :config="tailwindConfig">
-    <EHtml lang="en">
-      <EHead>
-        <EFont
+  <Preview>Email Preview Text</Preview>
+  <Tailwind :config="tailwindConfig">
+    <Html lang="en">
+      <Head>
+        <Font
           font-family="Exo 2"
           fallback-font-family="Verdana"
           :web-font="{
@@ -25,14 +28,14 @@ const tailwindConfig = {
           }"
           :font-weight="400"
           font-style="normal" />
-      </EHead>
-      <EPreview>Email Preview Text</EPreview>
-      <EBody>
-        <EContainer>
+      </Head>
+
+      <Body>
+        <Container>
           From {{ name }} ({{ email }})<br /><br />
           Message {{ message }}, <br /><br />
-        </EContainer>
-      </EBody>
-    </EHtml>
-  </ETailwind>
+        </Container>
+      </Body>
+    </Html>
+  </Tailwind>
 </template>

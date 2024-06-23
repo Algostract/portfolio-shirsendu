@@ -47,20 +47,18 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
           let details: GithubDetailsResponse | null = null
           let release: GithubReleaseResponse | null = null
 
-          try {
-            const [detailsResponse, releaseResponse] = await Promise.all([
-              $fetch<{ repo: GithubDetailsResponse }>(`/repos/${repo}`, {
-                baseURL: 'https://ungh.cc',
-              }),
-              $fetch<{ release: GithubReleaseResponse }>(`/repos/${repo}/releases/latest`, {
-                baseURL: 'https://ungh.cc',
-              }),
-            ])
-            details = detailsResponse.repo
-            release = releaseResponse.release
-          } catch (error) {
-            console.warn(error)
-          }
+          const [detailsResponse, releaseResponse] = await Promise.allSettled([
+            $fetch<{ repo: GithubDetailsResponse }>(`/repos/${repo}`, {
+              baseURL: 'https://ungh.cc',
+            }),
+            $fetch<{ release: GithubReleaseResponse }>(`/repos/${repo}/releases/latest`, {
+              baseURL: 'https://ungh.cc',
+            }),
+          ])
+
+          if (detailsResponse.status === 'fulfilled') details = detailsResponse.value.repo
+
+          if (releaseResponse.status === 'fulfilled') release = releaseResponse.value.release
 
           const { frameworks, languages } = technologies
 

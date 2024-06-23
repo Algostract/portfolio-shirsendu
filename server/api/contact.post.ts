@@ -1,5 +1,8 @@
 import nodemailer from 'nodemailer'
-import { useCompiler } from '#vue-email'
+import { render } from '@vue-email/render'
+// import { UserTemplate, AdminTemplate } from "~/emails";
+import UserTemplate from '~/emails/UserTemplate.vue'
+import AdminTemplate from '~/emails/AdminTemplate.vue'
 
 interface TransactionalEmail {
   name: string
@@ -28,30 +31,28 @@ export default defineEventHandler<Promise<{ user: boolean; admin: boolean }>>(as
     const config = useRuntimeConfig()
 
     // Mail Send to User
-    const userTemplate = await useCompiler('UserTemplate.vue', {
-      props: {
-        firstName,
-        lastName,
-      },
+    const userTemplate = await render(UserTemplate, {
+      firstName,
+      lastName,
     })
 
     await transporter.sendMail({
       from: `"Shirsendu Bairagi" <${config.private.emailUsername}>`,
       to: body.email,
       subject: 'Shirsendu Got your Email',
-      html: userTemplate.html,
+      html: userTemplate,
     })
 
     // Mail Send to Admin
-    const adminTemplate = await useCompiler('AdminTemplate.vue', {
-      props: { ...body },
+    const adminTemplate = await render(AdminTemplate, {
+      ...body,
     })
 
     await transporter.sendMail({
       from: `"${body.name}" <${body.email}>`,
       to: config.private.gmail,
       subject: `Devfolio Mail from ${body.name}`,
-      html: adminTemplate.html,
+      html: adminTemplate,
     })
 
     return { user: true, admin: true }

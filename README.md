@@ -13,11 +13,3 @@
 </p>
 
 ![Landing](public/previews/landing.webp)
-
-# TODO
-
-- [x] Setup Eslint
-- [ ] Configure Eslint
-- [x] Setup Prettier
-- [ ] Setup Eslint-Prettier
-- [x] Setup Tailiwind-Prettier

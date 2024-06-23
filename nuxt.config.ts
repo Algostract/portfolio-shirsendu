@@ -1,3 +1,5 @@
+import vue from '@vitejs/plugin-vue'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -11,7 +13,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     // '@nuxtjs/turnstile',
     '@vite-pwa/nuxt',
-    '@vue-email/nuxt',
     '@vueuse/nuxt',
     'nuxt-gtag',
     'nuxt-icons',
@@ -19,6 +20,9 @@ export default defineNuxtConfig({
   ],
   nitro: {
     compressPublicAssets: true,
+    rollupConfig: {
+      plugins: [vue()],
+    },
   },
   routeRules: {
     '/': { swr: true },
@@ -67,7 +71,7 @@ export default defineNuxtConfig({
           name: 'Contact Me',
           short_name: 'Contact',
           description: 'Contact with me via mail',
-          url: 'https://shirsendu-bairagi.dev?contact',
+          url: '/?contact',
           icons: [
             {
               src: '/pwa/email.png',
@@ -228,10 +232,6 @@ export default defineNuxtConfig({
       navigateFallbackAllowlist: [/^\/$/],
       type: 'module',
     },
-  },
-  vueEmail: {
-    baseUrl: 'https://shirsendu-bairagi.dev/',
-    autoImport: true,
   },
   gtag: {
     id: 'G-ZMR7H4LPSK',
