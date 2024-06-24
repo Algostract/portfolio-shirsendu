@@ -81,7 +81,7 @@ function onTry() {
           <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="h-full w-full" @splide:pagination:updated="onPaginationUpdate">
             <SplideTrack>
               <SplideSlide v-for="image in [1, 2, 3]" :key="image">
-                <NuxtImg :src="`/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" :width="480" :height="270" loading="lazy" class="h-full w-full" />
+                <NuxtImg :src="`/static/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" :width="480" :height="270" loading="lazy" class="h-full w-full" />
               </SplideSlide>
             </SplideTrack>
             <!-- <div

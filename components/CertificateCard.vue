@@ -33,7 +33,7 @@ const emit = defineEmits<{
       <div class="absolute bottom-2 right-2 flex gap-2">
         <NuxtLink
           aria-label="certificate"
-          :to="`/certificates/${name}.pdf`"
+          :to="`/static/certificates/${name}.pdf`"
           target="_blank"
           class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-1 transition-colors hover:!bg-primary-500 hover:text-white dark:bg-dark-600">
           <NuxtIcon name="certificate" class="text-[16px]" />
@@ -44,7 +44,7 @@ const emit = defineEmits<{
       </div>
     </div>
     <div class="aspect-[3/2] w-[18rem] overflow-hidden rounded-xl bg-light-500 dark:bg-dark-500 md:w-[28rem]">
-      <NuxtImg :src="`/certificates/${name}.webp`" :alt="name" loading="lazy" class="h-full w-full scale-100 object-cover transition-transform hover:scale-110" />
+      <NuxtImg :src="`/static/certificates/${name}.webp`" :alt="name" loading="lazy" class="h-full w-full scale-100 object-cover transition-transform hover:scale-110" />
     </div>
   </div>
 </template>

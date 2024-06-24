@@ -25,7 +25,7 @@ function capitalize(str: string) {
     </div>
     <NuxtLink :aria-label="company" :to="`https://www.linkedin.com/company/${company}`" target="_blank">
       <NuxtImg
-        :src="`/companies/${company}.jpg`"
+        :src="`/static/companies/${company}.jpg`"
         :alt="company"
         loading="lazy"
         class="absolute top-1/2 aspect-square w-20 -translate-y-1/2 rounded-full object-contain"
