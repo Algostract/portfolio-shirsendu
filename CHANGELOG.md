@@ -1,5 +1,15 @@
 # portfolio-shirsendu
 
+## 1.11.0
+
+### Minor Changes
+
+- 33ed767: refactor: vue-email upgraded and housekeeping
+
+### Patch Changes
+
+- 87194ad: fix: project api invalid date fixed
+
 ## 1.10.1
 
 ### Patch Changes
