@@ -67,7 +67,7 @@ jobs:
           path: /tmp
 
       - name: Rename
-        run: mv /tmp/artifact.tar /tmp/${{ github.repository }}.tar
+        run: mv /tmp/artifact.tar /tmp/portfolio-shirsendu.tar
 
       - name: Upload artifact to VPS
         uses: appleboy/scp-action@v0.1.7
@@ -76,7 +76,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          source: /tmp/${{ github.repository }}.tar
+          source: /tmp/portfolio-shirsendu.tar
           target: ~/
           overwrite: true
           # rm: true
@@ -89,8 +89,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            docker stop ${{ github.repository }} || true
-            docker rm ${{ github.repository }} || true
-            docker load --input ~/${{ github.repository }}.tar
+            docker stop portfolio-shirsendu || true
+            docker rm portfolio-shirsendu || true
+            docker load --input ~/portfolio-shirsendu.tar
             docker image ls -a 
-            docker run -d -p 1000:3000 --name ${{ github.repository }} ghcr.io/${{ github.repository }}:latest
+            docker run -p 1000:3000 portfolio-shirsendu:latest
