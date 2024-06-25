@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.11.1
+
+### Patch Changes
+
+- 527488d: ci/cd: deploy script updated for docker
+
 ## 1.11.0
 
 ### Minor Changes
