@@ -32,7 +32,7 @@ jobs:
       - name: Build and Export
         uses: docker/build-push-action@v6
         with:
-          tags: '${{ env.REPO_NAME }}:${{ env.NEW_TAG }}'
+          tags: ghcr.io/${{ env.REPO_NAME }}:${{ env.NEW_TAG }}
           build-args: TAG=${{ env.NEW_TAG }}
           push: true
 
