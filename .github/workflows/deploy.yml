@@ -1,17 +1,16 @@
 name: Nuxt CD
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+  release:
+    types: [published]
 
   workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
-  REPO_NAME: ${{ github.repository }}
-  OLD_TAG: ${{ github.event.before }}
+  REPO_NAME: ${{ github.event.repository.name }}
+  OLD_TAG: ${{ github.event.release.tag_name }}
   NEW_TAG: ${{ github.ref_name }}
   IN_PORT: 1000
   OUT_PORT: 3000
