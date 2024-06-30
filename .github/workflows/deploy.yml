@@ -32,10 +32,9 @@ jobs:
       - name: Build and Export
         uses: docker/build-push-action@v6
         with:
-          context: .
-          push: true
-          tags: 'algostract/${{ env.REPO_NAME }}:${{ env.NEW_TAG }}'
+          tags: '${{ env.REPO_NAME }}:${{ env.NEW_TAG }}'
           build-args: TAG=${{ env.NEW_TAG }}
+          push: true
 
       # - name: Upload artifact to VPS
       #   uses: appleboy/scp-action@v0.1.7
