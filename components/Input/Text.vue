@@ -10,7 +10,7 @@ const props = withDefaults(
     value?: string | number
     isDisabled?: boolean
   }>(),
-  { isDisabled: false }
+  { isDisabled: false, icon: undefined, value: undefined }
 )
 
 const { value, errors } = useField(props.name, validateFn)

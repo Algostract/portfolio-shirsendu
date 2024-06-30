@@ -1,7 +1,5 @@
 FROM node:lts-alpine as builder
 
-# ENV NODE_ENV=production
-
 WORKDIR /app
 
 COPY package.json package-lock.json ./
@@ -9,6 +7,8 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
+ENV NODE_ENV=production
 
 RUN npm run build
 
@@ -21,6 +21,7 @@ WORKDIR /app
 COPY --from=builder /app/.output ./.output
 COPY --from=builder /app/*.yml ./
 
+ENV NODE_ENV=production
 ENV NUXT_APP_VERSION=$TAG
 
 EXPOSE 3000

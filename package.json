@@ -2,7 +2,7 @@
   "name": "portfolio-shirsendu",
   "description": "Shirsendu's devfolio showcasing his projects, experience and certification in a visually appealing manner",
   "author": "Shirsendu Bairagi <shirsendu2001@gmail.com>",
-  "version": "1.11.1",
+  "version": "1.11.2",
   "private": true,
   "type": "module",
   "engines": {
@@ -19,7 +19,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "start": "node .output/server/index.mjs",
-    "tunnel": "npx untun tunnel --port 3000",
+    "tunnel": "npx untun tunnel --port 3000  http://localhost:3000",
     "clean": "nuxt cleanup",
     "docker:build": "docker build --build-arg TAG=latest -t portfolio-shirsendu:latest .",
     "docker:start": "docker run --env-file .env.prod -p 1000:3000 portfolio-shirsendu:latest"

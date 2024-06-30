@@ -62,6 +62,7 @@ useSchemaOrg([
 
 <template>
   <NuxtPwaManifest />
+  <NuxtPwaAssets />
   <!-- <NuxtLoadingIndicator /> -->
   <NuxtLayout>
     <NuxtPage />
@@ -78,7 +79,7 @@ useSchemaOrg([
 }
 
 *::-webkit-scrollbar {
-  @apply block w-[6px] bg-light-400 dark:bg-dark-400;
+  @apply block size-[6px] bg-light-400 dark:bg-dark-400;
 }
 
 *::-webkit-scrollbar-thumb {

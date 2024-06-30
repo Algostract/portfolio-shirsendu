@@ -6,12 +6,13 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
+    // '@nuxt/icon',
     '@nuxt/image',
+    // '@nuxt/scripts',
     '@nuxt/test-utils',
     '@nuxtjs/color-mode',
     '@nuxtjs/seo',
     '@nuxtjs/tailwindcss',
-    // '@nuxtjs/turnstile',
     '@vite-pwa/nuxt',
     '@vueuse/nuxt',
     'nuxt-gtag',
@@ -43,6 +44,14 @@ export default defineNuxtConfig({
       notionDBId: '',
     },
   },
+  /*  icon: {
+     customCollections: [
+       {
+         prefix: 'icons',
+         dir: './assets/icons',
+       },
+     ],
+   }, */
   image: {
     format: ['avif', 'webp'],
     width: 1920,
@@ -58,6 +67,9 @@ export default defineNuxtConfig({
     url: 'https://shirsendu-bairagi.dev',
   },
   pwa: {
+    scope: '/',
+    base: '/',
+    injectRegister: 'auto',
     registerType: 'autoUpdate',
     manifest: {
       name: 'Shirsendu Bairagi',
@@ -220,17 +232,24 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
-      globPatterns: ['**/*.{js,css,html,jpg,png,webp,svg,ico}'],
+      globPatterns: ['**/*.{html,css,js,jpg,png,svg,webp,ico}'],
+      runtimeCaching: [
+        {
+          urlPattern: '/',
+          handler: 'NetworkFirst',
+        },
+      ],
+      navigateFallback: undefined,
     },
     client: {
       installPrompt: true,
       periodicSyncForUpdates: 3600,
     },
     devOptions: {
+      type: 'module',
       enabled: false,
       suppressWarnings: false,
-      navigateFallbackAllowlist: [/^\/$/],
-      type: 'module',
+      navigateFallback: undefined,
     },
   },
   gtag: {

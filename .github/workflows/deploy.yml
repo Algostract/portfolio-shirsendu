@@ -1,15 +1,20 @@
 name: Nuxt CD
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*.*.*'
 
   workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
-  NITRO_PRESET: ${{ vars.NITRO_PRESET }}
+  REPO_NAME: ${{ github.repository }}
+  OLD_TAG: ${{ github.event.before }}
+  NEW_TAG: ${{ github.ref_name }}
+  IN_PORT: 1000
+  OUT_PORT: 3000
 
 jobs:
   build:
@@ -25,49 +30,12 @@ jobs:
       #     username: ${{ github.actor }}
       #     password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and Export
         uses: docker/build-push-action@v6
         with:
-          tags: ${{ github.repository }}:latest
+          build-args: TAG=${{ env.NEW_TAG }}
+          tags: '${{ env.REPO_NAME }}:${{ env.NEW_TAG }}'
           outputs: type=docker,dest=/tmp/artifact.tar
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact
-          path: /tmp/artifact.tar
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-24.04
-    steps:
-      # - name: Login to GHCR
-      #   uses: docker/login-action@v3
-      #   with:
-      #     registry: ghcr.io
-      #     username: ${{ github.actor }}
-      #     password: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Deploy to VPS
-      #   uses: appleboy/ssh-action@v1.0.3
-      #   with:
-      #     host: ${{ secrets.HOST }}
-      #     username: ${{ secrets.USERNAME }}
-      #     password: ${{ secrets.PASSWORD }}
-      #     script: |
-      #       docker stop ${{ github.repository }} || true
-      #       docker rm ${{ github.repository }} || true
-      #       docker pull ghcr.io/${{ github.actor }}/${{ github.repository }}:latest
-      #       docker run -d -p 1000:3000 --name ${{ github.repository }} ghcr.io/${{ github.repository }}:latest
-
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: artifact
-          path: /tmp
-
-      - name: Rename
-        run: mv /tmp/artifact.tar /tmp/portfolio-shirsendu.tar
 
       - name: Upload artifact to VPS
         uses: appleboy/scp-action@v0.1.7
@@ -76,12 +44,17 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          source: /tmp/portfolio-shirsendu.tar
-          target: ~/
+          source: /tmp/artifact.tar
+          target: ~/${{ env.REPO_NAME }}
           overwrite: true
           # rm: true
           # strip_components: 1
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      #    docker pull ghcr.io/${{ github.actor }}/${{ github.repository }}:latest
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -89,8 +62,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            docker stop portfolio-shirsendu || true
-            docker rm portfolio-shirsendu || true
-            docker load --input ~/portfolio-shirsendu.tar
-            docker image ls -a 
-            docker run -p 1000:3000 portfolio-shirsendu:latest
+            docker stop ${{ env.REPO_NAME }}-${{ env.OLD_TAG }}
+            docker rm ${{ env.REPO_NAME }}-${{ env.OLD_TAG }}
+            docker rmi ${{ env.REPO_NAME }}:${{ env.OLD_TAG }}
+            docker load --input ~/${{ env.REPO_NAME }}/artifact.tar
+            docker run --name ${{ env.REPO_NAME }}-${{ env.NEW_TAG }} --env-file .env.prod -p ${{ env.IN_PORT }}:${{ env.OUT_PORT }} -d ${{ env.REPO_NAME }}:${{ env.NEW_TAG }}
