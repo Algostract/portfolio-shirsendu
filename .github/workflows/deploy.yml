@@ -1,8 +1,10 @@
 name: Nuxt CD
 
 on:
+  workflow_dispatch:
   push:
-    branches: ['release']
+    tags:
+      - 'v*.*.*'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
