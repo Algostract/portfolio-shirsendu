@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.11.3
+
+### Patch Changes
+
+- 2746875: fix: pwa caching issue fixed, ci/cd pipeline updated
+
 ## 1.11.1
 
 ### Patch Changes
