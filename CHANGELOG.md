@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.11.2
+
+### Patch Changes
+
+- b9b10e6: fix: try button glitch fixed, some housekeeping
+
 ## 1.11.1
 
 ### Patch Changes
