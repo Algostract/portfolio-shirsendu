@@ -15,7 +15,7 @@ function onContact(action: boolean) {
 <template>
   <div>
     <AppHeader />
-    <main class="relative mx-auto flex max-w-[85rem] flex-col gap-8 p-4 !pb-0 md:p-8">
+    <main class="relative mx-auto flex max-w-[85rem] flex-col gap-8 p-4 pb-0 md:p-8">
       <SectionHero @contact="onContact(true)" />
       <SectionProject />
       <SectionHackathon />

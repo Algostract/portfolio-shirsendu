@@ -2,17 +2,26 @@
 - name: 'Bay Area Hacks 1'
   url: 'https://bay-area-hacks-1.devpost.com'
   project: 'Compeer'
-  title: 'Top 10'
+  position: 'Top 10'
   startedAt: '2023-06-18T00:00:00Z'
+  image:
+    id: 2fca77b7-6d7d-4a38-846f-fe4f4b2d3295
+    title: Bay Area Hacks 1 Hackathon
 
 - name: 'GNEC Hackathon 2023'
   url: 'https://gnec-hackathon-2023.devpost.com'
   project: 'Biosense'
-  title: 'Winner'
+  position: 'Winner'
   startedAt: '2023-07-23T16:00:00Z'
+  image:
+    id: 6cffaf5c-1dd6-43b8-a044-e5c88936df5e
+    title: GNEC Hackathon 2023 Hackathon
 
 - name: 'Solo Hacks 1.0'
   url: 'https://solo-hacks-1-0.devpost.com'
   project: 'Plant Lens'
-  title: 'Top 15'
+  position: 'Top 15'
   startedAt: '2023-12-18T14:00:00.000Z'
+  image:
+    id: 8bb5b2f7-8f4e-418b-8f0a-68875fed641f
+    title: Solo Hacks 1.0 Hackathon

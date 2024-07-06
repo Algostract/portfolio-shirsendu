@@ -1,12 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { parseYAML } from 'confbox'
-
-export interface Certificate {
-  name: string
-  link: string
-  date: string
-}
+import type { Certificate } from '~/utils/types'
 
 const config = useRuntimeConfig()
 

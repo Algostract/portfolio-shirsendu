@@ -55,20 +55,20 @@ jobs:
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
 
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-24.04
-  #   steps:
-  #     #    docker pull ghcr.io/${{ github.actor }}/${{ github.repository }}:latest
-  #     - name: Deploy to VPS
-  #       uses: appleboy/ssh-action@v1.0.3
-  #       with:
-  #         host: ${{ secrets.HOST }}
-  #         username: ${{ secrets.USERNAME }}
-  #         password: ${{ secrets.PASSWORD }}
-  #         script: |
-  #           docker stop ${{ env.REPO_NAME }}-${{ env.OLD_TAG }}
-  #           docker rm ${{ env.REPO_NAME }}-${{ env.OLD_TAG }}
-  #           docker rmi ${{ env.REPO_NAME }}:${{ env.OLD_TAG }}
-  #           docker load --input ~/${{ env.REPO_NAME }}/artifact.tar
-  #           docker run --name ${{ env.REPO_NAME }}-${{ env.NEW_TAG }} --env-file .env.prod -p ${{ env.IN_PORT }}:${{ env.OUT_PORT }} -d ${{ env.REPO_NAME }}:${{ env.NEW_TAG }}
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      #    docker pull ghcr.io/${{ github.actor }}/${{ github.repository }}:latest
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            docker stop ${{ env.REPO_NAME }}-${{ env.OLD_TAG }}
+            docker rm ${{ env.REPO_NAME }}-${{ env.OLD_TAG }}
+            docker rmi ${{ env.REPO_NAME }}:${{ env.OLD_TAG }}
+            docker load --input ~/${{ env.REPO_NAME }}/artifact.tar
+            docker run --name ${{ env.REPO_NAME }}-${{ env.NEW_TAG }} --env-file .env.prod -p ${{ env.IN_PORT }}:${{ env.OUT_PORT }} -d ${{ env.REPO_NAME }}:${{ env.NEW_TAG }}

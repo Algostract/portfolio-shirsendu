@@ -1,8 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { parseYAML } from 'confbox'
-
-import type { BaseProject, Project, Technologies } from '~~/utils/models'
+import type { BaseProject, GithubDetailsResponse, GithubReleaseResponse, Project, Technologies } from '~~/utils/types'
 
 const config = useRuntimeConfig()
 
@@ -10,38 +9,11 @@ const filePath = path.join(process.cwd(), config.private.rootDir, 'projects.yml'
 const fileContents = fs.readFileSync(filePath, 'utf8')
 const projects = parseYAML<BaseProject[]>(fileContents)
 
-interface GithubDetailsResponse {
-  id: number
-  name: string
-  repo: string
-  description: string
-  createdAt: Date
-  updatedAt: Date
-  pushedAt: Date
-  stars: number
-  watchers: number
-  forks: number
-  defaultBranch: 'main'
-}
-
-interface GithubReleaseResponse {
-  id: number
-  tag: string
-  author: string
-  name: string
-  draft: boolean
-  prerelease: boolean
-  createdAt: string
-  publishedAt: string
-  markdown: string
-  html: string
-}
-
 export default defineEventHandler<Promise<Project[]>>(async (_event) => {
   try {
     const repos = (
       await Promise.all(
-        projects.map(async ({ name, repo, createdAt, technologies, appURL, videoURL }): Promise<Project | null> => {
+        projects.map(async ({ name, repo, createdAt, technologies, appURL, videoURL, images }): Promise<Project | null> => {
           if (repo == null) return null
 
           let details: GithubDetailsResponse | null = null
@@ -62,6 +34,8 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
 
           const { frameworks, languages } = technologies
 
+          console.log('images', images ?? [])
+
           return {
             name,
             repo,
@@ -75,6 +49,7 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
             repoURL: `https://github.com/${repo}`,
             appURL,
             videoURL,
+            images: images ?? [],
           }
         })
       )

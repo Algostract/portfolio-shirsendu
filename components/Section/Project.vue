@@ -56,7 +56,7 @@ const projects = computed(() => data.value?.toSorted((a, b) => new Date(b.update
     <h3 class="mx-auto w-fit text-lg">All Projects</h3>
     <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" :extensions="{ Grid }">
       <SplideTrack class="py-2">
-        <SplideSlide v-for="{ name, description, version, stars, forks, createdAt, updatedAt, technologies, repoURL, appURL, videoURL } in projects" :key="name">
+        <SplideSlide v-for="{ name, description, version, stars, forks, createdAt, updatedAt, technologies, repoURL, appURL, videoURL, images } in projects" :key="name">
           <!-- <div class="w-96 aspect-video bg-primary-400" /> -->
           <ProjectCard
             :name="name"
@@ -67,9 +67,10 @@ const projects = computed(() => data.value?.toSorted((a, b) => new Date(b.update
             :created-at="createdAt"
             :updated-at="updatedAt"
             :technologies="technologies"
-            :repo-url="repoURL as string"
+            :repo-url="repoURL"
             :app-url="appURL"
-            :video-url="videoURL" />
+            :video-url="videoURL"
+            :images="images" />
         </SplideSlide>
       </SplideTrack>
       <div class="splide__arrows absolute -left-8 -right-8 top-1/2 flex -translate-y-1/2 justify-between text-black">

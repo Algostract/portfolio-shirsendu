@@ -1,14 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { parseYAML } from 'confbox'
-
-export interface Hackathon {
-  name: string
-  url: string
-  project: string
-  title: string
-  startedAt: string
-}
+import type { Hackathon } from '~/utils/types'
 
 const config = useRuntimeConfig()
 

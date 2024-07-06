@@ -35,8 +35,8 @@
 #   appURL: null
 #   videoURL: null
 
-- name: Psy
-  repo: shba007/psy-app # shba007/psy-omr
+- name: Unpsy
+  repo: shba007/unpsy-app # shba007/psy-omr
   category: 'web-app'
   technologies:
     languages:
@@ -47,8 +47,17 @@
       - fastapi
       - tailwindcss
   createdAt: '2021-07-20T18:30:00.000Z'
-  appURL: 'https://psy.monalisa-bairagi.com'
+  appURL: 'https://unpsy.monalisa-bairagi.com'
   videoURL: 'https://youtu.be/Tu60B-gheNM'
+  images:
+    - id: baaf3035-3f75-4759-9072-eb5ca865b0de
+      title: Unpsy Screenshot 1
+
+    - id: 27723f41-31fa-4e62-b69f-529aadf32721
+      title: Unpsy Screenshot 2
+
+    - id: ac90c5e5-81fb-4f66-b304-2cab11fb8140
+      title: Unpsy Screenshot 3
 
 # - name: BloodLink
 #   repo: shba007/blood-link
@@ -90,6 +99,15 @@
   createdAt: '2022-08-02T18:30:00Z'
   appURL: 'https://biosense.onrender.com'
   videoURL: 'https://youtu.be/Y8hROrtp948'
+  images:
+    - id: baee7615-e6bb-4a94-a9b0-32167e42bf5c
+      title: Biosense Screenshot 1
+
+    - id: 05d040d2-7ac3-4e27-9bec-6e41b3723f26
+      title: Biosense Screenshot 2
+
+    - id: d9febbb2-84f2-467d-ad8b-17df2c25a30c
+      title: Biosense Screenshot 3
 
 # - name: Podcast
 #   repo: shba007/ui-react-podcast
@@ -116,6 +134,15 @@
   createdAt: '2023-07-09T18:30:00Z'
   appURL: 'https://shirsendu-bairagi.dev/'
   videoURL: null
+  images:
+    - id: da26ee05-7d79-4a31-ab38-109466823969
+      title: Shirsendu's Portfolio Screenshot 1
+
+    - id: 74a6a354-4a26-4e31-99a9-300714e4bc18
+      title: Shirsendu's Portfolio Screenshot 2
+
+    - id: d6e52cbd-f0d8-427a-9fbd-7ac0cd355c3e
+      title: Shirsendu's Portfolio Screenshot 3
 
 # - name: Compeer
 #   repo: shba007/com-peer
@@ -152,6 +179,15 @@
   createdAt: '2023-07-16T18:30:00Z'
   appURL: 'https://shba007.github.io/ui-react-magma/'
   videoURL: null
+  images:
+    - id: 94ca8b01-4819-4110-94d9-608c917e0dcc
+      title: Magma Screenshot 1
+
+    - id: 01a21789-34ae-4fb3-a3f9-b4b7040327a3
+      title: Magma Screenshot 2
+
+    - id: fe7855af-6def-4893-b935-db724306ab59
+      title: Magma Screenshot 3
 
 - name: AI Guide
   repo: shba007/ai-guide
@@ -165,6 +201,15 @@
   createdAt: '2023-07-26T06:57:32Z'
   appURL: 'https://ai-guide.shirsendu-bairagi.dev'
   videoURL: null
+  images:
+    - id: d0892d9f-7d75-4fa6-af4d-92e4f17ef9c9
+      title: AI Guide Screenshot 1
+
+    - id: 01e4f1c4-1a00-4b5d-a7b5-1dc9085e096b
+      title: AI Guide Screenshot 2
+
+    - id: d8f402bc-23fd-4db3-842d-844df885cbab
+      title: AI Guide Screenshot 3
 
 - name: Framework Logo
   repo: shba007/framework-logo
@@ -176,6 +221,15 @@
   createdAt: '2023-09-11T18:30:00Z'
   appURL: 'https://www.npmjs.com/package/framework-logo/'
   videoURL: null
+  images:
+    - id: d55143bb-022f-48f2-97c4-abd7ab4cb229
+      title: Framework Logo Screenshot 1
+
+    - id: 890114e4-0eae-4cb7-bd97-8e4760d7dcb1
+      title: Framework Logo Screenshot 2
+
+    - id: 18ff828b-6857-4cc6-9ac6-fd6df839da02
+      title: Framework Logo Screenshot 3
 
 - name: Plant Lens
   repo: shba007/plant-lens-web # shba007/plant-lens-ai
@@ -190,6 +244,15 @@
   createdAt: '2023-11-19T18:30:00Z'
   appURL: 'https://plant-lens.onrender.com/'
   videoURL: 'https://youtu.be/EAEfdlfqXQA'
+  images:
+    - id: 00ae07e6-9b2b-42bd-88a2-747e3a8e840b
+      title: Plant Lens Screenshot 1
+
+    - id: eedd17bf-8c58-4ee3-bcff-77fbe35eb9f0
+      title: Plant Lens Screenshot 2
+
+    - id: e110e44d-cc59-4708-a6b5-9f45e6536b14
+      title: Plant Lens Screenshot 3
 
 - name: Monalisa's Portfolio
   repo: shba007/portfolio-monalisa
@@ -203,6 +266,15 @@
   createdAt: '2023-11-22T18:30:00Z'
   appURL: 'https://monalisa-bairagi.com/'
   videoURL: null
+  images:
+    - id: db83e278-2954-46fa-bd02-0fe55d39ce12
+      title: Monalisa's Portfolio Screenshot 1
+
+    - id: 23f968ae-ba63-4e5a-97e0-3b785ca65e94
+      title: Monalisa's Portfolio Screenshot 2
+
+    - id: 243c668d-aea0-475c-959e-c59a1c973423
+      title: Monalisa's Portfolio Screenshot 3
 
 - name: Aratrik's Portfolio
   repo: shba007/portfolio-aratrik
@@ -216,6 +288,19 @@
   createdAt: '2023-11-24T18:30:00Z'
   appURL: 'https://redcatpictures.com/'
   videoURL: null
+  images:
+    - id: 38aab059-6fa2-43b2-a315-e470f3e78266
+      title: Aratrik's Portfolio Screenshot 1
+
+    - id: 8244a9ac-544b-4d8b-a106-6e778091899e
+      title: Aratrik's Portfolio Screenshot 2
+
+    - id: 2b92a094-dd6b-4787-9ee2-91897482be5e
+      title: Aratrik's Portfolio Screenshot 3
+
+    - id: 2b92a094-dd6b-4787-9ee2-91897482be5e
+      title: Aratrik's Portfolio Screenshot 4
+
 # - name: HomelyBite
 #   repo: shba007/homelybite
 #   category: "web-app"
@@ -228,3 +313,17 @@
 #   createdAt: "2024-03-13T18:30:00Z"
 #   appURL: null
 #   videoURL: null
+
+- name: Magic Portfolio
+  repo: shba007/magic-portfolio
+  category: 'ui'
+  technologies:
+    languages:
+      - typescript
+    frameworks:
+      - nextjs
+      - tailwindcss
+  createdAt: '2024-05-22T18:30:00Z'
+  appURL: 'https://magic-portfolio.vercel.app'
+  videoURL: null
+  images: null

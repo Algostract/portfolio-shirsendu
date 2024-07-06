@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
@@ -19,18 +20,21 @@ export default defineNuxtConfig({
     'nuxt-icons',
     'nuxt-splide',
   ],
+
   nitro: {
     compressPublicAssets: true,
     rollupConfig: {
       plugins: [vue()],
     },
   },
+
   routeRules: {
     '/': { swr: true },
     '/_ipx/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/images/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/fonts/**': { headers: { 'cache-control': 'max-age=31536000' } },
   },
+
   runtimeConfig: {
     app: {
       version: '',
@@ -44,6 +48,7 @@ export default defineNuxtConfig({
       notionDBId: '',
     },
   },
+
   /*  icon: {
      customCollections: [
        {
@@ -53,19 +58,24 @@ export default defineNuxtConfig({
      ],
    }, */
   image: {
-    format: ['avif', 'webp'],
-    width: 1920,
-    quality: 80,
+    uploadcare: {
+      cdnURL: 'https://ucarecdn.com',
+      quality: 'smart',
+      format: 'auto',
+    },
   },
+
   colorMode: {
     preference: 'system',
     fallback: 'light',
     classSuffix: '',
   },
+
   site: {
     name: 'Shirsendu Bairagi',
     url: 'https://shirsendu-bairagi.dev',
   },
+
   pwa: {
     scope: '/',
     base: '/',
@@ -252,10 +262,14 @@ export default defineNuxtConfig({
       navigateFallback: undefined,
     },
   },
+
   gtag: {
     id: 'G-ZMR7H4LPSK',
   },
+
   splide: {
     theme: 'core',
   },
+
+  compatibilityDate: '2024-07-04',
 })

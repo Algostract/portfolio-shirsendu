@@ -1,11 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { parseYAML } from 'confbox'
-
-export interface Experience {
-  company: string
-  date: string
-}
+import type { Experience } from '~/utils/types'
 
 const config = useRuntimeConfig()
 

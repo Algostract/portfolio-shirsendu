@@ -1,10 +1,13 @@
 <script setup lang="ts">
-const { name, active = false } = defineProps<{
+import type { Certificate } from '~/utils/types'
+
+interface Extension extends Certificate {
   active?: boolean
-  name: string
-  link: string
-  date: string
-}>()
+}
+
+withDefaults(defineProps<Extension>(), {
+  active: false,
+})
 
 const emit = defineEmits<{
   (event: 'slide', dir: 'left' | 'right'): void
@@ -20,12 +23,15 @@ const emit = defineEmits<{
     }">
     <div v-if="active" class="absolute bottom-0 left-0 right-0 top-0 z-10">
       <div class="absolute left-1/2 top-1/2 flex w-[110%] -translate-x-1/2 -translate-y-1/2 justify-between">
-        <button aria-label="left" class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-2 transition-colors hover:!bg-primary-500 hover:text-white dark:bg-dark-600" @click="emit('slide', 'left')">
+        <button
+          aria-label="left"
+          class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-2 transition-colors hover:bg-primary-500 hover:text-white dark:bg-dark-600 dark:hover:bg-primary-500"
+          @click="emit('slide', 'left')">
           <NuxtIcon name="chevron-bold" class="text-[16px]" />
         </button>
         <button
           aria-label="right"
-          class="h-fit w-fit rotate-180 rounded-2xl bg-light-600 px-3 py-2 transition-colors hover:!bg-primary-500 hover:text-white dark:bg-dark-600"
+          class="h-fit w-fit rotate-180 rounded-2xl bg-light-600 px-3 py-2 transition-colors hover:bg-primary-500 hover:text-white dark:bg-dark-600 dark:hover:bg-primary-500"
           @click="emit('slide', 'right')">
           <NuxtIcon name="chevron-bold" class="text-[16px]" />
         </button>
@@ -35,16 +41,20 @@ const emit = defineEmits<{
           aria-label="certificate"
           :to="`/static/certificates/${name}.pdf`"
           target="_blank"
-          class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-1 transition-colors hover:!bg-primary-500 hover:text-white dark:bg-dark-600">
+          class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-1 transition-colors hover:bg-primary-500 hover:text-white dark:bg-dark-600 dark:hover:bg-primary-500">
           <NuxtIcon name="certificate" class="text-[16px]" />
         </NuxtLink>
-        <NuxtLink aria-label="link" :to="link" target="_blank" class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-1 transition-colors hover:!bg-primary-500 hover:text-white dark:bg-dark-600">
+        <NuxtLink
+          aria-label="link"
+          :to="link"
+          target="_blank"
+          class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-1 transition-colors hover:bg-primary-500 hover:text-white dark:bg-dark-600 dark:hover:bg-primary-500">
           <NuxtIcon name="web" class="text-[16px]" />
         </NuxtLink>
       </div>
     </div>
     <div class="aspect-[3/2] w-[18rem] overflow-hidden rounded-xl bg-light-500 dark:bg-dark-500 md:w-[28rem]">
-      <NuxtImg :src="`/static/certificates/${name}.webp`" :alt="name" loading="lazy" class="h-full w-full scale-100 object-cover transition-transform hover:scale-110" />
+      <NuxtImg provider="uploadcare" :src="image.id" :alt="image.title" loading="lazy" class="h-full w-full scale-100 object-cover transition-transform hover:scale-110" />
     </div>
   </div>
 </template>

@@ -1,9 +1,27 @@
 ---
-- company: 'nextdoor-kitchens'
-  date: '2022'
+- company: 'Nextdoor Kitchens'
+  date:
+    start: '2022'
+    end: ''
+  position: 'Junior React Developer'
+  image:
+    id: 2ce12db6-9b0c-480d-a3e2-2f124266d3a1
+    title: Nextdoor Kitchens Logo
 
-- company: 'xatalyst-labs'
-  date: '2023'
+- company: 'Xatalyst Labs'
+  date:
+    start: '2023'
+    end: ''
+  position: 'Junior React/React Native Developer'
+  image:
+    id: 7719da0e-ec79-4081-b99e-ba164822bb73
+    title: Xatalyst Labs Logo
 
-- company: 'web-spiders'
-  date: '2024'
+- company: 'Web Spiders'
+  date:
+    start: '2024-05-07'
+    end: ''
+  position: 'Associate Frontend Developer'
+  image:
+    id: 06cacc23-a279-4bd2-b3b1-543b8c9afe94
+    title: Web Spiders Logo

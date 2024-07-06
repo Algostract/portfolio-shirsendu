@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import type { Technologies } from '~/utils/models'
-// import { Project } from 'utils/models';
-
 interface Project {
   name: string
   description: string
@@ -11,9 +8,10 @@ interface Project {
   createdAt: Date | string
   updatedAt: Date | string
   technologies: Technologies[]
-  repoUrl: string
+  repoUrl: string | null
   appUrl: string | null
   videoUrl: string | null
+  images: Image[]
 }
 
 const props = defineProps<Project>()
@@ -39,7 +37,7 @@ const createdAtFormatted = useDateFormat(props.createdAt, 'MMM D, YYYY')
 const splideOption = {
   type: 'loop',
   arrows: false,
-  autoplay: false,
+  autoplay: true,
   cover: true,
   heightRatio: 0.56,
 }
@@ -74,14 +72,14 @@ function onTry() {
         class="content relative flex aspect-[1.215/1] w-full flex-col gap-[10px] overflow-hidden rounded-bl-[0.5rem] rounded-br-[2.25rem] rounded-tl-[2.25rem] rounded-tr-[0.5rem] bg-light-500 p-[10px] dark:bg-dark-600">
         <div class="relative aspect-video w-full overflow-hidden rounded-[20px] bg-light-600 dark:bg-dark-400">
           <ul class="absolute right-[0.875rem] top-0 z-20 flex gap-1">
-            <li v-for="track in [1, 2, 3]" :key="track" class="cursor-pointer" @click="splide.go(track - 1)">
-              <NuxtIcon name="pagination-track" class="text-[28px] text-light-500 transition-colors dark:text-dark-600" :class="{ '!text-primary-400': currentPage === track - 1 }" />
+            <li v-for="track in range(images.length)" :key="track" class="cursor-pointer" @click="splide.go(track - 1)">
+              <NuxtIcon name="pagination-track" class="text-[28px] transition-colors" :class="currentPage === track - 1 ? 'text-primary-400' : 'text-light-500 dark:text-dark-600'" />
             </li>
           </ul>
           <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="h-full w-full" @splide:pagination:updated="onPaginationUpdate">
             <SplideTrack>
-              <SplideSlide v-for="image in [1, 2, 3]" :key="image">
-                <NuxtImg :src="`/static/projects/${name}/${image}.webp`" :alt="`${name}-${image}`" :width="480" :height="270" loading="lazy" class="h-full w-full" />
+              <SplideSlide v-for="{ id, title } in images" :key="id">
+                <NuxtImg provider="uploadcare" :src="id" :alt="title" :width="480" :height="270" loading="lazy" class="h-full w-full" />
               </SplideSlide>
             </SplideTrack>
             <!-- <div
@@ -95,6 +93,7 @@ function onTry() {
             </div> -->
           </Splide>
           <NuxtLink
+            v-if="repoUrl"
             :to="repoUrl"
             target="_blank"
             class="absolute bottom-2 left-2 z-20 flex items-center gap-1 rounded-full bg-light-500 py-1 pl-1.5 pr-2 outline-primary-400 transition-colors duration-150 ease-in hover:bg-light-400 hover:outline dark:bg-dark-600 dark:hover:bg-dark-500">
@@ -127,7 +126,7 @@ function onTry() {
           v-if="appUrl !== null"
           :to="appUrl"
           target="_blank"
-          class="absolute bottom-0 right-0 cursor-pointer rounded-tl-[1.25rem] bg-primary-500 px-6 py-2 text-xs text-white transition-colors hover:bg-primary-400"
+          class="absolute bottom-0 right-0 z-10 inline-block cursor-pointer rounded-tl-[1.25rem] bg-primary-500 px-6 py-2 text-xs text-white transition-colors hover:bg-primary-400"
           @click="onTry">
           Try Now
         </NuxtLink>

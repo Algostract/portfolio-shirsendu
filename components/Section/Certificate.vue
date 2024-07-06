@@ -21,13 +21,14 @@ function onHandleSlide(dir: 'left' | 'right') {
   <section id="certificate" class="relative left-1/2 flex w-screen -translate-x-1/2 flex-col gap-8 overflow-x-hidden">
     <h3 class="mx-auto mb-8 w-fit text-lg">All Certificates</h3>
     <div class="relative flex justify-center py-4">
-      <template v-for="({ name, link, date }, index) in certificates" :key="name">
+      <template v-for="({ name, link, date, image }, index) in certificates" :key="name">
         <CertificateCard
           v-if="index >= activeIndex - 1 && index <= activeIndex + 1"
+          :active="index === activeIndex"
           :name="name"
           :link="link"
           :date="date"
-          :active="index === activeIndex"
+          :image="image"
           :class="{
             'md:translate-x-16': index === activeIndex - 1,
             'md:-translate-x-16': index === activeIndex + 1,

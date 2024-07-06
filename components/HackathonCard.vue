@@ -1,11 +1,17 @@
 <script setup lang="ts">
-defineProps<{
+interface Hackathon {
   name: string
   url: string
   project: string
-  title: string
+  position: string
   startedAt: string
-}>()
+  image: {
+    id: string
+    title: string
+  }
+}
+
+defineProps<Hackathon>()
 </script>
 
 <template>
@@ -14,8 +20,9 @@ defineProps<{
     target="_blank"
     class="grid-cols-[repeat(auto, 2)] grid aspect-[202/82] w-[256px] grid-rows-2 items-center justify-start gap-2 rounded-[0.875rem] bg-light-500 p-4 dark:bg-dark-500">
     <NuxtImg
-      :src="`/static/hackathons/${name}.webp`"
-      :alt="name"
+      provider="uploadcare"
+      :src="image.id"
+      :alt="image.title"
       loading="lazy"
       :width="96"
       :height="96"
@@ -24,7 +31,7 @@ defineProps<{
     <div class="col-start-2 self-start text-sm opacity-60">
       <span>{{ project }}</span>
       &bull;
-      <span>{{ title }}</span>
+      <span>{{ position }}</span>
     </div>
   </NuxtLink>
 </template>

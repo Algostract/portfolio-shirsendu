@@ -36,7 +36,7 @@ const experience = computed(() => {
         Crafting the Web,<br />
         Making the UX better
       </h1>
-      <h2 class="mx-auto w-fit max-w-[90%] text-center text-lg font-light !leading-relaxed opacity-80 sm:max-w-[80%] md:mx-0 md:max-w-[90%] md:text-left">
+      <h2 class="mx-auto w-fit max-w-[90%] text-center text-lg font-light leading-relaxed opacity-80 sm:max-w-[80%] md:mx-0 md:max-w-[90%] md:text-left">
         I'm Shirsendu Bairagi, a passionate {{ age }} old web developer, and AI enthusiast dedicated to crafting cutting-edge digital experiences.
       </h2>
       <CTAButton @click="emit('contact')" />

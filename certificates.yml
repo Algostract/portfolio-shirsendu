@@ -2,27 +2,48 @@
 - name: 'GNEC Hackathon 2023'
   link: 'https://devpost.com/software/biosense'
   date: '2023-08-06T00:00:00Z'
+  image:
+    id: 12f57d36-1f39-4558-8bf8-8e49ce507db3
+    title: GNEC Hackathon 2023 Certificate
 
 - name: 'Codedamn Hacktoberfest 2023'
   link: 'https://codedamn.com/certificate/verify/3449aedbb94f4cba48c8e712a012ddd45aed5e41'
   date: '2023-11-10T01:35:15Z'
+  image:
+    id: b226daf0-f46a-4f88-a56b-54a5f2005b64
+    title: Codedamn Hacktoberfest 2023 Certificate
 
 - name: 'Codedamn Learn HTML and CSS [2023 Ready]'
   link: 'https://codedamn.com/certificate/verify/5f0b4da2405105b0f3aa41d3e03020d412b31425'
   date: '2023-11-16T08:44:39Z'
+  image:
+    id: 0f6677b3-18c1-49ea-860d-c53633f3f1a6
+    title: Codedamn Learn HTML and CSS [2023 Ready] Certificate
 
 - name: 'Codedamn Learn JavaScript Basics'
   link: 'https://codedamn.com/certificate/verify/6aa2426bc365eafb1644ac918f9c16b54943ffd9'
   date: '2023-12-01T10:57:48Z'
+  image:
+    id: 6c3c4628-468e-4ccd-809c-f9ec54e26278
+    title: Codedamn Learn JavaScript Basics Certificate
 
 - name: 'Learn Tailwind CSS 3 - A utility-first CSS framework'
   link: 'https://codedamn.com/certificate/verify/491c6c55769e3cb1a5f2054700b27241f7754342'
   date: '2023-12-26T14:57:03Z'
+  image:
+    id: dc5bf1a8-d78a-493c-adb1-bbde5df039c3
+    title: Learn Tailwind CSS 3 - A utility-first CSS framework Certificate
 
 - name: '30 Days of React'
   link: 'https://codedamn.com/certificate/verify/64a9eb08274e4d7908c2d9e9690e0b7b9db9dc9b'
   date: '2024-01-25T12:35:08Z'
+  image:
+    id: a0e49c5f-aa83-46eb-9599-373df0555c26
+    title: 30 Days of React Certificate
 
 - name: '100 Days of Frontend'
   link: 'https://codedamn.com/certificate/verify/c24a3e00684337990d02f288b08d6909281b968f'
   date: '2024-04-22T14:49:30Z'
+  image:
+    id: af4a0dff-ead6-4ba0-a480-46d14f0e7fb3
+    title: 100 Days of Frontend Certificate
