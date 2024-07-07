@@ -1,25 +1,21 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
-
-interface TransactionalEmail {
-  name: string
-  email: string
-  message: string
-}
+import type { TransactionalEmail } from '~/utils/types'
 
 defineProps<{
   isOpen: boolean
 }>()
+
 const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
 const { handleSubmit } = useForm<TransactionalEmail>()
 
-const onSend = handleSubmit(async (values) => {
+const onSend = handleSubmit((values) => {
   useTrackEvent('contact')
 
-  await useFetch('/api/contact', {
+  $fetch('/api/contact', {
     method: 'POST',
     body: values,
   })

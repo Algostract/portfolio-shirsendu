@@ -13,7 +13,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref_name }}
 env:
   REPO: ${{ github.repository }}
   REGISTRY: ghcr.io
-  IMAGE_NAMES:
+  IMAGE_NAME:
   IMAGE_TITLE:
   BUILDTIME:
   VERSION:
@@ -49,7 +49,7 @@ jobs:
       - name: Set tags as environment variable
         run: |
           echo "Setting metadata to env variables"
-          echo "IMAGE_NAMES=${{ fromJSON(steps.meta.outputs.json).tags }}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=${{ fromJSON(steps.meta.outputs.json).tags[1] }}" >> $GITHUB_ENV
           echo "IMAGE_TITLE=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}" >> $GITHUB_ENV
           echo "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_ENV
           echo "VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_ENV
@@ -84,11 +84,11 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            docker ps -q --filter ancestor=${{ env.IMAGE_NAMES[1] }} | xargs -r docker stop
-            docker ps -a -q --filter ancestor=${{ env.IMAGE_NAMES[1] }} | xargs -r docker rm
-            docker rmi ${{ env.IMAGE_NAMES[1] }}
-            docker pull ${{ env.IMAGE_NAMES[0] }}
-            docker run --name ${{ env.IMAGE_TITLE }} --env-file  ~/${{ env.IMAGE_TITLE }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAMES[0] }}
+            docker ps -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker stop
+            docker ps -a -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker rm
+            docker rmi ${{ env.IMAGE_NAME }}
+            docker pull ${{ env.IMAGE_NAME }}
+            docker run --name ${{ env.IMAGE_TITLE }} --env-file  ~/${{ env.IMAGE_TITLE }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAME }}
 
   # deploy:
   #   needs: build
