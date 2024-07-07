@@ -72,11 +72,6 @@ jobs:
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-24.04
-
-    steps:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -89,3 +84,21 @@ jobs:
             docker rmi ${{ env.IMAGE_NAME }}
             docker pull ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
             docker run --name ${{ env.IMAGE_TITLE }} --env-file  ~/${{ env.IMAGE_TITLE }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-24.04
+
+  #   steps:
+  #     - name: Deploy to VPS
+  #       uses: appleboy/ssh-action@v1.0.3
+  #       with:
+  #         host: ${{ secrets.HOST }}
+  #         username: ${{ secrets.USERNAME }}
+  #         password: ${{ secrets.PASSWORD }}
+  #         script: |
+  #           docker ps -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker stop
+  #           docker ps -a -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker rm
+  #           docker rmi ${{ env.IMAGE_NAME }}
+  #           docker pull ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+  #           docker run --name ${{ env.IMAGE_TITLE }} --env-file  ~/${{ env.IMAGE_TITLE }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
