@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.11.4
+
+### Patch Changes
+
+- 8e677b8: fix: contact form stagnation fixed
+
 ## 1.11.3
 
 ### Patch Changes
