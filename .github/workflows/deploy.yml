@@ -47,12 +47,17 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.REPO }}
 
       - name: Set tags as environment variable
-        run: echo "Setting metadata to env variables"
-        env:
-          IMAGE_NAME: ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
-          IMAGE_TITLE: ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}
-          BUILDTIME: ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}
-          VERSION: ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
+        run: |
+          echo "Setting metadata to env variables"
+          echo "IMAGE_NAME=${{ fromJSON(steps.meta.outputs.json).tags[0] }}" >> $GITHUB_ENV
+          echo "IMAGE_TITLE=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}" >> $GITHUB_ENV
+          echo "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_ENV
+          echo "VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_ENV
+        # env:
+        #   IMAGE_NAME: ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
+        #   IMAGE_TITLE: ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}
+        #   BUILDTIME: ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}
+        #   VERSION: ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
 
       - name: Build and push Docker image
         id: push
