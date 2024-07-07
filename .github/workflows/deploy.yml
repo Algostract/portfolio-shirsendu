@@ -11,10 +11,11 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref_name }}
 
 env:
-  REPO_NAME: ${{ github.event.repository.name }}
   REGISTRY: ghcr.io
+  IMAGE_TITLE: ${{ github.event.repository.name }}
   IMAGE_NAME: ghcr.io/${{ github.repository }}
-  VERSION_TAG: ${{ github.ref_name }}
+  BUILDTIME:
+  VERSION: ${{ github.ref_name }}
   PORT: 1000
 
 jobs:
@@ -44,14 +45,22 @@ jobs:
         with:
           images: ${{ env.IMAGE_NAME }}
 
+      - name: Set tags as environment variable
+        run: |
+          echo "IMAGE_TITLE=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}" >> $GITHUB_ENV
+          echo "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_ENV
+          echo "VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_ENV
+
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@v4
         with:
           push: true
-          build-args: VERSION_TAG=${{ env.VERSION_TAG }}
-          tags: ${{ env.IMAGE_NAME }}:${{ env.VERSION_TAG }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BUILDTIME=${{ env.BUILDTIME }}
+            VERSION=${{ env.VERSION }}
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
@@ -75,5 +84,5 @@ jobs:
             docker ps -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker stop
             docker ps -a -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker rm
             docker rmi ${{ env.IMAGE_NAME }}
-            docker pull ${{ env.IMAGE_NAME }}:${{ env.VERSION_TAG }}
-            docker run --name ${{ env.REPO_NAME }} --env-file  ~/${{ env.REPO_NAME }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAME }}:${{ env.VERSION_TAG }}
+            docker pull ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+            docker run --name ${{ env.IMAGE_TITLE }} --env-file  ~/${{ env.IMAGE_TITLE }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
