@@ -1,9 +1,5 @@
 import { Client } from '@notionhq/client'
-
-interface Newsletter {
-  email: string
-  subscribed: boolean
-}
+import { Newsletter } from '~/utils/types'
 
 const config = useRuntimeConfig()
 const notion = new Client({

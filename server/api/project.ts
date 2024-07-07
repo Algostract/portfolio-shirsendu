@@ -1,13 +1,6 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import { parseYAML } from 'confbox'
 import type { BaseProject, GithubDetailsResponse, GithubReleaseResponse, Project, Technologies } from '~~/utils/types'
 
-const config = useRuntimeConfig()
-
-const filePath = path.join(process.cwd(), config.private.rootDir, 'projects.yml')
-const fileContents = fs.readFileSync(filePath, 'utf8')
-const projects = parseYAML<BaseProject[]>(fileContents)
+const projects = readYamlFile<BaseProject>('projects.yml')
 
 export default defineEventHandler<Promise<Project[]>>(async (_event) => {
   try {
@@ -33,8 +26,6 @@ export default defineEventHandler<Promise<Project[]>>(async (_event) => {
           if (releaseResponse.status === 'fulfilled') release = releaseResponse.value.release
 
           const { frameworks, languages } = technologies
-
-          console.log('images', images ?? [])
 
           return {
             name,

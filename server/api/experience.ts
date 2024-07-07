@@ -1,13 +1,6 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import { parseYAML } from 'confbox'
 import type { Experience } from '~/utils/types'
 
-const config = useRuntimeConfig()
-
-const filePath = path.join(process.cwd(), config.private.rootDir, 'experiences.yml')
-const fileContents = fs.readFileSync(filePath, 'utf8')
-const experiences = parseYAML<Experience[]>(fileContents)
+const experiences = readYamlFile<Experience>('experiences.yml')
 
 export default defineEventHandler<Experience[]>(() => {
   try {

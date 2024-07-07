@@ -89,3 +89,14 @@ export interface Certificate {
     title: string
   }
 }
+
+export interface TransactionalEmail {
+  name: string
+  email: string
+  message: string
+}
+
+export interface Newsletter {
+  email: string
+  subscribed: boolean
+}

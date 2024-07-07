@@ -1,13 +1,6 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import { parseYAML } from 'confbox'
 import type { Certificate } from '~/utils/types'
 
-const config = useRuntimeConfig()
-
-const filePath = path.join(process.cwd(), config.private.rootDir, 'certificates.yml')
-const fileContents = fs.readFileSync(filePath, 'utf8')
-const certificates = parseYAML<Certificate[]>(fileContents)
+const certificates = readYamlFile<Certificate>('certificates.yml')
 
 export default defineEventHandler<Certificate[]>(() => {
   try {

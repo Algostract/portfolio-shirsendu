@@ -21,7 +21,7 @@
     "start": "node .output/server/index.mjs",
     "tunnel": "npx untun tunnel --port 3000  http://localhost:3000",
     "clean": "nuxt cleanup",
-    "docker:build": "docker build --build-arg TAG=1.11.2 -t portfolio-shirsendu:1.11.2 .",
+    "docker:build": "docker build --build-arg VERSION_TAG=1.11.2 -t portfolio-shirsendu:v1.11.2 .",
     "docker:start": "docker run --env-file .env.prod -p 1000:3000 portfolio-shirsendu:latest"
   },
   "dependencies": {
@@ -32,7 +32,7 @@
     "@nuxtjs/seo": "^2.0.0-rc.11",
     "@nuxtjs/tailwindcss": "^6.12.0",
     "@splidejs/splide-extension-grid": "^0.4.1",
-    "@vite-pwa/nuxt": "^0.9.0",
+    "@vite-pwa/nuxt": "^0.9.1",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue-email/components": "^0.0.19",
     "@vue-email/render": "^0.0.9",
@@ -43,7 +43,7 @@
     "nuxt-gtag": "^2.0.6",
     "nuxt-icons": "^3.2.1",
     "nuxt-splide": "^1.1.1",
-    "vee-validate": "^4.13.1",
+    "vee-validate": "^4.13.2",
     "vue": "^3.4.31",
     "vue-router": "^4.4.0"
   },
@@ -51,7 +51,7 @@
     "@changesets/cli": "^2.27.7",
     "@nuxt/eslint": "^0.3.13",
     "@nuxt/test-utils": "^3.13.1",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.10",
     "@types/nodemailer": "^6.4.15",
     "eslint-config-prettier": "^9.1.0",
     "nuxt": "^3.12.3",

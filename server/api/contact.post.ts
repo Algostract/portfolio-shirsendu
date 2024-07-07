@@ -3,12 +3,7 @@ import { render } from '@vue-email/render'
 // import { UserTemplate, AdminTemplate } from "~/emails";
 import UserTemplate from '~/emails/UserTemplate.vue'
 import AdminTemplate from '~/emails/AdminTemplate.vue'
-
-interface TransactionalEmail {
-  name: string
-  email: string
-  message: string
-}
+import { TransactionalEmail } from '~/utils/types'
 
 const config = useRuntimeConfig()
 
