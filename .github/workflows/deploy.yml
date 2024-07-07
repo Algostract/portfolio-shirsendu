@@ -11,6 +11,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref_name }}
 
 env:
+  REPO: ${{ github.repository }}
   REGISTRY: ghcr.io
   IMAGE_TITLE: ${{ github.event.repository.name }}
   IMAGE_NAME: ghcr.io/${{ github.repository }}
@@ -66,7 +67,7 @@ jobs:
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ${{ steps.meta.outputs.tags }}
+          subject-name: ${{ env.REGISTRY }}/${{ env.REPO }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
 
