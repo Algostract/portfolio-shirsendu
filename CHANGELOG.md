@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.11.3
+
+### Patch Changes
+
+- 4672b80: fix: deploy script updated, some housekeeping
+
 ## 1.11.2
 
 ### Patch Changes
