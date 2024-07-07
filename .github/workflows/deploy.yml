@@ -1,18 +1,20 @@
 name: Nuxt CD
 
+run-name: ${{ github.ref_name }}
+
 on:
   workflow_dispatch:
   push:
     tags:
       - 'v*.*.*'
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency: ${{ github.workflow }}-${{ github.ref_name }}
 
 env:
   REPO_NAME: ${{ github.event.repository.name }}
   REGISTRY: ghcr.io
   IMAGE_NAME: ghcr.io/${{ github.repository }}
-  VERSION_TAG: ${{ github.ref }}
+  VERSION_TAG: ${{ github.ref_name }}
   PORT: 1000
 
 jobs:
