@@ -50,7 +50,7 @@ jobs:
         with:
           push: true
           build-args: VERSION_TAG=${{ env.VERSION_TAG }}
-          tags: ${{ env.IMAGE_NAME }}\:${{ env.VERSION_TAG }}
+          tags: ${{ env.IMAGE_NAME }}:${{ env.VERSION_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Generate artifact attestation
