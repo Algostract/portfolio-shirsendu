@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// import type { Project } from '~/utils/types'
+
 interface Project {
   name: string
   description: string
@@ -66,20 +68,24 @@ function onTry() {
     <AppRibbon :title="modifiedIn" class="absolute -left-[5px] top-4 z-10" />
     <div class="relative">
       <div class="absolute left-0 top-0 h-full w-full">
-        <div class="gradient-border gradient-border-dark overflow-hidden rounded-bl-[0.5rem] rounded-br-[2.25rem] rounded-tl-[2.25rem] rounded-tr-[0.5rem]" />
+        <div
+          class="gradient-border gradient-border-dark overflow-hidden rounded-bl-[0.5rem] rounded-br-[2.25rem] rounded-tl-[2.25rem] rounded-tr-[0.5rem]" />
       </div>
       <div
         class="content relative flex aspect-[1.215/1] w-full flex-col gap-[10px] overflow-hidden rounded-bl-[0.5rem] rounded-br-[2.25rem] rounded-tl-[2.25rem] rounded-tr-[0.5rem] bg-light-500 p-[10px] dark:bg-dark-600">
         <div class="relative aspect-video w-full overflow-hidden rounded-[20px] bg-light-600 dark:bg-dark-400">
           <ul class="absolute right-[0.875rem] top-0 z-20 flex gap-1">
             <li v-for="track in range(images.length)" :key="track" class="cursor-pointer" @click="splide.go(track - 1)">
-              <NuxtIcon name="pagination-track" class="text-[28px] transition-colors" :class="currentPage === track - 1 ? 'text-primary-400' : 'text-light-500 dark:text-dark-600'" />
+              <NuxtIcon name="pagination-track" class="text-[28px] transition-colors"
+                :class="currentPage === track - 1 ? 'text-primary-400' : 'text-light-500 dark:text-dark-600'" />
             </li>
           </ul>
-          <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="h-full w-full" @splide:pagination:updated="onPaginationUpdate">
+          <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="h-full w-full"
+            @splide:pagination:updated="onPaginationUpdate">
             <SplideTrack>
               <SplideSlide v-for="{ id, title } in images" :key="id">
-                <NuxtImg provider="uploadcare" :src="id" :alt="title" :width="480" :height="270" loading="lazy" class="h-full w-full" />
+                <NuxtImg provider="uploadcare" :src="id" :alt="title" :width="480" :height="270" loading="lazy"
+                  class="h-full w-full" />
               </SplideSlide>
             </SplideTrack>
             <!-- <div
@@ -92,15 +98,14 @@ function onTry() {
               </button>
             </div> -->
           </Splide>
-          <NuxtLink
-            v-if="repoUrl"
-            :to="repoUrl"
-            target="_blank"
+          <NuxtLink v-if="repoUrl" :to="repoUrl" target="_blank"
             class="absolute bottom-2 left-2 z-20 flex items-center gap-1 rounded-full bg-light-500 py-1 pl-1.5 pr-2 outline-primary-400 transition-colors duration-150 ease-in hover:bg-light-400 hover:outline dark:bg-dark-600 dark:hover:bg-dark-500">
             <NuxtIcon name="github" class="text-[16px]" />
             <span class="text-xs">{{ stars }} Stars</span>
           </NuxtLink>
-          <NuxtLink v-if="videoUrl !== null" :to="videoUrl" target="_blank" class="absolute bottom-1 right-2 z-20 flex items-center gap-1 text-white drop-shadow hover:drop-shadow-md" @click="onWatch">
+          <NuxtLink v-if="videoUrl !== null" :to="videoUrl" target="_blank"
+            class="absolute bottom-1 right-2 z-20 flex items-center gap-1 text-white drop-shadow hover:drop-shadow-md"
+            @click="onWatch">
             <span class="text-xs">Watch</span>
             <NuxtIcon name="youtube" class="text-[30px]" />
           </NuxtLink>
@@ -108,11 +113,13 @@ function onTry() {
         <div class="grid flex-grow grid-cols-[repeat(2,auto)] grid-rows-[min-content_auto] gap-y-1 px-1 md:px-2">
           <span class="flex items-end gap-1 lg:gap-2">
             <span class="whitespace-nowrap text-lg font-semi-bold">{{ name }}</span>
-            <span class="h-fit w-fit rounded-full bg-light-600 px-[8px] pb-1 pt-[3px] text-center text-xs text-black/75 dark:bg-dark-400 dark:text-white/75">
+            <span
+              class="h-fit w-fit rounded-full bg-light-600 px-[8px] pb-1 pt-[3px] text-center text-xs text-black/75 dark:bg-dark-400 dark:text-white/75">
               {{ version }}
             </span>
           </span>
-          <time :dateTime="createdAt" class="col-start-2 row-start-1 self-end justify-self-end whitespace-nowrap py-1 text-xs">
+          <time :dateTime="createdAt"
+            class="col-start-2 row-start-1 self-end justify-self-end whitespace-nowrap py-1 text-xs">
             {{ createdAtFormatted }}
           </time>
           <p class="col-span-2 col-start-1 row-start-2 line-clamp-2 text-xs opacity-60 md:text-base">
@@ -122,10 +129,7 @@ function onTry() {
             <TechBadge v-for="tech in technologies" :key="tech" :tech="tech" />
           </div>
         </div>
-        <NuxtLink
-          v-if="appUrl !== null"
-          :to="appUrl"
-          target="_blank"
+        <NuxtLink v-if="appUrl !== null" :to="appUrl" target="_blank"
           class="absolute bottom-0 right-0 z-10 inline-block cursor-pointer rounded-tl-[1.25rem] bg-primary-500 px-6 py-2 text-xs text-white transition-colors hover:bg-primary-400"
           @click="onTry">
           Try Now

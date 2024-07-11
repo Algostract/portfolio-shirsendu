@@ -23,7 +23,15 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
+    publicAssets: [
+      {
+        baseURL: "static",
+        dir: "public/static",
+        // maxAge: 60 * 60 * 24 * 30 * 12
+      },
+    ],
     rollupConfig: {
+      // @ts-expect-error
       plugins: [vue()],
     },
   },
@@ -264,7 +272,6 @@ export default defineNuxtConfig({
   },
 
   gtag: {
-    id: 'G-ZMR7H4LPSK',
   },
 
   splide: {

@@ -30,3 +30,6 @@ logs
 
 .dockerignore
 Dockerfile
+
+# Static Files
+static

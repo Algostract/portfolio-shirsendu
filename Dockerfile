@@ -1,4 +1,4 @@
-FROM node:lts-alpine as builder
+FROM node:lts-alpine AS builder
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ ENV NODE_ENV=production
 
 RUN npm run build
 
-FROM node:lts-alpine as deployer
+FROM node:lts-alpine AS deployer
 
 ARG VERSION
 

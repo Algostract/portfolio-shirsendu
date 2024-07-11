@@ -22,7 +22,7 @@
     "tunnel": "npx untun tunnel --port 3000  http://localhost:3000",
     "clean": "nuxt cleanup",
     "docker:build": "docker build --build-arg VERSION_TAG=1.11.2 -t portfolio-shirsendu:v1.11.2 .",
-    "docker:start": "docker run --env-file .env.prod -p 1000:3000 portfolio-shirsendu:latest"
+    "docker:start": "docker run --detach --name portfolio-shirsendu --env-file .env.prod -p 1000:3000 ghcr.io/algostract/portfolio-shirsendu:latest"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15",
