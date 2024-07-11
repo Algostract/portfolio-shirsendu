@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.11.5
+
+### Patch Changes
+
+- da6c8e1: refactor: moved gtag from config to env
+
 ## 1.11.4
 
 ### Patch Changes
