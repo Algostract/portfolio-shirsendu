@@ -1,16 +1,16 @@
-import { Client } from '@notionhq/client'
+import { Client as NotionClient } from '@notionhq/client'
 import type { Newsletter } from '~/utils/types'
 
 const config = useRuntimeConfig()
-const notion = new Client({
+const notion = new NotionClient({
   auth: config.private.notionKey,
 })
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler<Promise<{ subscribed: boolean }>>(async (event) => {
   try {
     const body = await readBody<Newsletter>(event)
 
-    const result = await notion.pages.create({
+    await notion.pages.create({
       parent: {
         database_id: config.private.notionDBId,
       },
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
       },
     })
 
-    return result
+    return { subscribed: true }
   } catch (error: any) {
     console.error('API newsletter POST', error)
 

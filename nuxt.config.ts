@@ -23,15 +23,8 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
-    publicAssets: [
-      {
-        baseURL: "static",
-        dir: "public/static",
-        // maxAge: 60 * 60 * 24 * 30 * 12
-      },
-    ],
     rollupConfig: {
-      // @ts-expect-error
+      // @ts-expect-error Type instantiation is excessively deep and possibly infinite.
       plugins: [vue()],
     },
   },
@@ -271,8 +264,7 @@ export default defineNuxtConfig({
     },
   },
 
-  gtag: {
-  },
+  gtag: {},
 
   splide: {
     theme: 'core',
