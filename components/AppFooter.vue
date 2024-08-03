@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import line from '@/assets/images/line.svg?raw'
+import iconLogo from '@/assets/icons/logo.svg'
 
 const emit = defineEmits<{
   (event: 'contact', action: boolean): void
@@ -21,7 +22,7 @@ async function onSubscribe(email: string) {
     <CTAButton :primary="false" class="absolute -top-20" @click="emit('contact', true)" />
     <div class="relative col-span-2 col-start-1 row-start-1 w-full lg:col-span-3">
       <div class="absolute -left-8 -right-8 top-0 -translate-y-1/2 text-light-500 dark:text-dark-500" v-html="line" />
-      <NuxtIcon name="logo" class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[48px]" filled />
+      <img :src="iconLogo" alt="logo" :width="48" :height="48" class="absolute left-1/2 top-0 size-[32px] -translate-x-1/2 -translate-y-1/2 md:size-[48px]" />
     </div>
     <h4 class="relative col-span-2 col-start-1 row-start-2 mt-4 text-center md:text-lg lg:col-span-1 lg:col-start-2">
       Want to get latest updates of My Projects<br />

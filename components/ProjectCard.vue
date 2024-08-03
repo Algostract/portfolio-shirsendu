@@ -73,10 +73,13 @@ function onTry() {
       <div
         class="content relative flex aspect-[1.215/1] w-full flex-col gap-[10px] overflow-hidden rounded-bl-[0.5rem] rounded-br-[2.25rem] rounded-tl-[2.25rem] rounded-tr-[0.5rem] bg-light-500 p-[10px] dark:bg-dark-600">
         <div class="relative aspect-video w-full overflow-hidden rounded-[20px] bg-light-600 dark:bg-dark-400">
-          <ul class="absolute right-[0.875rem] top-0 z-20 flex gap-1">
-            <li v-for="track in range(images.length)" :key="track" class="cursor-pointer" @click="splide.go(track - 1)">
-              <NuxtIcon name="pagination-track" class="text-[28px] transition-colors" :class="currentPage === track - 1 ? 'text-primary-400' : 'text-light-500 dark:text-dark-600'" />
-            </li>
+          <ul class="absolute right-[0.875rem] top-2 z-20 flex gap-1">
+            <li
+              v-for="track in range(images.length)"
+              :key="track"
+              class="h-[4px] w-[28px] cursor-pointer rounded-full rounded-bl-none rounded-tr-none duration-300"
+              :class="currentPage === track ? 'bg-primary-400' : 'bg-light-500 dark:bg-dark-600'"
+              @click="splide.go(track)"></li>
           </ul>
           <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="h-full w-full" @splide:pagination:updated="onPaginationUpdate">
             <SplideTrack>

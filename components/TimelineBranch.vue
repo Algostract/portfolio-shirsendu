@@ -24,8 +24,10 @@ withDefaults(defineProps<Branch>(), {
         provider="uploadcare"
         :src="image.id"
         :alt="image.title"
+        :width="80"
+        :height="80"
         loading="lazy"
-        class="absolute top-1/2 aspect-square w-20 -translate-y-1/2 rounded-full object-contain"
+        class="absolute top-1/2 -translate-y-1/2 rounded-full object-contain"
         :class="side === 'left' ? '-left-0' : '-right-0'" />
     </NuxtLink>
     <time

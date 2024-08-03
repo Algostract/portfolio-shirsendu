@@ -85,7 +85,7 @@ defineProps<{ tech: Technologies }>()
     :to="techs[tech].website"
     target="_blank"
     class="flex cursor-pointer items-center gap-1 rounded-full bg-light-600 py-1 pl-2 pr-3 outline-primary-400 transition-colors duration-150 ease-in hover:bg-light-400 hover:outline dark:bg-dark-500 dark:hover:bg-dark-400">
-    <img :src="techs[tech].icon" :alt="`logo-${techs[tech].name}`" :width="20" :height="20" class="size-5 max-w-none" />
+    <img :src="techs[tech].icon" :alt="`logo-${techs[tech].name}`" :width="20" :height="20" />
     <span class="whitespace-nowrap text-xs">{{ techs[tech].name }}</span>
   </NuxtLink>
 </template>
