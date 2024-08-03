@@ -1,5 +1,12 @@
 # portfolio-shirsendu
 
+## 1.11.6
+
+### Patch Changes
+
+- 50ee4ef: fix: ProjectCard Pagination Fixed
+- e325cd1: chore: pkgs updated and housekeeping
+
 ## 1.11.5
 
 ### Patch Changes
