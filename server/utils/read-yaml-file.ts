@@ -5,6 +5,7 @@ import { parseYAML } from 'confbox'
 const config = useRuntimeConfig()
 
 export default function <T>(filename: string) {
+  console.log('Reading File', filename)
   const filePath = path.join(process.cwd(), config.private.rootDir, filename)
   const fileContents = fs.readFileSync(filePath, 'utf8')
   const parsedContent = parseYAML<T[]>(fileContents)

@@ -1,58 +1,61 @@
 import type { BaseProject, GithubDetailsResponse, GithubReleaseResponse, Project, Technologies } from '~~/utils/types'
 
-const projects = readYamlFile<BaseProject>('projects.yml')
+export default defineCachedEventHandler<Promise<Project[]>>(
+  async (_event) => {
+    try {
+      const projects = readYamlFile<BaseProject>('projects.yml')
 
-export default defineEventHandler<Promise<Project[]>>(async (_event) => {
-  try {
-    const repos = (
-      await Promise.all(
-        projects.map(async ({ name, repo, createdAt, technologies, appURL, videoURL, images }): Promise<Project | null> => {
-          if (repo == null) return null
+      const repos = (
+        await Promise.all(
+          projects.map(async ({ name, repo, createdAt, technologies, appURL, videoURL, images }): Promise<Project | null> => {
+            if (repo == null) return null
 
-          let details: GithubDetailsResponse | null = null
-          let release: GithubReleaseResponse | null = null
+            let details: GithubDetailsResponse | null = null
+            let release: GithubReleaseResponse | null = null
 
-          const [detailsResponse, releaseResponse] = await Promise.allSettled([
-            $fetch<{ repo: GithubDetailsResponse }>(`/repos/${repo}`, {
-              baseURL: 'https://ungh.cc',
-            }),
-            $fetch<{ release: GithubReleaseResponse }>(`/repos/${repo}/releases/latest`, {
-              baseURL: 'https://ungh.cc',
-            }),
-          ])
+            const [detailsResponse, releaseResponse] = await Promise.allSettled([
+              $fetch<{ repo: GithubDetailsResponse }>(`/repos/${repo}`, {
+                baseURL: 'https://ungh.cc',
+              }),
+              $fetch<{ release: GithubReleaseResponse }>(`/repos/${repo}/releases/latest`, {
+                baseURL: 'https://ungh.cc',
+              }),
+            ])
 
-          if (detailsResponse.status === 'fulfilled') details = detailsResponse.value.repo
+            if (detailsResponse.status === 'fulfilled') details = detailsResponse.value.repo
 
-          if (releaseResponse.status === 'fulfilled') release = releaseResponse.value.release
+            if (releaseResponse.status === 'fulfilled') release = releaseResponse.value.release
 
-          const { frameworks, languages } = technologies
+            const { frameworks, languages } = technologies
 
-          return {
-            name,
-            repo,
-            description: details?.description ?? '',
-            version: release?.tag ?? 'v0.0.0',
-            stars: details?.stars ?? 0,
-            forks: details?.forks ?? 0,
-            createdAt,
-            updatedAt: details?.updatedAt ?? createdAt,
-            technologies: [...frameworks, ...languages] as Technologies[],
-            repoURL: `https://github.com/${repo}`,
-            appURL,
-            videoURL,
-            images: images ?? [],
-          }
-        })
-      )
-    ).filter((value): value is Project => value !== null)
+            return {
+              name,
+              repo,
+              description: details?.description ?? '',
+              version: release?.tag ?? 'v0.0.0',
+              stars: details?.stars ?? 0,
+              forks: details?.forks ?? 0,
+              createdAt,
+              updatedAt: details?.updatedAt ?? createdAt,
+              technologies: [...frameworks, ...languages] as Technologies[],
+              repoURL: `https://github.com/${repo}`,
+              appURL,
+              videoURL,
+              images: images ?? [],
+            }
+          })
+        )
+      ).filter((value): value is Project => value !== null)
 
-    return repos
-  } catch (error: any) {
-    console.error('API project GET', error)
+      return repos
+    } catch (error: any) {
+      console.error('API project GET', error)
 
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'Some Unknown Error Found',
-    })
-  }
-})
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Some Unknown Error Found',
+      })
+    }
+  },
+  { maxAge: 60 * 60 }
+)
