@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.11.8
+
+### Patch Changes
+
+- 7163a52: refactor: api cached for 1 hour
+
 ## 1.11.7
 
 ### Patch Changes
