@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.11.7
+
+### Patch Changes
+
+- 56585ba: refactor: serverside component and lazy loading component added
+
 ## 1.11.6
 
 ### Patch Changes
