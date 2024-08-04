@@ -21,7 +21,7 @@ function onContact(action: boolean) {
       <SectionHackathon />
       <SectionExperience />
       <SectionCertificate />
-      <ModelContact :is-open="isModelContactOpen" @close="onContact(false)" />
+      <LazyModelContact :is-open="isModelContactOpen" @close="onContact(false)" />
     </main>
     <AppFooter @contact="onContact" />
   </div>

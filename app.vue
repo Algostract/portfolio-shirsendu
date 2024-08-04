@@ -68,7 +68,7 @@ useSchemaOrg([
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
-  <AppInstallPrompt />
+  <LazyAppInstallPrompt />
 </template>
 
 <style>
