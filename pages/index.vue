@@ -1,13 +1,15 @@
 <script setup lang="ts">
-const isModelContactOpen = ref<boolean>(false)
+const { gtag } = useScriptGoogleAnalytics()
+
+const isModalContactOpen = ref<boolean>(false)
 
 function onContact(action: boolean) {
   if (action) {
-    isModelContactOpen.value = true
-    useTrackEvent('contact_open')
+    isModalContactOpen.value = true
+    gtag('event', 'contact_open')
   } else {
-    isModelContactOpen.value = false
-    useTrackEvent('contact_close')
+    isModalContactOpen.value = false
+    gtag('event', 'contact_close')
   }
 }
 </script>
@@ -21,7 +23,7 @@ function onContact(action: boolean) {
       <SectionHackathon />
       <SectionExperience />
       <SectionCertificate />
-      <LazyModelContact :is-open="isModelContactOpen" @close="onContact(false)" />
+      <LazyModalContact :is-open="isModalContactOpen" @close="onContact(false)" />
     </main>
     <AppFooter @contact="onContact" />
   </div>

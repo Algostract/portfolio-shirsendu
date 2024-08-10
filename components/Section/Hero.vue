@@ -39,7 +39,7 @@ const experience = computed(() => {
       <h2 class="mx-auto w-fit max-w-[90%] text-center text-lg font-light leading-relaxed opacity-80 sm:max-w-[80%] md:mx-0 md:max-w-[90%] md:text-left">
         I'm Shirsendu Bairagi, a passionate {{ age }} old web developer, and AI enthusiast dedicated to crafting cutting-edge digital experiences.
       </h2>
-      <CTAButton @click="emit('contact')" />
+      <ButtonCTA @click="emit('contact')" />
     </div>
     <div class="grid grid-cols-3 grid-rows-[1fr_2fr_1fr] justify-items-stretch lg:grid-rows-2 lg:gap-x-20 lg:gap-y-36">
       <SkillHex :quadrant="1" class="col-start-1 row-start-1 self-start justify-self-start" />
@@ -77,6 +77,6 @@ const experience = computed(() => {
 
 <style>
 picture > img {
-  @apply h-full w-full object-cover;
+  @apply size-full object-cover;
 }
 </style>

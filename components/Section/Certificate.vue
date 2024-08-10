@@ -22,7 +22,7 @@ function onHandleSlide(dir: 'left' | 'right') {
     <h3 class="mx-auto mb-8 w-fit text-lg">All Certificates</h3>
     <div class="relative flex justify-center py-4">
       <template v-for="({ name, link, date, image }, index) in certificates" :key="name">
-        <CertificateCard
+        <CardCertificate
           v-if="index >= activeIndex - 1 && index <= activeIndex + 1"
           :active="index === activeIndex"
           :name="name"

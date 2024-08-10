@@ -19,10 +19,10 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "start": "node .output/server/index.mjs",
-    "tunnel": "untun tunnel --port 3000  http://localhost:3000",
+    "tunnel": "untun tunnel http://localhost:1000",
     "clean": "nuxt cleanup",
     "docker:build": "docker build --build-arg VERSION_TAG=dev -t portfolio-shirsendu:dev .",
-    "docker:start": "docker run --detach --name portfolio-shirsendu --env-file .env.prod -p 1000:3000 portfolio-shirsendu:dev"
+    "docker:start": "docker run --detach --name portfolio-shirsendu-dev --env-file .env.prod -p 1000:3000 portfolio-shirsendu:dev"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15",
@@ -39,6 +39,7 @@
     "@nuxt/eslint": "^0.4.0",
     "@nuxt/fonts": "^0.7.1",
     "@nuxt/image": "^1.7.0",
+    "@nuxt/scripts": "^0.6.6",
     "@nuxt/test-utils": "^3.14.0",
     "@nuxtjs/color-mode": "^3.4.2",
     "@nuxtjs/seo": "^2.0.0-rc.16",
@@ -51,7 +52,6 @@
     "@vueuse/nuxt": "^10.11.0",
     "eslint-config-prettier": "^9.1.0",
     "nuxt": "^3.12.4",
-    "nuxt-gtag": "^2.1.0",
     "nuxt-icons": "^3.2.1",
     "nuxt-splide": "^1.1.1",
     "prettier": "^3.3.3",

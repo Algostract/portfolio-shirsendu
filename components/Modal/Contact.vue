@@ -10,10 +10,12 @@ const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
+const { gtag } = useScriptGoogleAnalytics()
+
 const { handleSubmit } = useForm<TransactionalEmail>()
 
 const onSend = handleSubmit((values) => {
-  useTrackEvent('contact')
+  gtag('event', 'contact')
 
   $fetch('/api/contact', {
     method: 'POST',
@@ -25,7 +27,7 @@ const onSend = handleSubmit((values) => {
 </script>
 
 <template>
-  <ModelBase :is-open="isOpen" inner-class="rounded-tl-[2rem] rounded-br-[2rem] p-8 pt-10 !max-w-[24.5rem]" @close="emit('close')">
+  <ModalBase :is-open="isOpen" inner-class="rounded-tl-[2rem] rounded-br-[2rem] p-8 pt-10 !max-w-[24.5rem]" @close="emit('close')">
     <form class="flex flex-col gap-6" @submit.prevent="onSend">
       <InputText type="name" name="name" placeholder="Your Name" />
       <InputText type="email" name="email" placeholder="Your Email" />
@@ -37,5 +39,5 @@ const onSend = handleSubmit((values) => {
         <NuxtIcon name="feather" class="text-[28px] text-white" />
       </button>
     </form>
-  </ModelBase>
+  </ModalBase>
 </template>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
+const { gtag } = useScriptGoogleAnalytics()
+
 function onNavigate(section: string) {
-  useTrackEvent('navigate', {
-    section,
-  })
+  gtag('event', 'navigate', { section })
 }
 </script>
 
@@ -27,7 +27,7 @@ function onNavigate(section: string) {
         </li>
       </ul>
       <div class="ml-auto flex items-center gap-2">
-        <ColorModeButton />
+        <ButtonColorMode />
       </div>
     </nav>
   </header>

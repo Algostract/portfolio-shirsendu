@@ -58,7 +58,7 @@ const projects = computed(() => data.value?.toSorted((a, b) => new Date(b.update
       <SplideTrack class="py-2">
         <SplideSlide v-for="{ name, description, version, stars, forks, createdAt, updatedAt, technologies, repoURL, appURL, videoURL, images } in projects" :key="name">
           <!-- <div class="w-96 aspect-video bg-primary-400" /> -->
-          <ProjectCard
+          <CardProject
             :name="name"
             :description="description"
             :version="version"

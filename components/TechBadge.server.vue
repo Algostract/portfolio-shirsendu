@@ -14,6 +14,8 @@ import iconTypescript from '~/assets/icons/tech-typescript.svg'
 import iconPython from '~/assets/icons/tech-python.svg'
 import iconFastApi from '~/assets/icons/tech-fastapi.svg'
 
+defineProps<{ tech: Technologies }>()
+
 const techs = {
   angular: {
     name: 'Angular',
@@ -76,15 +78,13 @@ const techs = {
     icon: iconTensorflow,
   },
 }
-
-defineProps<{ tech: Technologies }>()
 </script>
 
 <template>
   <NuxtLink
     :to="techs[tech].website"
     target="_blank"
-    class="flex cursor-pointer items-center gap-1 rounded-full bg-light-600 py-1 pl-2 pr-3 outline-primary-400 transition-colors duration-150 ease-in hover:bg-light-400 hover:outline dark:bg-dark-500 dark:hover:bg-dark-400">
+    class="flex shrink-0 cursor-pointer items-center gap-1 rounded-full bg-light-600 py-1 pl-2 pr-3 outline-primary-400 transition-colors duration-150 ease-in hover:bg-light-400 hover:outline dark:bg-dark-500 dark:hover:bg-dark-400">
     <img :src="techs[tech].icon" :alt="`logo-${techs[tech].name}`" :width="20" :height="20" />
     <span class="whitespace-nowrap text-xs">{{ techs[tech].name }}</span>
   </NuxtLink>

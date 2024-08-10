@@ -19,6 +19,8 @@ interface Project {
 const props = defineProps<Project>()
 const emit = defineEmits<{ (event: 'watch'): void }>()
 
+const { gtag } = useScriptGoogleAnalytics()
+
 const modifiedIn = useTimeAgo(() => props.updatedAt, {
   messages: {
     invalid: 'Invalid Date',
@@ -50,16 +52,12 @@ function onPaginationUpdate(_slide: any, list: { items: string | any[] }, _prev:
 }
 
 function onWatch() {
-  useTrackEvent('watch', {
-    app: props.name,
-  })
+  gtag('event', 'watch', { app: props.name })
   emit('watch')
 }
 
 function onTry() {
-  useTrackEvent('try', {
-    app: props.name,
-  })
+  gtag('event', 'try', { app: props.name })
 }
 </script>
 
@@ -67,7 +65,7 @@ function onTry() {
   <div class="card relative mx-auto w-full min-w-[328px] max-w-[400px] grow transition-transform">
     <AppRibbon :title="modifiedIn" class="absolute -left-[5px] top-4 z-10" />
     <div class="relative">
-      <div class="absolute left-0 top-0 h-full w-full">
+      <div class="absolute left-0 top-0 size-full">
         <div class="gradient-border gradient-border-dark overflow-hidden rounded-bl-[0.5rem] rounded-br-[2.25rem] rounded-tl-[2.25rem] rounded-tr-[0.5rem]" />
       </div>
       <div
@@ -81,14 +79,14 @@ function onTry() {
               :class="currentPage === track ? 'bg-primary-400' : 'bg-light-500 dark:bg-dark-600'"
               @click="splide.go(track)"></li>
           </ul>
-          <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="h-full w-full" @splide:pagination:updated="onPaginationUpdate">
+          <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="size-full" @splide:pagination:updated="onPaginationUpdate">
             <SplideTrack>
               <SplideSlide v-for="{ id, title } in images" :key="id">
-                <NuxtImg provider="uploadcare" :src="id" :alt="title" :width="480" :height="270" loading="lazy" class="h-full w-full" />
+                <NuxtImg provider="uploadcare" :src="id" :alt="title" :width="480" :height="270" loading="lazy" class="size-full" />
               </SplideSlide>
             </SplideTrack>
             <!-- <div
-              class="splide__arrows absolute flex justify-between items-center top-0 px-2 h-full w-full z-10 opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity">
+              class="splide__arrows absolute flex justify-between items-center top-0 px-2 size-full z-10 opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity">
               <button aria-label="left" class="splide__arrow splide__arrow--prev w-1/3">
                 <NuxtIcon name="chevron-bold" />
               </button>

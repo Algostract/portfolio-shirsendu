@@ -12,7 +12,7 @@ ENV NODE_ENV=production
 
 RUN npm run build
 
-FROM node:lts-alpine AS deployer
+FROM node:lts-alpine AS runner
 
 ARG VERSION
 
