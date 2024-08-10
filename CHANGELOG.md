@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.11.9
+
+### Patch Changes
+
+- 5d48903: chore: components renamed, styling fixed, and nuxt/scripts module added
+
 ## 1.11.8
 
 ### Patch Changes
