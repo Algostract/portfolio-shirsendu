@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.12.0
+
+### Minor Changes
+
+- fba19ba: feat: docker volume mounting added
+
 ## 1.11.9
 
 ### Patch Changes
