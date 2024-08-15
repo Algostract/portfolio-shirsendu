@@ -23,5 +23,7 @@ logs
 .env
 .env.*
 
-# Static Files
-static
+# Static files
+static/**/*.*
+!static/**/*.gitkeep
+!static/data/*

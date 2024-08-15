@@ -3,7 +3,10 @@ import type { BaseProject, GithubDetailsResponse, GithubReleaseResponse, Project
 export default defineCachedEventHandler<Promise<Project[]>>(
   async (_event) => {
     try {
-      const projects = readYamlFile<BaseProject>('projects.yml')
+      const projects = await readYamlFile<BaseProject>('projects.yml')
+
+      if (!projects)
+        throw createError({ statusCode: 500, statusMessage: 'projects is undefined' })
 
       const repos = (
         await Promise.all(

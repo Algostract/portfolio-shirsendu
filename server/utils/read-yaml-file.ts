@@ -1,14 +1,10 @@
-import fs from 'node:fs'
-import path from 'node:path'
 import { parseYAML } from 'confbox'
 
-const config = useRuntimeConfig()
-
-export default function <T>(filename: string) {
+export default async function <T>(filename: string) {
   console.log('Reading File', filename)
-  const filePath = path.join(process.cwd(), config.private.rootDir, filename)
-  const fileContents = fs.readFileSync(filePath, 'utf8')
-  const parsedContent = parseYAML<T[]>(fileContents)
+
+  const fileContents = await useStorage('assets:static').getItem(`data/${filename}`)
+  const parsedContent = fileContents ? parseYAML<T[]>(fileContents.toString()) : undefined
 
   return parsedContent
 }

@@ -1,9 +1,12 @@
 import type { Hackathon } from '~/utils/types'
 
-export default defineCachedEventHandler<Hackathon[]>(
-  () => {
+export default defineCachedEventHandler<Promise<Hackathon[]>>(
+  async () => {
     try {
-      const hackathons = readYamlFile<Hackathon>('hackathons.yml')
+      const hackathons = await readYamlFile<Hackathon>('hackathons.yml')
+
+      if (!hackathons)
+        throw createError({ statusCode: 500, statusMessage: 'hackathons is undefined' })
 
       return hackathons
     } catch (error: any) {

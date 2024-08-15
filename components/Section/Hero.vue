@@ -30,7 +30,7 @@ const experience = computed(() => {
       <source media="(min-width: 768px)" srcset="/images/hero-gradient-tablet.svg" />
       <source media="(min-width: 100px)" srcset="/images/hero-gradient-mobile.svg" />
     </NuxtPicture>
-    <div class="flex h-fit flex-col gap-8 md:my-auto md:w-1/2">
+    <div class="flex h-fit flex-col items-center gap-8 md:my-auto md:w-1/2 md:items-start">
       <span class="mx-auto w-fit rounded-full border border-primary-500 px-4 py-2 text-sm capitalize md:mx-0"> {{ experience }} +XP </span>
       <h1 class="text-center text-2xl md:text-left md:text-4xl lg:text-5xl">
         Crafting the Web,<br />

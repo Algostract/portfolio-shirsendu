@@ -53,11 +53,6 @@ jobs:
           echo "IMAGE_TITLE=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}" >> $GITHUB_ENV
           echo "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_ENV
           echo "VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_ENV
-        # env:
-        #   IMAGE_NAMES: ${{ fromJSON(steps.meta.outputs.json).tags }}
-        #   IMAGE_TITLE: ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}
-        #   BUILDTIME: ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}
-        #   VERSION: ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
 
       - name: Build and push Docker image
         id: push
@@ -88,7 +83,7 @@ jobs:
             docker ps -a -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker rm
             docker rmi ${{ env.IMAGE_NAME }}
             docker pull ${{ env.IMAGE_NAME }}
-            docker run --detach --name ${{ env.IMAGE_TITLE }} --env-file  ~/${{ env.IMAGE_TITLE }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAME }}
+            docker run --detach --name ${{ env.IMAGE_TITLE }} --mount type=bind,source=$(pwd)/${{ env.IMAGE_TITLE }}/static,target=/app/.output/static,readonly  --env-file ~/${{ env.IMAGE_TITLE }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAME }}
 
   # deploy:
   #   needs: build

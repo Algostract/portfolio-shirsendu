@@ -20,6 +20,12 @@ export default defineNuxtConfig({
   ],
   nitro: {
     compressPublicAssets: true,
+    serverAssets: [
+      {
+        baseName: 'static',
+        dir: '../static', // Relative to `srcDir` (`server/` for nuxt)
+      },
+    ],
     rollupConfig: {
       // @ts-expect-error Type instantiation is excessively deep and possibly infinite.
       plugins: [vue()],

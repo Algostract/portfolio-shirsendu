@@ -1,9 +1,12 @@
 import type { Certificate } from '~/utils/types'
 
-export default defineCachedEventHandler<Certificate[]>(
-  () => {
+export default defineCachedEventHandler<Promise<Certificate[]>>(
+  async () => {
     try {
-      const certificates = readYamlFile<Certificate>('certificates.yml')
+      const certificates = await readYamlFile<Certificate>('certificates.yml')
+
+      if (!certificates)
+        throw createError({ statusCode: 500, statusMessage: 'certificates is undefined' })
 
       return certificates
     } catch (error: any) {

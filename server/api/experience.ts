@@ -1,9 +1,12 @@
 import type { Experience } from '~/utils/types'
 
-export default defineCachedEventHandler<Experience[]>(
-  () => {
+export default defineCachedEventHandler<Promise<Experience[]>>(
+  async () => {
     try {
-      const experiences = readYamlFile<Experience>('experiences.yml')
+      const experiences = await readYamlFile<Experience>('experiences.yml')
+
+      if (!experiences)
+        throw createError({ statusCode: 500, statusMessage: 'experiences is undefined' })
 
       return experiences
     } catch (error: any) {
