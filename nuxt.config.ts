@@ -3,10 +3,13 @@ import vue from '@vitejs/plugin-vue'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-07-04',
+  future: {
+    compatibilityVersion: 4,
+  },
   devtools: { enabled: true },
   modules: [
-    '@nuxt/eslint',
-    '@nuxt/fonts', // '@nuxt/icon',
+    '@nuxt/eslint', // '@nuxt/icon',
+    '@nuxt/fonts',
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxt/test-utils',
@@ -17,6 +20,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-icons',
     'nuxt-splide',
+    'nuxt-time',
   ],
   nitro: {
     compressPublicAssets: true,
@@ -32,7 +36,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/': { ssr: true },
+    '/': { isr: 3600 },
     '/_ipx/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/images/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/fonts/**': { headers: { 'cache-control': 'max-age=31536000' } },

@@ -1,5 +1,4 @@
 {
   // Enable ESlint flat config support
-  "eslint.experimental.useFlatConfig": true,
-  "vetur.validation.template": false
+  "eslint.useFlatConfig": true,
 }

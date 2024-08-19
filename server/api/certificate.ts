@@ -5,8 +5,7 @@ export default defineCachedEventHandler<Promise<Certificate[]>>(
     try {
       const certificates = await readYamlFile<Certificate>('certificates.yml')
 
-      if (!certificates)
-        throw createError({ statusCode: 500, statusMessage: 'certificates is undefined' })
+      if (!certificates) throw createError({ statusCode: 500, statusMessage: 'certificates is undefined' })
 
       return certificates
     } catch (error: any) {

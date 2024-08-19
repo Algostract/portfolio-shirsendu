@@ -1,12 +1,11 @@
-import type { BaseProject, GithubDetailsResponse, GithubReleaseResponse, Project, Technologies } from '~~/utils/types'
+import type { BaseProject, GithubDetailsResponse, GithubReleaseResponse, Project, Technologies } from '~/utils/types'
 
 export default defineCachedEventHandler<Promise<Project[]>>(
   async (_event) => {
     try {
       const projects = await readYamlFile<BaseProject>('projects.yml')
 
-      if (!projects)
-        throw createError({ statusCode: 500, statusMessage: 'projects is undefined' })
+      if (!projects) throw createError({ statusCode: 500, statusMessage: 'projects is undefined' })
 
       const repos = (
         await Promise.all(

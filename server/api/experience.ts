@@ -5,8 +5,7 @@ export default defineCachedEventHandler<Promise<Experience[]>>(
     try {
       const experiences = await readYamlFile<Experience>('experiences.yml')
 
-      if (!experiences)
-        throw createError({ statusCode: 500, statusMessage: 'experiences is undefined' })
+      if (!experiences) throw createError({ statusCode: 500, statusMessage: 'experiences is undefined' })
 
       return experiences
     } catch (error: any) {

@@ -19,7 +19,6 @@ ARG VERSION
 WORKDIR /app
 
 COPY --from=builder /app/.output ./.output
-COPY --from=builder /app/*.yml ./
 
 ENV NODE_ENV=production
 ENV NUXT_APP_VERSION=$VERSION

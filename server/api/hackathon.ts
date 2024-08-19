@@ -5,8 +5,7 @@ export default defineCachedEventHandler<Promise<Hackathon[]>>(
     try {
       const hackathons = await readYamlFile<Hackathon>('hackathons.yml')
 
-      if (!hackathons)
-        throw createError({ statusCode: 500, statusMessage: 'hackathons is undefined' })
+      if (!hackathons) throw createError({ statusCode: 500, statusMessage: 'hackathons is undefined' })
 
       return hackathons
     } catch (error: any) {
