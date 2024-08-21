@@ -1,8 +1,8 @@
 ---
 - company: 'Nextdoor Kitchens'
   date:
-    start: '2022'
-    end: ''
+    start: '2022-07-05'
+    end: '2022-08-12'
   position: 'Junior React Developer'
   image:
     id: 2ce12db6-9b0c-480d-a3e2-2f124266d3a1
@@ -10,7 +10,7 @@
 
 - company: 'Xatalyst Labs'
   date:
-    start: '2023'
+    start: '2023-10-01'
     end: ''
   position: 'Junior React/React Native Developer'
   image:

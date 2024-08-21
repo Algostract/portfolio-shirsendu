@@ -2,7 +2,6 @@
 import branchHead from '~/assets/images/branch-head.svg?raw'
 import type { Experience } from '~/utils/types'
 
-
 interface Branch extends Experience {
   side: 'left' | 'right'
 }
@@ -22,12 +21,21 @@ withDefaults(defineProps<Branch>(), {
     </div>
     <NuxtLink :to="`https://www.linkedin.com/company/${company}`" target="_blank">
       <NuxtImg
-provider="uploadcare" :src="image.id" :alt="image.title" :width="80" :height="80" loading="lazy"
+        provider="uploadcare"
+        :src="image.id"
+        :alt="image.title"
+        :width="80"
+        :height="80"
+        loading="lazy"
         class="absolute top-1/2 -translate-y-1/2 rounded-full object-contain"
         :class="side === 'left' ? '-left-0' : '-right-0'" />
     </NuxtLink>
     <NuxtTime
-:datetime="date.start" class="absolute top-6 text-sm sm:top-4 sm:text-lg"
+      :datetime="date.start"
+      day="numeric"
+      month="short"
+      year="numeric"
+      class="absolute top-6 text-sm sm:top-4 sm:text-lg"
       :class="side === 'left' ? 'right-4 -translate-x-1/2 sm:right-1/2 sm:translate-x-1/2' : 'left-4 translate-x-1/2 sm:left-1/2 sm:-translate-x-1/2'">
       {{ date.start.split('-')[0] }}
     </NuxtTime>
