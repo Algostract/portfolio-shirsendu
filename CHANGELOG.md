@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.12.1
+
+### Patch Changes
+
+- 5bda9ba: chore: nuxt 4 migrate file structure
+
 ## 1.12.0
 
 ### Minor Changes
