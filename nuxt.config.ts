@@ -24,12 +24,12 @@ export default defineNuxtConfig({
   ],
   nitro: {
     compressPublicAssets: true,
-    serverAssets: [
-      {
-        baseName: 'static',
-        dir: '../static', // Relative to `srcDir` (`server/` for nuxt)
+    storage: {
+      fs: {
+        driver: 'fs',
+        base: './static',
       },
-    ],
+    },
     rollupConfig: {
       // @ts-expect-error Type instantiation is excessively deep and possibly infinite.
       plugins: [vue()],
@@ -47,13 +47,13 @@ export default defineNuxtConfig({
     },
     public: {
       scripts: {
-        googleAnalytics: {
+        googleTagManager: {
           id: '',
         },
       },
+      apiBaseUrl: '',
     },
     private: {
-      rootDir: '',
       gmail: '',
       emailUsername: '',
       emailPassword: '',
@@ -85,7 +85,7 @@ export default defineNuxtConfig({
   },
   scripts: {
     registry: {
-      googleAnalytics: true,
+      googleTagManager: true,
     },
   },
   colorMode: {

@@ -39,13 +39,13 @@ const splideOption = {
   },
 }
 
-const { data } = await useFetch('/api/project')
+const { data } = useAPI('/api/project')
 
 const projects = computed(() => data.value?.toSorted((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()))
 </script>
 
 <template>
-  <section id="project" class="relative flex flex-col gap-8">
+  <section v-if="projects" id="project" class="relative flex flex-col gap-8">
     <h3 class="mx-auto w-fit text-lg">All Projects</h3>
     <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" :extensions="{ Grid }">
       <SplideTrack class="py-2">

@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const { data } = await useFetch('/api/certificate')
+const { data } = useAPI('/api/certificate')
 
 const certificates = computed(() => {
-  const sortedData = data.value!.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  sortedData.unshift(sortedData[sortedData.length - 1])
-  sortedData.push(sortedData[1])
+  const sortedData = data.value?.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  if (sortedData) {
+    sortedData.unshift(sortedData[sortedData.length - 1]!)
+    sortedData.push(sortedData[1]!)
+  }
   return sortedData
 })
 
@@ -18,7 +20,7 @@ function onHandleSlide(dir: 'left' | 'right') {
 </script>
 
 <template>
-  <section id="certificate" class="relative left-1/2 flex w-screen -translate-x-1/2 flex-col gap-8 overflow-x-hidden">
+  <section v-if="certificates" id="certificate" class="relative left-1/2 flex w-screen -translate-x-1/2 flex-col gap-8 overflow-x-hidden">
     <h3 class="mx-auto mb-8 w-fit text-lg">All Certificates</h3>
     <div class="relative flex justify-center py-4">
       <template v-for="({ name, link, date, image }, index) in certificates" :key="name">

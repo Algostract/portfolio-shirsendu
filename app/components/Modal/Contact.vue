@@ -10,12 +10,12 @@ const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
-const { gtag } = useScriptGoogleAnalytics()
+const { proxy } = useScriptGoogleAnalytics()
 
 const { handleSubmit } = useForm<TransactionalEmail>()
 
 const onSend = handleSubmit((values) => {
-  gtag('event', 'contact')
+  proxy.gtag('event', 'contact')
 
   $fetch('/api/contact', {
     method: 'POST',

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-const { gtag } = useScriptGoogleAnalytics()
+const { proxy } = useScriptGoogleAnalytics()
 
 const isModalContactOpen = ref<boolean>(false)
 
 function onContact(action: boolean) {
   if (action) {
     isModalContactOpen.value = true
-    gtag('event', 'contact_open')
+    proxy.gtag('event', 'contact_open')
   } else {
     isModalContactOpen.value = false
-    gtag('event', 'contact_close')
+    proxy.gtag('event', 'contact_close')
   }
 }
 </script>

@@ -2,16 +2,18 @@
 import line from '~/assets/images/line.svg?raw'
 import iconLogo from '~/assets/icons/logo.svg'
 
+const { $fetchAPI } = useNuxtApp()
+
 const emit = defineEmits<{
   (event: 'contact', action: boolean): void
 }>()
 
-const { gtag } = useScriptGoogleAnalytics()
+const { proxy } = useScriptGoogleAnalytics()
 
 async function onSubscribe(email: string) {
-  gtag('event', 'subscribe')
+  proxy.gtag('event', 'subscribe')
 
-  await useFetch('/api/newsletter', {
+  await $fetchAPI('/api/newsletter', {
     method: 'POST',
     body: { email, subscribed: true },
   })

@@ -19,7 +19,7 @@ interface Project {
 const props = defineProps<Project>()
 const emit = defineEmits<{ (event: 'watch'): void }>()
 
-const { gtag } = useScriptGoogleAnalytics()
+const { proxy } = useScriptGoogleAnalytics()
 
 const modifiedIn = useTimeAgo(() => props.updatedAt, {
   messages: {
@@ -54,12 +54,12 @@ function onPaginationUpdate(_slide: any, list: { items: string | any[] }, _prev:
 }
 
 function onWatch() {
-  gtag('event', 'watch', { app: props.name })
+  proxy.gtag('event', 'watch', { app: props.name })
   emit('watch')
 }
 
 function onTry() {
-  gtag('event', 'try', { app: props.name })
+  proxy.gtag('event', 'try', { app: props.name })
 }
 </script>
 
