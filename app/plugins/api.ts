@@ -3,9 +3,9 @@ export default defineNuxtPlugin(() => {
 
   const $fetchAPI = $fetch.create({
     baseURL: config.public.apiBaseUrl,
-    onRequest({ request, options, error }) {},
-    onResponse({ response }) {},
-    onResponseError({ response }) {},
+    onRequest({}) {},
+    onResponse() {},
+    onResponseError() {},
   })
   // Expose to useNuxtApp().$customFetch
   return {
