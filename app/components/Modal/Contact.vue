@@ -10,12 +10,14 @@ const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
-const { proxy } = useScriptGoogleAnalytics()
+const { proxy: gaProxy } = useScriptGoogleAnalytics()
+const { proxy: gtagProxy } = useScriptGoogleTagManager()
 
 const { handleSubmit } = useForm<TransactionalEmail>()
 
 const onSend = handleSubmit((values) => {
-  proxy.gtag('event', 'contact')
+  gaProxy.gtag('event', 'conversion')
+  gtagProxy.dataLayer.push({ event: 'conversion', value: 1 })
 
   $fetch('/api/contact', {
     method: 'POST',

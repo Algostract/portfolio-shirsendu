@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const { proxy } = useScriptGoogleAnalytics()
+const { proxy: gaProxy } = useScriptGoogleAnalytics()
 
 function onNavigate(section: string) {
-  proxy.gtag('event', 'navigate', { section })
+  gaProxy.gtag('event', 'navigate', { section })
 }
 </script>
 

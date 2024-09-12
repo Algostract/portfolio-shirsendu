@@ -47,6 +47,9 @@ export default defineNuxtConfig({
     },
     public: {
       scripts: {
+        googleAnalytics: {
+          id: '',
+        },
         googleTagManager: {
           id: '',
         },
@@ -85,6 +88,7 @@ export default defineNuxtConfig({
   },
   scripts: {
     registry: {
+      googleAnalytics: true,
       googleTagManager: true,
     },
   },

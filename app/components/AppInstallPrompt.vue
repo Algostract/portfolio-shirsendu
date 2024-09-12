@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import iconLogo from '~/assets/icons/logo.svg'
 
-const { proxy } = useScriptGoogleAnalytics()
 const { $pwa } = useNuxtApp()
+const { proxy: gaProxy } = useScriptGoogleAnalytics()
 
 function onInstall() {
-  proxy.gtag('event', 'install')
+  gaProxy.gtag('event', 'install')
   $pwa?.install()
 }
 </script>
