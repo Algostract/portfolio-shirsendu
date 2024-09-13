@@ -1,5 +1,15 @@
 # portfolio-shirsendu
 
+## 1.13.0
+
+### Minor Changes
+
+- 1e3f27b: feat: google ads tag added
+
+### Patch Changes
+
+- bd3a48a: fix: dynamic file load caching fixed
+
 ## 1.12.1
 
 ### Patch Changes
