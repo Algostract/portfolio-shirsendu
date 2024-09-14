@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// TODO: Refactor props type when supported
 // import type { Project } from '~/utils/types'
 
 interface Project {
@@ -16,12 +17,12 @@ interface Project {
   images: Image[]
 }
 
-const props = defineProps<Project>()
+const { name, createdAt, updatedAt } = defineProps<Project>()
 const emit = defineEmits<{ (event: 'watch'): void }>()
 
 const { proxy: gaProxy } = useScriptGoogleAnalytics()
 
-const modifiedIn = useTimeAgo(() => props.updatedAt, {
+const modifiedIn = useTimeAgo(() => updatedAt, {
   messages: {
     invalid: 'Invalid Date',
     past: (n: any) => (n.match(/\d/) ? `Updated ${n} ago` : n),
@@ -36,7 +37,7 @@ const modifiedIn = useTimeAgo(() => props.updatedAt, {
     second: (n: number) => `${n} sec`,
   },
 })
-const createdAtFormatted = useDateFormat(props.createdAt, 'MMM D, YYYY')
+const createdAtFormatted = useDateFormat(createdAt, 'MMM D, YYYY')
 
 const splideOption = {
   type: 'loop',
@@ -54,12 +55,12 @@ function onPaginationUpdate(_slide: any, list: { items: string | any[] }, _prev:
 }
 
 function onWatch() {
-  gaProxy.gtag('event', 'watch', { app: props.name })
+  gaProxy.gtag('event', 'watch', { app: name })
   emit('watch')
 }
 
 function onTry() {
-  gaProxy.gtag('event', 'try', { app: props.name })
+  gaProxy.gtag('event', 'try', { app: name })
 }
 </script>
 

@@ -10,6 +10,8 @@ const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
+// const { $api } = useNuxtApp()
+
 const { proxy: gaProxy } = useScriptGoogleAnalytics()
 const { proxy: gtagProxy } = useScriptGoogleTagManager()
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data } = useAPI('/api/hackathon')
+const { data } = useFetch('/api/hackathon')
 
 const hackathons = computed(() => data.value?.toSorted((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime()))
 </script>

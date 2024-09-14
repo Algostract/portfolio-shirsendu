@@ -1,7 +1,5 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ primary?: boolean }>(), {
-  primary: true,
-})
+const { primary = true } = defineProps<{ primary?: boolean }>()
 </script>
 
 <template>

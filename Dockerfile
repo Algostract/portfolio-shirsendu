@@ -8,8 +8,6 @@ RUN npm ci
 
 COPY . .
 
-ENV NODE_ENV=production
-
 RUN npm run build
 
 FROM node:lts-alpine AS runner

@@ -1,9 +1,10 @@
 import nodemailer from 'nodemailer'
 import { render } from '@vue-email/render'
+import type { TransactionalEmail } from '~/utils/types'
+
 // import { UserTemplate, AdminTemplate } from "~/emails";
 import UserTemplate from '~/emails/UserTemplate.vue'
 import AdminTemplate from '~/emails/AdminTemplate.vue'
-import type { TransactionalEmail } from '~/utils/types'
 
 const config = useRuntimeConfig()
 

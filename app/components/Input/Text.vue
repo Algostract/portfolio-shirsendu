@@ -1,24 +1,28 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate'
 
-const props = withDefaults(
-  defineProps<{
-    type: 'name' | 'phone' | 'email' | 'pincode'
-    name: string
-    icon?: string
-    placeholder: string
-    value?: string | number
-    isDisabled?: boolean
-  }>(),
-  { isDisabled: false, icon: undefined, value: undefined }
-)
+const {
+  type,
+  name,
+  icon = undefined,
+  placeholder,
+  value = undefined,
+  isDisabled = false,
+} = defineProps<{
+  type: 'name' | 'phone' | 'email' | 'pincode'
+  name: string
+  icon?: string
+  placeholder: string
+  value?: string | number
+  isDisabled?: boolean
+}>()
 
-const { value, errors } = useField(props.name, validateFn)
+const { value: fieldValue, errors } = useField(name, validateFn)
 
-if (props.value) value.value = String(props.value)
+if (value) fieldValue.value = String(value)
 
 function validateFn(value: string) {
-  switch (props.type) {
+  switch (type) {
     case 'name':
       return validateName(value)
     case 'phone':
@@ -36,7 +40,7 @@ function validateFn(value: string) {
 function validateName(value: string) {
   value = value?.trim()
 
-  if (!value) return `${props.placeholder} is required`
+  if (!value) return `${placeholder} is required`
 
   if (value.indexOf(' ') === -1) return 'Enter your First Name and Last Name'
 
@@ -47,7 +51,7 @@ function validateName(value: string) {
 function validatePhone(value: string) {
   value = value?.trim()
 
-  if (!value) return `${props.placeholder} is required`
+  if (!value) return `${placeholder} is required`
 
   if (!value.match(/^\d{10}$/g)) return 'Enter a valid Phone Number'
 
@@ -70,7 +74,7 @@ function validateEmail(value: string) {
 function validatePincode(value: string) {
   value = value?.trim()
 
-  if (!value) return `${props.placeholder} is required`
+  if (!value) return `${placeholder} is required`
 
   if (!value.match(/^[1-9][0-9]{5}$/g)) return 'Enter a valid Pincode'
 
@@ -82,7 +86,7 @@ function validatePincode(value: string) {
   <div class="flex w-full flex-col gap-2">
     <div class="flex h-11 w-full gap-2 rounded-xl bg-light-400 p-2 text-sm outline-2 outline-primary-500 focus-within:outline dark:bg-dark-600">
       <!-- <NuxtIcon v-if="!!icon" :name="icon" class="text-[28px] text-light-500" /> -->
-      <input v-model="value" type="text" :name="name" :placeholder="placeholder" :disabled="isDisabled" class="w-full bg-transparent px-2 outline-none" v-bind="$attrs" />
+      <input v-model="fieldValue" type="text" :name="name" :placeholder="placeholder" :disabled="isDisabled" class="w-full bg-transparent px-2 outline-none" v-bind="$attrs" />
     </div>
     <span v-show="errors.length" class="text-xs font-semi-bold text-alert-500">{{ errors[0] }}</span>
   </div>

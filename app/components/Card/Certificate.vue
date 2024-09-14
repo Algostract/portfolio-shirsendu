@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import type { Certificate } from '~/utils/types'
 
-interface Extension extends Certificate {
+interface Extension extends /* @vue-ignore */ Certificate {
   active?: boolean
 }
 
-withDefaults(defineProps<Extension>(), {
-  active: false,
-})
+const { active = false } = defineProps<Extension>()
 
 const emit = defineEmits<{
   (event: 'slide', dir: 'left' | 'right'): void

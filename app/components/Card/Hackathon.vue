@@ -1,5 +1,18 @@
 <script setup lang="ts">
-import type { Hackathon } from '~/utils/types'
+// TODO: Refactor props type when supported
+// import type { Hackathon } from '~/utils/types'
+
+interface Hackathon {
+  name: string
+  url: string
+  project: string
+  position: string
+  startedAt: string
+  image: {
+    id: string
+    title: string
+  }
+}
 
 defineProps<Hackathon>()
 </script>

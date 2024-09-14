@@ -6,5 +6,7 @@ export default async function <T>(filename: string) {
   const fileContents = await useStorage('fs').getItem(`data/${filename}`)
   const parsedContent = fileContents ? parseYAML<T[]>(fileContents.toString()) : undefined
 
+  // console.log({ parsedContent })
+
   return parsedContent
 }

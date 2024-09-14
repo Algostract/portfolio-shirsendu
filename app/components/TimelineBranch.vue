@@ -2,13 +2,11 @@
 import branchHead from '~/assets/images/branch-head.svg?raw'
 import type { Experience } from '~/utils/types'
 
-interface Branch extends Experience {
-  side: 'left' | 'right'
+interface Branch extends /* @vue-ignore */ Experience {
+  side?: 'left' | 'right'
 }
 
-withDefaults(defineProps<Branch>(), {
-  side: 'left',
-})
+const { side = 'left' } = defineProps<Branch>()
 </script>
 
 <template>

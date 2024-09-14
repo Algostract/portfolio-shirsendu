@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data } = useAPI('/api/certificate')
+const { data } = useFetch('/api/certificate')
 
 const certificates = computed(() => {
   const sortedData = data.value?.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
