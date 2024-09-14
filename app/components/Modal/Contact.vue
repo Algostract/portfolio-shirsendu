@@ -7,7 +7,7 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (event: 'close'): void
+  close: []
 }>()
 
 // const { $api } = useNuxtApp()

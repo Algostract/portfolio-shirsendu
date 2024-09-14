@@ -17,12 +17,12 @@ interface Project {
   images: Image[]
 }
 
-const { name, createdAt, updatedAt } = defineProps<Project>()
-const emit = defineEmits<{ (event: 'watch'): void }>()
+const props = defineProps<Project>()
+const emit = defineEmits<{ watch: [] }>()
 
 const { proxy: gaProxy } = useScriptGoogleAnalytics()
 
-const modifiedIn = useTimeAgo(() => updatedAt, {
+const modifiedIn = useTimeAgo(() => props.updatedAt, {
   messages: {
     invalid: 'Invalid Date',
     past: (n: any) => (n.match(/\d/) ? `Updated ${n} ago` : n),
@@ -37,7 +37,7 @@ const modifiedIn = useTimeAgo(() => updatedAt, {
     second: (n: number) => `${n} sec`,
   },
 })
-const createdAtFormatted = useDateFormat(createdAt, 'MMM D, YYYY')
+const createdAtFormatted = useDateFormat(props.createdAt, 'MMM D, YYYY')
 
 const splideOption = {
   type: 'loop',
@@ -55,12 +55,12 @@ function onPaginationUpdate(_slide: any, list: { items: string | any[] }, _prev:
 }
 
 function onWatch() {
-  gaProxy.gtag('event', 'watch', { app: name })
+  gaProxy.gtag('event', 'watch', { app: props.name })
   emit('watch')
 }
 
 function onTry() {
-  gaProxy.gtag('event', 'try', { app: name })
+  gaProxy.gtag('event', 'try', { app: props.name })
 }
 </script>
 

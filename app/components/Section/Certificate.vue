@@ -13,6 +13,8 @@ const certificates = computed(() => {
 const activeIndex = ref(1)
 
 function onHandleSlide(dir: 'left' | 'right') {
+  if (!certificates.value) return
+
   activeIndex.value += dir === 'left' ? -1 : 1
   if (activeIndex.value < 2) activeIndex.value = certificates.value.length - 2
   else if (activeIndex.value > certificates.value.length - 2) activeIndex.value = 1

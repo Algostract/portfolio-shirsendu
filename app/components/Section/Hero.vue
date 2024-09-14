@@ -4,7 +4,7 @@ import { differenceInMonths, differenceInYears, formatDuration } from 'date-fns'
 const DOB = '2001-01-29'
 const DOFC = '2019-12-03'
 
-const emit = defineEmits<{ (event: 'contact'): void }>()
+const emit = defineEmits<{ contact: [] }>()
 
 const now = useNow()
 

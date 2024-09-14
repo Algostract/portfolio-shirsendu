@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import type { Certificate } from '~/utils/types'
+// TODO: Refactor props type when supported
+// import type { Certificate } from '~/utils/types'
 
-interface Extension extends /* @vue-ignore */ Certificate {
-  active?: boolean
+interface Certificate {
+  name: string
+  link: string
+  date: string
+  image: {
+    id: string
+    title: string
+  }
 }
 
-const { active = false } = defineProps<Extension>()
+withDefaults(defineProps<Certificate & { active?: boolean }>(), {
+  active: false,
+})
 
 const emit = defineEmits<{
-  (event: 'slide', dir: 'left' | 'right'): void
+  slide: [dir: 'left' | 'right']
 }>()
 </script>
 
@@ -52,7 +61,7 @@ const emit = defineEmits<{
       </div>
     </div>
     <div class="aspect-[3/2] w-[18rem] overflow-hidden rounded-xl bg-light-500 dark:bg-dark-500 md:w-[28rem]">
-      <NuxtImg provider="uploadcare" :src="image?.id" :alt="image?.title" :width="512" :height="288" loading="lazy" class="size-full scale-100 object-cover transition-transform hover:scale-110" />
+      <NuxtImg provider="uploadcare" :src="image.id" :alt="image.title" :width="512" :height="288" loading="lazy" class="size-full scale-100 object-cover transition-transform hover:scale-110" />
     </div>
   </div>
 </template>

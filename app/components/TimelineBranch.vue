@@ -1,12 +1,22 @@
 <script setup lang="ts">
+// TODO: Refactor props type when supported
+// import type { Experience } from '~/utils/types'
 import branchHead from '~/assets/images/branch-head.svg?raw'
-import type { Experience } from '~/utils/types'
 
-interface Branch extends /* @vue-ignore */ Experience {
-  side?: 'left' | 'right'
+interface Experience {
+  company: string
+  date: {
+    start: string
+    end: string
+  }
+  position: string
+  image: {
+    id: string
+    title: string
+  }
 }
 
-const { side = 'left' } = defineProps<Branch>()
+withDefaults(defineProps<Experience & { side?: 'left' | 'right' }>(), { side: 'left' })
 </script>
 
 <template>

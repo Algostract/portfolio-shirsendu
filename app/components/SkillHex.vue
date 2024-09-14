@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { quadrant } = defineProps<{
+const props = defineProps<{
   quadrant: 1 | 2 | 3 | 4
 }>()
 
@@ -8,7 +8,7 @@ const image = ref<string | null>(null)
 const skill = ref<'Web' | 'Mobile' | 'AI' | 'IoT' | null>(null)
 
 function onQuadrant() {
-  switch (quadrant) {
+  switch (props.quadrant) {
     case 1:
       imageClass.value = 'top-0 left-0 -right-2 bottom-2 scale-90'
       image.value = '/images/globe.webp'
