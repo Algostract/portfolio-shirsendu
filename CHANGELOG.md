@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.13.1
+
+### Patch Changes
+
+- a09aa21: refactor: serve static files
+
 ## 1.13.0
 
 ### Minor Changes
