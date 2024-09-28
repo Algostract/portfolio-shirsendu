@@ -46,7 +46,7 @@ const emit = defineEmits<{
       <div class="absolute bottom-2 right-2 flex gap-2">
         <NuxtLink
           aria-label="certificate"
-          :to="`/static/certificates/${name}.pdf`"
+          :to="`/certificates/${name}.pdf`"
           target="_blank"
           class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-1 transition-colors hover:bg-primary-500 hover:text-white dark:bg-dark-600 dark:hover:bg-primary-500">
           <NuxtIcon name="certificate" class="text-[16px]" />
