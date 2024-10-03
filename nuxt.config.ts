@@ -38,7 +38,7 @@ export default defineNuxtConfig({
       openAPI: {
         ui: {
           scalar: {
-            theme: 'purple',
+            theme: 'blue',
           },
         },
       },

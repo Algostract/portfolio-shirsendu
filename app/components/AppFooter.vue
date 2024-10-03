@@ -32,7 +32,7 @@ async function onSubscribe(email: string) {
       Want to get latest updates of My Projects<br />
       Join the weekly Newsletter
     </h4>
-    <InputNewsletter class="col-span-2 col-start-1 row-start-4 lg:col-span-1 lg:col-start-2" @subscribe="onSubscribe" />
+    <!-- <InputNewsletter class="col-span-2 col-start-1 row-start-4 lg:col-span-1 lg:col-start-2" @subscribe="onSubscribe" /> -->
     <ul class="col-start-1 row-start-5 flex gap-5 justify-self-start lg:row-start-4 lg:gap-8">
       <li>
         <NuxtLink aria-label="leetcode" to="https://leetcode.com/shba007" target="_blank">

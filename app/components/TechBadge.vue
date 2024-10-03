@@ -77,6 +77,16 @@ const techs = {
     website: 'https://www.tensorflow.org',
     icon: iconTensorflow,
   },
+  citty: {
+    name: 'Citty',
+    website: 'https://unjs.io/packages/citty',
+    icon: 'https://unjs.io/assets/logos/citty.svg',
+  },
+  unbuild: {
+    name: 'Unbuild',
+    website: 'https://unjs.io/packages/unbuild',
+    icon: 'https://unjs.io/assets/logos/unbuild.svg',
+  },
 }
 </script>
 
