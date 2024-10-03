@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.13.2
+
+### Patch Changes
+
+- 4f60d29: chore: new project unascii added
+
 ## 1.13.1
 
 ### Patch Changes
