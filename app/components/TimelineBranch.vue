@@ -27,7 +27,7 @@ withDefaults(defineProps<Experience & { side?: 'left' | 'right' }>(), { side: 'l
       <span
         class="relative aspect-square w-7 rounded-full bg-light-500 after:absolute after:left-1/2 after:top-1/2 after:aspect-square after:w-4 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-light-400 after:content-[''] dark:bg-dark-500 after:dark:bg-dark-400" />
     </div>
-    <NuxtLink :to="`https://www.linkedin.com/company/${company}`" target="_blank">
+    <NuxtLink :to="`https://www.linkedin.com/company/${company}`" :external="true" target="_blank">
       <NuxtImg
         provider="uploadcare"
         :src="image.id"

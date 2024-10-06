@@ -45,13 +45,12 @@ const splideOption = {
   autoplay: true,
   cover: true,
   heightRatio: 0.56,
-  // lazyLoad: 'sequential',
   lazyLoad: 'nearby',
 }
 const splide = ref()
-const currentPage = ref(0)
-function onPaginationUpdate(_slide: any, list: { items: string | any[] }, _prev: any, curr: { page: number }) {
-  if (curr?.page !== undefined) currentPage.value = curr.page
+const currentSlideIndex = ref(0)
+function onSlideMove(_splide: any, newIndex: number, _prevIndex: number, _destIndex: number) {
+  currentSlideIndex.value = newIndex
 }
 
 function onWatch() {
@@ -79,14 +78,14 @@ function onTry() {
               v-for="track in range(images.length)"
               :key="track"
               class="h-[4px] w-[28px] cursor-pointer rounded-full rounded-bl-none rounded-tr-none duration-300"
-              :class="currentPage === track ? 'bg-primary-400' : 'bg-light-500 dark:bg-dark-600'"
+              :class="currentSlideIndex === track ? 'bg-primary-400' : 'bg-light-500 dark:bg-dark-600'"
               @click="splide.go(track)"></li>
           </ul>
-          <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="size-full" @splide:pagination:updated="onPaginationUpdate">
+          <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="size-full" @splide:move="onSlideMove">
             <SplideTrack>
               <SplideSlide v-for="{ id, title } in images" :key="id">
                 <!-- <NuxtImg provider="uploadcare" :src="id" :alt="title" :width="380" :height="270" loading="lazy" class="size-full" /> -->
-                <img :data-splide-lazy="`https://ucarecdn.com/${id}/-/resize/760x427/`" :alt="title" :width="480" :height="270" class="size-full" />
+                <img :data-splide-lazy="`https://ucarecdn.com/${id}/-/resize/480x270/`" :alt="title" :width="480" :height="270" class="size-full" />
               </SplideSlide>
             </SplideTrack>
             <!-- <div
@@ -102,12 +101,19 @@ function onTry() {
           <NuxtLink
             v-if="repoUrl"
             :to="repoUrl"
+            :external="true"
             target="_blank"
             class="absolute bottom-2 left-2 z-20 flex items-center gap-1 rounded-full bg-light-500 py-1 pl-1.5 pr-2 outline-primary-400 transition-colors duration-150 ease-in hover:bg-light-400 hover:outline dark:bg-dark-600 dark:hover:bg-dark-500">
             <NuxtIcon name="github" class="text-[16px]" />
             <span class="text-xs">{{ stars }} Stars</span>
           </NuxtLink>
-          <NuxtLink v-if="videoUrl !== null" :to="videoUrl" target="_blank" class="absolute bottom-1 right-2 z-20 flex items-center gap-1 text-white drop-shadow hover:drop-shadow-md" @click="onWatch">
+          <NuxtLink
+            v-if="videoUrl !== null"
+            :to="videoUrl"
+            :external="true"
+            target="_blank"
+            class="absolute bottom-1 right-2 z-20 flex items-center gap-1 text-white drop-shadow hover:drop-shadow-md"
+            @click="onWatch">
             <span class="text-xs">Watch</span>
             <NuxtIcon name="youtube" class="text-[30px]" />
           </NuxtLink>
@@ -132,6 +138,7 @@ function onTry() {
         <NuxtLink
           v-if="appUrl !== null"
           :to="appUrl"
+          :external="true"
           target="_blank"
           class="absolute bottom-0 right-0 z-10 inline-block cursor-pointer rounded-tl-[1.25rem] bg-primary-500 px-6 py-2 text-xs text-white transition-colors hover:bg-primary-400"
           @click="onTry">

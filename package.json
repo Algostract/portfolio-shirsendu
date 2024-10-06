@@ -22,7 +22,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "start": "node .output/server/index.mjs",
-    "tunnel": "untun tunnel --port 1000 http://localhost:1000",
+    "tunnel": "untun tunnel --port 3000 http://localhost:3000",
     "clean": "nuxt cleanup",
     "docker:build": "docker build --build-arg VERSION_TAG=dev -t portfolio-shirsendu:dev .",
     "docker:start": "docker run --detach --name portfolio-shirsendu-dev --mount type=bind,source=$(pwd)/static,target=/app/static,readonly --env-file .env.prod -p 1000:3000 portfolio-shirsendu:dev"
@@ -39,10 +39,10 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.8",
+    "@changesets/cli": "^2.27.9",
     "@nuxt/eslint": "^0.5.7",
     "@nuxt/fonts": "^0.9.2",
-    "@nuxt/image": "^1.8.0",
+    "@nuxt/image": "^1.8.1",
     "@nuxt/scripts": "^0.9.4",
     "@nuxt/test-utils": "^3.14.2",
     "@nuxtjs/color-mode": "^3.5.1",

@@ -18,7 +18,11 @@ defineProps<Hackathon>()
 </script>
 
 <template>
-  <NuxtLink :to="url" target="_blank" class="grid aspect-[202/82] w-[256px] grid-cols-[auto_1fr] grid-rows-2 items-center justify-start gap-2 rounded-[0.875rem] bg-light-500 p-4 dark:bg-dark-500">
+  <NuxtLink
+    :to="url"
+    :external="true"
+    target="_blank"
+    class="grid aspect-[202/82] w-[256px] grid-cols-[auto_1fr] grid-rows-2 items-center justify-start gap-2 rounded-[0.875rem] bg-light-500 p-4 dark:bg-dark-500">
     <NuxtImg
       provider="uploadcare"
       :src="image.id"
