@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.14.0
+
+### Minor Changes
+
+- ccaa4e7: refactor: certificate section splide added
+
 ## 1.13.2
 
 ### Patch Changes
