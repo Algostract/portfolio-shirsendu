@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.15.0
+
+### Minor Changes
+
+- 9375129: feat: tauri added
+
 ## 1.14.0
 
 ### Minor Changes
