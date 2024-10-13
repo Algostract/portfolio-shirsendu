@@ -1,5 +1,21 @@
 import vue from '@vitejs/plugin-vue'
 
+const isNative = process.env.PLATFORM_ENV === 'native'
+
+const nativeConfig = isNative
+  ? {
+      ssr: false,
+      devServer: { host: process.env.TAURI_DEV_HOST || '0.0.0.0' },
+      vite: {
+        clearScreen: false,
+        envPrefix: ['VITE_', 'TAURI_'],
+        server: {
+          strictPort: true,
+        },
+      },
+    }
+  : {}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-07-04',
@@ -49,21 +65,22 @@ export default defineNuxtConfig({
     '/_ipx/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/images/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/fonts/**': { headers: { 'cache-control': 'max-age=31536000' } },
+    '/api/**': { cors: true },
   },
   runtimeConfig: {
     app: {
       version: '',
     },
     public: {
+      apiBaseUrl: '',
       scripts: {
         googleAnalytics: {
           id: '',
         },
-        /*         googleTagManager: {
+        /* googleTagManager: {
           id: '',
         }, */
       },
-      apiBaseUrl: '',
     },
     private: {
       gmail: '',
@@ -106,12 +123,12 @@ export default defineNuxtConfig({
     fallback: 'light',
     classSuffix: '',
   },
-  site: {
-    name: 'Shirsendu Bairagi',
-    url: 'https://shirsendu-bairagi.dev',
-  },
   robots: {
     disallow: ['/_nuxt/'],
+  },
+  site: {
+    url: 'https://shirsendu-bairagi.dev',
+    name: 'Shirsendu Bairagi',
   },
   pwa: {
     scope: '/',
@@ -302,4 +319,5 @@ export default defineNuxtConfig({
   splide: {
     theme: 'core',
   },
+  ...nativeConfig,
 })

@@ -9,4 +9,5 @@ export default withNuxt({
   // plugins: {
   //   'eslint-config-prettier': eslintConfigPrettier,
   // },
+  ignores: ['./src-tauri/**'],
 })

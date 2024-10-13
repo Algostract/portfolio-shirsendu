@@ -21,6 +21,10 @@ logs
 .env*
 !.env.example
 
+# Tauri
+src-tauri/target/
+src-tauri/gen/schemas
+
 # Static files
 static/**/*.*
 !static/**/*.gitkeep

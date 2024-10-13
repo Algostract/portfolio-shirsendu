@@ -6,14 +6,13 @@ const emit = defineEmits<{
   contact: [action: boolean]
 }>()
 
-// const { $api } = useNuxtApp()
-
+const { $api } = useNuxtApp()
 const { proxy: gaProxy } = useScriptGoogleAnalytics()
 
 async function onSubscribe(email: string) {
   gaProxy.gtag('event', 'subscribe')
 
-  await $fetch('/api/newsletter', {
+  await $api('/api/newsletter', {
     method: 'POST',
     body: { email, subscribed: true },
   })

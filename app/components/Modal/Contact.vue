@@ -10,8 +10,7 @@ const emit = defineEmits<{
   close: []
 }>()
 
-// const { $api } = useNuxtApp()
-
+const { $api } = useNuxtApp()
 const { proxy: gaProxy } = useScriptGoogleAnalytics()
 const { proxy: gtagProxy } = useScriptGoogleTagManager()
 
@@ -21,7 +20,7 @@ const onSend = handleSubmit((values) => {
   gaProxy.gtag('event', 'conversion')
   gtagProxy.dataLayer.push({ event: 'conversion', value: 1 })
 
-  $fetch('/api/contact', {
+  $api('/api/contact', {
     method: 'POST',
     body: values,
   })

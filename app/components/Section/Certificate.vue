@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data } = useFetch('/api/certificate')
+const { data } = useAPI('/api/certificate')
 
 const splideOption = {
   type: 'loop',
@@ -24,8 +24,7 @@ const splideOption = {
 }
 
 const certificates = computed(() => {
-  const sortedData = [...(data.value?.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) ?? [])]
-  return sortedData
+  return data.value?.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
 
 const currentSlide = ref('')
