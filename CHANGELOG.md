@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.15.1
+
+### Patch Changes
+
+- 339a302: chore: premade sitemap.xml removed, google tag manager removed, icons updated, pkgs updated
+
 ## 1.15.0
 
 ### Minor Changes
