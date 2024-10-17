@@ -1,5 +1,6 @@
 # Nuxt dev/build outputs
 .output
+.data
 .nuxt
 .nitro
 .cache
@@ -18,10 +19,11 @@ logs
 .idea
 
 # Local env files
-.env*
+.env
+.env.*
 !.env.example
 
-# Tauri
+# Tauri files
 src-tauri/target/
 src-tauri/gen/schemas
 

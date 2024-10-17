@@ -1,6 +1,6 @@
 [package]
 name = "portfolio-shirsendu"
-version = "1.14.0"
+version = "1.15.0"
 description = "Shirsendu's devfolio showcasing his projects, experience and certification in a visually appealing manner"
 authors = ["Shirsendu Bairagi"]
 license = "LGPL-3.0-or-later"
@@ -13,6 +13,16 @@ rust-version = "1.77.2"
 [lib]
 name = "app_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
+
+[profile.dev]
+incremental = true
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true
 
 [build-dependencies]
 tauri-build = { version = "2.0.1", features = [] }

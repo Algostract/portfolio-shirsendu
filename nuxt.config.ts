@@ -1,20 +1,37 @@
 import vue from '@vitejs/plugin-vue'
 
-const isNative = process.env.PLATFORM_ENV === 'native'
-
-const nativeConfig = isNative
-  ? {
-      ssr: false,
-      devServer: { host: process.env.TAURI_DEV_HOST || '0.0.0.0' },
-      vite: {
-        clearScreen: false,
-        envPrefix: ['VITE_', 'TAURI_'],
-        server: {
-          strictPort: true,
+const nativeConfig =
+  process.env.PLATFORM_ENV === 'native'
+    ? {
+        ssr: false,
+        devServer: { host: process.env.TAURI_DEV_HOST || '0.0.0.0' },
+        vite: {
+          clearScreen: false,
+          envPrefix: ['VITE_', 'TAURI_'],
+          server: {
+            strictPort: true,
+          },
         },
-      },
-    }
-  : {}
+        nitro: {
+          compressPublicAssets: true,
+          storage: {
+            fs: {
+              driver: 'fs',
+              base: './static',
+            },
+          },
+          rollupConfig: {
+            plugins: [vue()],
+          },
+          experimental: {
+            openAPI: true,
+          },
+          prerender: {
+            routes: ['/_ipx/s_512x512/images/globe.webp', '/_ipx/s_512x512/images/mobile.webp', '/_ipx/s_512x512/images/robot.webp', '/_ipx/s_512x512/images/drone.webp'],
+          },
+        },
+      }
+    : {}
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -51,13 +68,7 @@ export default defineNuxtConfig({
       plugins: [vue()],
     },
     experimental: {
-      openAPI: {
-        ui: {
-          scalar: {
-            theme: 'blue',
-          },
-        },
-      },
+      openAPI: true,
     },
   },
   routeRules: {
@@ -77,9 +88,6 @@ export default defineNuxtConfig({
         googleAnalytics: {
           id: '',
         },
-        /* googleTagManager: {
-          id: '',
-        }, */
       },
     },
     private: {
@@ -115,7 +123,6 @@ export default defineNuxtConfig({
   scripts: {
     registry: {
       googleAnalytics: true,
-      // googleTagManager: true,
     },
   },
   colorMode: {

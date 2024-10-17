@@ -25,8 +25,14 @@ logs
 .idea
 
 # Local env files
-.env*
+.env
+.env.*
 
+# Tauri files
+src-tauri/target/
+src-tauri/gen/schemas
+
+# Docker files
 .dockerignore
 Dockerfile
 

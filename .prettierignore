@@ -9,6 +9,7 @@ dist
 node_modules
 package.json
 package-lock.json
+pnpm-lock.yaml
 
 # Logs
 logs
@@ -20,11 +21,11 @@ logs
 .idea
 
 # Local env files
-.env*
+.env
+.env.*
 
-# Tauri
-src-tauri/target/
-src-tauri/gen/schemas
+# Tauri files
+src-tauri
 
 # Static files
 static/**/*.*

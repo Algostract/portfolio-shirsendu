@@ -12,13 +12,11 @@ const emit = defineEmits<{
 
 const { $api } = useNuxtApp()
 const { proxy: gaProxy } = useScriptGoogleAnalytics()
-const { proxy: gtagProxy } = useScriptGoogleTagManager()
 
 const { handleSubmit } = useForm<TransactionalEmail>()
 
 const onSend = handleSubmit((values) => {
   gaProxy.gtag('event', 'conversion')
-  gtagProxy.dataLayer.push({ event: 'conversion', value: 1 })
 
   $api('/api/contact', {
     method: 'POST',
