@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.16.0
+
+### Minor Changes
+
+- 51446f6: migrate: pkg-manager npm -> pnpm
+
 ## 1.15.1
 
 ### Patch Changes
