@@ -22,13 +22,13 @@ jobs:
           cache: 'pnpm'
 
       - name: Install Dependencies
-        run: pnpm ci
+        run: pnpm install
 
       # - name: Run Tests
-      # run: npm test
+      # run: pnpm test
 
       # - name: Lint Code
-      #   run: pnpm link:fix
+      #   run: pnpm linit
 
       # - name: Format Code
       #   run: pnpm format
