@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.16.1
+
+### Patch Changes
+
+- aa7c3df: fix: jobs output fixed
+
 ## 1.16.0
 
 ### Minor Changes
