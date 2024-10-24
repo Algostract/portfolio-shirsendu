@@ -25,6 +25,12 @@ jobs:
       attestations: write
       id-token: write
 
+    outputs:
+      image_name: ${{ steps.info.outputs.image_name }}
+      image_title: ${{ steps.info.outputs.image_title }}
+      buildtime: ${{ steps.info.outputs.buildtime }}
+      version: ${{ steps.info.outputs.version }}
+
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -37,30 +43,30 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Extract metadata (tags, labels) for Docker
-        id: meta
+        id: metadata
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.REPO }}
 
       - name: Set tags as environment variable
-        id: set_outputs
+        id: info
         run: |
           echo "Setting metadata to env variables"
-          echo "::set-output name=image_name::${{ fromJSON(steps.meta.outputs.json).tags[1] }}"
-          echo "::set-output name=image_title::${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}"
-          echo "::set-output name=buildtime::${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}"
-          echo "::set-output name=version::${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}"
+          echo "::set-output name=image_name::${{ fromJSON(steps.metadata.outputs.json).tags[1] }}"
+          echo "::set-output name=image_title::${{ fromJSON(steps.metadata.outputs.json).labels['org.opencontainers.image.title'] }}"
+          echo "::set-output name=buildtime::${{ fromJSON(steps.metadata.outputs.json).labels['org.opencontainers.image.created'] }}"
+          echo "::set-output name=version::${{ fromJSON(steps.metadata.outputs.json).labels['org.opencontainers.image.version'] }}"
 
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.metadata.outputs.tags }}
+          labels: ${{ steps.metadata.outputs.labels }}
           build-args: |
-            BUILDTIME=${{ steps.set_outputs.outputs.buildtime }}
-            VERSION=${{ steps.set_outputs.outputs.version }}
+            BUILDTIME=${{ steps.info.outputs.buildtime }}
+            VERSION=${{ steps.info.outputs.version }}
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
