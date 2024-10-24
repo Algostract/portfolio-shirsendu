@@ -12,15 +12,15 @@ const age = computed(() => {
   return formatDuration({ years: differenceInYears(now.value, DOB) }, { format: ['years'] })
 })
 
-const experience = computed(() => {
-  return formatDuration(
+const experience = computed(() =>
+  formatDuration(
     {
       years: differenceInYears(now.value, DOFC),
       months: differenceInMonths(now.value, DOFC) % 12,
     },
     { format: ['years', 'months'] }
   )
-})
+)
 </script>
 
 <template>

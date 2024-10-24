@@ -1,13 +1,13 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Shirsendu Bairagi",
-  "version": "1.15.0",
+  "version": "1.15.1",
   "identifier": "dev.shirsendubairagi.app",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3000",
-    "beforeDevCommand": "nuxt dev",
-    "beforeBuildCommand": "nuxt generate --dotenv .env.prod"
+    "beforeDevCommand": "cross-env PLATFORM_ENV=native nuxt dev",
+    "beforeBuildCommand": "cross-env PLATFORM_ENV=native nuxt generate"
   },
   "app": {
     "windows": [

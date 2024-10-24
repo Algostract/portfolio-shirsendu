@@ -25,7 +25,7 @@ logs
 .env.*
 
 # Tauri files
-src-tauri
+native
 
 # Static files
 static/**/*.*

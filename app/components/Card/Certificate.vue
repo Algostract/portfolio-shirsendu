@@ -28,7 +28,7 @@ withDefaults(defineProps<Certificate & { active?: boolean }>(), {
       leave-to-class="opacity-0">
       <div v-show="active" class="absolute bottom-2 right-2 z-10 flex gap-2">
         <NuxtLink
-          :to="`/certificates/${name}.pdf`"
+          :to="`/certificates/${slugify(name)}.pdf`"
           :external="true"
           aria-label="certificate"
           target="_blank"

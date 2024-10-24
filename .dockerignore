@@ -29,8 +29,8 @@ logs
 .env.*
 
 # Tauri files
-src-tauri/target/
-src-tauri/gen/schemas
+native/target/
+native/gen/schemas
 
 # Docker files
 .dockerignore

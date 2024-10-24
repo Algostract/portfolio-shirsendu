@@ -13,10 +13,6 @@ concurrency: ${{ github.workflow }}-${{ github.ref_name }}
 env:
   REPO: ${{ github.repository }}
   REGISTRY: ghcr.io
-  IMAGE_NAME:
-  IMAGE_TITLE:
-  BUILDTIME:
-  VERSION:
   PORT: 1000
 
 jobs:
@@ -47,12 +43,13 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.REPO }}
 
       - name: Set tags as environment variable
+        id: set_outputs
         run: |
           echo "Setting metadata to env variables"
-          echo "IMAGE_NAME=${{ fromJSON(steps.meta.outputs.json).tags[1] }}" >> $GITHUB_ENV
-          echo "IMAGE_TITLE=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}" >> $GITHUB_ENV
-          echo "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_ENV
-          echo "VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_ENV
+          echo "::set-output name=image_name::${{ fromJSON(steps.meta.outputs.json).tags[1] }}"
+          echo "::set-output name=image_title::${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.title'] }}"
+          echo "::set-output name=buildtime::${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}"
+          echo "::set-output name=version::${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}"
 
       - name: Build and push Docker image
         id: push
@@ -62,8 +59,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            BUILDTIME=${{ env.BUILDTIME }}
-            VERSION=${{ env.VERSION }}
+            BUILDTIME=${{ steps.set_outputs.outputs.buildtime }}
+            VERSION=${{ steps.set_outputs.outputs.version }}
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
@@ -72,33 +69,23 @@ jobs:
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+
+    steps:
       - name: Deploy to VPS
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            docker ps -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker stop
-            docker ps -a -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker rm
-            docker rmi ${{ env.IMAGE_NAME }}
-            docker pull ${{ env.IMAGE_NAME }}
-            docker run --detach --name ${{ env.IMAGE_TITLE }} --mount type=bind,source=$(pwd)/${{ env.IMAGE_TITLE }}/static,target=/app/static,readonly  --env-file ~/${{ env.IMAGE_TITLE }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAME }}
-
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-24.04
-
-  #   steps:
-  #     - name: Deploy to VPS
-  #       uses: appleboy/ssh-action@v1.0.3
-  #       with:
-  #         host: ${{ secrets.HOST }}
-  #         username: ${{ secrets.USERNAME }}
-  #         password: ${{ secrets.PASSWORD }}
-  #         script: |
-  #           docker ps -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker stop
-  #           docker ps -a -q --filter ancestor=${{ env.IMAGE_NAME }} | xargs -r docker rm
-  #           docker rmi ${{ env.IMAGE_NAME }}
-  #           docker pull ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-  #           docker run --name ${{ env.IMAGE_TITLE }} --env-file  ~/${{ env.IMAGE_TITLE }}/.env.prod -p ${{ env.PORT }}:3000 ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+            docker ps -q --filter ancestor=${{ needs.build.outputs.image_name }} | xargs -r docker stop
+            docker ps -a -q --filter ancestor=${{ needs.build.outputs.image_name }} | xargs -r docker rm
+            docker rmi ${{ needs.build.outputs.image_name }}
+            docker pull ${{ needs.build.outputs.image_name }}
+            docker run --detach --name ${{ needs.build.outputs.image_title }} \
+              --mount type=bind,source=$(pwd)/${{ needs.build.outputs.image_title }}/static,target=/app/static,readonly \
+              --env-file ~/${{ needs.build.outputs.image_title }}/.env.prod \
+              -p ${{ env.PORT }}:3000 ${{ needs.build.outputs.image_name }}

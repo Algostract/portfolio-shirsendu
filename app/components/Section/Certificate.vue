@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data } = useAPI('/api/certificate')
+const { data } = await useAPI('/api/certificate')
 
 const splideOption = {
   type: 'loop',

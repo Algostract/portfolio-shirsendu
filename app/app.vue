@@ -61,7 +61,6 @@ useSchemaOrg([
 </script>
 
 <template>
-  <!-- <Script async src="/script/spiderx-widget.umd.js"></Script> -->
   <NuxtRouteAnnouncer />
   <NuxtPwaManifest />
   <NuxtPwaAssets />

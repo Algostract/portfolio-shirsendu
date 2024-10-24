@@ -39,7 +39,7 @@ const splideOption = {
   },
 }
 
-const { data } = useAPI('/api/project')
+const { data } = await useAPI('/api/project')
 
 const projects = computed(() => data.value?.toSorted((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()))
 </script>
