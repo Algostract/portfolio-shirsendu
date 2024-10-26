@@ -1,7 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Shirsendu Bairagi",
-  "version": "1.15.1",
   "identifier": "dev.shirsendubairagi.app",
   "build": {
     "frontendDist": "../dist",

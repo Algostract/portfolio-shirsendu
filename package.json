@@ -24,18 +24,18 @@
     "lint": "eslint . --fix",
     "format": "prettier .  --write",
     "build": "nuxt build && cp -r static .output/static",
-    "generate": "nuxt generate --dotenv .env.prod",
+    "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "clean": "nuxt cleanup",
+    "start": "node .output/server/index.mjs",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
     "tauri:dev:mobile": "tauri android dev",
     "tauri:build:mobile": "tauri android build",
-    "start": "node .output/server/index.mjs",
-    "tunnel": "untun tunnel --port 3000 http://localhost:3000",
-    "clean": "nuxt cleanup",
     "docker:build": "docker build --build-arg VERSION_TAG=dev -t portfolio-shirsendu:dev .",
-    "docker:start": "docker run --detach --name portfolio-shirsendu-dev --mount type=bind,source=$(pwd)/static,target=/app/static,readonly --env-file .env.prod -p 1000:3000 portfolio-shirsendu:dev"
+    "docker:start": "docker run --detach --name portfolio-shirsendu-dev --mount type=bind,source=$(pwd)/static,target=/app/static,readonly --env-file .env.prod -p 1000:3000 portfolio-shirsendu:dev",
+    "tunnel": "untun tunnel --port 3000 http://localhost:3000"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15",

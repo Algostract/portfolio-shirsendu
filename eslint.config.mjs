@@ -6,6 +6,6 @@ export default withNuxt([
     rules: {
       'vue/html-self-closing': 'off',
     },
-    ignores: ['./src-tauri/**'],
+    ignores: ['./native/**'],
   },
 ])
