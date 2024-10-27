@@ -1,0 +1,250 @@
+name: Nuxt CD
+run-name: ${{ github.ref_name }}
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*.*.*'
+
+concurrency: ${{ github.workflow }}-${{ github.ref_name }}
+
+env:
+  REGISTRY: ghcr.io
+  USERNAME: shba007
+  REPO: ${{ github.repository }}
+  PORT: 1000
+
+jobs:
+  build_web:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+
+    outputs:
+      image_title: ${{ steps.info.outputs.image_title }}
+      buildtime: ${{ steps.info.outputs.buildtime }}
+      version: ${{ steps.info.outputs.version }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ env.USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: metadata
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.REPO }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Set tags as environment variable
+        id: info
+        run: |
+          echo "Setting metadata to env variables"
+          echo "image_title=${{ fromJSON(steps.metadata.outputs.json).labels['org.opencontainers.image.title'] }}" >> $GITHUB_OUTPUT
+          echo "buildtime=${{ fromJSON(steps.metadata.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_OUTPUT
+          echo "version=${{ fromJSON(steps.metadata.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_OUTPUT
+
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.metadata.outputs.tags }}
+          labels: ${{ steps.metadata.outputs.labels }}
+          build-args: |
+            BUILDTIME=${{ steps.info.outputs.buildtime }}
+            VERSION=${{ steps.info.outputs.version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ env.REPO }}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
+
+  deploy_web:
+    needs: build_web
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            # Pull new image
+            docker pull ${{ env.REGISTRY }}/${{ needs.build_web.outputs.image_title }}:latest
+
+            # Stop the existing container
+            docker stop ${{ needs.build_web.outputs.image_title }} || true
+            docker rm ${{ needs.build_web.outputs.image_title }} || true
+
+            # Create and start new container
+            docker run --detach \
+              --name ${{ needs.build_web.outputs.image_title }} \
+              --restart unless-stopped \
+              --mount type=bind,source=$(pwd)/${{ needs.build_web.outputs.image_title }}/static,target=/app/static,readonly \
+              --env-file ~/${{ needs.build_web.outputs.image_title }}/.env.prod \
+              -p ${{ env.PORT }}:3000 \
+              ${{ env.REGISTRY }}/${{ needs.build_web.outputs.image_title }}
+
+            # Clean up unused images
+            docker image prune -f
+
+  build_desktop:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: 'macos-latest' # for Arm based macs (M1 and above).
+            args: '--target aarch64-apple-darwin'
+
+          - platform: 'macos-latest' # for Intel based macs.
+            args: '--target x86_64-apple-darwin'
+
+          - platform: 'ubuntu-latest'
+            args: ''
+
+          - platform: 'windows-latest'
+            args: ''
+
+    steps:
+      - name: install dependencies (ubuntu only)
+        if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './native -> target'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Bulid and Upload Artifact
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
+          releaseName: 'v__VERSION__'
+          releaseBody: 'See the assets to download this version and install.'
+          releaseDraft: true
+          prerelease: false
+          args: ${{ matrix.args }}
+
+  # deploy_desktop:
+  #   needs: build_desktop
+  #   runs-on: ubuntu-latest
+
+  build_mobile:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    # strategy:
+    #   matrix:
+    #     arch: [aarch64, armv7l]
+    #     include:
+    #       - arch: aarch64
+    #         cpu: cortex-a72
+    #         base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv8-Bookworm.img.xz
+    #         deb: arm64
+    #         rpm: aarch64
+    #         appimage: aarch64
+
+    #       - arch: armv7l
+    #         cpu: cortex-a53
+    #         deb: armhfp
+    #         rpm: arm
+    #         appimage: armhf
+    #         base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv7-Bookworm.img.xz
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './native -> target'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Bulid Artifacts
+        run: |
+          pnpm tauri android build
+          pnpm tauri ios build
+
+      - name: Bulid and Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.REPO }}-${{ env.VERSION }}
+          path: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
+
+  # deploy_mobile:
+  #   needs: build_mobile
+  #   runs-on: ubuntu-latest
