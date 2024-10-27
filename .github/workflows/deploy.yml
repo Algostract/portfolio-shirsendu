@@ -49,11 +49,6 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.REPO }}
-          tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Set tags as environment variable
         id: info
@@ -97,7 +92,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             # Pull new image
-            docker pull ${{ env.REGISTRY }}/${{ needs.build_web.outputs.image_title }}:latest
+            docker pull ${{ env.REGISTRY }}/${{ env.REPO }}:latest
 
             # Stop the existing container
             docker stop ${{ needs.build_web.outputs.image_title }} || true
@@ -110,7 +105,7 @@ jobs:
               --mount type=bind,source=$(pwd)/${{ needs.build_web.outputs.image_title }}/static,target=/app/static,readonly \
               --env-file ~/${{ needs.build_web.outputs.image_title }}/.env.prod \
               -p ${{ env.PORT }}:3000 \
-              ${{ env.REGISTRY }}/${{ needs.build_web.outputs.image_title }}
+              ${{ env.REGISTRY }}/${{ env.REPO }}
 
             # Clean up unused images
             docker image prune -f
@@ -136,14 +131,9 @@ jobs:
 
           - platform: 'windows-latest'
             args: ''
-
+    
+    runs-on: ${{ matrix.platform }}
     steps:
-      - name: install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
-
       - name: Checkout Repo
         uses: actions/checkout@v4
 
@@ -156,16 +146,19 @@ jobs:
           node-version: lts/*
           cache: 'pnpm'
 
-      - name: Install Rust stable
+      - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
         with:
           # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
-      - name: Rust cache
-        uses: swatinem/rust-cache@v2
-        with:
-          workspaces: './native -> target'
+      - name: install dependencies (ubuntu only)
+        if: matrix.platform == 'ubuntu-22.04' # This must match the platform value defined above.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.0-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+          # webkitgtk 4.0 is for Tauri v1 - webkitgtk 4.1 is for Tauri v2.
+          # You can remove the one that doesn't apply to your app to speed up the workflow a bit.
 
       - name: Install Dependencies
         run: pnpm install
@@ -175,12 +168,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          args: ${{ matrix.args }}
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: 'v__VERSION__'
           releaseBody: 'See the assets to download this version and install.'
           releaseDraft: true
           prerelease: false
-          args: ${{ matrix.args }}
 
   # deploy_desktop:
   #   needs: build_desktop
