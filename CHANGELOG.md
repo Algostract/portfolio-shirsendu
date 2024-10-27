@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.16.2
+
+### Patch Changes
+
+- 22c7f60: chore: workflows updated
+
 ## 1.16.1
 
 ### Patch Changes
