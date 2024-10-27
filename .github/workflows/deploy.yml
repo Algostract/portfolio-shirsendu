@@ -111,8 +111,6 @@ jobs:
             docker image prune -f
 
   build_desktop:
-    runs-on: ubuntu-latest
-
     permissions:
       contents: write
 
@@ -131,8 +129,9 @@ jobs:
 
           - platform: 'windows-latest'
             args: ''
-    
+
     runs-on: ${{ matrix.platform }}
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -180,28 +179,28 @@ jobs:
   #   runs-on: ubuntu-latest
 
   build_mobile:
-    runs-on: ubuntu-latest
-
     permissions:
       contents: write
 
-    # strategy:
-    #   matrix:
-    #     arch: [aarch64, armv7l]
-    #     include:
-    #       - arch: aarch64
-    #         cpu: cortex-a72
-    #         base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv8-Bookworm.img.xz
-    #         deb: arm64
-    #         rpm: aarch64
-    #         appimage: aarch64
+    strategy:
+      matrix:
+        arch: [aarch64, armv7l]
+        include:
+          - arch: aarch64
+            cpu: cortex-a72
+            base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv8-Bookworm.img.xz
+            deb: arm64
+            rpm: aarch64
+            appimage: aarch64
 
-    #       - arch: armv7l
-    #         cpu: cortex-a53
-    #         deb: armhfp
-    #         rpm: arm
-    #         appimage: armhf
-    #         base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv7-Bookworm.img.xz
+          - arch: armv7l
+            cpu: cortex-a53
+            deb: armhfp
+            rpm: arm
+            appimage: armhf
+            base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv7-Bookworm.img.xz
+
+    runs-on: ${{ matrix.arch }}
 
     steps:
       - name: Checkout Repo
@@ -219,11 +218,6 @@ jobs:
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Rust cache
-        uses: swatinem/rust-cache@v2
-        with:
-          workspaces: './native -> target'
-
       - name: Install Dependencies
         run: pnpm install
 
@@ -235,7 +229,7 @@ jobs:
       - name: Bulid and Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.REPO }}-${{ env.VERSION }}
+          name: ${{ env.REPO }}-${{ github.ref_name }}
           path: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
 
   # deploy_mobile:
