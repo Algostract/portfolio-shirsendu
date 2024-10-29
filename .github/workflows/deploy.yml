@@ -10,10 +10,14 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref_name }}
 
 env:
-  REGISTRY: ghcr.io
-  USERNAME: shba007
   REPO: ${{ github.repository }}
-  PORT: 1000
+  REGISTRY: ${{ vars.REGISTRY }}
+  USERNAME: ${{ vars.USERNAME }}
+  PORT: ${{ vars.PORT }}
+  NODE_ENV: ${{ vars.NODE_ENV }}
+  NITRO_PRESET: ${{ vars.NITRO_PRESET }}
+  NUXT_PUBLIC_API_BASE_URL: ${{ vars.NUXT_PUBLIC_API_BASE_URL }}
+  NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID: ${{ vars.NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID }}
 
 jobs:
   build_web:
@@ -26,6 +30,7 @@ jobs:
       id-token: write
 
     outputs:
+      image_name: ${{ steps.info.outputs.image_name }}
       image_title: ${{ steps.info.outputs.image_title }}
       buildtime: ${{ steps.info.outputs.buildtime }}
       version: ${{ steps.info.outputs.version }}
@@ -93,7 +98,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             # Pull new image
-            docker pull ${{ needs.build_web.outputs.image_name }}:latest
+            docker pull ${{ needs.build_web.outputs.image_name }}
 
             # Stop the existing container
             docker stop ${{ needs.build_web.outputs.image_title }} || true
