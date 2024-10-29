@@ -54,6 +54,7 @@ jobs:
         id: info
         run: |
           echo "Setting metadata to env variables"
+          echo "image_name=${{ fromJSON(steps.metadata.outputs.json).tags[1] }}" >> $GITHUB_OUTPUT
           echo "image_title=${{ fromJSON(steps.metadata.outputs.json).labels['org.opencontainers.image.title'] }}" >> $GITHUB_OUTPUT
           echo "buildtime=${{ fromJSON(steps.metadata.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_OUTPUT
           echo "version=${{ fromJSON(steps.metadata.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_OUTPUT
@@ -92,7 +93,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             # Pull new image
-            docker pull ${{ env.REGISTRY }}/${{ env.REPO }}:latest
+            docker pull ${{ needs.build_web.outputs.image_name }}:latest
 
             # Stop the existing container
             docker stop ${{ needs.build_web.outputs.image_title }} || true
@@ -105,7 +106,7 @@ jobs:
               --mount type=bind,source=$(pwd)/${{ needs.build_web.outputs.image_title }}/static,target=/app/static,readonly \
               --env-file ~/${{ needs.build_web.outputs.image_title }}/.env.prod \
               -p ${{ env.PORT }}:3000 \
-              ${{ env.REGISTRY }}/${{ env.REPO }}
+              ${{ needs.build_web.outputs.image_name }}
 
             # Clean up unused images
             docker image prune -f
@@ -152,12 +153,10 @@ jobs:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
       - name: install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu-22.04' # This must match the platform value defined above.
+        if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.0-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
-          # webkitgtk 4.0 is for Tauri v1 - webkitgtk 4.1 is for Tauri v2.
-          # You can remove the one that doesn't apply to your app to speed up the workflow a bit.
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
       - name: Install Dependencies
         run: pnpm install
@@ -170,7 +169,6 @@ jobs:
           args: ${{ matrix.args }}
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: 'v__VERSION__'
-          releaseBody: 'See the assets to download this version and install.'
           releaseDraft: true
           prerelease: false
 
@@ -178,59 +176,59 @@ jobs:
   #   needs: build_desktop
   #   runs-on: ubuntu-latest
 
-  build_mobile:
-    permissions:
-      contents: write
+  # build_mobile:
+  #   permissions:
+  #     contents: write
 
-    strategy:
-      matrix:
-        arch: [aarch64, armv7l]
-        include:
-          - arch: aarch64
-            cpu: cortex-a72
-            base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv8-Bookworm.img.xz
-            deb: arm64
-            rpm: aarch64
-            appimage: aarch64
+  #   strategy:
+  #     matrix:
+  #       arch: [aarch64, armv7l]
+  #       include:
+  #         - arch: aarch64
+  #           cpu: cortex-a72
+  #           base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv8-Bookworm.img.xz
+  #           deb: arm64
+  #           rpm: aarch64
+  #           appimage: aarch64
 
-          - arch: armv7l
-            cpu: cortex-a53
-            deb: armhfp
-            rpm: arm
-            appimage: armhf
-            base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv7-Bookworm.img.xz
+  #         - arch: armv7l
+  #           cpu: cortex-a53
+  #           deb: armhfp
+  #           rpm: arm
+  #           appimage: armhf
+  #           base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv7-Bookworm.img.xz
 
-    runs-on: ${{ matrix.arch }}
+  #   runs-on: ${{ matrix.arch }}
 
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: 'pnpm'
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: lts/*
+  #         cache: 'pnpm'
 
-      - name: Install Rust stable
-        uses: dtolnay/rust-toolchain@stable
+  #     - name: Install Rust stable
+  #       uses: dtolnay/rust-toolchain@stable
 
-      - name: Install Dependencies
-        run: pnpm install
+  #     - name: Install Dependencies
+  #       run: pnpm install
 
-      - name: Bulid Artifacts
-        run: |
-          pnpm tauri android build
-          pnpm tauri ios build
+  #     - name: Bulid Artifacts
+  #       run: |
+  #         pnpm tauri android build
+  #         pnpm tauri ios build
 
-      - name: Bulid and Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.REPO }}-${{ github.ref_name }}
-          path: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
+  #     - name: Bulid and Upload Artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ env.REPO }}-${{ github.ref_name }}
+  #         path: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
 
   # deploy_mobile:
   #   needs: build_mobile

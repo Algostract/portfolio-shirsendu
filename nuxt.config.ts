@@ -3,43 +3,43 @@ import vue from '@vitejs/plugin-vue'
 const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
     ? {
-      ssr: false,
-      devServer: { host: process.env.TAURI_DEV_HOST || '0.0.0.0' },
-      vite: {
-        clearScreen: false,
-        envPrefix: ['VITE_', 'TAURI_'],
-        server: {
-          strictPort: true,
-        },
-      },
-      nitro: {
-        compressPublicAssets: true,
-        storage: {
-          fs: {
-            driver: 'fs',
-            base: './static',
+        ssr: false,
+        devServer: { host: process.env.TAURI_DEV_HOST || '0.0.0.0' },
+        vite: {
+          clearScreen: false,
+          envPrefix: ['VITE_', 'TAURI_'],
+          server: {
+            strictPort: true,
           },
         },
-        rollupConfig: {
-          plugins: [vue()],
-        },
-        prerender: {
-          routes: [
-            '/_ipx/s_512x512/images/globe.webp',
-            '/_ipx/s_512x512/images/mobile.webp',
-            '/_ipx/s_512x512/images/robot.webp',
-            '/_ipx/s_512x512/images/drone.webp',
-            /* '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
+        nitro: {
+          compressPublicAssets: true,
+          storage: {
+            fs: {
+              driver: 'fs',
+              base: './static',
+            },
+          },
+          rollupConfig: {
+            plugins: [vue()],
+          },
+          prerender: {
+            routes: [
+              '/_ipx/s_512x512/images/globe.webp',
+              '/_ipx/s_512x512/images/mobile.webp',
+              '/_ipx/s_512x512/images/robot.webp',
+              '/_ipx/s_512x512/images/drone.webp',
+              /* '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
             '/certificates/codedamn-learn-javascript-basics.pdf',
             '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
             '/certificates/codedamn-hacktoberfest-2023.pdf',
             '/certificates/gnec-hackathon-2023.pdf',
             '/certificates/100-days-of-frontend.pdf',
             '/certificates/30-days-of-react.pdf', */
-          ],
+            ],
+          },
         },
-      },
-    }
+      }
     : {}
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
