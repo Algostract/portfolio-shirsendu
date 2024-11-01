@@ -206,7 +206,7 @@ jobs:
         include:
           - platform: 'ubuntu-latest'
             name: 'android'
-            args: '--target aarch64-linux-android'
+            arch: 'aarch64-linux-android'
 
           # - platform: 'ubuntu-latest'
           #   name: 'ios'
@@ -247,6 +247,9 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Install Target
+        run: rustup target add ${{ matrix.arch }}
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
@@ -260,7 +263,7 @@ jobs:
         run: pnpm install
 
       - name: Bulid Artifact
-        run: pnpm tauri build ${{ matrix.args }}
+        run: pnpm tauri build --target ${{ matrix.arch }}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
