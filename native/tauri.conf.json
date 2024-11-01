@@ -5,8 +5,8 @@
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3000",
-    "beforeDevCommand": "cross-env PLATFORM_ENV=native nuxt dev",
-    "beforeBuildCommand": "cross-env PLATFORM_ENV=native nuxt generate"
+    "beforeDevCommand": "nuxt dev",
+    "beforeBuildCommand": "nuxt generate"
   },
   "app": {
     "windows": [

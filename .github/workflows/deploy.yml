@@ -93,9 +93,9 @@ jobs:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.1.0
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
           script: |
             # Pull new image
             docker pull ${{ needs.build_web.outputs.image_name }}
@@ -120,6 +120,9 @@ jobs:
     permissions:
       contents: write
 
+    env:
+      PLATFORM_ENV: native
+
     strategy:
       fail-fast: false
       matrix:
@@ -134,6 +137,9 @@ jobs:
             args: ''
 
           - platform: 'windows-latest'
+            args: ''
+
+          - platform: 'ubuntu-latest'
             args: ''
 
     runs-on: ${{ matrix.platform }}
@@ -151,13 +157,13 @@ jobs:
           node-version: lts/*
           cache: 'pnpm'
 
-      - name: install Rust stable
+      - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
-      - name: install dependencies (ubuntu only)
+      - name: Install OS Dependencies (Ubuntu only)
         if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
         run: |
           sudo apt-get update
@@ -181,60 +187,68 @@ jobs:
   #   needs: build_desktop
   #   runs-on: ubuntu-latest
 
-  # build_mobile:
-  #   permissions:
-  #     contents: write
+  build_mobile:
+    permissions:
+      contents: write
 
-  #   strategy:
-  #     matrix:
-  #       arch: [aarch64, armv7l]
-  #       include:
-  #         - arch: aarch64
-  #           cpu: cortex-a72
-  #           base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv8-Bookworm.img.xz
-  #           deb: arm64
-  #           rpm: aarch64
-  #           appimage: aarch64
+    env:
+      PLATFORM_ENV: native
 
-  #         - arch: armv7l
-  #           cpu: cortex-a53
-  #           deb: armhfp
-  #           rpm: arm
-  #           appimage: armhf
-  #           base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv7-Bookworm.img.xz
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: 'ubuntu-latest'
+            name: 'android'
+            args: ''
 
-  #   runs-on: ${{ matrix.arch }}
+          # - platform: 'ubuntu-latest'
+          #   name: 'ios'
+          #   args: ''
 
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v4
+    runs-on: ${{ matrix.platform }}
 
-  #     - name: Install pnpm
-  #       uses: pnpm/action-setup@v4
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
 
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: lts/*
-  #         cache: 'pnpm'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
-  #     - name: Install Rust stable
-  #       uses: dtolnay/rust-toolchain@stable
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
 
-  #     - name: Install Dependencies
-  #       run: pnpm install
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
 
-  #     - name: Bulid Artifacts
-  #       run: |
-  #         pnpm tauri android build
-  #         pnpm tauri ios build
+      - name: Install OS Dependencies (Ubuntu only)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
-  #     - name: Bulid and Upload Artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: ${{ env.REPO }}-${{ github.ref_name }}
-  #         path: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Setup Android Signing
+        run: |
+          cd src-tauri/gen/android
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
+          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> keystore.properties
+          base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > $RUNNER_TEMP/keystore.jks
+          echo "storeFile=$RUNNER_TEMP/keystore.jks" >> keystore.properties
+
+      - name: Bulid Artifact
+        run: pnpm tauri ${{ matrix.name }} build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Shirsendu.Bairagi_1.16.2
+          path: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
 
   # deploy_mobile:
-  #   needs: build_mobile
+  #   needs: build_desktop
   #   runs-on: ubuntu-latest

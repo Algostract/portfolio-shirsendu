@@ -14,15 +14,6 @@ const nativeConfig =
         },
         nitro: {
           compressPublicAssets: true,
-          storage: {
-            fs: {
-              driver: 'fs',
-              base: './static',
-            },
-          },
-          rollupConfig: {
-            plugins: [vue()],
-          },
           prerender: {
             routes: [
               '/_ipx/s_512x512/images/globe.webp',
@@ -30,13 +21,17 @@ const nativeConfig =
               '/_ipx/s_512x512/images/robot.webp',
               '/_ipx/s_512x512/images/drone.webp',
               /* '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
-            '/certificates/codedamn-learn-javascript-basics.pdf',
-            '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
-            '/certificates/codedamn-hacktoberfest-2023.pdf',
-            '/certificates/gnec-hackathon-2023.pdf',
-            '/certificates/100-days-of-frontend.pdf',
-            '/certificates/30-days-of-react.pdf', */
+              '/certificates/codedamn-learn-javascript-basics.pdf',
+              '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
+              '/certificates/codedamn-hacktoberfest-2023.pdf',
+              '/certificates/gnec-hackathon-2023.pdf',
+              '/certificates/100-days-of-frontend.pdf',
+              '/certificates/30-days-of-react.pdf', */
             ],
+          },
+          rollupConfig: {
+            // @ts-expect-error Type instantiation is excessively deep and possibly infinite.
+            plugins: [vue()],
           },
         },
       }
@@ -50,8 +45,8 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   modules: [
-    '@nuxt/eslint',
-    '@nuxt/fonts', // '@nuxt/icon',
+    '@nuxt/eslint', // '@nuxt/icon',
+    '@nuxt/fonts',
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxt/test-utils',
@@ -61,6 +56,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@vueuse/nuxt',
     'nuxt-icons',
+    'nuxt-nodemailer',
     'nuxt-splide',
     'nuxt-time',
   ],
@@ -101,8 +97,7 @@ export default defineNuxtConfig({
     },
     private: {
       gmail: '',
-      emailUsername: '',
-      emailPassword: '',
+      dmail: '',
       notionKey: '',
       notionDBId: '',
     },
@@ -330,6 +325,21 @@ export default defineNuxtConfig({
       enabled: false,
       suppressWarnings: false,
       navigateFallback: undefined,
+    },
+  },
+  nodemailer: {
+    host: '',
+    port: 0,
+    secure: false,
+    auth: {
+      user: '',
+      pass: '',
+    },
+    tls: {
+      rejectUnauthorized: false,
+      minVersion: 'TLSv1.2',
+      // You can specify trusted certificates if needed
+      // ca: fs.readFileSync('/path/to/ca/cert')
     },
   },
   splide: {
