@@ -151,6 +151,12 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Install OS Dependencies (Ubuntu only)
+        if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
@@ -165,12 +171,6 @@ jobs:
         with:
           # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
-
-      - name: Install OS Dependencies (Ubuntu only)
-        if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
       - name: Install Dependencies
         run: pnpm install
@@ -215,6 +215,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Install OS Dependencies (Ubuntu only)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
@@ -223,17 +228,6 @@ jobs:
         with:
           node-version: lts/*
           cache: 'pnpm'
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Install OS Dependencies (Ubuntu only)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
-
-      - name: Install Dependencies
-        run: pnpm install
 
       - name: Set up JDK 21
         uses: actions/setup-java@v3
@@ -247,6 +241,12 @@ jobs:
         # Set the NDK_HOME environment variable
       - name: Set NDK_HOME Environment Variable
         run: echo "NDK_HOME=$ANDROID_NDK_HOME" >> $GITHUB_ENV
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Dependencies
+        run: pnpm install
 
       - name: Setup Android Signing
         run: |
