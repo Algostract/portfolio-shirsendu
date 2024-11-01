@@ -206,7 +206,7 @@ jobs:
         include:
           - platform: 'ubuntu-latest'
             os: 'android'
-            arch: 'aarch64-linux-android armv7-linux-androideabi'
+            arch: 'aarch64-linux-android armv7-linux-androideabi i686-linux-android'
 
           # - platform: 'ubuntu-latest'
           #   name: 'ios'
