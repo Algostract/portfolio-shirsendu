@@ -206,7 +206,7 @@ jobs:
         include:
           - platform: 'ubuntu-latest'
             os: 'android'
-            arch: 'aarch64-linux-android'
+            arch: 'aarch64-linux-android armv7-linux-androideabi'
 
           # - platform: 'ubuntu-latest'
           #   name: 'ios'
@@ -222,7 +222,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
-        # sudo apt-get install -y build-essential pkg-config libssl-dev openssl
 
       - name: Set up JDK 21
         uses: actions/setup-java@v3
@@ -256,7 +255,8 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install Target
-        run: rustup target add ${{ matrix.arch }}
+        run: |
+          rustup target add ${{ matrix.arch }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
