@@ -1,5 +1,12 @@
 # portfolio-shirsendu
 
+## 1.16.3
+
+### Patch Changes
+
+- b143601: refactor: migrated from nodmailer + gmail -> nuxt-nodemailer + mailtrap
+- b143601: chore: github action android workflow added
+
 ## 1.16.2
 
 ### Patch Changes
