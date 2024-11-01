@@ -233,11 +233,12 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-        # Set the NDK_HOME environment variable
-      - name: Set NDK_HOME Environment Variable
-        run: |
-          echo "NDK_HOME=$ANDROID_NDK_HOME" >> $GITHUB_ENV
-        # echo "OPENSSL_DIR=/usr/lib/ssl" >> $GITHUB_ENV
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r27c
+          link-to-sdk: true
 
       - name: Setup Android Signing
         run: |
@@ -250,8 +251,8 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
-      # - name: Install Target
-      #   run: rustup target add ${{ matrix.arch }}
+      - name: Install Target
+        run: rustup target add ${{ matrix.arch }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
