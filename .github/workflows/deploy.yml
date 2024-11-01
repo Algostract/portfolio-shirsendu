@@ -234,11 +234,15 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Setup Android NDK
-        uses: nttld/setup-ndk@v1
         id: setup-ndk
+        uses: nttld/setup-ndk@v1
         with:
           ndk-version: r27c
           link-to-sdk: true
+
+      - name: Setup Android NDK Path
+        run: |
+          echo "NDK_HOME=${{ steps.setup-ndk.outputs.ndk-path }}" >> $GITHUB_ENV
 
       - name: Setup Android Signing
         run: |
