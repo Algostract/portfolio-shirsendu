@@ -1,6 +1,6 @@
 [package]
 name = "portfolio-shirsendu"
-version = "1.16.2"
+version = "1.16.3"
 description = "Shirsendu's devfolio showcasing his projects, experience and certification in a visually appealing manner"
 authors = ["Shirsendu Bairagi"]
 license = "LGPL-3.0-or-later"
