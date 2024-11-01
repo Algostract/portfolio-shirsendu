@@ -234,7 +234,7 @@ jobs:
 
       - name: Setup Android Signing
         run: |
-          cd src-tauri/gen/android
+          cd native/gen/android
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
           echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> keystore.properties
           base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > $RUNNER_TEMP/keystore.jks
@@ -246,7 +246,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Shirsendu.Bairagi_1.16.2
+          name: Shirsendu.Bairagi_1.16.3
           path: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
 
   # deploy_mobile:
