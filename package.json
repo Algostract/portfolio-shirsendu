@@ -49,9 +49,9 @@
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@splidejs/splide-extension-grid": "^0.4.1",
     "@tauri-apps/api": "^2.0.3",
-    "@vite-pwa/nuxt": "^0.10.5",
+    "@vite-pwa/nuxt": "^0.10.6",
     "@vitejs/plugin-vue": "^5.1.4",
-    "@vue-email/components": "^0.0.19",
+    "@vue-email/components": "^0.0.21",
     "@vue-email/render": "^0.0.9",
     "@vueuse/core": "^11.2.0",
     "@vueuse/nuxt": "^11.2.0",
@@ -70,13 +70,10 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
     "@tauri-apps/cli": "^2.0.4",
-    "@types/node": "^22.8.6",
-    "@types/nodemailer": "^6.4.16",
     "cross-env": "^7.0.3",
-    "eslint": "^9.13.0",
+    "eslint": "^9.14.0",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "typescript": "^5.6.3",
     "untun": "^0.1.3"
   }
 }

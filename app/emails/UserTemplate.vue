@@ -39,7 +39,7 @@ const tailwindConfig = {
           Hi {{ firstName }},<br /><br />
           Thank you for getting in touch with me! I appreciate you taking the time to contact.<br /><br />
           I have received your message. You can expect to hear back from me within couple hours. In the meantime, feel free to check out my
-          <Link href="https://github.com/shba007"> Website </Link> for more information.<br /><br />
+          <Link href="https://github.com/shba007"> Github </Link> for more information.<br /><br />
           If you have any additional details or questions, please don't hesitate to reply to this email. Thank you for your patience and understanding.<br />
         </Container>
         <Container>

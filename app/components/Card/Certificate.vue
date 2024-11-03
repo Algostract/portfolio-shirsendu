@@ -18,7 +18,7 @@ withDefaults(defineProps<Certificate & { active?: boolean }>(), {
 </script>
 
 <template>
-  <div :key="name" class="relative rounded-xl duration-300" :class="{ 'z-10 scale-110 shadow-[0_4px_8px_4px_rgba(0,0,0,0.32)]': active }">
+  <div :key="name" class="relative rounded-xl duration-300" :class="{ 'z-10 shadow-[0_4px_8px_4px_rgba(0,0,0,0.32)] md:scale-110': active, 'scale-90 md:scale-100': !active }">
     <Transition
       enter-active-class="transition-opacity duration-300 ease-in"
       enter-from-class="opacity-0"
@@ -45,7 +45,7 @@ withDefaults(defineProps<Certificate & { active?: boolean }>(), {
         </NuxtLink>
       </div>
     </Transition>
-    <div class="overflow-hidden rounded-xl bg-light-500 dark:bg-dark-500">
+    <div class="aspect-[448/299] overflow-hidden rounded-xl bg-light-500 dark:bg-dark-500">
       <!-- <NuxtImg provider="uploadcare" :src="image.id" :alt="image.title" :width="512" :height="288" loading="lazy" fit="contain" class="size-full transition-transform hover:scale-110" /> -->
       <img :data-splide-lazy="`https://ucarecdn.com/${image.id}/-/resize/896x598/-/stretch/off/`" :alt="image.title" :width="896" :height="598" class="size-full duration-300 hover:scale-110" />
     </div>
