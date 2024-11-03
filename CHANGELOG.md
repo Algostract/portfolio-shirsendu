@@ -1,5 +1,12 @@
 # portfolio-shirsendu
 
+## 1.16.4
+
+### Patch Changes
+
+- 76d7e39: chore: cd code modified
+- 76d7e39: style: certificate section mobile view fix
+
 ## 1.16.3
 
 ### Patch Changes
