@@ -266,10 +266,11 @@ jobs:
         run: pnpm tauri android build -v
 
       - name: Upload Artifact
-        uses: softprops/action-gh-release@v2
+        uses: svenstaro/upload-release-action@v2
         with:
-          draft: true
-          files: ./native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
+          file: ./native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
+          asset_name: ${{ env.REPO }}
+          tag: ${{ github.ref }}
 
   # deploy_mobile:
   #   needs: build_mobile
