@@ -1,5 +1,3 @@
-import type { BaseProject, GithubDetailsResponse, GithubReleaseResponse, Project, Technologies } from '~/utils/types'
-
 export default defineCachedEventHandler<Promise<Project[]>>(
   async (_event) => {
     try {

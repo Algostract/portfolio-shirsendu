@@ -1,5 +1,3 @@
-import type { Hackathon } from '~/utils/types'
-
 export default defineCachedEventHandler<Promise<Hackathon[]>>(
   async () => {
     try {

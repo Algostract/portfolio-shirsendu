@@ -263,13 +263,14 @@ jobs:
         run: pnpm install
 
       - name: Bulid Artifact
-        run: pnpm tauri android build -v
+        run: pnpm tauri android build
 
       - name: Upload Artifact
         uses: svenstaro/upload-release-action@v2
         with:
-          file: ./native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
-          asset_name: ${{ env.REPO }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
+          asset_name: Shirsendu.Bairagi_${{ github.ref }}_arm64.apk
           tag: ${{ github.ref }}
 
   # deploy_mobile:

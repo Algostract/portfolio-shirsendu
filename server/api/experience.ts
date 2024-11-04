@@ -1,5 +1,3 @@
-import type { Experience } from '~/utils/types'
-
 export default defineCachedEventHandler<Promise<Experience[]>>(
   async () => {
     try {

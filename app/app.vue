@@ -73,10 +73,9 @@ useSchemaOrg([
 
 <style>
 * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
   scrollbar-width: 6px;
+  @apply antialiased;
 }
 
 *::-webkit-scrollbar {

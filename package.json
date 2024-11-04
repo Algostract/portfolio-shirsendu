@@ -28,14 +28,14 @@
     "preview": "nuxt preview",
     "clean": "nuxt cleanup",
     "start": "node .output/server/index.mjs",
+    "docker:build": "docker build --build-arg VERSION_TAG=dev -t portfolio-shirsendu:dev .",
+    "docker:start": "docker run --detach --name portfolio-shirsendu-dev --mount type=bind,source=$(pwd)/static,target=/app/static,readonly --env-file .env.prod -p 1000:3000 portfolio-shirsendu:dev",
+    "tunnel": "untun tunnel --port 3000 http://localhost:3000",
     "tauri": "tauri",
     "tauri:dev": "cross-env PLATFORM_ENV=native tauri dev",
     "tauri:build": "cross-env PLATFORM_ENV=native tauri build",
     "tauri:dev:mobile": "cross-env PLATFORM_ENV=native tauri android dev",
-    "tauri:build:mobile": "cross-env PLATFORM_ENV=native tauri android build",
-    "docker:build": "docker build --build-arg VERSION_TAG=dev -t portfolio-shirsendu:dev .",
-    "docker:start": "docker run --detach --name portfolio-shirsendu-dev --mount type=bind,source=$(pwd)/static,target=/app/static,readonly --env-file .env.prod -p 1000:3000 portfolio-shirsendu:dev",
-    "tunnel": "untun tunnel --port 3000 http://localhost:3000"
+    "tauri:build:mobile": "cross-env PLATFORM_ENV=native tauri android build"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15",
@@ -71,9 +71,9 @@
     "@changesets/cli": "^2.27.9",
     "@tauri-apps/cli": "^2.0.4",
     "cross-env": "^7.0.3",
-    "eslint": "^9.14.0",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
+    "typescript": "^5.6.3",
     "untun": "^0.1.3"
   }
 }

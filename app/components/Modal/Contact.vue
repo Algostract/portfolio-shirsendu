@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
-import type { TransactionalEmail } from '~/utils/types'
 
 defineProps<{
   isOpen: boolean

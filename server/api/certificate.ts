@@ -1,5 +1,3 @@
-import type { Certificate } from '~/utils/types'
-
 export default defineCachedEventHandler<Promise<Certificate[]>>(
   async () => {
     try {

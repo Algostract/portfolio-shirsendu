@@ -1,5 +1,4 @@
 import { Client as NotionClient } from '@notionhq/client'
-import type { Newsletter } from '~/utils/types'
 
 const config = useRuntimeConfig()
 const notion = new NotionClient({

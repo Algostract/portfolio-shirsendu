@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Technologies } from '~/utils/types'
-
 import iconAngular from '~/assets/icons/tech-angular.svg'
 import iconReact from '~/assets/icons/tech-react.svg'
 import iconNext from '~/assets/icons/tech-nextjs.svg'

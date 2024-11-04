@@ -1,5 +1,4 @@
 import { render } from '@vue-email/render'
-import type { TransactionalEmail } from '~/utils/types'
 
 import { UserTemplate, AdminTemplate } from '~/emails'
 
