@@ -14,10 +14,10 @@
     "node": "22.11.0"
   },
   "engines": {
-    "node": "^18.0.0 || ^20.0.0 || ^22.0.0",
+    "node": "^20.15.0 || ^22.11.0",
     "pnpm": "^9.12.0"
   },
-  "packageManager": "pnpm@9.12.3",
+  "packageManager": "pnpm@9.13.2",
   "scripts": {
     "postinstall": "nuxt prepare",
     "dev": "nuxt dev",
@@ -28,7 +28,7 @@
     "preview": "nuxt preview",
     "clean": "nuxt cleanup",
     "start": "node .output/server/index.mjs",
-    "docker:build": "docker build --build-arg VERSION_TAG=dev -t portfolio-shirsendu:dev .",
+    "docker:build": "docker build --build-arg VERSION=dev -t portfolio-shirsendu:dev .",
     "docker:start": "docker run --detach --name portfolio-shirsendu-dev --mount type=bind,source=$(pwd)/static,target=/app/static,readonly --env-file .env.prod -p 1000:3000 portfolio-shirsendu:dev",
     "tunnel": "untun tunnel --port 3000 http://localhost:3000",
     "tauri": "tauri",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15",
-    "@nuxt/eslint": "^0.6.1",
+    "@nuxt/eslint": "^0.7.0",
     "@nuxt/fonts": "^0.10.2",
     "@nuxt/image": "^1.8.1",
     "@nuxt/scripts": "^0.9.5",
@@ -48,9 +48,9 @@
     "@nuxtjs/seo": "^2.0.0-rc.23",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@splidejs/splide-extension-grid": "^0.4.1",
-    "@tauri-apps/api": "^2.0.3",
+    "@tauri-apps/api": "^2.1.1",
     "@vite-pwa/nuxt": "^0.10.6",
-    "@vitejs/plugin-vue": "^5.1.4",
+    "@vitejs/plugin-vue": "^5.2.0",
     "@vue-email/components": "^0.0.21",
     "@vue-email/render": "^0.0.9",
     "@vueuse/core": "^11.2.0",
@@ -62,14 +62,14 @@
     "nuxt-nodemailer": "^1.1.2",
     "nuxt-splide": "^1.1.1",
     "nuxt-time": "^1.0.2",
-    "vee-validate": "^4.14.6",
+    "vee-validate": "^4.14.7",
     "vue": "latest",
     "vue-router": "latest",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
-    "@tauri-apps/cli": "^2.0.4",
+    "@tauri-apps/cli": "^2.1.0",
     "cross-env": "^7.0.3",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",

@@ -1,5 +1,5 @@
 export default defineCachedEventHandler<Promise<Project[]>>(
-  async (_event) => {
+  async () => {
     try {
       const projects = await readYamlFile<BaseProject>('projects.yml')
 

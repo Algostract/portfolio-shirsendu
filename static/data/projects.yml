@@ -150,8 +150,8 @@
     - id: d6e52cbd-f0d8-427a-9fbd-7ac0cd355c3e
       title: Shirsendu's Portfolio Screenshot 3
 
-# - name: Compeer
-#   repo: shba007/com-peer
+# - name: Untest
+#   repo: shba007/untest
 #   category: "web-app"
 #   technologies:
 #     languages:
@@ -345,6 +345,26 @@
     frameworks:
       - citty
       - unbuild
+  createdAt: '2024-09-21T18:30:00Z'
+  appURL: 'https://www.npmjs.com/package/unascii/'
+  videoURL: null
+  images:
+    - id: 49247d31-4c02-413d-b21d-164a23cf42b4
+      title: Unascii Screenshot 1
+
+    - id: 345d82da-35f7-4646-8669-b01df0f3ef1a
+      title: Unascii Screenshot 2
+
+- name: Affinidi Dataville
+  repo: shba007/affinidi-dataville
+  category: 'web-game'
+  technologies:
+    languages:
+      - typescript
+    frameworks:
+      - vue
+      - pixi.js
+      - tailwind
   createdAt: '2024-09-21T18:30:00Z'
   appURL: 'https://www.npmjs.com/package/unascii/'
   videoURL: null

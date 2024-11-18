@@ -1,6 +1,6 @@
 import { render } from '@vue-email/render'
 
-import { UserTemplate, AdminTemplate } from '~/emails'
+import { UserTemplate, AdminTemplate } from '~~/server/emails'
 
 export default defineEventHandler<Promise<{ user: boolean; admin: boolean }>>(async (event) => {
   try {
