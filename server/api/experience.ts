@@ -1,3 +1,5 @@
+import readYamlFile from '~~/server/utils/read-yaml-file'
+
 export default defineCachedEventHandler<Promise<Experience[]>>(
   async () => {
     try {
@@ -6,7 +8,7 @@ export default defineCachedEventHandler<Promise<Experience[]>>(
       if (!experiences) throw createError({ statusCode: 500, statusMessage: 'experiences is undefined' })
 
       return experiences
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('API experience GET', error)
 
       throw createError({

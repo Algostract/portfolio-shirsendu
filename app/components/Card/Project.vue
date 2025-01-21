@@ -25,9 +25,9 @@ const { proxy: gaProxy } = useScriptGoogleAnalytics()
 const modifiedIn = useTimeAgo(() => props.updatedAt, {
   messages: {
     invalid: 'Invalid Date',
-    past: (n: any) => (n.match(/\d/) ? `Updated ${n} ago` : n),
+    past: (n: number | string) => (typeof n === 'string' && n.match(/\d/) ? `Updated ${n} ago` : `${n}`),
     justNow: 'Recharge',
-    future: (n: any) => (n.match(/\d/) ? `Update in ${n}` : n),
+    future: (n: number | string) => (typeof n === 'string' && n.match(/\d/) ? `Update in ${n}` : `${n}`),
     year: (n: number) => `${n} year${n > 1 ? 's' : ''}`,
     month: (n: number) => `${n} month${n > 1 ? 's' : ''}`,
     week: (n: number) => `${n} week${n > 1 ? 's' : ''}`,
@@ -49,7 +49,7 @@ const splideOption = {
 }
 const splide = ref()
 const currentSlideIndex = ref(0)
-function onSlideMove(_splide: any, newIndex: number, _prevIndex: number, _destIndex: number) {
+function onSlideMove(_splide: never, newIndex: number, _prevIndex: number, _destIndex: number) {
   currentSlideIndex.value = newIndex
 }
 
@@ -91,10 +91,10 @@ function onTry() {
             <!-- <div
               class="splide__arrows absolute flex justify-between items-center top-0 px-2 size-full z-10 opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity">
               <button aria-label="left" class="splide__arrow splide__arrow--prev w-1/3">
-                <NuxtIcon name="chevron-bold" />
+                <NuxtIcon name="local:chevron-bold" />
               </button>
               <button aria-label="right" class="splide__arrow splide__arrow--next rotate-180 w-1/3">
-                <NuxtIcon name="chevron-bold" />
+                <NuxtIcon name="local:chevron-bold" />
               </button>
             </div> -->
           </Splide>
@@ -104,7 +104,7 @@ function onTry() {
             :external="true"
             target="_blank"
             class="absolute bottom-2 left-2 z-20 flex items-center gap-1 rounded-full bg-light-500 py-1 pl-1.5 pr-2 outline-primary-400 transition-colors duration-150 ease-in hover:bg-light-400 hover:outline dark:bg-dark-600 dark:hover:bg-dark-500">
-            <NuxtIcon name="github" class="text-[16px]" />
+            <NuxtIcon name="local:github" class="size-[16px]" />
             <span class="text-xs">{{ stars }} Stars</span>
           </NuxtLink>
           <NuxtLink
@@ -115,7 +115,7 @@ function onTry() {
             class="absolute bottom-1 right-2 z-20 flex items-center gap-1 text-white drop-shadow hover:drop-shadow-md"
             @click="onWatch">
             <span class="text-xs">Watch</span>
-            <NuxtIcon name="youtube" class="text-[30px]" />
+            <NuxtIcon name="local:youtube" class="size-[30px]" />
           </NuxtLink>
         </div>
         <div class="grid flex-grow grid-cols-[repeat(2,auto)] grid-rows-[min-content_auto] gap-y-1 px-1 md:px-2">

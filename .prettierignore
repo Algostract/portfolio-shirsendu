@@ -7,8 +7,9 @@ dist
 
 # Node dependencies
 node_modules
+
+# Package Manager
 package.json
-package-lock.json
 pnpm-lock.yaml
 
 # Logs
@@ -20,9 +21,9 @@ logs
 .fleet
 .idea
 
-# Local env files
-.env
-.env.*
+# Env files
+.env*
+!.env.example
 
 # Tauri files
 native

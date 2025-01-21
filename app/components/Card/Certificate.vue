@@ -33,7 +33,7 @@ withDefaults(defineProps<Certificate & { active?: boolean }>(), {
           aria-label="certificate"
           target="_blank"
           class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-1 transition-colors hover:bg-primary-500 hover:text-white dark:bg-dark-600 dark:hover:bg-primary-500">
-          <NuxtIcon name="certificate" class="text-[16px]" />
+          <NuxtIcon name="local:certificate" class="size-[16px]" />
         </NuxtLink>
         <NuxtLink
           :to="link"
@@ -41,7 +41,7 @@ withDefaults(defineProps<Certificate & { active?: boolean }>(), {
           target="_blank"
           aria-label="link"
           class="h-fit w-fit rounded-2xl bg-light-600 px-3 py-1 transition-colors hover:bg-primary-500 hover:text-white dark:bg-dark-600 dark:hover:bg-primary-500">
-          <NuxtIcon name="web" class="text-[16px]" />
+          <NuxtIcon name="local:web" class="size-[16px]" />
         </NuxtLink>
       </div>
     </Transition>

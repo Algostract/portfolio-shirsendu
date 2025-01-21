@@ -18,6 +18,7 @@ RUN pnpm build
 FROM node:lts-alpine AS runner
 
 ARG VERSION
+ARG BUILD_TIME
 
 WORKDIR /app
 

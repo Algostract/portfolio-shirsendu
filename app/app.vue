@@ -95,10 +95,6 @@ body {
   @apply bg-[url("~/assets/images/dot-light.svg")] bg-auto bg-left-top bg-repeat dark:bg-[url("~/assets/images/dot-dark.svg")];
 }
 
-.nuxt-icon > svg {
-  @apply !m-0;
-}
-
 .scrollbar-hidden {
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */

@@ -36,7 +36,7 @@ const onSend = handleSubmit((values) => {
         type="submit"
         aria-label="submit"
         class="absolute right-2 top-[338px] w-fit rounded-full border-[6px] border-white bg-primary-500 p-[0.625rem] outline-2 outline-primary-500 focus-within:outline hover:bg-primary-400 dark:border-dark-400">
-        <NuxtIcon name="feather" class="text-[28px] text-white" />
+        <NuxtIcon name="local:feather" class="size-[28px] fill-white" />
       </button>
     </form>
   </ModalBase>

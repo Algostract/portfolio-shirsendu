@@ -1,13 +1,18 @@
 import { Client as NotionClient } from '@notionhq/client'
 
-const config = useRuntimeConfig()
-const notion = new NotionClient({
-  auth: config.private.notionKey,
-})
+let notion: NotionClient | null
 
 export default defineEventHandler<Promise<{ subscribed: boolean }>>(async (event) => {
   try {
+    const config = useRuntimeConfig()
+
     const body = await readBody<Newsletter>(event)
+
+    notion =
+      notion ??
+      new NotionClient({
+        auth: config.private.notionKey,
+      })
 
     await notion.pages.create({
       parent: {
@@ -32,10 +37,8 @@ export default defineEventHandler<Promise<{ subscribed: boolean }>>(async (event
     })
 
     return { subscribed: true }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('API newsletter POST', error)
-
-    if (error.statusMessage) throw error
 
     throw createError({
       statusCode: 500,

@@ -1,3 +1,5 @@
+import readYamlFile from '~~/server/utils/read-yaml-file'
+
 export default defineCachedEventHandler<Promise<Project[]>>(
   async () => {
     try {
@@ -48,7 +50,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
       ).filter((value): value is Project => value !== null)
 
       return repos
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('API project GET', error)
 
       throw createError({

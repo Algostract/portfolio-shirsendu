@@ -35,34 +35,34 @@ async function onSubscribe(email: string) {
     <ul class="col-start-1 row-start-5 flex gap-5 justify-self-start lg:row-start-4 lg:gap-8">
       <li>
         <NuxtLink to="https://leetcode.com/shba007" target="_blank" aria-label="leetcode">
-          <NuxtIcon name="leetcode" class="text-[32px] opacity-60 transition-opacity hover:opacity-100 md:text-[42px]" />
+          <NuxtIcon name="local:leetcode" class="size-[32px] opacity-60 transition-opacity hover:opacity-100 md:size-[42px]" />
         </NuxtLink>
       </li>
       <li>
         <NuxtLink to="https://devpost.com/shba007" target="_blank" aria-label="devpost">
-          <NuxtIcon name="devpost" class="text-[32px] opacity-60 transition-opacity hover:opacity-100 md:text-[42px]" />
+          <NuxtIcon name="local:devpost" class="size-[32px] opacity-60 transition-opacity hover:opacity-100 md:size-[42px]" />
         </NuxtLink>
       </li>
       <li>
         <NuxtLink to="https://github.com/shba007" target="_blank" aria-label="github">
-          <NuxtIcon name="github" class="text-[32px] opacity-60 transition-opacity hover:opacity-100 md:text-[42px]" />
+          <NuxtIcon name="local:github" class="size-[32px] opacity-60 transition-opacity hover:opacity-100 md:size-[42px]" />
         </NuxtLink>
       </li>
     </ul>
     <ul class="col-start-2 row-start-5 flex gap-5 justify-self-end md:gap-8 lg:col-start-3 lg:row-start-4">
       <li>
         <NuxtLink aria-label="X" to="https://x.com/shirsendu_baira" target="_blank">
-          <NuxtIcon name="X" class="text-[32px] opacity-60 transition-opacity hover:opacity-100 md:text-[42px]" />
+          <NuxtIcon name="local:x" class="size-[32px] opacity-60 transition-opacity hover:opacity-100 md:size-[42px]" />
         </NuxtLink>
       </li>
       <li>
         <NuxtLink aria-label="linkedin" to="https://www.linkedin.com/in/shirsendu-bairagi" target="_blank">
-          <NuxtIcon name="linkedin" class="text-[32px] opacity-60 transition-opacity hover:opacity-100 md:text-[42px]" />
+          <NuxtIcon name="local:linkedin" class="size-[32px] opacity-60 transition-opacity hover:opacity-100 md:size-[42px]" />
         </NuxtLink>
       </li>
       <li>
         <NuxtLink aria-label="youtube" to="https://www.youtube.com/@shirsendu_bairagi/videos" target="_blank">
-          <NuxtIcon name="youtube" class="text-[32px] opacity-60 transition-opacity hover:opacity-100 md:text-[42px]" />
+          <NuxtIcon name="local:youtube" class="size-[32px] opacity-60 transition-opacity hover:opacity-100 md:size-[42px]" />
         </NuxtLink>
       </li>
     </ul>

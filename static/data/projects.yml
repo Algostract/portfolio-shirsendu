@@ -1,45 +1,6 @@
 ---
-# - name: FlowMate
-#   category: "web-app"
-#   technologies:
-#     languages:
-#       -
-#     frameworks:
-#       -
-#   repo: null
-#   createdAt: "2020-05-04T18:30:00Z"
-#   appURL: null
-#   videoURL: null
-#   images: null
-
-# - name: Alphanum Vision
-#   repo: shba007/digit-recognizer
-#   category: "web-app"
-#   technologies:
-#     languages:
-#       -
-#     frameworks:
-#       -
-#   createdAt: "2021-03-31T18:30:00Z"
-#   appURL: null
-#   videoURL: null
-#   images: null
-
-# - name: Ntertainer
-#   repo: shba007/ntertainer
-#   category: "web-app"
-#   technologies:
-#     languages:
-#       -
-#     frameworks:
-#       -
-#   createdAt: "2021-04-20T18:30:00Z"
-#   appURL: null
-#   videoURL: null
-#   images: null
-
 - name: Unpsy
-  repo: shba007/unpsy-app # shba007/psy-omr
+  repo: shba007/unpsy-app
   category: 'web-app'
   technologies:
     languages:
@@ -114,20 +75,6 @@
     - id: d9febbb2-84f2-467d-ad8b-17df2c25a30c
       title: Biosense Screenshot 3
 
-# - name: Podcast
-#   repo: shba007/ui-react-podcast
-#   category: "ui"
-#   technologies:
-#     languages:
-#       - typescript
-#     frameworks:
-#       - react
-#       - tailwindcss
-#   createdAt: "2023-06-27T18:30:00Z"
-#   appURL: "https://shba007.github.io/ui-react-podcast/"
-#   videoURL: null
-#   images: null
-
 - name: Shirsendu's Portfolio
   repo: Algostract/portfolio-shirsendu
   category: 'web-app'
@@ -150,31 +97,6 @@
     - id: d6e52cbd-f0d8-427a-9fbd-7ac0cd355c3e
       title: Shirsendu's Portfolio Screenshot 3
 
-# - name: Untest
-#   repo: shba007/untest
-#   category: "web-app"
-#   technologies:
-#     languages:
-#       -
-#     frameworks:
-#       -
-#   createdAt: "2023-07-13T13:33:34Z"
-#   appURL: https://compeer.onrender.com/
-#   videoURL: null
-#   images: null
-
-# - name: Fashion Lens
-#   repo: shba007/fashion-lens
-#   createdAt: "2023-07-15T10:44:56.791Z"
-#   technologies:
-#     languages:
-#       - typescript
-#     frameworks:
-#       - nuxt
-#   appURL: null # "https://fashion-lens.shirsendu-bairagi.dev"
-#   videoURL: null
-#   images: null
-
 - name: Magma
   repo: shba007/ui-react-magma
   category: 'ui'
@@ -185,7 +107,7 @@
       - react
       - tailwindcss
   createdAt: '2023-07-16T18:30:00Z'
-  appURL: 'https://shba007.github.io/ui-react-magma/'
+  appURL: 'https://shba007.github.io/ui-magma/'
   videoURL: null
   images:
     - id: 94ca8b01-4819-4110-94d9-608c917e0dcc
@@ -197,8 +119,8 @@
     - id: fe7855af-6def-4893-b935-db724306ab59
       title: Magma Screenshot 3
 
-- name: AI Guide
-  repo: shba007/ai-guide
+- name: UnAI Web
+  repo: shba007/unai-web
   category: 'blog'
   technologies:
     languages:
@@ -229,7 +151,7 @@
       - citty
       - unbuild
   createdAt: '2023-09-11T18:30:00Z'
-  appURL: 'https://www.npmjs.com/package/framework-logo/'
+  appURL: 'https://www.npmjs.com/package/@shba007/unstack'
   videoURL: null
   images:
     - id: d55143bb-022f-48f2-97c4-abd7ab4cb229
@@ -252,7 +174,7 @@
       - tailwindcss
       - tensorflowjs
   createdAt: '2023-11-19T18:30:00Z'
-  appURL: 'https://plant-lens.onrender.com/'
+  appURL: 'https://shba007.github.io/plant-lens-web/'
   videoURL: 'https://youtu.be/EAEfdlfqXQA'
   images:
     - id: 00ae07e6-9b2b-42bd-88a2-747e3a8e840b
@@ -308,20 +230,6 @@
     - id: 2b92a094-dd6b-4787-9ee2-91897482be5e
       title: Aratrik's Portfolio Screenshot 3
 
-# - name: HomelyBite
-#   repo: shba007/homelybite
-#   category: "web-app"
-#   technologies:
-#     languages:
-#       - Typescirpt
-#     frameworks:
-#       - nuxt
-#       - tailwindcss
-#   createdAt: "2024-03-13T18:30:00Z"
-#   appURL: null
-#   videoURL: null
-#   images: null
-
 - name: Magic Portfolio
   repo: shba007/magic-portfolio
   category: 'ui'
@@ -332,7 +240,22 @@
       - nextjs
       - tailwindcss
   createdAt: '2024-05-22T18:30:00Z'
-  appURL: 'https://magic-portfolio.vercel.app'
+  appURL: 'https://shba007.github.io/magic-portfolio/'
+  videoURL: null
+  images: null
+
+- name: Affinidi Dataville
+  repo: shba007/affinidi-dataville
+  category: 'web-game'
+  technologies:
+    languages:
+      - typescript
+    frameworks:
+      - vue
+      - pixijs
+      - tailwindcss
+  createdAt: '2024-09-21T18:30:00Z'
+  appURL: 'https://affinidi-dataville.onrender.com'
   videoURL: null
   images: null
 
@@ -346,27 +269,7 @@
       - citty
       - unbuild
   createdAt: '2024-09-21T18:30:00Z'
-  appURL: 'https://www.npmjs.com/package/unascii/'
-  videoURL: null
-  images:
-    - id: 49247d31-4c02-413d-b21d-164a23cf42b4
-      title: Unascii Screenshot 1
-
-    - id: 345d82da-35f7-4646-8669-b01df0f3ef1a
-      title: Unascii Screenshot 2
-
-- name: Affinidi Dataville
-  repo: shba007/affinidi-dataville
-  category: 'web-game'
-  technologies:
-    languages:
-      - typescript
-    frameworks:
-      - vue
-      - pixi.js
-      - tailwind
-  createdAt: '2024-09-21T18:30:00Z'
-  appURL: 'https://www.npmjs.com/package/unascii/'
+  appURL: 'https://www.npmjs.com/package/@shba007/unascii'
   videoURL: null
   images:
     - id: 49247d31-4c02-413d-b21d-164a23cf42b4

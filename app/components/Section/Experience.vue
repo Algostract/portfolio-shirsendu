@@ -5,7 +5,7 @@ const experiences = computed(() => data.value?.toSorted((a, b) => new Date(b.dat
 </script>
 
 <template>
-  <section v-if="experiences" id="experience" class="relative -left-4 flex w-screen flex-col gap-8 overflow-hidden md:left-0 md:w-full">
+  <section v-if="experiences" id="experience" class="relative -left-4 flex w-screen flex-col gap-8 overflow-hidden pb-8 md:left-0 md:w-full">
     <h3 class="mx-auto w-max text-lg">Work Experiences</h3>
     <div
       class="relative grid grid-flow-row grid-cols-2 justify-center before:absolute before:left-1/2 before:top-1/2 before:h-[calc(100%-108px)] before:w-[4.5px] before:-translate-y-1/2 before:bg-light-500 before:content-[''] before:dark:bg-dark-600">

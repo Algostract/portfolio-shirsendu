@@ -36,10 +36,11 @@ export default defineEventHandler<Promise<{ user: boolean; admin: boolean }>>(as
     })
 
     return { user: true, admin: true }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('API contact POST', error)
 
-    if (error.code === 'ESOCKET' || error.code === 'ECONNECTION') {
+    const { code: errorCode } = error as { code?: string }
+    if (errorCode === 'ESOCKET' || errorCode === 'ECONNECTION') {
       throw createError({ statusCode: 500, statusMessage: 'Failed to establish secure SMTP connection. Please check SSL/TLS settings.' })
     }
 
