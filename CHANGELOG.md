@@ -1,5 +1,11 @@
 # portfolio-shirsendu
 
+## 1.16.6
+
+### Patch Changes
+
+- bbb3c45: feat: update project configuration and add new test script
+
 ## 1.16.5
 
 ### Patch Changes
