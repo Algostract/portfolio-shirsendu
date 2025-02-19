@@ -100,8 +100,9 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            cd ~/${{ needs.build-web.outputs.image_title }}
+            cd ~/${{ env.REPO }}
             curl -O https://raw.githubusercontent.com/${{ env.REPO }}/refs/heads/main/docker-compose.yml
+            docker compose -f docker-compose.yml pull
             docker compose -f docker-compose.yml up -d
 
   build-desktop:
