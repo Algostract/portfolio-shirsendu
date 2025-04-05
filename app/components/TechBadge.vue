@@ -58,6 +58,10 @@ const techs = {
     name: 'Unbuild',
     website: 'https://unjs.io/packages/unbuild',
   },
+  pixijs: {
+    name: 'PixiJS',
+    website: 'https://pixijs.com',
+  },
 }
 </script>
 

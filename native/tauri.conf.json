@@ -5,8 +5,8 @@
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3000",
-    "beforeDevCommand": "nuxt dev",
-    "beforeBuildCommand": "nuxt generate"
+    "beforeDevCommand": "dotenvx run -f .env.native -- nuxt dev",
+    "beforeBuildCommand": "dotenvx run -f .env.native -- nuxt generate"
   },
   "app": {
     "windows": [

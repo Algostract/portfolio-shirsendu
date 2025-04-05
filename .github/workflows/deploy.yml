@@ -1,29 +1,29 @@
 name: Nuxt CD
 run-name: ${{ github.ref_name }}
 
+permissions:
+  contents: write
+  packages: write
+  attestations: write
+  id-token: write
+
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+  release:
+    types: [published]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref_name }}
   cancel-in-progress: true
 
 env:
   REPO: ${{ github.repository }}
   REGISTRY: ${{ vars.REGISTRY }}
   USERNAME: ${{ vars.USERNAME }}
+  VERSION: ${{ github.ref_name }}
 
 jobs:
   build-web:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
 
     outputs:
       image_name: ${{ steps.metadata.outputs.image_name }}
@@ -67,7 +67,7 @@ jobs:
           echo "buildtime=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_OUTPUT
           echo "version=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_OUTPUT
 
-      - name: Build and push Docker image
+      - name: Build and Upload Docker image
         id: push
         uses: docker/build-push-action@v6
         with:
@@ -100,14 +100,12 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            cd ~/${{ needs.build-web.outputs.image_title }}
+            cd ~/${{ env.REPO }}
             curl -O https://raw.githubusercontent.com/${{ env.REPO }}/refs/heads/main/docker-compose.yml
+            docker compose -f docker-compose.yml pull
             docker compose -f docker-compose.yml up -d
 
   build-desktop:
-    permissions:
-      contents: write
-
     env:
       PLATFORM_ENV: native
 
@@ -132,6 +130,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install OS Dependencies (Ubuntu only)
         if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
@@ -145,8 +145,8 @@ jobs:
           # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Corepack for pnpm
+        run: corepack enable
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -155,9 +155,9 @@ jobs:
           cache: 'pnpm'
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
-      - name: Bulid and Upload Artifact
+      - name: Build and Upload Artifact
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -168,14 +168,11 @@ jobs:
           releaseDraft: true
           prerelease: false
 
-  # deploy_desktop:
-  #   needs: build_desktop
+  # deploy-desktop:
+  #   needs: build-desktop
   #   runs-on: ubuntu-latest
 
   build-mobile:
-    permissions:
-      contents: write
-
     env:
       PLATFORM_ENV: native
       ANDROID_HOME:
@@ -196,6 +193,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install OS Dependencies
         run: |
@@ -220,7 +219,7 @@ jobs:
         run: |
           cd native/gen/android
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
-          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> keystore.properties
+          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" > keystore.properties
           base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > $RUNNER_TEMP/keystore.jks
           echo "storeFile=$RUNNER_TEMP/keystore.jks" >> keystore.properties
 
@@ -229,8 +228,8 @@ jobs:
         with:
           targets: aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Corepack for pnpm
+        run: corepack enable
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -239,18 +238,18 @@ jobs:
           cache: 'pnpm'
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
-      - name: Bulid Artifact
+      - name: Build Artifact
         run: pnpm tauri android build
 
       - name: Upload Artifact
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
-          asset_name: Shirsendu.Bairagi_${{ github.ref }}_arm64.apk
-          tag: ${{ github.ref }}
+          file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
+          asset_name: shirsendu-bairagi_${{ env.VERSION }}_arm64.apk
+          tag: ${{ env.VERSION }}
 
   # deploy-mobile:
   #   needs: build-mobile
