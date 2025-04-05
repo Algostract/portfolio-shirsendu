@@ -1,5 +1,26 @@
 # portfolio-shirsendu
 
+## v1.17.0
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.16.5...v1.17.0)
+
+### 🚀 Enhancements
+
+- Update project configuration and add new test script ([bbb3c45](https://github.com/Algostract/portfolio-shirsendu/commit/bbb3c45))
+
+### 🩹 Fixes
+
+- **docker:** Correct image declaration in docker-compose.yml ([b0f7f70](https://github.com/Algostract/portfolio-shirsendu/commit/b0f7f70))
+
+### 💅 Refactors
+
+- Remove outdated changeset files and update load testing configuration ([2c7ada2](https://github.com/Algostract/portfolio-shirsendu/commit/2c7ada2))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## 1.16.5
 
 ### Patch Changes
