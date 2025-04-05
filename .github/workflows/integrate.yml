@@ -1,5 +1,9 @@
 name: Nuxt CI
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   push:
     branches:
@@ -7,11 +11,8 @@ on:
 
 jobs:
   build:
+    if: "!contains(github.event.head_commit.message, '[skip ci]') && !startsWith(github.event.head_commit.message, 'Merge pull request') && !startsWith(github.event.head_commit.message, 'Merge branch')"
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      pull-requests: write
 
     steps:
       - name: Checkout Repo
@@ -19,10 +20,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Corepack for pnpm
-        run: npm i -g pnpm
+      - name: Setup pnpm
+        run: npm install -g pnpm
 
-      - name: Setup Node.js with Corepack
+      - name: Setup Node.js with pnpm
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
@@ -43,10 +44,27 @@ jobs:
       - name: Format Code
         run: pnpm format
 
-      - name: Create Release Pull Request
-        uses: changesets/action@v1
+      - name: AutoFix Code
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          title: 'chore(release): update version'
-          commit: 'chore(release): update version'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: 'chore: apply code fixes [skip ci]'
+
+      - name: Bump Version
+        id: bump_version
+        run: |
+          rm -f CHANGELOG.md
+          pnpx changelogen@latest --bump
+          CHLOG=$(cat CHANGELOG.md)
+          echo -e "CHANGELOG_CONTENT<<EOF\n${CHLOG}\nEOF" >> $GITHUB_ENV
+          git reset --hard
+          pnpx changelogen@latest --bump
+
+      - name: Create or Update Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'ci(release): update version'
+          title: 'ci(release): update version'
+          body: ${{ env.CHANGELOG_CONTENT }}
+          branch: 'release/update-version'
+          base: 'develop'
+          delete-branch: true

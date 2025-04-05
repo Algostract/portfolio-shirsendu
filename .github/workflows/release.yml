@@ -1,0 +1,40 @@
+name: Nuxt Release
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REPO: ${{ github.repository }}
+  REGISTRY: ${{ vars.REGISTRY }}
+  USERNAME: ${{ vars.USERNAME }}
+
+jobs:
+  release:
+    if: contains(github.event.head_commit.message, 'ci(release):')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        run: npm install -g pnpm
+
+      - name: Setup Node.js with pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
+
+      - name: Create Release Note
+        run: |
+          pnpx changelogen@latest gh release
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

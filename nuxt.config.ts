@@ -33,12 +33,12 @@ const nativeConfig =
             '/_ipx/s_512x512/images/robot.webp',
             '/_ipx/s_512x512/images/drone.webp',
             /*  '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
-         '/certificates/codedamn-learn-javascript-basics.pdf',
-         '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
-         '/certificates/codedamn-hacktoberfest-2023.pdf',
-         '/certificates/gnec-hackathon-2023.pdf',
-         '/certificates/100-days-of-frontend.pdf',
-         '/certificates/30-days-of-react.pdf', */
+       '/certificates/codedamn-learn-javascript-basics.pdf',
+       '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
+       '/certificates/codedamn-hacktoberfest-2023.pdf',
+       '/certificates/gnec-hackathon-2023.pdf',
+       '/certificates/100-days-of-frontend.pdf',
+       '/certificates/30-days-of-react.pdf', */
           ],
         },
       }
@@ -52,7 +52,6 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   modules: [
-    '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
