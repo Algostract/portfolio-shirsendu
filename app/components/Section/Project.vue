@@ -65,7 +65,7 @@ const projects = computed(() => data.value?.toSorted((a, b) => new Date(b.update
             :images="images" />
         </SplideSlide>
       </SplideTrack>
-      <div class="splide__arrows absolute -left-8 -right-8 top-1/2 flex -translate-y-1/2 justify-between text-black">
+      <div class="splide__arrows absolute -left-8 -right-8 top-1/2 flex -translate-y-1/2 justify-between fill-white">
         <button class="splide__arrow splide__arrow--prev rounded-full bg-primary-500 px-3 py-2 pl-5 duration-300 ease-out hover:bg-primary-400 disabled:opacity-0 sm:pl-3">
           <NuxtIcon name="local:chevron-bold" class="size-[24px]" />
         </button>

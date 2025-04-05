@@ -46,9 +46,9 @@ const experience = computed(() =>
       <SkillHex :quadrant="2" class="col-start-3 row-start-1 self-start justify-self-end" />
       <div class="relative col-start-2 row-start-2 max-w-[200px] scale-[1.867] self-center justify-self-center lg:row-span-2 lg:row-start-1 lg:scale-[2.8005]">
         <div class="-z-10 rotate-[30deg]">
-          <NuxtIcon name="local:hexagon" class="size-[120px] text-light-500 dark:text-dark-600" style="fill: white" />
+          <NuxtIcon name="local:hexagon" class="size-[120px] fill-light-500 dark:fill-dark-600" />
         </div>
-        <svg class="absolute -top-[3.375rem] w-full scale-90" viewBox="0 0 202 310" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg class="absolute -top-[3.375rem] w-full scale-90" viewBox="0 0 202 310" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <mask id="clip-mask" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="202" height="310">
             <path
               fill-rule="evenodd"
