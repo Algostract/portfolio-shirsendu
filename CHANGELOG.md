@@ -1,5 +1,21 @@
 # portfolio-shirsendu
 
+## v1.17.1
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.17.0...v1.17.1)
+
+### 🩹 Fixes
+
+- **icon:** Update SVG icons and adjust styles for better accessibility ([07bd202](https://github.com/Algostract/portfolio-shirsendu/commit/07bd202))
+
+### 🏡 Chore
+
+- Update package version and link to frontend version in configuration ([d398519](https://github.com/Algostract/portfolio-shirsendu/commit/d398519))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.17.0
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.16.5...v1.17.0)
