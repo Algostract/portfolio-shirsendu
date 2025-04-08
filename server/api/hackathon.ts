@@ -7,7 +7,7 @@ export default defineCachedEventHandler<Promise<Hackathon[]>>(
 
       if (!hackathons) throw createError({ statusCode: 500, statusMessage: 'hackathons is undefined' })
 
-      return hackathons
+      return hackathons.toSorted((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime())
     } catch (error: unknown) {
       console.error('API hackathon GET', error)
 

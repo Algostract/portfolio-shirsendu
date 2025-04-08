@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Grid } from '@splidejs/splide-extension-grid'
 
+const { data: projects } = await useAPI('/api/project')
+
 const splideOption = {
   pagination: false,
   arrows: true,
@@ -38,10 +40,6 @@ const splideOption = {
     },
   },
 }
-
-const { data } = await useAPI('/api/project')
-
-const projects = computed(() => data.value?.toSorted((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()))
 </script>
 
 <template>

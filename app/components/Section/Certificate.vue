@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data } = await useAPI('/api/certificate')
+const { data: certificates } = await useAPI('/api/certificate')
 
 const splideOption = {
   type: 'loop',
@@ -22,10 +22,6 @@ const splideOption = {
     },
   },
 }
-
-const certificates = computed(() => {
-  return data.value?.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-})
 
 const currentSlide = ref('')
 

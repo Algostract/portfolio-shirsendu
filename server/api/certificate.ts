@@ -7,7 +7,7 @@ export default defineCachedEventHandler<Promise<Certificate[]>>(
 
       if (!certificates) throw createError({ statusCode: 500, statusMessage: 'certificates is undefined' })
 
-      return certificates
+      return certificates.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     } catch (error: unknown) {
       console.error('API certificate GET', error)
 

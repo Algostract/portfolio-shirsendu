@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { data } = await useAPI('/api/hackathon')
-
-const hackathons = computed(() => data.value?.toSorted((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime()))
+const { data: hackathons } = await useAPI('/api/hackathon')
 </script>
 
 <template>

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { data } = await useAPI('/api/experience')
-
-const experiences = computed(() => data.value?.toSorted((a, b) => new Date(b.date.start).getTime() - new Date(a.date.start).getTime()))
+const { data: experiences } = await useAPI('/api/experience')
 </script>
 
 <template>

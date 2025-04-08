@@ -7,7 +7,7 @@ export default defineCachedEventHandler<Promise<Experience[]>>(
 
       if (!experiences) throw createError({ statusCode: 500, statusMessage: 'experiences is undefined' })
 
-      return experiences
+      return experiences.toSorted((a, b) => new Date(b.date.start).getTime() - new Date(a.date.start).getTime())
     } catch (error: unknown) {
       console.error('API experience GET', error)
 

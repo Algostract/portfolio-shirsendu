@@ -49,7 +49,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
         )
       ).filter((value): value is Project => value !== null)
 
-      return repos
+      return repos.toSorted((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
     } catch (error: unknown) {
       console.error('API project GET', error)
 
