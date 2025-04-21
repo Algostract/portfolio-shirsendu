@@ -8,6 +8,7 @@ export interface Image {
 export interface BaseProject {
   name: string
   repo: string
+  type: ('Web App' | 'Web App Template' | 'Cron Job' | 'Game' | 'Library' | 'API' | 'Bot' | 'ML Model')[]
   technologies: {
     languages: string[]
     frameworks: string[]
@@ -16,6 +17,7 @@ export interface BaseProject {
   appURL: string | null
   videoURL: string | null
   images: Image[]
+  stage: 'Planning' | 'Development' | 'Stable' | 'Maintenance' | 'Archived'
 }
 
 export interface Project extends Omit<BaseProject, 'technologies'> {

@@ -20,41 +20,43 @@ jobs:
       )
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: 📥 Checkout Repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup pnpm
-        run: npm install -g pnpm
+      - name: 🛠️ Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
 
-      - name: Setup Node.js with pnpm
+      - name: 🛠️ Setup Node.js with pnpm
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: 'pnpm'
 
-      - name: Install Dependencies
-        run: pnpm install
+      - name: 📦 Install Dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Build Artifacts
+      - name: ⚙️ Build Artifacts
         run: pnpm build
 
-      # - name: Run Tests
+      # - name: ✅ Test Code
       #   run: pnpm test
 
-      - name: Lint Code
+      - name: 🧹 Lint Code
         run: pnpm lint || echo "Linting failed, but continuing"
 
-      - name: Format Code
+      - name: 🧼 Format Code
         run: pnpm format
 
-      - name: AutoFix Code
+      - name: 🤖 AutoFix Code
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'chore: apply code fixes [skip ci]'
 
-      - name: Bump Version
+      - name: 🏷️ Bump Version
         id: bump_version
         run: |
           rm -f CHANGELOG.md
@@ -64,7 +66,7 @@ jobs:
           git reset --hard
           pnpx changelogen@latest --bump
 
-      - name: Create or Update Pull Request
+      - name: 🔀 Create or Update Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: 'ci(release): update version'

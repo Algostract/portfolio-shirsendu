@@ -30,6 +30,22 @@ const techs = {
     name: 'Tailwind CSS',
     website: 'https://tailwindcss.com',
   },
+  nitro: {
+    name: 'Nitro',
+    website: 'https://nitro.build/',
+  },
+  citty: {
+    name: 'Citty',
+    website: 'https://unjs.io/packages/citty',
+  },
+  unbuild: {
+    name: 'Unbuild',
+    website: 'https://unjs.io/packages/unbuild',
+  },
+  pixijs: {
+    name: 'PixiJS',
+    website: 'https://pixijs.com',
+  },
   tensorflowjs: {
     name: 'TensorFlow.js',
     website: 'https://www.tensorflow.org/js',
@@ -50,17 +66,13 @@ const techs = {
     name: 'TensorFlow',
     website: 'https://www.tensorflow.org',
   },
-  citty: {
-    name: 'Citty',
-    website: 'https://unjs.io/packages/citty',
+  rust: {
+    name: 'Rust',
+    website: 'https://www.rust-lang.org/',
   },
-  unbuild: {
-    name: 'Unbuild',
-    website: 'https://unjs.io/packages/unbuild',
-  },
-  pixijs: {
-    name: 'PixiJS',
-    website: 'https://pixijs.com',
+  tauri: {
+    name: 'Tauri',
+    website: 'https://tauri.app/',
   },
 }
 </script>

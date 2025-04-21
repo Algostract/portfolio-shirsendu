@@ -9,7 +9,8 @@ permissions:
 
 on:
   release:
-    types: [published]
+    types:
+      - published
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
@@ -17,7 +18,6 @@ concurrency:
 
 env:
   REPO: ${{ github.repository }}
-  REGISTRY: ${{ vars.REGISTRY }}
   USERNAME: ${{ vars.USERNAME }}
   VERSION: ${{ github.ref_name }}
 
@@ -32,8 +32,10 @@ jobs:
       version: ${{ steps.metadata.outputs.version }}
 
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -41,18 +43,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ env.USERNAME }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.REPO }}
+          images: |
+            ghcr.io/${{ env.REPO }}
+          # docker.io/${{ env.REPO }}
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
@@ -67,7 +64,21 @@ jobs:
           echo "buildtime=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}" >> $GITHUB_OUTPUT
           echo "version=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}" >> $GITHUB_OUTPUT
 
-      - name: Build and Upload Docker image
+      - name: Log in to Github Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ env.USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Log in to DockerHub
+      #   uses: docker/login-action@v3
+      #   with:
+      #     registry: docker.io
+      #     username: ${{ env.USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Upload to Registries
         id: push
         uses: docker/build-push-action@v6
         with:
@@ -84,7 +95,7 @@ jobs:
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.REPO }}
+          subject-name: ghcr.io/${{ env.REPO }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: false
 
@@ -105,151 +116,155 @@ jobs:
             docker compose -f docker-compose.yml pull
             docker compose -f docker-compose.yml up -d
 
-  build-desktop:
-    env:
-      PLATFORM_ENV: native
+  # build-desktop:
+  #   env:
+  #     PLATFORM_ENV: native
 
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - platform: 'macos-latest' # for Arm based macs (M1 and above).
-            args: '--target aarch64-apple-darwin'
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - platform: 'macos-latest' # for Arm based macs (M1 and above).
+  #           args: '--target aarch64-apple-darwin'
 
-          - platform: 'macos-latest' # for Intel based macs.
-            args: '--target x86_64-apple-darwin'
+  #         - platform: 'macos-latest' # for Intel based macs.
+  #           args: '--target x86_64-apple-darwin'
 
-          - platform: 'ubuntu-latest'
-            args: ''
+  #         - platform: 'ubuntu-latest'
+  #           args: ''
 
-          - platform: 'windows-latest'
-            args: ''
+  #         - platform: 'windows-latest'
+  #           args: ''
 
-    runs-on: ${{ matrix.platform }}
+  #   runs-on: ${{ matrix.platform }}
 
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+  #   steps:
+  #     - name: 📥 Checkout Repo
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Install OS Dependencies (Ubuntu only)
-        if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+  #     - name: Install OS Dependencies (Ubuntu only)
+  #       if: matrix.platform == 'ubuntu-latest' # This must match the platform value defined above.
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
-          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+  #     - name: 🛠️ Setup Rust
+  #       uses: dtolnay/rust-toolchain@stable
+  #       with:
+  #         # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
+  #         targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
-      - name: Setup Corepack for pnpm
-        run: corepack enable
+  #     - name: 🛠️ Setup pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         run_install: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: 'pnpm'
+  #     - name: 🛠️ Setup Node.js with pnpm
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: lts/*
+  #         cache: 'pnpm'
 
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+  #     - name: 📦 Install Dependencies
+  #       run: pnpm install --frozen-lockfile --production
 
-      - name: Build and Upload Artifact
-        uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          args: ${{ matrix.args }}
-          tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
-          releaseName: 'v__VERSION__'
-          releaseDraft: true
-          prerelease: false
+  #     - name: ⚙️ Build and Upload Artifact
+  #       uses: tauri-apps/tauri-action@v0
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         args: ${{ matrix.args }}
+  #         tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
+  #         releaseName: 'v__VERSION__'
+  #         releaseDraft: true
+  #         prerelease: false
 
   # deploy-desktop:
   #   needs: build-desktop
   #   runs-on: ubuntu-latest
 
-  build-mobile:
-    env:
-      PLATFORM_ENV: native
-      ANDROID_HOME:
+  # build-mobile:
+  #   env:
+  #     PLATFORM_ENV: native
+  #     ANDROID_HOME:
 
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - platform: 'ubuntu-latest'
-            os: 'android'
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - platform: 'ubuntu-latest'
+  #           os: 'android'
 
-          # - platform: 'ubuntu-latest'
-          #   name: 'ios'
-          #   args: ''
+  #         # - platform: 'ubuntu-latest'
+  #         #   name: 'ios'
+  #         #   args: ''
 
-    runs-on: ${{ matrix.platform }}
+  #   runs-on: ${{ matrix.platform }}
 
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+  #   steps:
+  #     - name: 📥 Checkout Repo
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Install OS Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+  #     - name: Install OS Dependencies
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+  #     - name: Setup Java
+  #       uses: actions/setup-java@v4
+  #       with:
+  #         distribution: 'temurin'
+  #         java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+  #     - name: Setup Android SDK
+  #       uses: android-actions/setup-android@v3
 
-      - name: Setup Android NDK
-        run: |
-          sdkmanager "ndk;27.0.11902837"
-          echo "NDK_HOME=${{ env.ANDROID_HOME }}/ndk/27.0.11902837" >> $GITHUB_ENV
+  #     - name: Setup Android NDK
+  #       run: |
+  #         sdkmanager "ndk;27.0.11902837"
+  #         echo "NDK_HOME=${{ env.ANDROID_HOME }}/ndk/27.0.11902837" >> $GITHUB_ENV
 
-      - name: Setup Android Signing
-        run: |
-          cd native/gen/android
-          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
-          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" > keystore.properties
-          base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > $RUNNER_TEMP/keystore.jks
-          echo "storeFile=$RUNNER_TEMP/keystore.jks" >> keystore.properties
+  #     - name: Setup Android Signing
+  #       run: |
+  #         cd native/gen/android
+  #         echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
+  #         echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" > keystore.properties
+  #         base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > $RUNNER_TEMP/keystore.jks
+  #         echo "storeFile=$RUNNER_TEMP/keystore.jks" >> keystore.properties
 
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android
+  #     - name: 🛠️ Setup Rust
+  #       uses: dtolnay/rust-toolchain@stable
+  #       with:
+  #         targets: aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android
 
-      - name: Setup Corepack for pnpm
-        run: corepack enable
+  #     - name: 🛠️ Setup pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         run_install: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: 'pnpm'
+  #     - name: 🛠️ Setup Node.js with pnpm
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: lts/*
+  #         cache: 'pnpm'
 
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+  #     - name: 📦 Install Dependencies
+  #       run: pnpm install --frozen-lockfile --production
 
-      - name: Build Artifact
-        run: pnpm tauri android build
+  #     - name: ⚙️ Build Artifact
+  #       run: pnpm tauri android build
 
-      - name: Upload Artifact
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
-          asset_name: shirsendu-bairagi_${{ env.VERSION }}_arm64.apk
-          tag: ${{ env.VERSION }}
+  #     - name: ⚙️ Upload Artifact
+  #       uses: svenstaro/upload-release-action@v2
+  #       with:
+  #         repo_token: ${{ secrets.GITHUB_TOKEN }}
+  #         file: native/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk
+  #         asset_name: shirsendu-bairagi_${{ env.VERSION }}_arm64.apk
+  #         tag: ${{ env.VERSION }}
 
   # deploy-mobile:
   #   needs: build-mobile

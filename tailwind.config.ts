@@ -28,15 +28,15 @@ export default <Partial<Config>>{
       transparent: 'transparent',
       white: '#FFFFFF',
       light: {
-        400: '#EDF0F5',
-        500: '#C1C9D6',
-        600: '#9AA5B8',
+        400: '#F8FAFC',
+        500: '#F1F5F9',
+        600: '#CBD5E1',
       },
       black: '#000000',
       dark: {
-        400: '#0E0E11',
-        500: '#22252A',
-        600: '#2D2F34',
+        400: '#171717',
+        500: '#262626',
+        600: '#404040',
       },
       primary: {
         400: '#5BBBFF',

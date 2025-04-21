@@ -1,7 +1,8 @@
-name: 'portfolio-shirsendu'
+name: 'portfolio-shirsendu-dev'
 services:
   app:
-    image: 'ghcr.io/algostract/portfolio-shirsendu:latest'
+    # image: 'ghcr.io/algostract/portfolio-shirsendu:latest'
+    build: .
     restart: on-failure:3
     volumes:
       - type: bind

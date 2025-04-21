@@ -22,7 +22,6 @@ const splideOption = {
     },
   },
 }
-
 const currentSlide = ref('')
 
 onMounted(() => {
@@ -39,7 +38,7 @@ function onSlideMove(_splide: never, newIndex: number, _prevIndex: number, _dest
 <template>
   <section v-if="certificates" id="certificate" class="relative left-1/2 flex w-screen -translate-x-1/2 flex-col gap-8 md:w-full">
     <h3 class="mx-auto w-fit text-lg">All Certificates</h3>
-    <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="relative" @splide:move="onSlideMove">
+    <Splide :options="splideOption" tag="div" :has-track="false" class="relative" @splide:move="onSlideMove">
       <SplideTrack class="!px-6 !py-4 md:!px-0 md:!py-8">
         <SplideSlide v-for="{ name, link, date, image } in certificates" :key="name">
           <CardCertificate :name="name" :link="link" :date="date" :image="image" :active="name === currentSlide" />

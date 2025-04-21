@@ -45,7 +45,7 @@ const splideOption = {
 <template>
   <section v-if="projects" id="project" class="relative flex flex-col gap-8">
     <h3 class="mx-auto w-fit text-lg">All Projects</h3>
-    <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" :extensions="{ Grid }">
+    <Splide :options="splideOption" tag="div" :has-track="false" :extensions="{ Grid }">
       <SplideTrack class="py-2">
         <SplideSlide v-for="{ name, description, version, stars, forks, createdAt, updatedAt, technologies, repoURL, appURL, videoURL, images } in projects" :key="name">
           <CardProject

@@ -47,7 +47,7 @@ const splideOption = {
   heightRatio: 0.56,
   lazyLoad: 'nearby',
 }
-const splide = ref()
+const splide = useTemplateRef<HTMLDivElement>('splide')
 const currentSlideIndex = ref(0)
 function onSlideMove(_splide: never, newIndex: number, _prevIndex: number, _destIndex: number) {
   currentSlideIndex.value = newIndex
@@ -112,7 +112,7 @@ function onTry() {
             :to="videoUrl"
             :external="true"
             target="_blank"
-            class="absolute bottom-1 right-2 z-20 flex items-center gap-1 text-white drop-shadow hover:drop-shadow-md"
+            class="absolute bottom-1 right-2 z-20 flex items-center gap-1 fill-white text-white drop-shadow hover:drop-shadow-md"
             @click="onWatch">
             <span class="text-xs">Watch</span>
             <NuxtIcon name="local:youtube" class="size-[30px]" />
