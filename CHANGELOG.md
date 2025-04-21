@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.18.1
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.18.0...v1.18.1)
+
+### 🩹 Fixes
+
+- Update service name and restore image configuration in docker-compose ([b26c98b](https://github.com/Algostract/portfolio-shirsendu/commit/b26c98b))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.18.0
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.17.1...v1.18.0)
