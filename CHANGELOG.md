@@ -1,5 +1,21 @@
 # portfolio-shirsendu
 
+## v1.18.0
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.17.1...v1.18.0)
+
+### 🚀 Enhancements
+
+- Integrate Notion API for project management and enhance project data structure ([0891779](https://github.com/Algostract/portfolio-shirsendu/commit/0891779))
+
+### 🩹 Fixes
+
+- Sort API responses by date in descending order ([79e319c](https://github.com/Algostract/portfolio-shirsendu/commit/79e319c))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.17.1
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.17.0...v1.17.1)
