@@ -25,31 +25,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🛠️ Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: 🛠️ Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          run_install: false
-
-      - name: 🛠️ Setup Node.js with pnpm
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: 'pnpm'
+          bun-version: latest
 
       - name: 📦 Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: ⚙️ Build Artifacts
-        run: pnpm build
+        run: bun run build
 
       # - name: ✅ Test Code
-      #   run: pnpm test
+      #   run: bun run test
 
       - name: 🧹 Lint Code
-        run: pnpm lint || echo "Linting failed, but continuing"
+        run: bun run lint || echo "Linting failed, but continuing"
 
       - name: 🧼 Format Code
-        run: pnpm format
+        run: bun run format
 
       - name: 🤖 AutoFix Code
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -60,11 +54,11 @@ jobs:
         id: bump_version
         run: |
           rm -f CHANGELOG.md
-          pnpx changelogen@latest --bump
+          bunx changelogen@latest --bump
           CHLOG=$(cat CHANGELOG.md)
           echo -e "CHANGELOG_CONTENT<<EOF\n${CHLOG}\nEOF" >> $GITHUB_ENV
           git reset --hard
-          pnpx changelogen@latest --bump
+          bunx changelogen@latest --bump
 
       - name: 🔀 Create or Update Pull Request
         uses: peter-evans/create-pull-request@v7

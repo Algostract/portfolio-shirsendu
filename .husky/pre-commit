@@ -11,10 +11,10 @@ for file in $STAGED_FILES; do
 done
 
 # Lint the staged files
-pnpm lint $STAGED_FILES
+bun lint $STAGED_FILES
 
 # Format the staged files, ignoring unknown files
-pnpm format $STAGED_FILES --ignore-unknown
+bun format $STAGED_FILES --ignore-unknown
 
 # Update the index to mark the changes in the staged files
 git update-index --again
