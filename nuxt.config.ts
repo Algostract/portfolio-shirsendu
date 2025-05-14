@@ -32,13 +32,15 @@ const nativeConfig =
             '/_ipx/s_512x512/images/mobile.webp',
             '/_ipx/s_512x512/images/robot.webp',
             '/_ipx/s_512x512/images/drone.webp',
-            /*  '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
-   '/certificates/codedamn-learn-javascript-basics.pdf',
-   '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
-   '/certificates/codedamn-hacktoberfest-2023.pdf',
-   '/certificates/gnec-hackathon-2023.pdf',
-   '/certificates/100-days-of-frontend.pdf',
-   '/certificates/30-days-of-react.pdf', */
+            /*  
+        '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
+        '/certificates/codedamn-learn-javascript-basics.pdf',
+        '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
+        '/certificates/codedamn-hacktoberfest-2023.pdf',
+        '/certificates/gnec-hackathon-2023.pdf',
+        '/certificates/100-days-of-frontend.pdf',
+        '/certificates/30-days-of-react.pdf', 
+        */
           ],
         },
       }
@@ -46,7 +48,7 @@ const nativeConfig =
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-07-04',
+  compatibilityDate: '2024-11-01',
   future: {
     compatibilityVersion: 4,
   },
@@ -66,7 +68,6 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-nodemailer',
     'nuxt-splide',
-    'nuxt-time',
   ],
   nitro: {
     compressPublicAssets: true,
@@ -95,11 +96,13 @@ export default defineNuxtConfig({
     },
     public: {
       apiBaseUrl: '',
+      siteUrl: '',
       scripts: {
         googleAnalytics: {
           id: '',
         },
       },
+      vapidKey: '',
     },
     private: {
       gmail: '',
@@ -143,12 +146,16 @@ export default defineNuxtConfig({
     fallback: 'light',
     classSuffix: '',
   },
+  site: {
+    name: 'Shirsendu Bairagi',
+    url: process.env.NUXT_PUBLIC_SITE_URL,
+  },
+  sitemap: {
+    autoLastmod: true,
+    sources: ['/api/__sitemap__/urls'],
+  },
   robots: {
     disallow: ['/_nuxt/'],
-  },
-  site: {
-    url: 'https://shirsendu-bairagi.dev',
-    name: 'Shirsendu Bairagi',
   },
   pwa: {
     scope: '/',
@@ -324,6 +331,7 @@ export default defineNuxtConfig({
         },
       ],
       navigateFallback: undefined,
+      importScripts: ['/sw-push.js'],
     },
     client: {
       installPrompt: true,

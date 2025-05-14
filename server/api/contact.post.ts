@@ -1,8 +1,7 @@
 import { render } from '@vue-email/render'
+import emailTemplate from '~~/shared/emails'
 
-import { UserTemplate, AdminTemplate } from '~~/server/emails'
-
-export default defineEventHandler<Promise<{ user: boolean; admin: boolean }>>(async (event) => {
+export default defineEventHandler<Promise<{ success: boolean }>>(async (event) => {
   try {
     const config = useRuntimeConfig()
 
@@ -19,23 +18,13 @@ export default defineEventHandler<Promise<{ user: boolean; admin: boolean }>>(as
       from: `"Shirsendu Bairagi" <${config.private.dmail}>`,
       to: body.email,
       subject: 'Shirsendu Got your Email',
-      html: await render(UserTemplate, {
+      html: await render(emailTemplate.contact.template, {
         firstName,
         lastName,
       }),
     })
 
-    // Mail Send to Admin
-    await transport.sendMail({
-      from: `"${body.name}" <${config.private.dmail}>`,
-      to: config.private.gmail,
-      subject: `Devfolio Mail from ${body.name}`,
-      html: await render(AdminTemplate, {
-        ...body,
-      }),
-    })
-
-    return { user: true, admin: true }
+    return { success: true }
   } catch (error: unknown) {
     console.error('API contact POST', error)
 

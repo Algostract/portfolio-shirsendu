@@ -20,6 +20,7 @@ env:
   REPO: ${{ github.repository }}
   USERNAME: ${{ vars.USERNAME }}
   VERSION: ${{ github.ref_name }}
+  SITE_URL: ${{ vars.SITE_URL }}
 
 jobs:
   build-web:
@@ -89,6 +90,7 @@ jobs:
           build-args: |
             VERSION=${{ steps.metadata.outputs.version }}
             BUILD_TIME=${{ steps.metadata.outputs.buildtime }}
+            SITE_URL=${{ env.SITE_URL }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -156,19 +158,13 @@ jobs:
   #         # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
   #         targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
-  #     - name: 🛠️ Setup pnpm
-  #       uses: pnpm/action-setup@v4
+  #     - name: 🛠️ Setup Bun
+  #       uses: oven-sh/setup-bun@v2
   #       with:
-  #         run_install: false
-
-  #     - name: 🛠️ Setup Node.js with pnpm
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: lts/*
-  #         cache: 'pnpm'
+  #         bun-version: latest
 
   #     - name: 📦 Install Dependencies
-  #       run: pnpm install --frozen-lockfile --production
+  #       run: bun install --frozen-lockfile --production
 
   #     - name: ⚙️ Build and Upload Artifact
   #       uses: tauri-apps/tauri-action@v0
@@ -241,22 +237,16 @@ jobs:
   #       with:
   #         targets: aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android
 
-  #     - name: 🛠️ Setup pnpm
-  #       uses: pnpm/action-setup@v4
+  #     - name: 🛠️ Setup Bun
+  #       uses: oven-sh/setup-bun@v2
   #       with:
-  #         run_install: false
-
-  #     - name: 🛠️ Setup Node.js with pnpm
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: lts/*
-  #         cache: 'pnpm'
+  #         bun-version: latest
 
   #     - name: 📦 Install Dependencies
-  #       run: pnpm install --frozen-lockfile --production
+  #       run: bun install --frozen-lockfile --production
 
   #     - name: ⚙️ Build Artifact
-  #       run: pnpm tauri android build
+  #       run: bun run tauri android build
 
   #     - name: ⚙️ Upload Artifact
   #       uses: svenstaro/upload-release-action@v2

@@ -3,28 +3,30 @@ const title = `Fullstack Developer in Kolkata`
 const description = `Shirsendu Bairagi is Fullstack Developer with more then 3 years of experience.
 He had done more then a dozens production grade cutting edge projects in web, app, iot and ml.
 He primarily serves his neighborhood Rajpur, Sonarpur, Baruipur, Subhasgram, Harinavi & Narendrapur Area.`
-const url = 'https://shirsendu-bairagi.dev'
+const {
+  public: { siteUrl },
+} = useRuntimeConfig()
+
+useHead({
+  bodyAttrs: {
+    class: 'scrollbar-hidden',
+  },
+})
 
 useSeoMeta({
   ogType: 'profile',
-  title: title,
-  ogTitle: title,
-  description: description,
-  ogDescription: description,
-  ogImage: url + '/previews/landing.webp',
-  ogImageWidth: 1280,
-  ogImageHeight: 640,
-  ogUrl: url,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   fbAppId: 966242223397117,
   twitterCard: 'summary_large_image',
-  colorScheme: 'dark light',
+  colorScheme: 'light dark',
 })
 
 useSchemaOrg([
   definePerson({
     name: 'Shirsendu Bairagi',
     description: 'He is a Fullstack Developer',
-    image: url + '/logo.png',
+    image: siteUrl + '/logo.png',
     sameAs: [
       'https://codedamn.com/user/shba007',
       'https://leetcode.com/shba007',
@@ -45,7 +47,7 @@ useSchemaOrg([
       postalCode: '700146',
       addressCountry: 'IN',
     },
-    image: url + '/logo.png',
+    image: siteUrl + '/logo.png',
   }),
   defineWebPage({
     datePublished: new Date(2023, 5, 14).toISOString(),
@@ -53,7 +55,7 @@ useSchemaOrg([
     author: 'Shirsendu Bairagi',
   }),
   defineWebSite({
-    url: url,
+    siteUrl: siteUrl,
     name: title,
     description: description,
   }),
@@ -92,22 +94,19 @@ html {
 
 body {
   @apply relative min-h-screen overflow-x-hidden bg-light-400 fill-black font-body text-black dark:bg-dark-400 dark:fill-white dark:text-white;
-  @apply bg-[url("~/assets/images/dot-light.svg")] bg-auto bg-left-top bg-repeat dark:bg-[url("~/assets/images/dot-dark.svg")];
+  @apply bg-[siteUrl("~/assets/images/dot-light.svg")] bg-auto bg-left-top bg-repeat dark:bg-[siteUrl("~/assets/images/dot-dark.svg")];
 }
 
 svg.iconify--local {
   @apply !m-0 !box-content;
 }
 
-.scrollbar-hidden {
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
-  scrollbar-width: none;
-  /* Firefox */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
-  display: none;
-  /* Safari and Chrome */
+  width: 0;
+  height: 0;
 }
 </style>
