@@ -1,5 +1,30 @@
 # portfolio-shirsendu
 
+## v1.19.0
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.18.0...v1.19.0)
+
+### 🚀 Enhancements
+
+- Added new cv page ([8dea1a0](https://github.com/Algostract/portfolio-shirsendu/commit/8dea1a0))
+- Update nuxt configuration add new email templates, implement push notification functionality ([e93c5c0](https://github.com/Algostract/portfolio-shirsendu/commit/e93c5c0))
+
+### 🩹 Fixes
+
+- Update service name and restore image configuration in docker-compose ([b26c98b](https://github.com/Algostract/portfolio-shirsendu/commit/b26c98b))
+
+### 💅 Refactors
+
+- Runtime changed from node to bun ([89162c6](https://github.com/Algostract/portfolio-shirsendu/commit/89162c6))
+
+### 🏡 Chore
+
+- Removed obsolete projects.yml file to streamline project management ([7cd3d00](https://github.com/Algostract/portfolio-shirsendu/commit/7cd3d00))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.18.0
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.17.1...v1.18.0)
