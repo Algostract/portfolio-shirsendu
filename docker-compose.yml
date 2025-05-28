@@ -1,14 +1,15 @@
-name: 'portfolio-shirsendu'
+name: 'portfolio-shirsendu-dev'
 services:
   app:
-    image: 'ghcr.io/algostract/portfolio-shirsendu:latest'
-    # build: .
+    build: .
     restart: on-failure:3
     volumes:
-      - type: bind
-        source: ./static
-        target: /app/static
+      - portfolio-shirsendu_static:/app/static
     env_file:
       - .env.prod
     ports:
       - 4100:3000
+
+volumes:
+  portfolio-shirsendu_static:
+    external: true

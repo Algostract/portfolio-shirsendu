@@ -93,7 +93,7 @@ html {
 }
 
 body {
-  @apply relative min-h-screen overflow-x-hidden bg-light-400 fill-black font-body text-black dark:bg-dark-400 dark:fill-white dark:text-white;
+  @apply relative min-h-screen overflow-x-hidden bg-light-400 fill-black font-main text-black dark:bg-dark-400 dark:fill-white dark:text-white;
   @apply bg-[siteUrl("~/assets/images/dot-light.svg")] bg-auto bg-left-top bg-repeat dark:bg-[siteUrl("~/assets/images/dot-dark.svg")];
 }
 

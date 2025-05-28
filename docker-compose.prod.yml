@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  app:
+    image: 'ghcr.io/algostract/portfolio-shirsendu:latest'
+    volumes:
+      - portfolio-shirsendu_static:/app/static
+    env_file:
+      - .env.prod
+    ports:
+      - 4100:3000
+    networks:
+      - front-tier
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+volumes:
+  portfolio-shirsendu_static:
+    external: true
+
+networks:
+  front-tier:
+    driver: overlay

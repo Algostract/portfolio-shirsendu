@@ -1,4 +1,6 @@
 export type Technologies = 'angular' | 'react' | 'nextjs' | 'vue' | 'nuxt' | 'astro' | 'tailwindcss' | 'tensorflowjs' | 'typescript' | 'python' | 'fastapi' | 'tensorflow'
+export type ProjectType = 'Web App' | 'Web App Template' | 'Cron Job' | 'Game' | 'Library' | 'API' | 'Bot' | 'ML Model'
+export type ProjectStage = 'Planning' | 'Development' | 'Stable' | 'Maintenance' | 'Archived'
 
 export interface Image {
   id: string
@@ -8,16 +10,16 @@ export interface Image {
 export interface BaseProject {
   name: string
   repo: string
-  type: ('Web App' | 'Web App Template' | 'Cron Job' | 'Game' | 'Library' | 'API' | 'Bot' | 'ML Model')[]
+  type: ProjectType[]
   technologies: {
     languages: string[]
     frameworks: string[]
   }
-  createdAt: Date
+  createdAt: string
   appURL: string | null
   videoURL: string | null
   images: Image[]
-  stage: 'Planning' | 'Development' | 'Stable' | 'Maintenance' | 'Archived'
+  stage: ProjectStage
 }
 
 export interface Project extends Omit<BaseProject, 'technologies'> {
@@ -102,3 +104,10 @@ export interface Newsletter {
   email: string
   subscribed: boolean
 }
+
+// Server only
+export const resourceTypes = ['project', 'asset'] as const
+
+export type ResourceType = (typeof resourceTypes)[number]
+
+export type NotionDB = { [K in ResourceType]: string }

@@ -33,14 +33,14 @@ const nativeConfig =
             '/_ipx/s_512x512/images/robot.webp',
             '/_ipx/s_512x512/images/drone.webp',
             /*  
-        '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
-        '/certificates/codedamn-learn-javascript-basics.pdf',
-        '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
-        '/certificates/codedamn-hacktoberfest-2023.pdf',
-        '/certificates/gnec-hackathon-2023.pdf',
-        '/certificates/100-days-of-frontend.pdf',
-        '/certificates/30-days-of-react.pdf', 
-        */
+      '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
+      '/certificates/codedamn-learn-javascript-basics.pdf',
+      '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
+      '/certificates/codedamn-hacktoberfest-2023.pdf',
+      '/certificates/gnec-hackathon-2023.pdf',
+      '/certificates/100-days-of-frontend.pdf',
+      '/certificates/30-days-of-react.pdf', 
+      */
           ],
         },
       }
@@ -323,14 +323,27 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
-      globPatterns: ['**/*.{html,css,js,jpg,png,svg,webp,ico}'],
+      globPatterns: ['**/*.{html,css,js,jpg,jpeg,png,svg,webp,ico,mp3,wav,ogg,mp4,webm,mov,m4a,aac}'],
       runtimeCaching: [
         {
-          urlPattern: '/',
+          urlPattern: /\.(?:html|js|css)$/,
           handler: 'NetworkFirst',
+          options: {
+            cacheName: 'dynamic-assets',
+          },
+        },
+        {
+          urlPattern: /\.(?:png|jpg|jpeg|svg|webp|ico|mp3|wav|ogg|mp4|webm|mov|m4a|aac)$/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'static-assets',
+            expiration: { maxEntries: 100, maxAgeSeconds: 7 * 24 * 60 * 60 },
+          },
         },
       ],
-      navigateFallback: undefined,
+      maximumFileSizeToCacheInBytes: 4194304,
+      navigateFallback: '/',
+      cleanupOutdatedCaches: true,
       importScripts: ['/sw-push.js'],
     },
     client: {

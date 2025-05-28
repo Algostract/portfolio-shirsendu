@@ -1,38 +1,31 @@
 import { Client } from '@notionhq/client'
-import readYamlFile from '~~/server/utils/read-yaml-file'
+import type { Technologies } from '~~/shared/types'
 
 let notion: Client
+
+type NotionMediaAsset =
+  | {
+      type: 'file'
+      file: {
+        url: string
+        expiry_time: string
+      }
+    }
+  | {
+      type: 'external'
+      external: {
+        url: string
+      }
+    }
+  | null
 
 export interface NotionProject {
   object: string
   id: string
-  cover: null
-  icon: {
-    external: {
-      url: string
-    }
-  }
+  cover: NotionMediaAsset
+  icon: NotionMediaAsset
   properties: {
-    Github: {
-      url: string
-    }
-    Type: {
-      type: string
-      multi_select: { id: string; name: string; color: string }[]
-    }
-    Postman: {
-      url: string
-    }
-    'Better Stack': {
-      url: string
-    }
-    App: {
-      url: string
-    }
-    Video: {
-      url: string
-    }
-    'Project name': {
+    Name: {
       type: string
       title: {
         type: string
@@ -51,13 +44,13 @@ export interface NotionProject {
         color: string
       }
     }
-    Completion: {
+    Type: {
       type: string
-      rollup: {
-        type: string
-        number: null
-        function: string
-      }
+      multi_select: { id: string; name: string; color: string }[]
+    }
+    Stack: {
+      type: string
+      multi_select: { id: string; name: string; color: string }[]
     }
     Priority: {
       type: string
@@ -66,12 +59,107 @@ export interface NotionProject {
         color: string
       }
     }
+    Completion: {
+      type: string
+      rollup: {
+        type: string
+        number: null
+        function: string
+      }
+    }
     Period: {
       type: string
       date: {
         start: string
         end: null
       }
+    }
+
+    Postman: {
+      url: string
+    }
+    Github: {
+      url: string
+    }
+
+    App: {
+      url: string
+    }
+    'Better Stack': {
+      url: string
+    }
+    Asset: { type: 'relation'; relation: { id: string }[]; has_more: boolean }
+    Video: {
+      url: string
+    }
+  }
+}
+
+export interface NotionProjectAsset {
+  id: string
+  created_time: string
+  last_edited_time: string
+  created_by: {
+    object: string
+    id: string
+  }
+  last_edited_by: {
+    object: string
+    id: string
+  }
+  cover: NotionMediaAsset
+  icon: NotionMediaAsset
+  properties: {
+    Project: {
+      type: string
+      relation: { id: string }[]
+      has_more: boolean
+    }
+    Name: {
+      type: string
+      title: {
+        type: string
+        text: {
+          content: string
+          link: null
+        }
+        plain_text: string
+        href: null
+      }[]
+    }
+
+    Description: {
+      id: string
+      type: string
+      rich_text: { plain_text: string }[]
+    }
+    Status: {
+      type: string
+      status: {
+        name: string
+        color: string
+      }
+    }
+    'Aspect ratio': {
+      id: string
+      type: string
+      select: {
+        name: string
+        color: string
+      }[]
+    }
+    Gallery: {
+      id: string
+      type: string
+      number: number
+    }
+    Resolution: {
+      id: string
+      type: string
+      select: {
+        name: string
+        color: string
+      }[]
     }
   }
 }
@@ -85,35 +173,35 @@ export default defineCachedEventHandler<Promise<Project[]>>(
         throw new Error('Notion API Key Not Found')
       }
 
-      const notionDbId = config.private.notionDbId
+      const notionDbId = config.private.notionDbId as unknown as NotionDB
 
       notion = notion ?? new Client({ auth: config.private.notionApiKey })
-      const data = await notion.databases.query({ database_id: notionDbId })
 
-      const notionProjects = data.results as unknown as NotionProject[]
-
-      const fileProjects = await readYamlFile<BaseProject>('projects.yml')
-
-      if (!fileProjects) throw createError({ statusCode: 500, statusMessage: 'projects file is undefined' })
+      const notionProjects = (await notion.databases.query({ database_id: notionDbId.project })).results as unknown as NotionProject[]
+      const notionProjectAssets = (await notion.databases.query({ database_id: notionDbId.asset })).results as unknown as NotionProjectAsset[]
 
       const projects = (
         await Promise.all(
           notionProjects.map(async ({ id, properties }): Promise<Project> => {
-            const name = properties['Project name'].title.map(({ plain_text }) => plain_text ?? '').join('') as string
-
-            const fileProject = fileProjects.find((project) => project.name === name)
+            const name = notionTextStringify(properties.Name.title)
 
             return {
               id,
               name,
               repo: properties.Github.url?.replace('https://github.com/', ''),
-              type: properties.Type.multi_select.map(({ name }) => name),
-              technologies: fileProject?.technologies ? ([...fileProject.technologies.frameworks, ...fileProject.technologies.languages] as Technologies[]) : [],
+              type: properties.Type.multi_select.map(({ name }) => name as ProjectType),
+              technologies: properties.Stack.multi_select.map(({ name }) => name as Technologies),
               createdAt: properties.Period.date?.start,
               appURL: properties.App.url,
               videoURL: properties.Video.url,
-              stage: properties.Stage.status.name,
-              images: fileProject?.images ?? [],
+              stage: properties.Stage.status.name as ProjectStage,
+              images: notionProjectAssets
+                .filter((asset) => properties.Asset.relation.map(({ id }) => id).includes(asset.id) && asset.properties.Status.status.name === 'Release')
+                .toSorted((a, b) => b.properties.Gallery.number - a.properties.Gallery.number)
+                .map(({ cover, properties }) => ({
+                  id: cover?.type === 'external' ? cover.external.url.split('/')[3]! : '',
+                  title: notionTextStringify(properties.Name.title),
+                })),
             }
           })
         )

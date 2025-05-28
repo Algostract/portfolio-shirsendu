@@ -1,5 +1,5 @@
 import { render } from '@vue-email/render'
-import emailTemplate from '~~/shared/emails'
+import emailTemplate from '~~/server/emails'
 
 export default defineEventHandler<Promise<{ success: boolean }>>(async (event) => {
   try {

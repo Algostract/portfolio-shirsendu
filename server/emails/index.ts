@@ -1,46 +1,59 @@
+import type { Component } from 'vue'
+import { parseYAML } from 'confbox'
 import contactTemplate from './ContactTemplate.vue'
-import outreachTemplate from './OutreachTemplate.vue'
 
 export interface ContactEmail {
-  fromPersonName: string
-  fromEmail: string
-  emailSubject: string
-  toPersonName: string
-  toEmail: string
-}
-
-export interface OutreachEmail {
   fromCompanyName: string
   fromPersonName: string
   fromEmail: string
   fromCompanyLogo: string
   fromCompanyLink: string
   fromCompanyPhone: string
-  fromFeaturedPhotos: string[]
   emailSubject: string
   toCompanyName: string
   toPersonName: string
   toEmail: string
 }
 
-const cachedReadYamlFile = defineCachedFunction(readYamlFile)
-
-export default {
-  contact: {
-    template: contactTemplate,
-    data: async (data: Pick<ContactEmail, 'toPersonName' | 'toEmail'>): Promise<ContactEmail> => {
-      const contactData = ((await cachedReadYamlFile<{ contact: string }>('emails.yml')) as unknown as { contact: string }).contact as unknown as Omit<ContactEmail, 'toPersonName' | 'toEmail'>
-      return { ...contactData, ...data }
-    },
-  },
-  outreach: {
-    template: outreachTemplate,
-    data: async (data: Pick<OutreachEmail, 'toCompanyName' | 'toPersonName' | 'toEmail'>): Promise<OutreachEmail> => {
-      const outreachData = ((await cachedReadYamlFile<{ outreach: string }>('emails.yml')) as unknown as { outreach: string }).outreach as unknown as Omit<
-        OutreachEmail,
-        'toCompanyName' | 'toPersonName' | 'toEmail'
-      >
-      return { ...outreachData, ...data }
-    },
-  },
+/**
+ * Generic function to read and parse YAML by key
+ */
+async function loadYamlSection<T>(filename: string, section: string): Promise<T> {
+  const storage = useStorage('fs')
+  const fileContents = await storage.getItem(`data/${filename}`)
+  if (!fileContents) {
+    throw new Error(`Missing YAML file: ${filename}`)
+  }
+  const parsed = parseYAML<{ [key: string]: unknown }>(fileContents.toString())
+  if (!(section in parsed)) {
+    throw new Error(`Section ${section} not found in ${filename}`)
+  }
+  return parsed[section] as T
 }
+/**
+ * Factory to create email modules with DRY logic
+ */
+function createEmailModule<TData extends Record<string, unknown>, TMeta extends Record<string, unknown>, TEMeta = TMeta>(
+  section: string,
+  template: Component,
+  enrich?: (meta: TMeta) => Promise<Partial<TEMeta>>
+) {
+  return {
+    template,
+    data: async (data: TData, metaData?: Omit<TMeta, keyof TData>): Promise<TEMeta & TData> => {
+      const baseMeta = (metaData as TMeta) ?? (await loadYamlSection<{ [K in keyof TMeta]: TMeta[K] }>('emails.yml', section))
+      const extra = enrich ? await enrich(baseMeta) : {}
+      return { ...(baseMeta as object), ...extra, ...data } as TEMeta & TData
+    },
+  }
+}
+
+export type EmailTemplateData = {
+  contact: Pick<ContactEmail, 'toPersonName' | 'toCompanyName' | 'toEmail'>
+}
+
+const emailTemplate = {
+  contact: createEmailModule<Pick<ContactEmail, 'toPersonName' | 'toCompanyName' | 'toEmail'>, Omit<ContactEmail, 'toPersonName' | 'toCompanyName' | 'toEmail'>>('content', contactTemplate),
+}
+
+export default emailTemplate

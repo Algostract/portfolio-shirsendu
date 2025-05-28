@@ -45,7 +45,7 @@ async function onSubscribe(email: string) {
       </li>
       <li>
         <NuxtLink to="https://github.com/shba007" target="_blank" aria-label="github">
-          <NuxtIcon name="uil:github" class="size-[32px] opacity-60 transition-opacity hover:opacity-100 md:size-[42px]" />
+          <NuxtIcon name="local:github" class="size-[32px] opacity-60 transition-opacity hover:opacity-100 md:size-[42px]" />
         </NuxtLink>
       </li>
     </ul>

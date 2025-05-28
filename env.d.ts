@@ -1,6 +1,6 @@
 interface ImportMetaEnv {
   readonly NODE_ENV: 'development' | 'production'
-  readonly PUPPETEER_EXECUTABLE_PATH?: string
+  readonly BROWSER_ENDPOINT?: string
 }
 
 interface ImportMeta {

@@ -1,15 +1,17 @@
+# Code Editor files
 .vs
 .vscode
 
-.changeset
+# Git/Github
 .git
 .github
 
 # Nuxt dev/build outputs
-.output
+.cache
+.data
 .nuxt
 .nitro
-.cache
+.output
 dist
 
 # Node dependencies
@@ -19,22 +21,24 @@ node_modules
 logs
 *.log
 
+# Test
+coverage
+
 # Misc
 .DS_Store
 .fleet
 .idea
 
-# Local env files
-.env
-.env.*
+# Env files
+.env*
 
 # Tauri files
 native
 
-# Docker files
-.dockerignore
-Dockerfile
-
 # Static files
 static/**/*.*
 !static/**/*.gitkeep
+
+# Docker files
+.dockerignore
+Dockerfile

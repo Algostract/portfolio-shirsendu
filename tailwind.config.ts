@@ -15,8 +15,8 @@ export default <Partial<Config>>{
       '5xl': ['3.5rem', '4.1875rem'],
     },
     fontFamily: {
-      head: ['"Exo 2"', 'sans-serif'],
-      body: ['"Exo 2"', 'sans-serif'],
+      main: ['"Exo 2"', 'sans-serif'],
+      sub: ['"Exo 2"', 'sans-serif'],
     },
     fontWeight: {
       light: '300',
