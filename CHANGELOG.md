@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.20.0
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.19.0...v1.20.0)
+
+### 🚀 Enhancements
+
+- Add zod schema validation, added whatsapp bot ([411a0e3](https://github.com/Algostract/portfolio-shirsendu/commit/411a0e3))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.19.0
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.18.0...v1.19.0)
