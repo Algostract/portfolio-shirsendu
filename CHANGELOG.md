@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.20.1
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.20.0...v1.20.1)
+
+### 🏡 Chore
+
+- Add authentication middleware and bearer token extraction utility ([02affed](https://github.com/Algostract/portfolio-shirsendu/commit/02affed))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.20.0
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.19.0...v1.20.0)
