@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   app:
-    image: ghcr.io/algostract/portfolio-shirsendu:latest
+    image: ghcr.io/algostract/portfolio-shirsendu:1.19.0
     volumes:
       - portfolio-shirsendu_static:/app/static
     env_file:
@@ -10,14 +10,33 @@ services:
       - 4100:3000
     networks:
       - front-tier
+    depends_on:
+      - browserless
     deploy:
-      replicas: 2
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+  browserless:
+    image: ghcr.io/browserless/chromium:latest
+    user: root
+    volumes:
+      - portfolio-shirsendu_data:/usr/src/app/user-data-dir
+    environment:
+      - CORS=true
+    networks:
+      - front-tier
+    deploy:
+      replicas: 1
       restart_policy:
         condition: on-failure
         max_attempts: 3
 
 volumes:
   portfolio-shirsendu_static:
+    external: true
+  portfolio-shirsendu_data:
     external: true
 
 networks:
