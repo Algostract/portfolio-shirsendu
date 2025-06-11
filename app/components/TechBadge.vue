@@ -74,6 +74,14 @@ const techs = {
     name: 'Tauri',
     website: 'https://tauri.app/',
   },
+  bun: {
+    name: 'Bun',
+    website: 'https://bun.sh/',
+  },
+  docker: {
+    name: 'Docker',
+    website: 'https://www.docker.com/',
+  },
 }
 </script>
 

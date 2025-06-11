@@ -17,6 +17,7 @@ logs
 .DS_Store
 .fleet
 .idea
+.wwebjs_*
 
 # Local env files
 .env

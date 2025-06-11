@@ -60,6 +60,37 @@ useSchemaOrg([
     description: description,
   }),
 ])
+
+const { isSupported, permissionGranted } = useWebNotification()
+
+async function getExistingSubscription() {
+  const config = useRuntimeConfig()
+
+  const registration = await navigator.serviceWorker.ready
+  let subscription = await registration.pushManager.getSubscription()
+
+  if (!subscription) {
+    subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: config.public.vapidKey,
+    })
+  }
+
+  await $fetch('/api/subscription/notification', {
+    method: 'POST',
+    body: subscription.toJSON(),
+  })
+
+  return subscription
+}
+
+onMounted(async () => {
+  if (isSupported.value && permissionGranted.value) await getExistingSubscription()
+})
+
+watch(permissionGranted, async (value) => {
+  if (value) await getExistingSubscription()
+})
 </script>
 
 <template>

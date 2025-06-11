@@ -1,7 +1,4 @@
-import { Client } from '@notionhq/client'
 import type { Technologies } from '~~/shared/types'
-
-let notion: Client
 
 type NotionMediaAsset =
   | {
@@ -168,14 +165,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
   async () => {
     try {
       const config = useRuntimeConfig()
-
-      if (!config.private.notionApiKey) {
-        throw new Error('Notion API Key Not Found')
-      }
-
       const notionDbId = config.private.notionDbId as unknown as NotionDB
-
-      notion = notion ?? new Client({ auth: config.private.notionApiKey })
 
       const notionProjects = (await notion.databases.query({ database_id: notionDbId.project })).results as unknown as NotionProject[]
       const notionProjectAssets = (await notion.databases.query({ database_id: notionDbId.asset })).results as unknown as NotionProjectAsset[]
@@ -197,7 +187,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
               stage: properties.Stage.status.name as ProjectStage,
               images: notionProjectAssets
                 .filter((asset) => properties.Asset.relation.map(({ id }) => id).includes(asset.id) && asset.properties.Status.status.name === 'Release')
-                .toSorted((a, b) => b.properties.Gallery.number - a.properties.Gallery.number)
+                .toSorted((a, b) => a.properties.Gallery.number - b.properties.Gallery.number)
                 .map(({ cover, properties }) => ({
                   id: cover?.type === 'external' ? cover.external.url.split('/')[3]! : '',
                   title: notionTextStringify(properties.Name.title),

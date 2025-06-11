@@ -1,22 +1,22 @@
-import { Client as NotionClient } from '@notionhq/client'
+import { z } from 'zod'
 
-let notion: NotionClient | null
+const newsletterSchema = z.object({
+  email: z.string().email(),
+  subscribed: z.boolean(),
+})
+
+export type Newsletter = z.infer<typeof newsletterSchema>
 
 export default defineEventHandler<Promise<{ subscribed: boolean }>>(async (event) => {
   try {
     const config = useRuntimeConfig()
+    const notionDbId = config.private.notionDbId as unknown as NotionDB
 
-    const body = await readBody<Newsletter>(event)
-
-    notion =
-      notion ??
-      new NotionClient({
-        auth: config.private.notionKey,
-      })
+    const body = await readValidatedBody(event, newsletterSchema.parse)
 
     await notion.pages.create({
       parent: {
-        database_id: config.private.notionDBId,
+        database_id: notionDbId.newsletter,
       },
       properties: {
         Email: {

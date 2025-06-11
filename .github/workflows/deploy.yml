@@ -115,7 +115,7 @@ jobs:
           script: |
             cd ~/${{ env.REPO }}
             curl -O https://raw.githubusercontent.com/${{ env.REPO }}/refs/heads/main/docker-compose.prod.yml
-            export $(cat .env.prod) && docker stack deploy --compose-file docker-compose.prod.yml portfolio-shirsendu
+            docker stack deploy --compose-file docker-compose.prod.yml portfolio-shirsendu
 
   # build-desktop:
   #   env:

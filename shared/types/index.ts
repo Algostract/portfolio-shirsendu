@@ -100,13 +100,8 @@ export interface TransactionalEmail {
   message: string
 }
 
-export interface Newsletter {
-  email: string
-  subscribed: boolean
-}
-
 // Server only
-export const resourceTypes = ['project', 'asset'] as const
+export const resourceTypes = ['project', 'asset', 'newsletter'] as const
 
 export type ResourceType = (typeof resourceTypes)[number]
 

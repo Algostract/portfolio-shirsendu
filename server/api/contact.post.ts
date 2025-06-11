@@ -1,11 +1,18 @@
+import { z } from 'zod'
 import { render } from '@vue-email/render'
 import emailTemplate from '~~/server/emails'
+
+const transactionalEmailSchema = z.object({
+  name: z.string(),
+  email: z.string(),
+  message: z.string(),
+})
 
 export default defineEventHandler<Promise<{ success: boolean }>>(async (event) => {
   try {
     const config = useRuntimeConfig()
 
-    const body = await readBody<TransactionalEmail>(event)
+    const body = await readValidatedBody(event, transactionalEmailSchema.parse)
     const [firstName, ...restName] = body.name.split(' ')
     const lastName = restName.join('')
 

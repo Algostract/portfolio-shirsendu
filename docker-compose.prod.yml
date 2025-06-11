@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   app:
-    image: 'ghcr.io/algostract/portfolio-shirsendu:latest'
+    image: ghcr.io/algostract/portfolio-shirsendu:latest
     volumes:
       - portfolio-shirsendu_static:/app/static
     env_file:

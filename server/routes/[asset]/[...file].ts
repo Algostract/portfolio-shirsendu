@@ -1,16 +1,15 @@
 import { z } from 'zod'
 
+const paramSchema = z.object({
+  asset: z.string().min(1),
+  file: z.string().min(1),
+})
+
 export default defineCachedEventHandler(
   async (event) => {
     try {
       const storage = useStorage('fs')
-      const { asset: assetEncodedName, file: fileEncodedName } = await getValidatedRouterParams(
-        event,
-        z.object({
-          asset: z.string().min(1),
-          file: z.string().min(1),
-        }).parse
-      )
+      const { asset: assetEncodedName, file: fileEncodedName } = await getValidatedRouterParams(event, paramSchema.parse)
       const assetName = decodeURIComponent(assetEncodedName)
       const fileName = decodeURIComponent(fileEncodedName)
       const file = await storage.getItemRaw(`${assetName}/${fileName}`)

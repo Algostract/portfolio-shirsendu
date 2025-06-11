@@ -1,14 +1,17 @@
 #!/usr/bin/env sh
+set -e
 
 # Get the list of staged files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')
 
-# Run gitleaks on each staged file using --no-git
-for file in $STAGED_FILES; do
-  if [[ -f "$file" ]]; then
-    gitleaks detect --source="$file" --no-git --no-banner --verbose
-  fi
-done
+# If gitleaks is available, scan each staged file
+if command -v gitleaks >/dev/null 2>&1; then
+  for file in $STAGED_FILES; do
+    [ -f "$file" ] && gitleaks detect --source="$file" --no-git --no-banner --verbose
+  done
+else
+  echo "⚠️ gitleaks not found; skipping secret scan"
+fi
 
 # Lint the staged files
 bun lint $STAGED_FILES
