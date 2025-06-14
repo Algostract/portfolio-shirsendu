@@ -1,5 +1,3 @@
-import type { Technologies } from '~~/shared/types'
-
 type NotionMediaAsset =
   | {
       type: 'file'
@@ -172,7 +170,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
 
       const projects = (
         await Promise.all(
-          notionProjects.map(async ({ id, properties }): Promise<Project> => {
+          notionProjects.map(async ({ id, properties }): Promise<BaseProject> => {
             const name = notionTextStringify(properties.Name.title)
 
             return {
@@ -199,7 +197,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
 
       const githubProjects = (
         await Promise.all(
-          projects.map(async ({ name, repo, createdAt, technologies, appURL, videoURL, images }): Promise<Project | null> => {
+          projects.map(async ({ id, name, repo, createdAt, technologies, appURL, videoURL, images }): Promise<Project | null> => {
             if (repo == null) return null
 
             let details: GithubDetailsResponse | null = null
@@ -219,15 +217,16 @@ export default defineCachedEventHandler<Promise<Project[]>>(
             if (releaseResponse.status === 'fulfilled') release = releaseResponse.value.release
 
             return {
+              id,
               name,
               description: details?.description ?? '',
               version: release?.tag ?? 'v0.0.0',
               stars: details?.stars ?? 0,
               forks: details?.forks ?? 0,
               createdAt,
-              updatedAt: details?.updatedAt ?? createdAt,
+              updatedAt: release?.publishedAt ?? createdAt,
               technologies,
-              repoURL: `https://github.com/${repo}`,
+              repo: `https://github.com/${repo}`,
               appURL,
               videoURL,
               images,
@@ -246,5 +245,5 @@ export default defineCachedEventHandler<Promise<Project[]>>(
       })
     }
   },
-  { maxAge: 60 * 60 }
+  { maxAge: 60 * 1 }
 )

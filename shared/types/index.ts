@@ -8,13 +8,11 @@ export interface Image {
 }
 
 export interface BaseProject {
+  id: string
   name: string
   repo: string
   type: ProjectType[]
-  technologies: {
-    languages: string[]
-    frameworks: string[]
-  }
+  technologies: Technologies[]
   createdAt: string
   appURL: string | null
   videoURL: string | null
@@ -22,14 +20,13 @@ export interface BaseProject {
   stage: ProjectStage
 }
 
-export interface Project extends Omit<BaseProject, 'technologies'> {
+export interface Project extends Omit<BaseProject, 'technologies' | 'stage' | 'type'> {
   description: string
   version: string
   stars: number
   forks: number
   technologies: Technologies[]
-  updatedAt: Date
-  repoURL: string | null
+  updatedAt: string
 }
 
 export interface GithubDetailsResponse {
@@ -37,9 +34,9 @@ export interface GithubDetailsResponse {
   name: string
   repo: string
   description: string
-  createdAt: Date
-  updatedAt: Date
-  pushedAt: Date
+  createdAt: string
+  updatedAt: string
+  pushedAt: string
   stars: number
   watchers: number
   forks: number

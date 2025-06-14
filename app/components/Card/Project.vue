@@ -8,10 +8,10 @@ interface Project {
   version: string
   forks: number
   stars: number
-  createdAt: Date | string
-  updatedAt: Date | string
+  createdAt: string
+  updatedAt: string
   technologies: Technologies[]
-  repoUrl: string | null
+  repo: string | null
   appUrl: string | null
   videoUrl: string | null
   images: Image[]
@@ -79,7 +79,7 @@ function onTry() {
               :key="track"
               class="h-[4px] w-[28px] cursor-pointer rounded-full rounded-bl-none rounded-tr-none duration-300"
               :class="currentSlideIndex === track ? 'bg-primary-400' : 'bg-light-500 dark:bg-dark-600'"
-              @click="splide.go(track)"></li>
+              @click="splide!.go(track)"></li>
           </ul>
           <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="size-full" @splide:move="onSlideMove">
             <SplideTrack>
@@ -99,8 +99,8 @@ function onTry() {
             </div> -->
           </Splide>
           <NuxtLink
-            v-if="repoUrl"
-            :to="repoUrl"
+            v-if="repo"
+            :to="repo"
             :external="true"
             target="_blank"
             class="absolute bottom-2 left-2 z-20 flex items-center gap-1 rounded-full bg-light-500 py-1 pl-1.5 pr-2 outline-primary-400 transition-colors duration-150 ease-in hover:bg-light-400 hover:outline dark:bg-dark-600 dark:hover:bg-dark-500">

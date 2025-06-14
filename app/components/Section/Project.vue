@@ -51,7 +51,7 @@ onMounted(() => {
     <h3 class="mx-auto w-fit text-lg">All Projects</h3>
     <Splide :options="splideOption" tag="div" :has-track="false" :extensions="{ Grid }">
       <SplideTrack class="py-2">
-        <SplideSlide v-for="{ name, description, version, stars, forks, createdAt, updatedAt, technologies, repoURL, appURL, videoURL, images } in projects" :key="name">
+        <SplideSlide v-for="{ name, description, version, stars, forks, createdAt, updatedAt, technologies, repo, appURL, videoURL, images } in projects" :key="name">
           <CardProject
             :name="name"
             :description="description"
@@ -61,7 +61,7 @@ onMounted(() => {
             :created-at="createdAt"
             :updated-at="updatedAt"
             :technologies="technologies"
-            :repo-url="repoURL"
+            :repo="repo"
             :app-url="appURL"
             :video-url="videoURL"
             :images="images" />
