@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.20.2
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.20.1...v1.20.2)
+
+### 💅 Refactors
+
+- Update project updatedAt with release time ([452e888](https://github.com/Algostract/portfolio-shirsendu/commit/452e888))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.20.1
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.20.0...v1.20.1)
