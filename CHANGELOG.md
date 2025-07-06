@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.21.0
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.20.2...v1.21.0)
+
+### 🚀 Enhancements
+
+- Add initial android project structure and resources ([eaa9683](https://github.com/Algostract/portfolio-shirsendu/commit/eaa9683))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.20.2
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.20.1...v1.20.2)
