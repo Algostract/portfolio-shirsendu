@@ -8,6 +8,10 @@ function onInstall() {
   gaProxy.gtag('event', 'install')
   $pwa?.install()
 }
+
+onMounted(() => {
+  console.log('AppInstallPrompt Mounted', { showInstallPrompt: $pwa?.showInstallPrompt, offlineReady: $pwa?.offlineReady, needRefresh: $pwa?.needRefresh })
+})
 </script>
 
 <template>

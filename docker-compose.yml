@@ -4,27 +4,24 @@ services:
     build: .
     restart: on-failure:3
     volumes:
-      - portfolio-shirsendu_static:/app/static
-      - portfolio-shirsendu_data:/app/.data
+      - static:/app/static
+      - data:/app/.data
     env_file:
       - .env.prod
     ports:
       - 4100:3000
-    depends_on:
-      - browserless
-  browserless:
-    image: ghcr.io/browserless/chromium:latest
-    restart: on-failure:3
-    user: root
-    volumes:
-      - portfolio-shirsendu_data:/usr/src/app/user-data-dir
-    environment:
-      - CORS=true
-    ports:
-      - 1201:3000
 
 volumes:
-  portfolio-shirsendu_static:
-    external: true
-  portfolio-shirsendu_data:
-    external: true
+  static:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./static
+
+  data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./.data

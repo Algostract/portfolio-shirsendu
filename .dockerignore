@@ -34,7 +34,7 @@ coverage
 .env*
 
 # Tauri files
-native
+src-tauri
 
 # Static files
 static/**/*.*

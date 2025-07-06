@@ -1,28 +1,46 @@
 <script setup lang="ts">
 const title = `Fullstack Developer in Kolkata`
 const description = `Shirsendu Bairagi is Fullstack Developer with more then 3 years of experience.
-He had done more then a dozens production grade cutting edge projects in web, app, iot and ml.
-He primarily serves his neighborhood Rajpur, Sonarpur, Baruipur, Subhasgram, Harinavi & Narendrapur Area.`
+He had done more then a dozens production grade cutting edge projects in web, app, iot and ml.`
+
 const {
-  public: { siteUrl },
+  app: { buildTime },
+  public: { siteUrl, vapidKey },
 } = useRuntimeConfig()
 
 useHead({
-  bodyAttrs: {
-    class: 'scrollbar-hidden',
+  htmlAttrs: {
+    lang: 'en',
   },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico',
+    },
+  ],
 })
 
 useSeoMeta({
   ogType: 'profile',
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
+  ogImageWidth: 1280,
+  ogImageHeight: 640,
   fbAppId: 966242223397117,
   twitterCard: 'summary_large_image',
   colorScheme: 'light dark',
 })
 
 useSchemaOrg([
+  defineWebPage({
+    datePublished: new Date(2023, 6, 9).toISOString(),
+    dateModified: buildTime,
+    author: 'Shirsendu Bairagi',
+  }),
+  defineWebSite({
+    url: siteUrl,
+    name: title,
+    description: description,
+  }),
   definePerson({
     name: 'Shirsendu Bairagi',
     description: 'He is a Fullstack Developer',
@@ -39,7 +57,12 @@ useSchemaOrg([
     ],
   }),
   defineLocalBusiness({
+    '@type': 'ProfessionalService',
     name: 'Shirsendu Bairagi',
+    description: description,
+    image: `${siteUrl}/previews/landing.webp`,
+    logo: siteUrl + '/logo.png',
+    url: siteUrl,
     address: {
       streetAddress: 'RN Bhattacharya Road, Kumorpara 2nd Lane',
       addressLocality: 'Kolkata',
@@ -47,36 +70,24 @@ useSchemaOrg([
       postalCode: '700146',
       addressCountry: 'IN',
     },
-    image: siteUrl + '/logo.png',
-  }),
-  defineWebPage({
-    datePublished: new Date(2023, 5, 14).toISOString(),
-    dateModified: new Date(2023, 12, 26).toISOString(),
-    author: 'Shirsendu Bairagi',
-  }),
-  defineWebSite({
-    siteUrl: siteUrl,
-    name: title,
-    description: description,
+    sameAs: ['https://linkedin.com/in/shirsendu-bairagi', 'https://github.com/shba007'],
   }),
 ])
 
 const { isSupported, permissionGranted } = useWebNotification()
 
 async function getExistingSubscription() {
-  const config = useRuntimeConfig()
-
   const registration = await navigator.serviceWorker.ready
   let subscription = await registration.pushManager.getSubscription()
 
   if (!subscription) {
     subscription = await registration.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: config.public.vapidKey,
+      applicationServerKey: vapidKey,
     })
   }
 
-  await $fetch('/api/subscription/notification', {
+  await $fetch('/api/notification/push/subscribe', {
     method: 'POST',
     body: subscription.toJSON(),
   })
@@ -95,13 +106,12 @@ watch(permissionGranted, async (value) => {
 
 <template>
   <NuxtRouteAnnouncer />
-  <NuxtPwaManifest />
   <NuxtPwaAssets />
-  <!-- <NuxtLoadingIndicator /> -->
+  <NuxtLoadingIndicator color="#0593FA" />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
-  <LazyAppInstallPrompt />
+  <LazyAppInstallPrompt hydrate-on-idle />
 </template>
 
 <style>
@@ -125,7 +135,7 @@ html {
 
 body {
   @apply relative min-h-screen overflow-x-hidden bg-light-400 fill-black font-main text-black dark:bg-dark-400 dark:fill-white dark:text-white;
-  @apply bg-[siteUrl("~/assets/images/dot-light.svg")] bg-auto bg-left-top bg-repeat dark:bg-[siteUrl("~/assets/images/dot-dark.svg")];
+  @apply bg-[url("~/assets/images/dot-light.svg")] bg-auto bg-left-top bg-repeat dark:bg-[url("~/assets/images/dot-dark.svg")];
 }
 
 svg.iconify--local {

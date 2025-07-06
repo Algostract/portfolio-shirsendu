@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { differenceInMonths, differenceInYears, formatDuration } from 'date-fns'
 
+const emit = defineEmits<{ contact: [] }>()
+
 const DOB = '2001-01-29'
 const DOFC = '2019-12-03'
-
-const emit = defineEmits<{ contact: [] }>()
 
 const now = useNow()
 
@@ -25,22 +25,25 @@ const experience = computed(() =>
 
 <template>
   <section id="hero" class="mt-10 flex flex-col-reverse gap-10 md:mt-6 md:flex-row md:justify-between md:gap-4 lg:mb-12 lg:mt-12">
-    <NuxtPicture src="/images/hero-gradient.svg" class="absolute -right-8 -top-8 left-0 -z-50 aspect-[3/4] w-full object-cover blur-md md:aspect-auto lg:left-auto lg:blur-lg" alt="Hero Background">
+    <!-- <NuxtPicture src="/images/hero-gradient.svg"
+      class="absolute -right-8 -top-8 left-0 -z-50 aspect-[3/4] w-full object-cover blur-md md:aspect-auto lg:left-auto lg:blur-lg"
+      alt="Hero Background">
       <source media="(min-width: 1024px)" srcset="/images/hero-gradient.svg" />
       <source media="(min-width: 768px)" srcset="/images/hero-gradient-tablet.svg" />
       <source media="(min-width: 100px)" srcset="/images/hero-gradient-mobile.svg" />
-    </NuxtPicture>
+    </NuxtPicture> -->
     <div class="flex h-fit flex-col items-center gap-8 md:my-auto md:w-1/2 md:items-start">
       <span class="mx-auto w-fit rounded-full border border-primary-500 px-4 py-2 text-sm capitalize md:mx-0"> {{ experience }} +XP </span>
       <h1 class="text-center text-2xl md:text-left md:text-4xl lg:text-5xl">
-        Crafting the Web,<br />
-        Making the UX better
+        Each line whispers <br />
+        a tiny spell, sparks digital dreams.
       </h1>
       <h2 class="mx-auto w-fit max-w-[90%] text-center text-lg font-light leading-relaxed opacity-80 sm:max-w-[80%] md:mx-0 md:max-w-[90%] md:text-left">
         I'm Shirsendu Bairagi, a passionate {{ age }} old web developer, and AI enthusiast dedicated to crafting cutting-edge digital experiences.
       </h2>
       <ButtonCTA @click="emit('contact')" />
     </div>
+
     <div class="grid grid-cols-3 grid-rows-[1fr_2fr_1fr] justify-items-stretch lg:grid-rows-2 lg:gap-x-20 lg:gap-y-36">
       <SkillHex :quadrant="1" class="col-start-1 row-start-1 self-start justify-self-start" />
       <SkillHex :quadrant="2" class="col-start-3 row-start-1 self-start justify-self-end" />

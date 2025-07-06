@@ -19,16 +19,15 @@ logs
 .idea
 .wwebjs_*
 
-# Local env files
+# Env files
 .env
 .env.*
 !.env.example
 !.env.native
 
 # Tauri files
-native/target/
-native/gen/schemas
-native/gen/android/keystore.properties
+src-tauri/target/
+src-tauri/gen/schemas
 
 # Static files
 static/**/*.*

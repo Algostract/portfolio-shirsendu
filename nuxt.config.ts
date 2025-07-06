@@ -1,19 +1,28 @@
 import vue from '@vitejs/plugin-vue'
 
+const host = process.env.TAURI_DEV_HOST || 'localhost'
+const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000
+
 const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
     ? {
         ssr: false,
-        // ignore:  ['**/src-tauri/**', '**/node_modules/**', '**/.git/**', '**/.nuxt/**', '**/.output/**', '**/dist/**', '**/public/**'],
-        devServer: { host: process.env.TAURI_DEV_HOST || '0.0.0.0' },
+        devServer: { host },
+        ignore: ['**/src-tauri/**', '**/node_modules/**', '**/dist/**', '**/.git/**', '**/.nuxt/**', '**/.output/**'],
         vite: {
           clearScreen: false,
           envPrefix: ['VITE_', 'TAURI_'],
           server: {
             strictPort: true,
-            // watch: {
-            //   ignored: ['**/src-tauri/**', '**/node_modules/**', '**/.git/**', '**/.nuxt/**', '**/.output/**', '**/dist/**', '**/public/**'],
-            // },
+            port,
+            host: host || false,
+            hmr: host
+              ? {
+                  protocol: 'ws',
+                  host,
+                  port,
+                }
+              : undefined,
           },
         },
         nitro: {
@@ -32,16 +41,28 @@ const nativeConfig =
             '/_ipx/s_512x512/images/mobile.webp',
             '/_ipx/s_512x512/images/robot.webp',
             '/_ipx/s_512x512/images/drone.webp',
-            /*  
-    '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
-    '/certificates/codedamn-learn-javascript-basics.pdf',
-    '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
-    '/certificates/codedamn-hacktoberfest-2023.pdf',
-    '/certificates/gnec-hackathon-2023.pdf',
-    '/certificates/100-days-of-frontend.pdf',
-    '/certificates/30-days-of-react.pdf', 
-    */
+            '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
+            '/certificates/codedamn-learn-javascript-basics.pdf',
+            '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
+            '/certificates/codedamn-hacktoberfest-2023.pdf',
+            '/certificates/gnec-hackathon-2023.pdf',
+            '/certificates/100-days-of-frontend.pdf',
+            '/certificates/30-days-of-react.pdf',
           ],
+          icon: {
+            componentName: 'NuxtIcon',
+            provider: 'none',
+            mode: 'svg',
+            clientBundle: {
+              scan: true,
+            },
+            customCollections: [
+              {
+                prefix: 'local',
+                dir: './app/assets/icons',
+              },
+            ],
+          },
         },
       }
     : {}
@@ -78,15 +99,17 @@ export default defineNuxtConfig({
       },
     },
     rollupConfig: {
-      // @ts-expect-error Type instantiation is excessively deep and possibly infinite.
       plugins: [vue()],
     },
   },
   routeRules: {
-    '/': { isr: 3600 },
+    '/': { ssr: true },
     '/_ipx/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
     '/images/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
     '/fonts/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/manifest.webmanifest': {
+      headers: { 'content-type': 'application/manifest+json', 'cache-control': 'public, max-age=0, must-revalidate' },
+    },
     '/api/**': { cors: true },
   },
   runtimeConfig: {
@@ -95,7 +118,6 @@ export default defineNuxtConfig({
       buildTime: '',
     },
     public: {
-      apiBaseUrl: '',
       siteUrl: '',
       scripts: {
         googleAnalytics: {
@@ -158,10 +180,12 @@ export default defineNuxtConfig({
     disallow: ['/_nuxt/'],
   },
   pwa: {
-    scope: '/',
-    base: '/',
+    srcDir: '../public/services',
+    filename: 'sw-main.ts',
+    strategies: 'injectManifest',
     injectRegister: 'auto',
     registerType: 'autoUpdate',
+    includeManifestIcons: false,
     manifest: {
       name: 'Shirsendu Bairagi',
       short_name: 'Shirsendu Bairagi',
@@ -322,39 +346,13 @@ export default defineNuxtConfig({
         },
       ],
     },
-    workbox: {
-      globPatterns: ['**/*.{html,css,js,jpg,jpeg,png,svg,webp,ico,mp3,wav,ogg,mp4,webm,mov,m4a,aac}'],
-      runtimeCaching: [
-        {
-          urlPattern: /\.(?:html|js|css)$/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'dynamic-assets',
-          },
-        },
-        {
-          urlPattern: /\.(?:png|jpg|jpeg|svg|webp|ico|mp3|wav|ogg|mp4|webm|mov|m4a|aac)$/,
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'static-assets',
-            expiration: { maxEntries: 100, maxAgeSeconds: 7 * 24 * 60 * 60 },
-          },
-        },
-      ],
-      maximumFileSizeToCacheInBytes: 4194304,
-      navigateFallback: '/',
-      cleanupOutdatedCaches: true,
-      importScripts: ['/sw-push.js'],
-    },
-    client: {
-      installPrompt: true,
-      periodicSyncForUpdates: 3600,
+    injectManifest: {
+      globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+      globIgnores: ['manifest**.webmanifest'],
     },
     devOptions: {
+      enabled: true,
       type: 'module',
-      enabled: false,
-      suppressWarnings: false,
-      navigateFallback: undefined,
     },
   },
   nodemailer: {

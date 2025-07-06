@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const title = `Fullstack Developer in Kolkata`
 const description = `Shirsendu Bairagi is Fullstack Developer with more then 3 years of experience.
-He had done more then a dozens production grade cutting edge projects in web, app, iot and ml.
-He primarily serves his neighborhood Rajpur, Sonarpur, Baruipur, Subhasgram, Harinavi & Narendrapur Area.`
+He had done more then a dozens production grade cutting edge projects in web, app, iot and ml.`
+
 const {
   public: { siteUrl },
 } = useRuntimeConfig()

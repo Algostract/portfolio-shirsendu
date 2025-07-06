@@ -40,10 +40,6 @@ const splideOption = {
     },
   },
 }
-
-onMounted(() => {
-  console.dir({ projects }, { depth: null })
-})
 </script>
 
 <template>
