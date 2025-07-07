@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.21.5
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.4...v1.21.5)
+
+### 🩹 Fixes
+
+- Update APK file path in release action ([ad18d1c](https://github.com/Algostract/portfolio-shirsendu/commit/ad18d1c))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.21.4
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.3...v1.21.4)
