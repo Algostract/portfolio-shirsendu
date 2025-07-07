@@ -227,9 +227,9 @@ jobs:
       - name: Setup Android Signing
         run: |
           cd src-tauri/gen/android
-          echo "keyAlias=${ANDROID_KEY_ALIAS}" > keystore.properties
-          echo "password=${ANDROID_KEY_PASSWORD}" >> keystore.properties
-          base64 -d <<< "${ANDROID_KEY_BASE64}" > ./upload-keystore.jks
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
+          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> keystore.properties
+          base64 -d <<< "${{ secrets.ANDROID_KEY_BASE64 }}" > ./upload-keystore.jks
           echo "storeFile=../upload-keystore.jks" >> keystore.properties
 
       - name: 🛠️ Setup Rust
