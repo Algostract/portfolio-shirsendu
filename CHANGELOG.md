@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.21.3
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.2...v1.21.3)
+
+### 💅 Refactors
+
+- Update deploy.yml to use vars for SITE_URL ([7ae3498](https://github.com/Algostract/portfolio-shirsendu/commit/7ae3498))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.21.2
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.1...v1.21.2)
