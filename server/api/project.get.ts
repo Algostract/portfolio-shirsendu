@@ -230,6 +230,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
               appURL,
               videoURL,
               images,
+              url: appURL,
             }
           })
         )
