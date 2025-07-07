@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.21.2
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.1...v1.21.2)
+
+### 🩹 Fixes
+
+- Remove deprecated sitemap URL fetching logic ([6565a91](https://github.com/Algostract/portfolio-shirsendu/commit/6565a91))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.21.1
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.0...v1.21.1)
