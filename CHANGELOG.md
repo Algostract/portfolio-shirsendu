@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.21.1
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.0...v1.21.1)
+
+### 🩹 Fixes
+
+- Correct sitemap URL fetching logic ([b4693c3](https://github.com/Algostract/portfolio-shirsendu/commit/b4693c3))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.21.0
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.20.2...v1.21.0)
