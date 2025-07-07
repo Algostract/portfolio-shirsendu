@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.21.4
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.3...v1.21.4)
+
+### 🩹 Fixes
+
+- Update Android signing step to use secrets for sensitive information ([ec6c30d](https://github.com/Algostract/portfolio-shirsendu/commit/ec6c30d))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.21.3
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.2...v1.21.3)
