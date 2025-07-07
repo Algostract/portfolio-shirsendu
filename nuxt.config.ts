@@ -26,7 +26,6 @@ const nativeConfig =
           },
         },
         nitro: {
-          compressPublicAssets: true,
           storage: {
             fs: {
               driver: 'fs',
@@ -36,32 +35,8 @@ const nativeConfig =
           rollupConfig: {
             plugins: [vue()],
           },
-          routes: [
-            '/_ipx/s_512x512/images/globe.webp',
-            '/_ipx/s_512x512/images/mobile.webp',
-            '/_ipx/s_512x512/images/robot.webp',
-            '/_ipx/s_512x512/images/drone.webp',
-            '/certificates/learn-tailwind-css-3-a-utility-first-css-framework.pdf',
-            '/certificates/codedamn-learn-javascript-basics.pdf',
-            '/certificates/codedamn-learn-html-and-css-2023-ready.pdf',
-            '/certificates/codedamn-hacktoberfest-2023.pdf',
-            '/certificates/gnec-hackathon-2023.pdf',
-            '/certificates/100-days-of-frontend.pdf',
-            '/certificates/30-days-of-react.pdf',
-          ],
-          icon: {
-            componentName: 'NuxtIcon',
-            provider: 'none',
-            mode: 'svg',
-            clientBundle: {
-              scan: true,
-            },
-            customCollections: [
-              {
-                prefix: 'local',
-                dir: './app/assets/icons',
-              },
-            ],
+          prerender: {
+            routes: ['/_ipx/s_512x512/images/globe.webp', '/_ipx/s_512x512/images/mobile.webp', '/_ipx/s_512x512/images/robot.webp', '/_ipx/s_512x512/images/drone.webp'],
           },
         },
       }
@@ -142,7 +117,7 @@ export default defineNuxtConfig({
   },
   icon: {
     componentName: 'NuxtIcon',
-    provider: 'server',
+    provider: 'none',
     mode: 'svg',
     customCollections: [
       {
@@ -150,6 +125,9 @@ export default defineNuxtConfig({
         dir: './app/assets/icons',
       },
     ],
+    clientBundle: {
+      scan: true,
+    },
   },
   image: {
     uploadcare: {
