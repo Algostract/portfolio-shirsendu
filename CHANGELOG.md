@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.21.6
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.5...v1.21.6)
+
+### 🏡 Chore
+
+- Update dependencies and refactor project structure ([c3495f8](https://github.com/Algostract/portfolio-shirsendu/commit/c3495f8))
+
+### ❤️ Contributors
+
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v1.21.5
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.4...v1.21.5)
