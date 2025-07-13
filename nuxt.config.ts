@@ -1,7 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 
 const host = process.env.TAURI_DEV_HOST || 'localhost'
-const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000
+const port = process.env.PORT ? parseInt(process.env.PORT) : 3000
 
 const nativeConfig =
   process.env.PLATFORM_ENV === 'native'
@@ -170,7 +170,8 @@ export default defineNuxtConfig({
       description: 'Shirsendu Bairagi is a Fullstack Developer',
       theme_color: '#0593FA',
       background_color: '#0593FA',
-      orientation: 'portrait',
+      orientation: 'any',
+      display: 'standalone',
       shortcuts: [
         {
           name: 'Contact Me',

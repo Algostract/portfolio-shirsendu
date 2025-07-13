@@ -17,17 +17,12 @@ logs
 .DS_Store
 .fleet
 .idea
-.wwebjs_*
 
 # Env files
 .env
 .env.*
 !.env.example
 !.env.native
-
-# Tauri files
-src-tauri/target/
-src-tauri/gen/schemas
 
 # Static files
 static/**/*.*

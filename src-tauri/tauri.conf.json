@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Shirsendu Bairagi",
   "version": "../package.json",
-  "identifier": "dev.shirsendu-bairagi.app",
+  "identifier": "dev.shirsendu-bairagi.portfolio",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3000",

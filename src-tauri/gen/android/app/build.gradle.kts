@@ -16,16 +16,16 @@ val tauriProperties = Properties().apply {
 
 android {
     compileSdk = 34
-    namespace = "dev.shirsendu_bairagi.app"
+    namespace = "dev.shirsendu_bairagi.portfolio"
     defaultConfig {
         manifestPlaceholders["usesCleartextTraffic"] = "false"
-        applicationId = "dev.shirsendu_bairagi.app"
+        applicationId = "dev.shirsendu_bairagi.portfolio"
         minSdk = 24
         targetSdk = 34
         versionCode = tauriProperties.getProperty("tauri.android.versionCode", "1").toInt()
         versionName = tauriProperties.getProperty("tauri.android.versionName", "1.0")
     }
-    signingConfigs {
+     signingConfigs {
         create("release") {
             val keystorePropertiesFile = rootProject.file("keystore.properties")
             val keystoreProperties = Properties()
