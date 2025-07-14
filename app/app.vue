@@ -74,6 +74,7 @@ useSchemaOrg([
   }),
 ])
 
+const { $api } = useNuxtApp()
 const { isSupported, permissionGranted } = useWebNotification()
 
 async function getExistingSubscription() {
@@ -87,7 +88,7 @@ async function getExistingSubscription() {
     })
   }
 
-  await $fetch('/api/notification/push/subscribe', {
+  await $api('/api/notification/push/subscribe', {
     method: 'POST',
     body: subscription.toJSON(),
   })
