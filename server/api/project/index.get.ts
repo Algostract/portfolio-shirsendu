@@ -1,180 +1,20 @@
-type NotionMediaAsset =
-  | {
-      type: 'file'
-      file: {
-        url: string
-        expiry_time: string
-      }
-    }
-  | {
-      type: 'external'
-      external: {
-        url: string
-      }
-    }
-  | null
-
-export interface NotionProject {
-  object: string
-  id: string
-  cover: NotionMediaAsset
-  icon: NotionMediaAsset
-  properties: {
-    Name: {
-      type: string
-      title: {
-        type: string
-        text: {
-          content: string
-          link: null
-        }
-        plain_text: string
-        href: null
-      }[]
-    }
-    Stage: {
-      type: string
-      status: {
-        name: string
-        color: string
-      }
-    }
-    Type: {
-      type: string
-      multi_select: { id: string; name: string; color: string }[]
-    }
-    Stack: {
-      type: string
-      multi_select: { id: string; name: string; color: string }[]
-    }
-    Priority: {
-      type: string
-      select: {
-        name: string
-        color: string
-      }
-    }
-    Completion: {
-      type: string
-      rollup: {
-        type: string
-        number: null
-        function: string
-      }
-    }
-    Period: {
-      type: string
-      date: {
-        start: string
-        end: null
-      }
-    }
-
-    Postman: {
-      url: string
-    }
-    Github: {
-      url: string
-    }
-
-    App: {
-      url: string
-    }
-    'Better Stack': {
-      url: string
-    }
-    Asset: { type: 'relation'; relation: { id: string }[]; has_more: boolean }
-    Video: {
-      url: string
-    }
-  }
-}
-
-export interface NotionProjectAsset {
-  id: string
-  created_time: string
-  last_edited_time: string
-  created_by: {
-    object: string
-    id: string
-  }
-  last_edited_by: {
-    object: string
-    id: string
-  }
-  cover: NotionMediaAsset
-  icon: NotionMediaAsset
-  properties: {
-    Project: {
-      type: string
-      relation: { id: string }[]
-      has_more: boolean
-    }
-    Name: {
-      type: string
-      title: {
-        type: string
-        text: {
-          content: string
-          link: null
-        }
-        plain_text: string
-        href: null
-      }[]
-    }
-
-    Description: {
-      id: string
-      type: string
-      rich_text: { plain_text: string }[]
-    }
-    Status: {
-      type: string
-      status: {
-        name: string
-        color: string
-      }
-    }
-    'Aspect ratio': {
-      id: string
-      type: string
-      select: {
-        name: string
-        color: string
-      }[]
-    }
-    Gallery: {
-      id: string
-      type: string
-      number: number
-    }
-    Resolution: {
-      id: string
-      type: string
-      select: {
-        name: string
-        color: string
-      }[]
-    }
-  }
-}
-
 export default defineCachedEventHandler<Promise<Project[]>>(
   async () => {
     try {
       const config = useRuntimeConfig()
       const notionDbId = config.private.notionDbId as unknown as NotionDB
 
-      const notionProjects = (await notion.databases.query({ database_id: notionDbId.project })).results as unknown as NotionProject[]
-      const notionProjectAssets = (await notion.databases.query({ database_id: notionDbId.asset })).results as unknown as NotionProjectAsset[]
+      const notionProjects = await notionQueryDb<NotionProject>(notion, notionDbId.project)
+      const notionProjectAssets = await notionQueryDb<NotionProjectAsset>(notion, notionDbId.asset)
 
       const projects = (
         await Promise.all(
-          notionProjects.map(async ({ id, properties }): Promise<BaseProject> => {
+          notionProjects.map(async ({ properties }): Promise<BaseProject> => {
             const name = notionTextStringify(properties.Name.title)
+            const slug = slugify(name)
 
             return {
-              id,
+              id: slug,
               name,
               repo: properties.Github.url?.replace('https://github.com/', ''),
               type: properties.Type.multi_select.map(({ name }) => name as ProjectType),
@@ -190,6 +30,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
                   id: cover?.type === 'external' ? cover.external.url.split('/')[3]! : '',
                   title: notionTextStringify(properties.Name.title),
                 })),
+              url: `/project/${slug}`,
             }
           })
         )
@@ -197,7 +38,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
 
       const githubProjects = (
         await Promise.all(
-          projects.map(async ({ id, name, repo, createdAt, technologies, appURL, videoURL, images }): Promise<Project | null> => {
+          projects.map(async ({ id, name, repo, createdAt, technologies, appURL, videoURL, images, url }): Promise<Project | null> => {
             if (repo == null) return null
 
             let details: GithubDetailsResponse | null = null
@@ -230,7 +71,7 @@ export default defineCachedEventHandler<Promise<Project[]>>(
               appURL,
               videoURL,
               images,
-              url: appURL,
+              url,
             }
           })
         )

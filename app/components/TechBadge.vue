@@ -82,6 +82,10 @@ const techs = {
     name: 'Docker',
     website: 'https://www.docker.com/',
   },
+  godot: {
+    name: 'Godot',
+    website: 'https://godotengine.org/',
+  },
 }
 </script>
 

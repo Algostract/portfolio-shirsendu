@@ -21,7 +21,6 @@ logs
 .DS_Store
 .fleet
 .idea
-.wwebjs_*
 
 # Env files
 .env*

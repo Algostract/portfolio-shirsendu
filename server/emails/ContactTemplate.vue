@@ -8,7 +8,7 @@ defineProps<{
   fromCompanyLogo: string
   fromCompanyPhone: string
   fromCompanyLink: string
-  fromFeaturedPhotos: string[]
+  fromFeaturedProjects: { id: string; name: string; description: string; url: string }[]
   emailSubject: string
   toCompanyName: string
   toPersonName: string
@@ -122,40 +122,36 @@ const tailwindConfig = {
           </Section>
           <!-- Intro copy -->
           <Section class="mb-2 space-y-4">
-            <Text class="text-base leading-relaxed"> Hello {{ toCompanyName }} Team, </Text>
+            <Text class="text-base leading-relaxed"> Hi {{ toCompanyName }}, </Text>
             <Text class="text-base leading-relaxed">
-              I’m {{ fromPersonName }} from
-              <Link :href="fromCompanyLink + referTag" :title="fromCompanyName" class="inline-block text-primary-400 underline" target="_blank">{{ fromCompanyName }}</Link
-              >. We specialize in product videography and photography—delivering crisp, high‑resolution
-              <Link :href="fromCompanyLink + '/#featured-photos' + referTag" class="inline-block text-primary-400 underline" target="_blank">photos</Link>
-              and short‑form
-              <Link :href="fromCompanyLink + '/#featured-videos' + referTag" class="inline-block text-primary-400 underline" target="_blank">videos</Link>
-              <br />
-              for e‑commerce, social media, and advertising. Whether on‑location or in‑studio, our full production and post‑production services ensure top‑quality assets, on time and within budget.
-              Here are some of our work
+              I’m {{ fromPersonName }}, a Full‑Stack Developer with 5+ years of hands‑on experience shipping production‑grade web apps. . I thrive on end‑to‑end development, rapid prototyping, and
+              iterating with real user data. Here’s a quick snapshot of what I’ve built recently:
             </Text>
-            <!-- Product images row -->
-            <Section class="mb-4 flex space-x-4">
-              <Img v-for="(src, i) in fromFeaturedPhotos" :key="i" :src="src" alt="Product shot" class="inline h-full w-1/4 object-cover" />
+            <!-- Projects row -->
+            <Section class="relative mb-4 flex flex-row">
+              <Link v-for="{ id, description, url } in fromFeaturedProjects" :key="id" :href="`${fromCompanyLink}${url}${referTag}`" class="inline-block w-1/3" target="_blank">
+                <Img :src="`https://ucarecdn.com/${id}/-/smart_resize/1080x608/`" :alt="description" class="w-full object-cover" />
+              </Link>
             </Section>
             <Section class="mb-4 text-center">
               <!-- ← add text-center here -->
-              <Link :href="fromCompanyLink + '/photo' + referTag" + class="inline-block rounded-full bg-primary-500 px-4 py-1 text-white" target="_blank"> Show More </Link>
+              <Link :href="fromCompanyLink + '#project'" + class="inline-block rounded-full bg-primary-500 px-4 py-1 text-white" target="_blank"> Show More </Link>
             </Section>
             <Text class="text-base leading-relaxed"
-              >I would appreciate a brief call to discuss strategies for enhancing your clients' visual marketing campaigns. Please advise on your availability.</Text
-            >
+              >Weather creating a fullstack app from scratch, managing a microservice or making a 2d game I am fully comfortable with that. If you’d like to chat—whether it’s a quick message or a
+              20‑min video call free to ping me at <Link href="https://www.linkedin.com/in/shirsendu-bairagi" title="LinkedIn" class="inline-block underline" target="_blank">LinkedIn</Link> or
+              <Link href="https://x.com/shirsendu_baira" title="X" class="inline-block underline" target="_blank">X</Link>
+              :
+            </Text>
           </Section>
           <!-- Sign‑off -->
           <Section class="mb-2 space-y-4">
-            <Text class="text-base leading-relaxed">Thank you for your consideration.</Text>
             <Text class="text-base leading-relaxed">
               Best regards,<br />
-              {{ fromPersonName }} (Tech Lead)<br />
+              {{ fromPersonName }}<br />
               Website:
               <Link :href="fromCompanyLink + referTag" :title="fromCompanyName" class="inline-block underline" target="_blank">{{ fromCompanyLink }}</Link
               ><br />
-              Phone: {{ fromCompanyPhone }}
             </Text>
           </Section>
         </Container>

@@ -44,7 +44,7 @@ const nativeConfig =
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: '2025-05-15',
   future: {
     compatibilityVersion: 4,
   },
@@ -57,7 +57,6 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/test-utils/module',
     '@nuxtjs/color-mode',
-    '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@nuxtjs/tailwindcss',
     '@vite-pwa/nuxt',
@@ -75,6 +74,21 @@ export default defineNuxtConfig({
     },
     rollupConfig: {
       plugins: [vue()],
+    },
+  },
+  vite: {
+    server: {
+      allowedHosts: true,
+    },
+    // FIXME: temporary fix for email remove when not needed
+    $server: {
+      build: {
+        rollupOptions: {
+          output: {
+            preserveModules: true,
+          },
+        },
+      },
     },
   },
   routeRules: {
@@ -102,8 +116,6 @@ export default defineNuxtConfig({
       vapidKey: '',
     },
     private: {
-      gmail: '',
-      dmail: '',
       notionDbId: '',
       serverValidationKey: '',
     },
@@ -130,10 +142,14 @@ export default defineNuxtConfig({
     },
   },
   image: {
+    provider: 'uploadcare',
+    ipx: {},
     uploadcare: {
       cdnURL: 'https://ucarecdn.com',
       quality: 'smart',
       format: 'auto',
+      progressive: 'yes',
+      strip_meta: 'all',
     },
   },
   scripts: {
@@ -171,7 +187,7 @@ export default defineNuxtConfig({
       theme_color: '#0593FA',
       background_color: '#0593FA',
       orientation: 'any',
-      display: 'standalone',
+      display: 'fullscreen',
       shortcuts: [
         {
           name: 'Contact Me',
@@ -328,23 +344,25 @@ export default defineNuxtConfig({
     injectManifest: {
       globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
       globIgnores: ['manifest**.webmanifest'],
+      maximumFileSizeToCacheInBytes: 3000000,
     },
     devOptions: {
-      enabled: true,
       type: 'module',
+      enabled: false,
+      suppressWarnings: false,
     },
   },
   nodemailer: {
+    from: '',
     host: '',
-    port: 0,
-    secure: false,
+    port: '',
+    secure: true,
     auth: {
       user: '',
       pass: '',
     },
     tls: {
       rejectUnauthorized: false,
-      minVersion: 'TLSv1.2',
     },
   },
   splide: {

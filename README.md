@@ -82,3 +82,11 @@ docker service scale portfolio-shirsendu_app=2
 docker service ls
 docker service ps portfolio-shirsendu_app
 ```
+
+## License
+
+Published under the [GNU GPLv3](https://github.com/shba007/portfolio-shirsendu/blob/main/LICENSE) license.
+<br><br>
+<a href="https://github.com/shba007/portfolio-shirsendu/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=shba007/portfolio-shirsendu" />
+</a>

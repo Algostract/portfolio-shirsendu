@@ -29,7 +29,6 @@ withDefaults(defineProps<Experience & { side?: 'left' | 'right' }>(), { side: 'l
     </div>
     <NuxtLink :to="`https://www.linkedin.com/company/${company}`" :external="true" target="_blank">
       <NuxtImg
-        provider="uploadcare"
         :src="image.id"
         :alt="image.title"
         :width="80"

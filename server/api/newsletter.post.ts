@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 const newsletterSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   subscribed: z.boolean(),
 })
 

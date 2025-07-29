@@ -7,8 +7,9 @@ export interface ContactEmail {
   fromPersonName: string
   fromEmail: string
   fromCompanyLogo: string
-  fromCompanyLink: string
   fromCompanyPhone: string
+  fromCompanyLink: string
+  fromFeaturedProjects: { id: string; name: string; description: string; url: string }[]
   emailSubject: string
   toCompanyName: string
   toPersonName: string
@@ -53,7 +54,29 @@ export type EmailTemplateData = {
 }
 
 const emailTemplate = {
-  contact: createEmailModule<Pick<ContactEmail, 'toPersonName' | 'toCompanyName' | 'toEmail'>, Omit<ContactEmail, 'toPersonName' | 'toCompanyName' | 'toEmail'>>('content', contactTemplate),
+  contact: createEmailModule<
+    Pick<ContactEmail, 'toCompanyName' | 'toPersonName' | 'toEmail'>,
+    Omit<ContactEmail, 'toCompanyName' | 'toPersonName' | 'toEmail' | 'fromFeaturedProjects'> & { fromFeaturedProjects: string[] },
+    Omit<ContactEmail, 'toCompanyName' | 'toPersonName' | 'toEmail'>
+  >('contact', contactTemplate, async (meta) => {
+    const fromFeaturedProjects = await Promise.all(
+      meta.fromFeaturedProjects.map(async (key) => {
+        try {
+          const data = await $fetch(`/api/project/${(key as unknown as string).toLowerCase()}`, {
+            baseURL: meta.fromCompanyLink,
+          })
+          if (Array.isArray(data)) throw new Error('Unexpected array response')
+          return { id: data.images[0].id, name: data.name, description: data.description, url: data.url }
+        } catch {
+          return null
+        }
+      })
+    ).then((photos) => photos.filter((photo) => photo !== null))
+
+    return {
+      fromFeaturedProjects,
+    }
+  }),
 }
 
 export default emailTemplate

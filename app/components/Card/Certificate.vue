@@ -46,7 +46,7 @@ withDefaults(defineProps<Certificate & { active?: boolean }>(), {
       </div>
     </Transition>
     <div class="aspect-[448/299] overflow-hidden rounded-xl bg-light-500 dark:bg-dark-500">
-      <!-- <NuxtImg provider="uploadcare" :src="image.id" :alt="image.title" :width="512" :height="288" loading="lazy" fit="contain" class="size-full transition-transform hover:scale-110" /> -->
+      <!-- <NuxtImg  :src="image.id" :alt="image.title" :width="512" :height="288" loading="lazy" fit="contain" class="size-full transition-transform hover:scale-110" /> -->
       <img :data-splide-lazy="`https://ucarecdn.com/${image.id}/-/resize/896x598/-/stretch/off/`" :alt="image.title" :width="896" :height="598" class="size-full duration-300 hover:scale-110" />
     </div>
   </div>

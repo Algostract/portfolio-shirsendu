@@ -84,7 +84,7 @@ function onTry() {
           <Splide ref="splide" :options="splideOption" tag="div" :has-track="false" class="size-full" @splide:move="onSlideMove">
             <SplideTrack>
               <SplideSlide v-for="{ id, title } in images" :key="id">
-                <!-- <NuxtImg provider="uploadcare" :src="id" :alt="title" :width="380" :height="270" loading="lazy" class="size-full" /> -->
+                <!-- <NuxtImg :src="id" :alt="title" :width="380" :height="270" loading="lazy" class="size-full" /> -->
                 <img :data-splide-lazy="`https://ucarecdn.com/${id}/-/resize/480x270/`" :alt="title" :width="480" :height="270" class="size-full" />
               </SplideSlide>
             </SplideTrack>
