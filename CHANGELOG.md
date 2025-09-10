@@ -1,5 +1,17 @@
 # portfolio-shirsendu
 
+## v1.23.0
+
+[compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.22.0...v1.23.0)
+
+### 🚀 Enhancements
+
+- Schedule a gmeet and send to user when contacted, nuxt migrate 3.x -> 4.x ([c6c95a7](https://github.com/Algostract/portfolio-shirsendu/commit/c6c95a7))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v1.22.0
 
 [compare changes](https://github.com/Algostract/portfolio-shirsendu/compare/v1.21.7...v1.22.0)
