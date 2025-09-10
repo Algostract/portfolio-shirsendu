@@ -1,36 +1,29 @@
 import { render } from '@vue-email/render'
+import type { Component } from 'vue'
 import emailTemplate from '~~/server/emails'
-import type { EmailTemplateData } from '~~/server/emails'
-
-interface TransactionalEmail<T extends keyof EmailTemplateData> {
-  template: T
-  data: EmailTemplateData[T]
-}
+import type { EmailMetaData, EmailTemplateData } from '~~/server/emails'
 
 export async function sendEmail<T extends keyof EmailTemplateData>(template: T, payload: EmailTemplateData[T][]) {
-  const module = emailTemplate[template] as {
-    data(arg: EmailTemplateData[T]): Promise<{
-      [key: string]: string
-    }>
-  }
-
   let isSuccessful = true
-  await Promise.allSettled(
-    payload.map(async (item) => {
-      try {
-        const finalData = await module.data(item)
+  const config = useRuntimeConfig()
+  const metaData = config.private.emailMetaData as unknown as EmailMetaData
 
-        const html = await render(emailTemplate[template].template, finalData)
-        const text = await render(emailTemplate[template].template, finalData, { plainText: true })
+  await Promise.allSettled(
+    payload.map(async (payloadData) => {
+      try {
+        const allData = { ...metaData, ...emailTemplate[template].data, ...payloadData }
+
+        const html = await render(emailTemplate[template].template as Component, allData)
+        const text = await render(emailTemplate[template].template as Component, allData, { plainText: true })
 
         const { transport } = useNodeMailer()
 
         await transport.verify()
 
         await transport.sendMail({
-          from: `"${finalData.fromCompanyName}" <${finalData.fromEmail}>`,
-          to: finalData.toEmail,
-          subject: finalData.emailSubject,
+          from: `"${allData.fromCompanyName}" <${allData.fromEmail}>`,
+          to: allData.toEmail,
+          subject: allData.emailSubject,
           html,
           text,
         })
@@ -47,17 +40,39 @@ export async function sendEmail<T extends keyof EmailTemplateData>(template: T, 
 export default defineEventHandler<Promise<{ success: boolean }>>(async (event) => {
   try {
     // const { id } = getRouterParams(event)
+    const config = useRuntimeConfig()
     const body = await readBody<TransactionalEmail<keyof EmailTemplateData>>(event)
-    await sendEmail(body.template, [body.data])
 
-    return { success: true }
+    return {
+      success: await sendEmail(body.template, [
+        {
+          toCompanyName: body.data.toCompanyName,
+          toEmail: body.data.toEmail,
+          ...(body.data.fromFeaturedProjects && {
+            fromFeaturedProjects: await Promise.all(
+              body.data.fromFeaturedProjects.map(async (key) => {
+                try {
+                  const data = await $fetch(`/api/project/${(key as unknown as string).toLowerCase()}`, {
+                    baseURL: config.public.siteUrl,
+                  })
+                  if (Array.isArray(data)) throw new Error('Unexpected array response')
+                  return { id: data.images[0].id, name: data.name, description: data.description, url: data.url }
+                } catch {
+                  return null
+                }
+              })
+            ).then((photos) => photos.filter((photo) => photo !== null)),
+          }),
+        },
+      ]),
+    }
   } catch (error: unknown) {
+    console.error('API notification/email/[id]/send POST', error)
+
     const { code: errorCode } = error as { code?: string }
     if (errorCode === 'ESOCKET' || errorCode === 'ECONNECTION') {
       throw createError({ statusCode: 500, statusMessage: 'Failed to establish secure SMTP connection. Please check SSL/TLS settings.' })
     }
-
-    console.error('API notification/email/[id]/send POST', error)
 
     throw createError({
       statusCode: 500,

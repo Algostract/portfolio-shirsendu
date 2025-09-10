@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { format } from 'date-fns'
-import { Html, Head, Preview, Body, Container, Section, Text, Tailwind, Link, Font } from '@vue-email/components'
+import { Html, Head, Preview, Body, Container, Section, Img, Text, Tailwind, Link, Font } from '@vue-email/components'
 
 defineProps<{
   fromCompanyName: string
@@ -8,13 +7,10 @@ defineProps<{
   fromCompanyLogo: string
   fromCompanyPhone: string
   fromCompanyLink: string
+  fromFeaturedProjects: { id: string; name: string; description: string; url: string }[]
   emailSubject: string
-  toPersonName: string
   toCompanyName: string
   toEmail: string
-  toProjectDescription: string
-  toMeetingTime: string
-  toMeetingLink: string
 }>()
 
 const referTag = '?ref=outreach-mail'
@@ -114,29 +110,41 @@ const tailwindConfig = {
         <Container class="px-6 py-8">
           <!-- Heading -->
           <Section>
-            <Text class="font-head mb-6 text-left text-2xl leading-tight"> Meeting Confirmation – {{ emailSubject }} </Text>
+            <Text class="font-head mb-6 text-left text-2xl leading-tight">
+              {{ emailSubject }}
+            </Text>
           </Section>
-
+          <!-- Logo -->
+          <Section class="mb-2 flex justify-center">
+            <Img :src="fromCompanyLogo" alt="Red Cat Pictures" class="h-auto w-24" />
+          </Section>
           <!-- Intro copy -->
           <Section class="mb-2 space-y-4">
-            <Text class="text-base leading-relaxed"> Hi {{ toPersonName }}, </Text>
+            <Text class="text-base leading-relaxed"> Hi {{ toCompanyName }}, </Text>
             <Text class="text-base leading-relaxed">
-              Your meeting with <strong>{{ fromCompanyName }}</strong> has been successfully scheduled.
+              I’m {{ fromCompanyName }}, a Full‑Stack Developer with 5+ years of hands‑on experience shipping production‑grade web apps. . I thrive on end‑to‑end development, rapid prototyping, and
+              iterating with real user data. Here’s a quick snapshot of what I’ve built recently:
             </Text>
-            <Text class="text-base leading-relaxed">
-              <strong>Meeting Details:</strong><br />
-              Company: {{ toCompanyName }}<br />
-              Description: {{ toProjectDescription }}<br />
-              Time: {{ format(new Date(toMeetingTime), "MMM d, yyyy 'at' h:mm a") }}<br />
-              Link:
-              <Link :href="toMeetingLink" title="Join Meeting" class="inline-block text-primary-500 underline" target="_blank"> Join Meeting </Link>
+            <!-- Projects row -->
+            <Section class="relative mb-4 flex flex-row">
+              <Link v-for="{ id, description, url } in fromFeaturedProjects" :key="id" :href="`${fromCompanyLink}${url}${referTag}`" class="inline-block w-1/3" target="_blank">
+                <Img :src="`https://ucarecdn.com/${id}/-/smart_resize/1080x608/`" :alt="description" class="w-full object-cover" />
+              </Link>
+            </Section>
+            <Section class="mb-4 text-center">
+              <!-- ← add text-center here -->
+              <Link :href="fromCompanyLink + '#project'" + class="inline-block rounded-full bg-primary-500 px-4 py-1 text-white" target="_blank"> Show More </Link>
+            </Section>
+            <Text class="text-base leading-relaxed"
+              >Weather creating a fullstack app from scratch, managing a microservice or making a 2d game I am fully comfortable with that. If you’d like to chat—whether it’s a quick message or a
+              20‑min video call free to ping me at <Link href="https://www.linkedin.com/in/shirsendu-bairagi" title="LinkedIn" class="inline-block underline" target="_blank">LinkedIn</Link> or
+              <Link href="https://x.com/shirsendu_baira" title="X" class="inline-block underline" target="_blank">X</Link>
+              :
             </Text>
           </Section>
-
-          <!-- Sign-off -->
+          <!-- Sign‑off -->
           <Section class="mb-2 space-y-4">
             <Text class="text-base leading-relaxed">
-              Looking forward to connecting!<br />
               Best regards,<br />
               {{ fromCompanyName }}<br />
               Website:

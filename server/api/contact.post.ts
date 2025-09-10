@@ -1,37 +1,68 @@
-import { z } from 'zod'
-import { render } from '@vue-email/render'
-import emailTemplate from '~~/server/emails'
+import { sendEmail } from './notification/email/[id]/send.post'
 
-const transactionalEmailSchema = z.object({
-  name: z.string(),
-  email: z.string(),
-  message: z.string(),
-})
-
-export default defineEventHandler<Promise<{ success: boolean }>>(async (event) => {
+export default defineEventHandler<
+  Promise<{
+    meetingTime: string
+    meetingUri: string
+  }>
+>(async (event) => {
   try {
+    const body = await readValidatedBody(event, emailFormSchema.parse)
+
     const config = useRuntimeConfig()
+    const notionDbId = config.private.notionDbId as unknown as NotionDB
 
-    const body = await readValidatedBody(event, transactionalEmailSchema.parse)
-    const [firstName, ...restName] = body.name.split(' ')
-    const lastName = restName.join('')
-
-    const { transport } = useNodeMailer()
-
-    await transport.verify()
-
-    // Mail Send to User
-    await transport.sendMail({
-      from: `"Shirsendu Bairagi" <${config.private.dmail}>`,
-      to: body.email,
-      subject: 'Shirsendu Got your Email',
-      html: await render(emailTemplate.contact.template, {
-        firstName,
-        lastName,
-      }),
+    // System generates meeting link (Google Meet / Jitsi).
+    // Create Calendar Event with Meet link
+    const meetingEvent = await apiGoogle<{
+      name: string
+      meetingUri: string
+      meetingCode: string
+    }>('/spaces', {
+      baseURL: 'https://meet.googleapis.com/v2',
+      method: 'POST',
+      body: {},
     })
 
-    return { success: true }
+    // Save meeting info into Notion DB (Algostract CRM).
+    // Notify you automatically via Notion Calender.
+    await notion.pages.create({
+      parent: { database_id: notionDbId.prospect },
+      properties: {
+        Name: {
+          type: 'title',
+          title: [{ type: 'text', text: { content: body.name } }],
+        },
+        Company: {
+          type: 'rich_text',
+          rich_text: [{ type: 'text', text: { content: body.company } }],
+        },
+        'Project Details': {
+          type: 'rich_text',
+          rich_text: [{ type: 'text', text: { content: body.projectDescription } }],
+        },
+        Email: { type: 'email', email: body.email },
+        Date: { type: 'date', date: { start: body.meetingTime } },
+        'Meeting Link': { type: 'url', url: meetingEvent.meetingUri },
+      },
+    })
+
+    // Send confirmation email to client (with ICS calendar file).
+    await sendEmail('contact', [
+      {
+        toPersonName: body.name,
+        toCompanyName: body.company,
+        toEmail: body.email,
+        toProjectDescription: body.projectDescription,
+        toMeetingTime: body.meetingTime,
+        toMeetingLink: meetingEvent.meetingUri,
+      },
+    ])
+
+    return {
+      meetingTime: body.meetingTime,
+      meetingUri: meetingEvent.meetingUri,
+    }
   } catch (error: unknown) {
     console.error('API contact POST', error)
 

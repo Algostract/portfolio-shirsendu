@@ -3,14 +3,14 @@ import { differenceInMonths, differenceInYears, formatDuration } from 'date-fns'
 
 const emit = defineEmits<{ contact: [] }>()
 
-const DOB = '2001-01-29'
+// const DOB = '2001-01-29'
 const DOFC = '2019-12-03'
 
 const now = useNow()
 
-const age = computed(() => {
+/* const age = computed(() => {
   return formatDuration({ years: differenceInYears(now.value, DOB) }, { format: ['years'] })
-})
+}) */
 
 const experience = computed(() =>
   formatDuration(
@@ -34,12 +34,9 @@ const experience = computed(() =>
     </NuxtPicture> -->
     <div class="flex h-fit flex-col items-center gap-8 md:my-auto md:w-1/2 md:items-start">
       <span class="mx-auto w-fit rounded-full border border-primary-500 px-4 py-2 text-sm capitalize md:mx-0"> {{ experience }} +XP </span>
-      <h1 class="text-center text-2xl md:text-left md:text-4xl lg:text-5xl">
-        Each line whispers <br />
-        a tiny spell, sparks digital dreams.
-      </h1>
+      <h1 class="text-center text-2xl md:text-left md:text-3xl lg:text-4xl">CTO · Founder <br />Open Source Maintainer</h1>
       <h2 class="mx-auto w-fit max-w-[90%] text-center text-lg font-light leading-relaxed opacity-80 sm:max-w-[80%] md:mx-0 md:max-w-[90%] md:text-left">
-        I'm Shirsendu Bairagi, a passionate {{ age }} old web developer, and AI enthusiast dedicated to crafting cutting-edge digital experiences.
+        Founder of Gold Fish Bowl, CTO at RED CAT PICTURES. Architecting scalable design, leading product development, and fostering tech innovation.
       </h2>
       <ButtonCTA @click="emit('contact')" />
     </div>

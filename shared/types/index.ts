@@ -1,6 +1,27 @@
+import z from 'zod'
+import type { EmailTemplateData } from '~~/server/emails'
+
 export type Technologies = 'angular' | 'react' | 'nextjs' | 'vue' | 'nuxt' | 'astro' | 'tailwindcss' | 'tensorflowjs' | 'typescript' | 'python' | 'fastapi' | 'tensorflow'
 export type ProjectType = 'Web App' | 'Web App Template' | 'Cron Job' | 'Game' | 'Library' | 'API' | 'Bot' | 'ML Model'
 export type ProjectStage = 'Planning' | 'Development' | 'Stable' | 'Maintenance' | 'Archived'
+
+export const emailFormSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters').max(50, 'Name must be at most 50 characters'),
+  company: z.string().min(2, 'Company name must be at least 2 characters').max(100, 'Company name must be at most 100 characters'),
+  email: z.email('Please enter a valid email address'),
+  projectDescription: z.string().min(10, 'Project description must be at least 10 characters').max(1000, 'Project description must be under 1000 characters'),
+  meetingTime: z.string().refine(
+    (val) => {
+      const date = new Date(val)
+      if (isNaN(date.getTime())) return false
+      const hour = date.getHours()
+      return hour >= 10 && hour < 18 // office hours check
+    },
+    {
+      message: 'Meeting time must be between 10:00 and 18:00',
+    }
+  ),
+})
 
 export interface Image {
   id: string
@@ -92,8 +113,32 @@ export interface Certificate {
   }
 }
 
+export interface TransactionalEmail<T extends keyof EmailTemplateData> {
+  template: T
+  data: EmailTemplateData[T]
+}
+
+export interface PushNotificationSubscription {
+  endpoint: string
+  expirationTime: null
+  keys: {
+    p256dh: string
+    auth: string
+  }
+}
+
+export interface EmailSubscription {
+  name: string
+  email: string
+}
+
+export interface WhatsappSubscription {
+  name: string
+  phone: string
+}
+
 /* Server Only */
-export const resourceTypes = ['project', 'asset', 'newsletter', 'company'] as const
+export const resourceTypes = ['prospect', 'client', 'project', 'asset'] as const
 
 export type ResourceType = (typeof resourceTypes)[number]
 

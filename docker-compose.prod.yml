@@ -2,10 +2,11 @@ version: '3.9'
 services:
   app:
     image: ghcr.io/algostract/portfolio-shirsendu:latest
+    env_file:
+      - .env
     volumes:
       - portfolio-shirsendu_static:/app/static
-    env_file:
-      - .env.prod
+      - portfolio-shirsendu_data:/app/.data
     ports:
       - 4100:3000
     networks:
@@ -18,9 +19,17 @@ services:
 
 volumes:
   portfolio-shirsendu_static:
-    external: true
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /root/portfolio-shirsendu/static
   portfolio-shirsendu_data:
-    external: true
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /root/portfolio-shirsendu/.data
 
 networks:
   front-tier:

@@ -45,11 +45,9 @@ const nativeConfig =
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
-  future: {
-    compatibilityVersion: 4,
-  },
   devtools: { enabled: true },
   modules: [
+    // '@hannoeru/nuxt-otel',
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
@@ -63,6 +61,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-nodemailer',
     'nuxt-splide',
+    '@regle/nuxt',
   ],
   nitro: {
     compressPublicAssets: true,
@@ -117,7 +116,14 @@ export default defineNuxtConfig({
     },
     private: {
       notionDbId: '',
+      vapidKey: '',
+      vapidSubject: '',
+      emailMetaData: '',
+      oauthClientId: '',
+      oauthClientSecret: '',
+      oauthRefreshToken: '',
       serverValidationKey: '',
+      paymentUpiInfo: '',
     },
   },
   app: {

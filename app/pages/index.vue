@@ -1,7 +1,6 @@
 <script setup lang="ts">
-const title = `Fullstack Developer in Kolkata`
-const description = `Shirsendu Bairagi is Fullstack Developer with more then 3 years of experience.
-He had done more then a dozens production grade cutting edge projects in web, app, iot and ml.`
+const title = `CTO · Founder · Open Source Maintainer`
+const description = `Architecting scalable design, leading product development, and fostering tech innovation.`
 
 const {
   public: { siteUrl },

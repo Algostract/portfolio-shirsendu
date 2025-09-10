@@ -12,9 +12,9 @@ const { proxy: gaProxy } = useScriptGoogleAnalytics()
 async function onSubscribe(email: string) {
   gaProxy.gtag('event', 'subscribe')
 
-  await $api('/api/newsletter', {
+  await $api('/api/notification/email/subscribe', {
     method: 'POST',
-    body: { email, subscribed: true },
+    body: { email },
   })
 }
 </script>
